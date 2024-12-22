@@ -11,23 +11,6 @@ var cells: Array = [] # cells[y][x], right: x+, down: y+
 func _ready() -> void:
 	# Cells initialization
 	_cells_initializaiton(cells)
-	
-	put_stone(Vector2(0, 0), 1)
-	put_stone(Vector2(0, 1), 2)
-	put_stone(Vector2(1, 1), 1)
-	
-	print(cells)
-	await get_tree().create_timer(2).timeout
-	
-	rotate_cw()
-	print(cells)
-	
-	put_stone(Vector2(0, 0), 1)
-	print(cells, "asdf")
-	await get_tree().create_timer(2).timeout
-	
-	rotate_cw()
-	print(cells)
 
 func _cells_initializaiton(array_to_init: Array): # Cells initialization (filling it with zero)
 	for i in range(size):
@@ -40,7 +23,9 @@ func put_stone(absolute_position_to_put: Vector2, color_to_put: int) -> void: # 
 	# absolute_position_to_put: player's perspective
 	
 	# just put the stone by absolute position(player's perspective)
-	var stone_position: Vector2 = Vector2((absolute_position_to_put.x - (float(size) - 1) / 2.0) * cell_image_size, (absolute_position_to_put.y - (float(size) - 1) / 2.0) * cell_image_size)
+	var stone_position: Vector2 \
+	= Vector2((absolute_position_to_put.x - (float(size) - 1) / 2.0) * cell_image_size, \
+	(absolute_position_to_put.y - (float(size) - 1) / 2.0) * cell_image_size)
 	stone_position = stone_position.rotated(-self.rotation) # Absolutely!!
 	var stone: PentagoStone = PentagoStoneCreator.create(stone_position, color_to_put)
 	add_child(stone)
