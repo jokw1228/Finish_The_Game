@@ -19,19 +19,25 @@ func _cells_initializaiton(array_to_init: Array): # Cells initialization (fillin
 			temp.append(0)
 		array_to_init.append(temp)
 
-func put_stone(absolute_position_to_put: Vector2, color_to_put: int) -> void: # Put the stones to reflect the current rotation coordinate system.
+func put_stone(absolute_position_to_put: Vector2, color_to_put: int) -> bool: # Put the stones to reflect the current rotation coordinate system.
 	# absolute_position_to_put: player's perspective
 	
-	# just put the stone by absolute position(player's perspective)
-	var stone_position: Vector2 \
-	= Vector2((absolute_position_to_put.x - (float(size) - 1) / 2.0) * cell_image_size, \
-	(absolute_position_to_put.y - (float(size) - 1) / 2.0) * cell_image_size)
-	stone_position = stone_position.rotated(-self.rotation) # Absolutely!!
-	var stone: PentagoStone = PentagoStoneCreator.create(stone_position, color_to_put)
-	add_child(stone)
-	
-	# Update the cells
-	cells[absolute_position_to_put.y][absolute_position_to_put.x] = color_to_put
+	# Check if there is already a stone
+	if cells[absolute_position_to_put.y][absolute_position_to_put.x] != 0:
+		return false
+	else:
+		# Update the cells
+		cells[absolute_position_to_put.y][absolute_position_to_put.x] = color_to_put
+		
+		# just put the stone by absolute position(player's perspective)
+		var stone_position: Vector2 \
+		= Vector2((absolute_position_to_put.x - (float(size) - 1) / 2.0) * cell_image_size, \
+		(absolute_position_to_put.y - (float(size) - 1) / 2.0) * cell_image_size)
+		stone_position = stone_position.rotated(-self.rotation) # Absolutely!!
+		var stone: PentagoStone = PentagoStoneCreator.create(stone_position, color_to_put)
+		add_child(stone)
+		
+		return true
 	
 
 func rotate_ccw() -> void: # Rotate the subboard 90 degrees counterclockwise

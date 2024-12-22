@@ -29,6 +29,7 @@ func set_board() -> void:
 
 func wait_put_stone(color_to_put: int = 1):
 	# waiting for a mouse left click
+	await get_tree().process_frame
 	while !Input.is_action_just_pressed("ui_left_click"):
 		await get_tree().process_frame
 	
@@ -58,4 +59,6 @@ func wait_put_stone(color_to_put: int = 1):
 	var inner_index: Vector2 = Vector2\
 	(int(select.x) % subboard_size, int(select.y) % subboard_size)
 	# put the stone
-	subboards[subboard_index.y][subboard_index.x].put_stone(inner_index, color_to_put)
+	var success: bool = subboards[subboard_index.y][subboard_index.x].put_stone(inner_index, color_to_put)
+	if success == false:
+		wait_put_stone(color_to_put)
