@@ -9,3 +9,9 @@ func set_color(color_to_set: int) -> void:
 		texture = sprite_black
 	elif color_to_set == 2:
 		texture = sprite_white
+
+func _ready() -> void:
+	global_rotation = 0
+
+func _physics_process(_delta: float) -> void:
+	global_rotation = 0

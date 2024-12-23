@@ -20,30 +20,127 @@
      borderopacity="0.25"
      inkscape:showpageshadow="2"
      inkscape:pageopacity="0.0"
-     inkscape:pagecheckerboard="0"
+     inkscape:pagecheckerboard="true"
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
      inkscape:zoom="0.74583497"
-     inkscape:cx="205.13922"
+     inkscape:cx="205.13921"
      inkscape:cy="156.87116"
      inkscape:window-width="1440"
      inkscape:window-height="830"
      inkscape:window-x="-6"
      inkscape:window-y="-6"
      inkscape:window-maximized="1"
-     inkscape:current-layer="layer1" />
+     inkscape:current-layer="layer2" />
   <defs
-     id="defs1" />
+     id="defs1">
+    <inkscape:path-effect
+       effect="fillet_chamfer"
+       id="path-effect2"
+       is_visible="true"
+       lpeversion="1"
+       nodesatellites_param="F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1"
+       radius="0"
+       unit="px"
+       method="auto"
+       mode="F"
+       chamfer_steps="1"
+       flexible="false"
+       use_knot_distance="true"
+       apply_no_radius="true"
+       apply_with_radius="true"
+       only_selected="false"
+       hide_knots="false" />
+    <inkscape:path-effect
+       effect="fillet_chamfer"
+       id="path-effect1"
+       is_visible="true"
+       lpeversion="1"
+       nodesatellites_param="F,0,0,1,0,4.4979167,0,1 @ F,0,0,1,0,4.4979167,0,1 @ F,0,0,1,0,4.4979167,0,1 @ F,0,0,1,0,4.4979167,0,1"
+       radius="17"
+       unit="px"
+       method="auto"
+       mode="F"
+       chamfer_steps="1"
+       flexible="false"
+       use_knot_distance="true"
+       apply_no_radius="true"
+       apply_with_radius="true"
+       only_selected="false"
+       hide_knots="false" />
+  </defs>
   <g
-     inkscape:label="Layer 1"
+     inkscape:label="Back"
      inkscape:groupmode="layer"
-     id="layer1">
+     id="layer1"
+     style="fill:#ff8080">
     <rect
-       style="fill:#e985ff;fill-opacity:1;stroke-width:0.264583"
+       style="fill:#ff8080;fill-opacity:1;stroke-width:0.264583"
        id="rect1"
-       width="101.37676"
-       height="102.62914"
-       x="-0.062711157"
-       y="-0.1254223" />
+       width="101.60001"
+       height="101.6"
+       x="0"
+       y="0"
+       sodipodi:type="rect"
+       ry="18.092138" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="hole">
+    <circle
+       style="fill:#a02c2c;stroke-width:0.264583"
+       id="path2"
+       cx="16.933332"
+       cy="16.933332"
+       r="14.816667" />
+    <circle
+       style="fill:#a02c2c;stroke-width:0.264583"
+       id="path2-8"
+       cx="50.799999"
+       cy="16.933332"
+       r="14.816667" />
+    <circle
+       style="fill:#a02c2c;stroke-width:0.264583"
+       id="path2-9"
+       cx="84.666664"
+       cy="16.933332"
+       r="14.816667" />
+    <circle
+       style="fill:#a02c2c;stroke-width:0.264583"
+       id="path2-7"
+       cx="50.799999"
+       cy="50.799999"
+       r="14.816667" />
+    <circle
+       style="fill:#a02c2c;stroke-width:0.264583"
+       id="path2-77"
+       cx="84.666664"
+       cy="50.799999"
+       r="14.816667" />
+    <circle
+       style="fill:#a02c2c;stroke-width:0.264583"
+       id="path2-93"
+       cx="16.933332"
+       cy="50.799999"
+       r="14.816667" />
+    <circle
+       style="fill:#a02c2c;stroke-width:0.264583"
+       id="path2-1"
+       cx="50.799999"
+       cy="84.904587"
+       r="14.816667" />
+    <circle
+       style="fill:#a02c2c;stroke-width:0.264583"
+       id="path2-0"
+       cx="84.666664"
+       cy="84.666672"
+       r="14.816667" />
+    <circle
+       style="fill:#a02c2c;stroke-width:0.264583"
+       id="path2-94"
+       cx="16.933332"
+       cy="84.666664"
+       r="14.816667" />
   </g>
 </svg>

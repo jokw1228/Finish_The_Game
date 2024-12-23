@@ -20,12 +20,12 @@
      borderopacity="0.25"
      inkscape:showpageshadow="2"
      inkscape:pageopacity="0.0"
-     inkscape:pagecheckerboard="0"
+     inkscape:pagecheckerboard="true"
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
-     inkscape:zoom="4.2190795"
-     inkscape:cx="69.683446"
-     inkscape:cy="64.469038"
+     inkscape:zoom="1.0547699"
+     inkscape:cx="-66.365185"
+     inkscape:cy="29.390296"
      inkscape:window-width="1440"
      inkscape:window-height="830"
      inkscape:window-x="-6"
@@ -35,15 +35,43 @@
   <defs
      id="defs1" />
   <g
-     inkscape:label="Layer 1"
+     inkscape:label="Black Ball"
      inkscape:groupmode="layer"
      id="layer1">
-    <ellipse
-       style="fill:#ffffff;stroke-width:0.264583"
+    <circle
+       style="fill:#efefef;stroke-width:0.264583;fill-opacity:1"
        id="path1"
-       cx="16.941092"
-       cy="16.954081"
-       rx="16.830233"
-       ry="16.754534" />
+       cx="16.933332"
+       cy="16.933332"
+       r="14.816667" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="light">
+    <ellipse
+       style="fill:#ffffff;fill-opacity:0.47999999;stroke-width:0.264583"
+       id="path2"
+       ry="2"
+       rx="4"
+       cy="11.862428"
+       cx="6.8038836"
+       transform="rotate(-27.402486)" />
+    <ellipse
+       style="fill:#ffffff;fill-opacity:0.31999999;stroke-width:0.264583"
+       id="path2-6"
+       ry="3.3675454"
+       rx="6.7350907"
+       cy="12.93689"
+       cx="6.8100686"
+       transform="rotate(-27.402486)" />
+    <ellipse
+       style="fill:#ffffff;fill-opacity:0.16;stroke-width:0.265143"
+       id="path2-6-8"
+       ry="4.3984361"
+       rx="8.2461405"
+       cy="13.864905"
+       cx="7.1354289"
+       transform="matrix(0.86498389,-0.50179963,0.42033962,0.90736685,0,0)" />
   </g>
 </svg>

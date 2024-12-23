@@ -4,12 +4,12 @@ class_name PentagoSubBoard
 const cell_image_size = 128.0 # pixel size
 const rotation_animation_time = 0.2
 
-signal rotation_finished
-
 var size: int = 3 # default: 3 x 3 matrix
 var cells: Array = [] # cells[y][x], right: x+, down: y+
 # 0: empty, 1: black, 2: white
 # cells <- absolute coordinate systems
+
+signal rotation_finished
 
 func _ready() -> void:
 	# Cells initialization

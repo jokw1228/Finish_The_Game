@@ -3,12 +3,12 @@ class_name PentagoBoard
 
 const cell_image_size = 128.0 # pixel size
 
-signal player_action_finished
-
 var board_size: int = 2
 var subboard_size: int = 3
 
 var subboards: Array = []
+
+signal player_action_finished
 
 func _ready() -> void:
 	set_board()
