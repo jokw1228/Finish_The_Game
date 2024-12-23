@@ -25,8 +25,8 @@ func _cells_initializaiton(array_to_init: Array): # Cells initialization (fillin
 func put_stone(absolute_position_to_put: Vector2, color_to_put: int) -> bool: # Put the stones to reflect the current rotation coordinate system.
 	# absolute_position_to_put: player's perspective
 	
-	# Check if there is already a stone
-	if cells[absolute_position_to_put.y][absolute_position_to_put.x] != 0:
+	# Check if there is already a stone or if put value is not 0
+	if cells[absolute_position_to_put.y][absolute_position_to_put.x] != 0 or color_to_put == 0:
 		return false
 	else:
 		# Update the cells
