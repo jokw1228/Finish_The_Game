@@ -1,8 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://cw15k683mc1sj"]
+[gd_scene load_steps=3 format=3 uid="uid://cw15k683mc1sj"]
 
+[ext_resource type="Script" path="res://scenes/game_pentago/game_pentago.gd" id="1_8wq0g"]
 [ext_resource type="PackedScene" uid="uid://4f4fdpxipnid" path="res://scenes/game_pentago/pentago_board.tscn" id="1_xg6kn"]
 
-[node name="GamePentago" type="Node2D"]
+[node name="GamePentago" type="Node2D" node_paths=PackedStringArray("PentagoBoard_node")]
+script = ExtResource("1_8wq0g")
+PentagoBoard_node = NodePath("PentagoBoard")
 
 [node name="PentagoBoard" parent="." instance=ExtResource("1_xg6kn")]
 position = Vector2(540, 960)
+
+[connection signal="player_action_start" from="." to="PentagoBoard" method="wait_put_stone"]

@@ -3,6 +3,8 @@ class_name PentagoBoard
 
 const cell_image_size = 128.0 # pixel size
 
+signal player_action_finished
+
 var board_size: int = 2
 var subboard_size: int = 3
 
@@ -10,7 +12,6 @@ var subboards: Array = []
 
 func _ready() -> void:
 	set_board()
-	wait_put_stone(1)
 
 func set_board() -> void:
 	var subboard_pixel_size: float = subboard_size * cell_image_size
@@ -105,3 +106,6 @@ func wait_choose_rotation(subboard_index: Vector2) -> void:
 		subboards[subboard_index.y][subboard_index.x].rotate_ccw()
 	else:
 		subboards[subboard_index.y][subboard_index.x].rotate_cw()
+	await subboards[subboard_index.y][subboard_index.x].rotation_finished
+	
+	player_action_finished.emit()

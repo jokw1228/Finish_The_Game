@@ -2,6 +2,9 @@ extends Node2D
 class_name PentagoSubBoard
 
 const cell_image_size = 128.0 # pixel size
+const rotation_animation_time = 0.2
+
+signal rotation_finished
 
 var size: int = 3 # default: 3 x 3 matrix
 var cells: Array = [] # cells[y][x], right: x+, down: y+
@@ -55,7 +58,11 @@ func rotate_ccw() -> void: # Rotate the subboard 90 degrees counterclockwise
 	cells = new_cells
 	
 	# Node rotation
-	rotate(-PI/2) # left-hand rule
+	var tween_rotation: Tween = get_tree().create_tween()
+	tween_rotation.tween_property(self, "rotation", rotation-PI/2, rotation_animation_time)
+	#rotate(-PI/2) # left-hand rule
+	await tween_rotation.finished
+	rotation_finished.emit()
 
 func rotate_cw() -> void: # Rotate the subboard 90 degrees clockwise
 	# New cells initializaiton
@@ -72,4 +79,8 @@ func rotate_cw() -> void: # Rotate the subboard 90 degrees clockwise
 	cells = new_cells
 	
 	# Node rotation
-	rotate(+PI/2) # left-hand rule
+	var tween_rotation: Tween = get_tree().create_tween()
+	tween_rotation.tween_property(self, "rotation", rotation+PI/2, rotation_animation_time)
+	#rotate(PI/2) # right-hand rule
+	await tween_rotation.finished
+	rotation_finished.emit()
