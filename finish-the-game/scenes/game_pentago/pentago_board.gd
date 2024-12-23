@@ -31,7 +31,7 @@ func set_board() -> void:
 func set_ftg_board(board: Array) -> void:
 	for y: int in range(board_size*subboard_size):
 		for x: int in range(board_size*subboard_size):
-			subboards[floor(y/subboard_size)][floor(x/subboard_size)].put_stone\
+			subboards[y/subboard_size][x/subboard_size].put_stone\
 			(Vector2(x%subboard_size, y%subboard_size), board[y][x])
 	
 

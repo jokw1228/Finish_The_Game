@@ -4,7 +4,7 @@ class_name PentagoSubBoard
 const cell_image_size = 128.0 # pixel size
 const rotation_animation_time = 0.2
 
-var size: int = 3 # default: 3 x 3 matrix
+var subboard_size: int = 3 # default: 3 x 3 matrix
 var cells: Array = [] # cells[y][x], right: x+, down: y+
 # 0: empty, 1: black, 2: white
 # cells <- absolute coordinate systems
@@ -16,9 +16,9 @@ func _ready() -> void:
 	_cells_initializaiton(cells)
 
 func _cells_initializaiton(array_to_init: Array): # Cells initialization (filling it with zero)
-	for i in range(size):
+	for i in range(subboard_size):
 		var temp: Array[int] = []
-		for j in range(size):
+		for j in range(subboard_size):
 			temp.append(0)
 		array_to_init.append(temp)
 
@@ -34,8 +34,8 @@ func put_stone(absolute_position_to_put: Vector2, color_to_put: int) -> bool: # 
 		
 		# just put the stone by absolute position(player's perspective)
 		var stone_position: Vector2 \
-		= Vector2((absolute_position_to_put.x - (float(size) - 1) / 2.0) * cell_image_size, \
-		(absolute_position_to_put.y - (float(size) - 1) / 2.0) * cell_image_size)
+		= Vector2((absolute_position_to_put.x - (float(subboard_size) - 1) / 2.0) * cell_image_size, \
+		(absolute_position_to_put.y - (float(subboard_size) - 1) / 2.0) * cell_image_size)
 		stone_position = stone_position.rotated(-self.rotation) # Absolutely!!
 		var stone: PentagoStone = PentagoStoneCreator.create(stone_position, color_to_put)
 		add_child(stone)
@@ -49,10 +49,10 @@ func rotate_ccw() -> void: # Rotate the subboard 90 degrees counterclockwise
 	_cells_initializaiton(new_cells)
 	
 	# Fill in the new cells
-	for i in range(size):
-		for j in range(size):
+	for i in range(subboard_size):
+		for j in range(subboard_size):
 			#new_cells[j][size - 1 - i] = cells[i][j] # right-hand rule
-			new_cells[size - 1 - j][i] = cells[i][j] # left-hand rule
+			new_cells[subboard_size - 1 - j][i] = cells[i][j] # left-hand rule
 	
 	# Update the cells
 	cells = new_cells
@@ -70,10 +70,10 @@ func rotate_cw() -> void: # Rotate the subboard 90 degrees clockwise
 	_cells_initializaiton(new_cells)
 	
 	# Fill in the new cells
-	for i in range(size):
-		for j in range(size):
+	for i in range(subboard_size):
+		for j in range(subboard_size):
 			#new_cells[size - 1 - j][i] = cells[i][j]
-			new_cells[j][size - 1 - i] = cells[i][j]
+			new_cells[j][subboard_size - 1 - i] = cells[i][j]
 	
 	# Update the cells
 	cells = new_cells
