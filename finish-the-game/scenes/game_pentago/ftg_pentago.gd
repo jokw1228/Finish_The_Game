@@ -116,20 +116,37 @@ func generate_board() -> void:
 				zero_indexes.append(Vector2(x, y))
 	
 	# next player's stone count = 5 + k - 1
-	const add_min = 1
-	const add_max = 10
-	var k: int = rng.randi_range(add_min, add_max)
-	for i in range(k):
-		var random_index: int = rng.randi_range(0, zero_indexes.size()-1)
-		var selected: Vector2 = zero_indexes[random_index]
-		zero_indexes.remove_at(random_index)
-		board[selected.y][selected.x] = next_player
-	var l: int = k + 4 if next_player == 1 else k + 5
-	for i in range(l):
-		var random_index: int = rng.randi_range(0, zero_indexes.size()-1)
-		var selected: Vector2 = zero_indexes[random_index]
-		zero_indexes.remove_at(random_index)
-		board[selected.y][selected.x] = current_player
+	# 돌을 추가했을 때 5목이 완성되는 경우는 버려야함.
+	while true:
+		var test_board: Array = []
+		for y in range(N):
+			var temp: Array[int] = []
+			for x in range(N):
+				temp.append(board[y][x])
+			test_board.append(temp)
+		var test_zero_indexes: Array[Vector2] = []
+		for i in range(zero_indexes.size()):
+			test_zero_indexes.append(zero_indexes[i])
+		
+		const add_min = 1
+		const add_max = 10
+		var k: int = rng.randi_range(add_min, add_max)
+		for i in range(k):
+			var random_index: int = rng.randi_range(0, test_zero_indexes.size()-1)
+			var selected: Vector2 = test_zero_indexes[random_index]
+			test_zero_indexes.remove_at(random_index)
+			test_board[selected.y][selected.x] = next_player
+		var l: int = k + 4 if next_player == 1 else k + 5
+		for i in range(l):
+			var random_index: int = rng.randi_range(0, test_zero_indexes.size()-1)
+			var selected: Vector2 = test_zero_indexes[random_index]
+			test_zero_indexes.remove_at(random_index)
+			test_board[selected.y][selected.x] = current_player
+		
+		if check_five_in_a_row(test_board, 1) == false \
+		and check_five_in_a_row(test_board, 2) == false:
+			board = test_board
+			break
 	
 	var for_loop_found: bool = false
 	for y in range(N):
@@ -146,5 +163,52 @@ func generate_board() -> void:
 	
 	await PentagoBoard_node.player_action_finished
 	
-	await get_tree().create_timer(2).timeout
+	await get_tree().create_timer(0.1).timeout
 	get_tree().reload_current_scene()
+
+func check_five_in_a_row(board_to_check: Array, color_to_check: int = 1) -> bool:
+	# 가로
+	for y in range(N):
+		for start_x in range(N-5 + 1):
+			var is_five: bool = true
+			for delta in range(5):
+				if board_to_check[y][start_x+delta] != color_to_check:
+					is_five = false
+					break
+			if is_five == true:
+				return true
+	
+	# 세로
+	for x in range(N):
+		for start_y in range(N-5 + 1):
+			var is_five: bool = true
+			for delta in range(5):
+				if board_to_check[start_y+delta][x] != color_to_check:
+					is_five = false
+					break
+			if is_five == true:
+				return true
+	
+	# 대각선 ↘
+	for start_y in range(N-5 + 1):
+		for start_x in range(N-5 + 1):
+			var is_five: bool = true
+			for delta in range(5):
+				if board_to_check[start_y+delta][start_x+delta] != color_to_check:
+					is_five = false
+					break
+			if is_five == true:
+				return true
+	
+	# 대각선 ↗
+	for start_y in range(N-5 + 1):
+		for start_x in range(N-5 + 1):
+			var is_five: bool = true
+			for delta in range(5):
+				if board_to_check[N-start_y-delta-1][start_x+delta] != color_to_check:
+					is_five = false
+					break
+			if is_five == true:
+				return true
+	
+	return false
