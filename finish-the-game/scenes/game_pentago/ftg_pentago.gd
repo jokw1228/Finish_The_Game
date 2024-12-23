@@ -1,11 +1,14 @@
 extends Node2D
 class_name FTGPentago
 
+@export var PentagoBoard_node: PentagoBoard
+
 var board_size: int = 2
 var subboard_size: int = 3
 var N: int = 6 # board_size * subboard_size
 
 signal set_ftg_board(board: Array)
+signal start_ftg(color_to_put: int)
 
 func _ready() -> void:
 	generate_board()
@@ -26,6 +29,7 @@ func generate_board() -> void:
 	# 1) next_player(1 or 2) 정하기
 	# 1: black, 2: white
 	var next_player: int = rng.randi_range(1, 2)
+	add_child(PentagoStoneCreator.create(Vector2(540,256), next_player))
 	
 	# 2) board 초기화
 	# board
@@ -112,7 +116,9 @@ func generate_board() -> void:
 				zero_indexes.append(Vector2(x, y))
 	
 	# next player's stone count = 5 + k - 1
-	var k: int = rng.randi_range(1, 10)
+	const add_min = 1
+	const add_max = 10
+	var k: int = rng.randi_range(add_min, add_max)
 	for i in range(k):
 		var random_index: int = rng.randi_range(0, zero_indexes.size()-1)
 		var selected: Vector2 = zero_indexes[random_index]
@@ -135,6 +141,10 @@ func generate_board() -> void:
 		if for_loop_found == true:
 			break
 	
-	print(board)
-	print(next_player)
 	set_ftg_board.emit(board)
+	start_ftg.emit(next_player)
+	
+	await PentagoBoard_node.player_action_finished
+	
+	await get_tree().create_timer(2).timeout
+	get_tree().reload_current_scene()
