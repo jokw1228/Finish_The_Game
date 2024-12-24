@@ -9,5 +9,3 @@ PentagoBoard_node = NodePath("PentagoBoard")
 
 [node name="PentagoBoard" parent="." instance=ExtResource("1_xg6kn")]
 position = Vector2(540, 960)
-
-[connection signal="player_action_start" from="." to="PentagoBoard" method="wait_put_stone"]

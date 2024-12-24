@@ -7,9 +7,6 @@ var board_size: int = 2
 var subboard_size: int = 3
 var N: int = 6 # board_size * subboard_size
 
-signal set_ftg_board(board: Array)
-signal start_ftg(color_to_put: int)
-
 func _ready() -> void:
 	generate_board()
 
@@ -74,7 +71,13 @@ func generate_board() -> void:
 				board[N-start-delta-1][start2+delta] = -1
 			else:
 				board[N-start-delta-1][start2+delta] = next_player
-	
+	print("original: ")
+	print(board[0])
+	print(board[1])
+	print(board[2])
+	print(board[3])
+	print(board[4])
+	print(board[5])
 	# 4) 무작위 서브보드 하나 골라서 회전
 	var subboard_to_rotate: Vector2 = Vector2(\
 	randi_range(0, board_size-1), \
@@ -105,7 +108,13 @@ func generate_board() -> void:
 	for y in range(subboard_size):
 		for x in range(subboard_size):
 			board[y+y_offset][x+x_offset] = paste_cells[y][x]
-	
+	print("rotated: ")
+	print(board[0])
+	print(board[1])
+	print(board[2])
+	print(board[3])
+	print(board[4])
+	print(board[5])
 	# 5) 상대 돌도 좀 배치해서 돌 개수 차이 0 또는 1 맞추기
 	var current_player: int = 2 if next_player == 1 else 1
 	
@@ -158,12 +167,19 @@ func generate_board() -> void:
 		if for_loop_found == true:
 			break
 	
-	set_ftg_board.emit(board)
-	start_ftg.emit(next_player)
+	print("final: ")
+	print(board[0])
+	print(board[1])
+	print(board[2])
+	print(board[3])
+	print(board[4])
+	print(board[5])
+	
+	PentagoBoard_node.start_ftg_pentago(board, next_player)
 	
 	await PentagoBoard_node.player_action_finished
 	
-	await get_tree().create_timer(0.1).timeout
+	await get_tree().create_timer(1.0).timeout
 	get_tree().reload_current_scene()
 
 func check_five_in_a_row(board_to_check: Array, color_to_check: int = 1) -> bool:

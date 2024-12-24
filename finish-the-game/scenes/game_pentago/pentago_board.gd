@@ -28,12 +28,15 @@ func set_board() -> void:
 			add_child(inst)
 		subboards.append(temp)
 
-func set_ftg_board(board: Array) -> void:
+func start_ftg_pentago(board: Array, color_to_put: int) -> void:
+	# set FTG pentago board
 	for y: int in range(board_size*subboard_size):
 		for x: int in range(board_size*subboard_size):
 			subboards[y/subboard_size][x/subboard_size].put_stone\
 			(Vector2(x%subboard_size, y%subboard_size), board[y][x])
 	
+	# put stone
+	wait_put_stone(color_to_put)
 
 func wait_put_stone(color_to_put: int = 1):
 	# waiting for a mouse left click
