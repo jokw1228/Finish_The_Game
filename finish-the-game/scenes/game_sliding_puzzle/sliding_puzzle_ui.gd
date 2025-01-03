@@ -1,8 +1,8 @@
 extends Node2D
 class_name SlidingPuzzleUI
 
-const width = 4
-const height = 4
+const width = 3
+const height = 3
 
 var cells: Array = []
 const cell_image_size = 128.0 # pixel size
@@ -26,7 +26,7 @@ func initialize_board_ui() -> void:
 				(x - float(width) / 2.0) * cell_image_size, \
 				(y - float(height) / 2.0) * cell_image_size), \
 				number_to_set, \
-				[(number_to_set-1)%width, (number_to_set-1)/width], \
+				[(number_to_set-1)%width, floor(number_to_set-1)/width], \
 				Callable(self, "receive_request_slide"))
 				temp.append(inst)
 				add_child(inst)
@@ -48,3 +48,15 @@ func receive_approve_and_reply_slide(approved_index: Array[int], empty_index: Ar
 	
 	cells[empty_index[1]][empty_index[0]] = cells[approved_index[1]][approved_index[0]]
 	cells[approved_index[1]][approved_index[0]] = null
+
+func receive_request_ftg_move(target_index: Array[int], empty_index: Array[int]):
+	cells[target_index[1]][target_index[0]].set_index(empty_index)
+	
+	var position_to_move: Vector2 = \
+	Vector2(\
+	(empty_index[0] - float(width) / 2.0) * cell_image_size, \
+	(empty_index[1] - float(height) / 2.0) * cell_image_size)
+	cells[target_index[1]][target_index[0]].position = position_to_move
+	
+	cells[empty_index[1]][empty_index[0]] = cells[target_index[1]][target_index[0]]
+	cells[target_index[1]][target_index[0]] = null

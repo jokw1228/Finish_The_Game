@@ -20,4 +20,5 @@ func _on_pressed() -> void:
 	request_slide.emit(index)
 
 func move_to_position(position_to_move: Vector2) -> void:
-	position = position_to_move
+	var tween: Tween = get_tree().create_tween()
+	tween.tween_property(self, "position", position_to_move, 0.05)
