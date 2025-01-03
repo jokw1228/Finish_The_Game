@@ -1,4 +1,4 @@
-extends Button
+extends TextureButton
 class_name SlidingPuzzleCell
 
 const width = 4
@@ -13,3 +13,7 @@ func set_number(number_to_set: int) -> void:
 	number = number_to_set
 	cell_index = [number/width, number%width]
 	Number_node.text = str(number)
+
+
+func _on_pressed() -> void:
+	print(number)
