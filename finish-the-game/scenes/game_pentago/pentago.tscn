@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dvbndx48qh0vl"]
+
+[ext_resource type="Script" path="res://scenes/game_pentago/pentago.gd" id="1_dn42u"]
+
+[node name="Pentago" type="Node2D"]
+script = ExtResource("1_dn42u")

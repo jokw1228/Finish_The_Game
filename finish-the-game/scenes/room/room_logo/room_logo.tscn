@@ -11,3 +11,4 @@ script = ExtResource("1_62yfl")
 [node name="FTGSlidingPuzzle" parent="." instance=ExtResource("1_nmkcy")]
 
 [connection signal="asdf" from="." to="FTGSlidingPuzzle" method="start_ftg"]
+[connection signal="end_ftg" from="FTGSlidingPuzzle" to="." method="restart"]

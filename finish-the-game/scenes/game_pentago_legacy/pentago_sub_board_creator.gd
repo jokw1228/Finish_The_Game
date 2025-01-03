@@ -1,7 +1,7 @@
 extends Node
 class_name PentagoSubBoardCreator
 
-const PentagoSubBoard_scene = "res://scenes/game_pentago/pentago_sub_board.tscn"
+const PentagoSubBoard_scene = "res://scenes/game_pentago_legacy/pentago_sub_board.tscn"
 
 static func create(position_to_set: Vector2, size_to_set: int = 3) -> PentagoSubBoard:
 	var inst: PentagoSubBoard = preload(PentagoSubBoard_scene).instantiate() as PentagoSubBoard

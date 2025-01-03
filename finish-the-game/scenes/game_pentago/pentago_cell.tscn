@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://bqfer57y0a5od"]
+
+[ext_resource type="Texture2D" uid="uid://d3ye6ly5p3fic" path="res://resources/images/game_pentago/sprite_pentago_cell_transparent.svg" id="1_7w1am"]
+[ext_resource type="Texture2D" uid="uid://ivm217x7rgy3" path="res://resources/images/game_pentago/sprite_pentago_cell_translucent.svg" id="2_jy7jy"]
+[ext_resource type="Script" path="res://scenes/game_pentago/pentago_cell.gd" id="3_5urij"]
+
+[node name="PentagoCell" type="TextureButton"]
+texture_normal = ExtResource("1_7w1am")
+texture_pressed = ExtResource("2_jy7jy")
+texture_hover = ExtResource("2_jy7jy")
+texture_disabled = ExtResource("1_7w1am")
+texture_focused = ExtResource("2_jy7jy")
+script = ExtResource("3_5urij")

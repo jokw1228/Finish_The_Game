@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dtvp6x5rlrqr2"]
 
-[ext_resource type="Script" path="res://scenes/game_pentago/ftg_pentago.gd" id="1_4kv45"]
-[ext_resource type="PackedScene" uid="uid://4f4fdpxipnid" path="res://scenes/game_pentago/pentago_board.tscn" id="2_v7w8g"]
+[ext_resource type="Script" path="res://scenes/game_pentago_legacy/ftg_pentago.gd" id="1_4kv45"]
+[ext_resource type="PackedScene" uid="uid://4f4fdpxipnid" path="res://scenes/game_pentago_legacy/pentago_board.tscn" id="2_v7w8g"]
 
 [node name="FTGPentago" type="Node2D" node_paths=PackedStringArray("PentagoBoard_node")]
 script = ExtResource("1_4kv45")

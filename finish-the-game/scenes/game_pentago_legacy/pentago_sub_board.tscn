@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cio1qgik1vh52"]
 
-[ext_resource type="Script" path="res://scenes/game_pentago/pentago_sub_board.gd" id="1_yq64w"]
+[ext_resource type="Script" path="res://scenes/game_pentago_legacy/pentago_sub_board.gd" id="1_yq64w"]
 [ext_resource type="Texture2D" uid="uid://c8k67dj3hhao3" path="res://resources/images/game_pentago/sprite_pentago_sub_board.svg" id="2_2d5w3"]
 
 [node name="PentagoSubBoard" type="Node2D"]
