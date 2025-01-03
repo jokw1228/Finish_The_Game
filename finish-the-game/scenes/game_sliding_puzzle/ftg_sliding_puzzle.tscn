@@ -5,3 +5,6 @@
 
 [node name="FTGSlidingPuzzle" instance=ExtResource("1_2qjcy")]
 script = ExtResource("1_qrknv")
+
+[connection signal="approve_and_reply_slide" from="." to="." method="check_game_cleared"]
+[connection signal="request_disable_input" from="." to="SlidingPuzzleUI" method="receive_request_disable_input"]

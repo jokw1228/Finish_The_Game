@@ -34,8 +34,9 @@ func receive_request_slide(index_to_request: Array[int]) -> void:
 	or (x_r == x_e and y_r == y_e-1) \
 	or (x_r == x_e-1 and y_r == y_e) \
 	or (x_r == x_e and y_r == y_e+1):
-		approve_and_reply_slide.emit(index_to_request, current_empty_index)
+		var _current_empty_index: Array[int] = current_empty_index
 		slide_cell(index_to_request)
+		approve_and_reply_slide.emit(index_to_request, _current_empty_index)
 	else:
 		deny_and_reply_slide.emit(index_to_request, current_empty_index)
 

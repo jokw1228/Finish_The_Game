@@ -60,3 +60,9 @@ func receive_request_immediate_move(target_index: Array[int], empty_index: Array
 	
 	cells[empty_index[1]][empty_index[0]] = cells[target_index[1]][target_index[0]]
 	cells[target_index[1]][target_index[0]] = null
+
+func receive_request_disable_input() -> void:
+	for y in range(height):
+		for x in range(width):
+			if cells[y][x] != null:
+				cells[y][x].disabled = true

@@ -1,6 +1,9 @@
 extends SlidingPuzzle
 class_name FTGSlidingPuzzle
 
+signal request_disable_input()
+signal end_ftg(is_game_cleared: bool)
+
 func start_ftg() -> void:
 	var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 	rng.randomize()
@@ -23,5 +26,13 @@ func start_ftg() -> void:
 		var selected: Array = candidates.pick_random()
 		var _selected: Array[int] = [selected[0], selected[1]]
 		last_index = current_empty_index.duplicate(true)
-		request_immediate_move.emit(_selected, current_empty_index)
+		var _current_empty_index: Array[int] = current_empty_index
 		slide_cell(_selected)
+		request_immediate_move.emit(_selected, _current_empty_index)
+
+func check_game_cleared(_1: Array[int], _2: Array[int]) -> void: # These parameters are not used.
+	for i: int in range(width*height-1):
+		if board[i/height][i%width] != i+1:
+			return
+	request_disable_input.emit()
+	end_ftg.emit(true)
