@@ -6,4 +6,8 @@
 [node name="SlidingPuzzle" type="Node2D"]
 script = ExtResource("1_i42ma")
 
-[node name="SlidingPuzzleUI" parent="." instance=ExtResource("2_8c687")]
+[node name="SlidingPuzzleUI" parent="." node_paths=PackedStringArray("SlidingPuzzle_node") instance=ExtResource("2_8c687")]
+SlidingPuzzle_node = NodePath("..")
+
+[connection signal="approve_and_reply_slide" from="." to="SlidingPuzzleUI" method="receive_approve_and_reply_slide"]
+[connection signal="request_slide" from="SlidingPuzzleUI" to="." method="receive_request_slide"]

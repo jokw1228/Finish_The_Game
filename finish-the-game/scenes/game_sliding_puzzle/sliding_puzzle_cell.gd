@@ -1,19 +1,23 @@
 extends TextureButton
 class_name SlidingPuzzleCell
 
-const width = 4
-const height = 4
+var index: Array[int]
+
+signal request_slide(index_to_request: Array[int])
 
 @export var Number_node: Label
 
-var number: int
-var cell_index: Array[int]
-
 func set_number(number_to_set: int) -> void:
-	number = number_to_set
-	cell_index = [number/width, number%width]
-	Number_node.text = str(number)
+	Number_node.text = str(number_to_set)
 
+func set_index(index_to_set: Array[int]) -> void:
+	index = index_to_set
+
+func connect_signal(function_to_connect: Callable) -> void:
+	request_slide.connect(function_to_connect)
 
 func _on_pressed() -> void:
-	print(number)
+	request_slide.emit(index)
+
+func move_to_position(position_to_move: Vector2) -> void:
+	position = position_to_move
