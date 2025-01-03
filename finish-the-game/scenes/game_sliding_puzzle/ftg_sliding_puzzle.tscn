@@ -1,13 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://befdvirfwslff"]
+[gd_scene load_steps=3 format=3 uid="uid://df8lgaxcq5uj7"]
 
 [ext_resource type="PackedScene" uid="uid://cy0xw6owknf55" path="res://scenes/game_sliding_puzzle/sliding_puzzle.tscn" id="1_2qjcy"]
 [ext_resource type="Script" path="res://scenes/game_sliding_puzzle/ftg_sliding_puzzle.gd" id="1_qrknv"]
 
-[node name="FTGSlidingPuzzle" type="Node2D" node_paths=PackedStringArray("SlidingPuzzle_node")]
+[node name="FTGSlidingPuzzle" instance=ExtResource("1_2qjcy")]
 script = ExtResource("1_qrknv")
-SlidingPuzzle_node = NodePath("SlidingPuzzle")
-
-[node name="SlidingPuzzle" parent="." instance=ExtResource("1_2qjcy")]
-position = Vector2(540, 960)
-
-[connection signal="start_ftg_sliding_puzzle" from="." to="SlidingPuzzle" method="start_ftg_sliding_puzzle"]

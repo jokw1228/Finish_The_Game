@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://diiodgowsdr4u"]
+
+[ext_resource type="Script" path="res://scenes/room/room_logo/room_logo.gd" id="1_62yfl"]
+[ext_resource type="PackedScene" uid="uid://df8lgaxcq5uj7" path="res://scenes/game_sliding_puzzle/ftg_sliding_puzzle.tscn" id="1_nmkcy"]
+
+[node name="RoomLogo" type="Node2D"]
+script = ExtResource("1_62yfl")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="FTGSlidingPuzzle" parent="." instance=ExtResource("1_nmkcy")]
+
+[connection signal="asdf" from="." to="FTGSlidingPuzzle" method="start_ftg"]

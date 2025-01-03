@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://c05kfuv10v7um"]
-
-[ext_resource type="PackedScene" uid="uid://cy0xw6owknf55" path="res://scenes/game_sliding_puzzle/sliding_puzzle.tscn" id="1_2ap6g"]
-
-[node name="GameSlidingPuzzle" type="Node2D"]
-
-[node name="SlidingPuzzle" parent="." instance=ExtResource("1_2ap6g")]
-position = Vector2(540, 960)

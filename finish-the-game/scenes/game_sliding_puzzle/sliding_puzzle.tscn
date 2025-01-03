@@ -10,5 +10,5 @@ script = ExtResource("1_i42ma")
 SlidingPuzzle_node = NodePath("..")
 
 [connection signal="approve_and_reply_slide" from="." to="SlidingPuzzleUI" method="receive_approve_and_reply_slide"]
-[connection signal="request_ftg_move" from="." to="SlidingPuzzleUI" method="receive_request_ftg_move"]
+[connection signal="request_immediate_move" from="." to="SlidingPuzzleUI" method="receive_request_immediate_move"]
 [connection signal="request_slide" from="SlidingPuzzleUI" to="." method="receive_request_slide"]
