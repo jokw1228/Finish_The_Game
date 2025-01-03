@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Finish The Game"
-run/main_scene="res://scenes/game_pentago/ftg_pentago.tscn"
+run/main_scene="res://scenes/game_sliding_puzzle/sliding_puzzle.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -21,6 +21,10 @@ window/size/viewport_width=1080
 window/size/viewport_height=1920
 window/stretch/mode="viewport"
 window/handheld/orientation=5
+
+[gui]
+
+theme/custom="res://resources/fonts/Theme.tres"
 
 [input]
 

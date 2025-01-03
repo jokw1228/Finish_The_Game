@@ -71,13 +71,7 @@ func generate_board() -> void:
 				board[N-start-delta-1][start2+delta] = -1
 			else:
 				board[N-start-delta-1][start2+delta] = next_player
-	print("original: ")
-	print(board[0])
-	print(board[1])
-	print(board[2])
-	print(board[3])
-	print(board[4])
-	print(board[5])
+	
 	# 4) 무작위 서브보드 하나 골라서 회전
 	var subboard_to_rotate: Vector2 = Vector2(\
 	randi_range(0, board_size-1), \
@@ -108,13 +102,7 @@ func generate_board() -> void:
 	for y in range(subboard_size):
 		for x in range(subboard_size):
 			board[y+y_offset][x+x_offset] = paste_cells[y][x]
-	print("rotated: ")
-	print(board[0])
-	print(board[1])
-	print(board[2])
-	print(board[3])
-	print(board[4])
-	print(board[5])
+	
 	# 5) 상대 돌도 좀 배치해서 돌 개수 차이 0 또는 1 맞추기
 	var current_player: int = 2 if next_player == 1 else 1
 	
@@ -166,14 +154,6 @@ func generate_board() -> void:
 				break
 		if for_loop_found == true:
 			break
-	
-	print("final: ")
-	print(board[0])
-	print(board[1])
-	print(board[2])
-	print(board[3])
-	print(board[4])
-	print(board[5])
 	
 	PentagoBoard_node.start_ftg_pentago(board, next_player)
 	

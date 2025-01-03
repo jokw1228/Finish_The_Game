@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://dgr6rixiisqv0"]
+
+[ext_resource type="Texture2D" uid="uid://04m0351f6415" path="res://resources/images/game_sliding_puzzle/sprite_sliding_puzzle_cell.svg" id="1_gsld7"]
+[ext_resource type="Script" path="res://scenes/game_sliding_puzzle/sliding_puzzle_cell.gd" id="2_8we1a"]
+
+[node name="SlidingPuzzleCell" type="Sprite2D" node_paths=PackedStringArray("Number_node")]
+texture = ExtResource("1_gsld7")
+script = ExtResource("2_8we1a")
+Number_node = NodePath("Number")
+
+[node name="Number" type="Label" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = -64.0
+offset_right = -64.0
+offset_bottom = -64.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bicct86wv601l"]
+
+[ext_resource type="Script" path="res://scenes/game_sliding_puzzle/sliding_puzzle_ui.gd" id="1_ha03d"]
+
+[node name="SlidingPuzzleUI" type="Node2D"]
+script = ExtResource("1_ha03d")
