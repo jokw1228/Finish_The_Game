@@ -13,3 +13,6 @@ func _on_pressed() -> void:
 func place_stone(color_to_place: Pentago.CELL_STATE) -> void:
 	var position_to_place: Vector2 = position
 	add_child(PentagoStoneCreator.create(position_to_place, color_to_place))
+
+func receive_request_set_cell_disabled(disabled_to_set: bool) -> void:
+	disabled = disabled_to_set

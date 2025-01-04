@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="256"
+   height="256"
+   viewBox="0 0 67.733331 67.733333"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
+   sodipodi:docname="sprite_pentago_rotate_ccw.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="true"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="px"
+     inkscape:zoom="1.0547699"
+     inkscape:cx="89.118961"
+     inkscape:cy="149.7957"
+     inkscape:window-width="1440"
+     inkscape:window-height="830"
+     inkscape:window-x="-6"
+     inkscape:window-y="-6"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1" />
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="Background"
+     sodipodi:insensitive="true">
+    <rect
+       style="fill:#4d4d4d;fill-opacity:1;stroke-width:0.264582"
+       id="rect1"
+       width="67.73333"
+       height="67.73333"
+       x="0"
+       y="0"
+       ry="15.385135" />
+  </g>
+  <g
+     inkscape:label="Arrow"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       id="path1"
+       style="fill:#ffffff;stroke-width:0.286925"
+       d="M 33.908597,12.291385 A 21.61721,21.61721 0 0 0 12.291385,33.908597 21.61721,21.61721 0 0 0 33.908597,55.525807 21.61721,21.61721 0 0 0 44.714563,52.624425 L 41.99262,47.911493 A 16.212909,16.212909 0 0 1 33.908597,50.121504 16.212909,16.212909 0 0 1 17.695688,33.908597 16.212909,16.212909 0 0 1 33.908597,17.695688 16.212909,16.212909 0 0 1 50.121504,33.908597 h 5.404303 A 21.61721,21.61721 0 0 0 33.908597,12.291385 Z" />
+    <path
+       sodipodi:type="star"
+       style="fill:#ffffff;stroke-width:0.103628"
+       id="path4"
+       inkscape:flatsided="true"
+       sodipodi:sides="3"
+       sodipodi:cx="11.162584"
+       sodipodi:cy="11.789696"
+       sodipodi:r1="4.0213442"
+       sodipodi:r2="2.0106723"
+       sodipodi:arg1="1.5707963"
+       sodipodi:arg2="2.6179939"
+       inkscape:rounded="2.4286129e-17"
+       inkscape:randomized="0"
+       d="m 11.162584,15.81104 -3.482586,-6.0320163 6.965172,-10e-8 z"
+       inkscape:transform-center-y="2.5668377"
+       transform="matrix(2.553214,0,0,2.553214,18.010269,18.340465)" />
+  </g>
+</svg>

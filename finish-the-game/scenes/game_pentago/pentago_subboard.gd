@@ -4,6 +4,8 @@ class_name PentagoSubboard
 const subboard_width = 3
 
 signal request_place_stone(requested_subboard_index: Array[int], requested_cell_index: Array[int])
+signal request_set_cell_disabled(disabled_to_set: bool)
+signal request_select_subboard(subboard_index_to_rotate: Array[int])
 
 @export var subboard_index: Array[int] = []
 
@@ -25,3 +27,15 @@ func place_stone(cell_index_to_place: Array[int], color_to_place: Pentago.CELL_S
 	var _x: int = cell_index_to_place[0]
 	var _y: int = cell_index_to_place[1]
 	cells[_y][_x].place_stone(color_to_place)
+
+func receive_request_set_subboard_disabled(disabled_to_set: bool) -> void:
+	disabled = disabled_to_set
+
+func receive_request_set_cell_disabled(disabled_to_set: bool) -> void:
+	request_set_cell_disabled.emit(disabled_to_set)
+
+func _on_pressed() -> void:
+	request_select_subboard.emit(subboard_index)
+
+func rotate_subboard(rotation_direction_to_rotate: Pentago.ROTATION_DIRECTION) -> void:
+	pass

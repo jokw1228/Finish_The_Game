@@ -1,34 +1,80 @@
-[gd_scene load_steps=3 format=3 uid="uid://csm2phyw568ys"]
+[gd_scene load_steps=6 format=3 uid="uid://csm2phyw568ys"]
 
 [ext_resource type="Script" path="res://scenes/game_pentago/pentago_ui.gd" id="1_5nll1"]
 [ext_resource type="PackedScene" uid="uid://bvaikyypjwmaq" path="res://scenes/game_pentago/pentago_subboard.tscn" id="2_agnim"]
+[ext_resource type="Texture2D" uid="uid://cnx1rpyegf8ni" path="res://resources/images/game_pentago/sprite_pentago_rotate_ccw.svg" id="3_0ljni"]
+[ext_resource type="Script" path="res://scenes/game_pentago/pentago_rotation_buttons.gd" id="3_pi8c5"]
+[ext_resource type="Texture2D" uid="uid://bhfte5rcglv3u" path="res://resources/images/game_pentago/sprite_pentago_rotate_cw.svg" id="4_h0bko"]
 
-[node name="PentagoUI" type="GridContainer" node_paths=PackedStringArray("subboards_to_export")]
-offset_left = -386.0
-offset_top = -386.0
-offset_right = 386.0
-offset_bottom = 386.0
-columns = 2
+[node name="PentagoUI" type="Node2D" node_paths=PackedStringArray("subboards_to_export")]
 script = ExtResource("1_5nll1")
-subboards_to_export = [NodePath("PentagoSubboard00"), NodePath("PentagoSubboard10"), NodePath("PentagoSubboard01"), NodePath("PentagoSubboard11")]
+subboards_to_export = [NodePath("GridContainer/PentagoSubboard00"), NodePath("GridContainer/PentagoSubboard10"), NodePath("GridContainer/PentagoSubboard01"), NodePath("GridContainer/PentagoSubboard11")]
 
-[node name="PentagoSubboard00" parent="." instance=ExtResource("2_agnim")]
+[node name="GridContainer" type="GridContainer" parent="."]
+offset_left = -384.0
+offset_top = -384.0
+offset_right = 388.0
+offset_bottom = 388.0
+columns = 2
+
+[node name="PentagoSubboard00" parent="GridContainer" instance=ExtResource("2_agnim")]
 layout_mode = 2
 subboard_index = Array[int]([0, 0])
+metadata/_edit_lock_ = true
 
-[node name="PentagoSubboard10" parent="." instance=ExtResource("2_agnim")]
+[node name="PentagoSubboard10" parent="GridContainer" instance=ExtResource("2_agnim")]
 layout_mode = 2
 subboard_index = Array[int]([1, 0])
+metadata/_edit_lock_ = true
 
-[node name="PentagoSubboard01" parent="." instance=ExtResource("2_agnim")]
+[node name="PentagoSubboard01" parent="GridContainer" instance=ExtResource("2_agnim")]
 layout_mode = 2
 subboard_index = Array[int]([0, 1])
+metadata/_edit_lock_ = true
 
-[node name="PentagoSubboard11" parent="." instance=ExtResource("2_agnim")]
+[node name="PentagoSubboard11" parent="GridContainer" instance=ExtResource("2_agnim")]
 layout_mode = 2
 subboard_index = Array[int]([1, 1])
+metadata/_edit_lock_ = true
 
-[connection signal="request_place_stone" from="PentagoSubboard00" to="." method="receive_request_place_stone"]
-[connection signal="request_place_stone" from="PentagoSubboard10" to="." method="receive_request_place_stone"]
-[connection signal="request_place_stone" from="PentagoSubboard01" to="." method="receive_request_place_stone"]
-[connection signal="request_place_stone" from="PentagoSubboard11" to="." method="receive_request_place_stone"]
+[node name="PentagoRotationButtons" type="HBoxContainer" parent="."]
+visible = false
+offset_left = -256.0
+offset_top = 384.0
+offset_right = 260.0
+offset_bottom = 640.0
+mouse_filter = 0
+script = ExtResource("3_pi8c5")
+
+[node name="CCW" type="TextureButton" parent="PentagoRotationButtons"]
+layout_mode = 2
+texture_normal = ExtResource("3_0ljni")
+texture_pressed = ExtResource("3_0ljni")
+
+[node name="CW" type="TextureButton" parent="PentagoRotationButtons"]
+layout_mode = 2
+texture_normal = ExtResource("4_h0bko")
+texture_pressed = ExtResource("4_h0bko")
+texture_hover = ExtResource("4_h0bko")
+texture_disabled = ExtResource("4_h0bko")
+
+[connection signal="request_set_cell_disabled" from="." to="GridContainer/PentagoSubboard00" method="receive_request_set_cell_disabled"]
+[connection signal="request_set_cell_disabled" from="." to="GridContainer/PentagoSubboard10" method="receive_request_set_cell_disabled"]
+[connection signal="request_set_cell_disabled" from="." to="GridContainer/PentagoSubboard01" method="receive_request_set_cell_disabled"]
+[connection signal="request_set_cell_disabled" from="." to="GridContainer/PentagoSubboard11" method="receive_request_set_cell_disabled"]
+[connection signal="request_set_rotation_buttons_disabled" from="." to="PentagoRotationButtons" method="receive_request_set_rotation_buttons_disabled"]
+[connection signal="request_set_subboard_disabled" from="." to="GridContainer/PentagoSubboard00" method="receive_request_set_subboard_disabled"]
+[connection signal="request_set_subboard_disabled" from="." to="GridContainer/PentagoSubboard10" method="receive_request_set_subboard_disabled"]
+[connection signal="request_set_subboard_disabled" from="." to="GridContainer/PentagoSubboard01" method="receive_request_set_subboard_disabled"]
+[connection signal="request_set_subboard_disabled" from="." to="GridContainer/PentagoSubboard11" method="receive_request_set_subboard_disabled"]
+[connection signal="request_place_stone" from="GridContainer/PentagoSubboard00" to="." method="receive_request_place_stone"]
+[connection signal="request_select_subboard" from="GridContainer/PentagoSubboard00" to="." method="receive_request_select_subboard"]
+[connection signal="request_place_stone" from="GridContainer/PentagoSubboard10" to="." method="receive_request_place_stone"]
+[connection signal="request_select_subboard" from="GridContainer/PentagoSubboard10" to="." method="receive_request_select_subboard"]
+[connection signal="request_place_stone" from="GridContainer/PentagoSubboard01" to="." method="receive_request_place_stone"]
+[connection signal="request_select_subboard" from="GridContainer/PentagoSubboard01" to="." method="receive_request_select_subboard"]
+[connection signal="request_place_stone" from="GridContainer/PentagoSubboard11" to="." method="receive_request_place_stone"]
+[connection signal="request_select_subboard" from="GridContainer/PentagoSubboard11" to="." method="receive_request_select_subboard"]
+[connection signal="request_rotate_subboard" from="PentagoRotationButtons" to="." method="receive_request_rotate_subboard"]
+[connection signal="pressed" from="PentagoRotationButtons/CCW" to="PentagoRotationButtons" method="_on_ccw_pressed"]
+[connection signal="pressed" from="PentagoRotationButtons/CW" to="PentagoRotationButtons" method="_on_cw_pressed"]

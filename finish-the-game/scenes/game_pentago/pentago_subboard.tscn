@@ -11,6 +11,7 @@ offset_left = -192.0
 offset_top = -192.0
 offset_right = 192.0
 offset_bottom = 192.0
+disabled = true
 texture_normal = ExtResource("1_0ib5u")
 texture_pressed = ExtResource("2_uitqs")
 texture_hover = ExtResource("2_uitqs")
@@ -21,7 +22,7 @@ cells_to_export = [NodePath("GridContainer/PentagoCell00"), NodePath("GridContai
 
 [node name="GridContainer" type="GridContainer" parent="."]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
@@ -69,6 +70,16 @@ z_index = -1
 position = Vector2(192, 192)
 texture = ExtResource("1_4fr2y")
 
+[connection signal="pressed" from="." to="." method="_on_pressed"]
+[connection signal="request_set_cell_disabled" from="." to="GridContainer/PentagoCell00" method="receive_request_set_cell_disabled"]
+[connection signal="request_set_cell_disabled" from="." to="GridContainer/PentagoCell10" method="receive_request_set_cell_disabled"]
+[connection signal="request_set_cell_disabled" from="." to="GridContainer/PentagoCell20" method="receive_request_set_cell_disabled"]
+[connection signal="request_set_cell_disabled" from="." to="GridContainer/PentagoCell01" method="receive_request_set_cell_disabled"]
+[connection signal="request_set_cell_disabled" from="." to="GridContainer/PentagoCell11" method="receive_request_set_cell_disabled"]
+[connection signal="request_set_cell_disabled" from="." to="GridContainer/PentagoCell21" method="receive_request_set_cell_disabled"]
+[connection signal="request_set_cell_disabled" from="." to="GridContainer/PentagoCell02" method="receive_request_set_cell_disabled"]
+[connection signal="request_set_cell_disabled" from="." to="GridContainer/PentagoCell12" method="receive_request_set_cell_disabled"]
+[connection signal="request_set_cell_disabled" from="." to="GridContainer/PentagoCell22" method="receive_request_set_cell_disabled"]
 [connection signal="request_place_stone" from="GridContainer/PentagoCell00" to="." method="receive_request_place_stone"]
 [connection signal="request_place_stone" from="GridContainer/PentagoCell10" to="." method="receive_request_place_stone"]
 [connection signal="request_place_stone" from="GridContainer/PentagoCell20" to="." method="receive_request_place_stone"]

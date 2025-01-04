@@ -4,9 +4,13 @@
 [ext_resource type="PackedScene" uid="uid://csm2phyw568ys" path="res://scenes/game_pentago/pentago_ui.tscn" id="2_6wpec"]
 
 [node name="Pentago" type="Node2D"]
+position = Vector2(536, 680)
 script = ExtResource("1_dn42u")
 
 [node name="PentagoUI" parent="." instance=ExtResource("2_6wpec")]
+metadata/_edit_lock_ = true
 
 [connection signal="approve_and_reply_place_stone" from="." to="PentagoUI" method="receive_approve_and_reply_place_stone"]
+[connection signal="approve_and_reply_rotate_subboard" from="." to="PentagoUI" method="receive_approve_and_reply_rotate_subboard"]
 [connection signal="request_place_stone" from="PentagoUI" to="." method="receive_request_place_stone"]
+[connection signal="request_rotate_subbaord" from="PentagoUI" to="." method="receive_request_rotate_subboard"]

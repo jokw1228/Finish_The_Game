@@ -1,13 +1,28 @@
-extends GridContainer
+extends Node2D
 class_name PentagoUI
 
 const subboard_width = 3
 const subboard_count_x = 2
 
 signal request_place_stone(requested_subboard_index: Array[int], requested_cell_index: Array[int])
+signal request_rotate_subbaord(requested_subboard_index: Array[int], requested_rotation_direction: Pentago.ROTATION_DIRECTION)
+
+signal request_set_subboard_disabled(disabled_to_set: bool)
+signal request_set_cell_disabled(disabled_to_set: bool)
+signal request_set_rotation_buttons_disabled(disabled_to_set: bool)
 
 @export var subboards_to_export: Array[PentagoSubboard] = []
 var subboards: Array[Array] = []
+
+enum UI_STATE
+{
+	PLACE_STONE,
+	SELECT_SUBBOARD,
+	SELECT_ROTATION,
+	BLOCKED
+}
+
+var ui_state: UI_STATE = UI_STATE.PLACE_STONE
 
 func _ready() -> void:
 	# set subboards array
@@ -18,9 +33,44 @@ func _ready() -> void:
 		subboards.append(temp)
 
 func receive_request_place_stone(requested_subboard_index: Array[int], requested_cell_index: Array[int]) -> void:
-	request_place_stone.emit(requested_subboard_index, requested_cell_index)
+	if ui_state == UI_STATE.PLACE_STONE:
+		request_place_stone.emit(requested_subboard_index, requested_cell_index)
 
 func receive_approve_and_reply_place_stone(approved_subboard_index: Array[int], approved_cell_index: Array[int], approved_color: Pentago.CELL_STATE) -> void:
 	var _x: int = approved_subboard_index[0]
 	var _y: int = approved_subboard_index[1]
 	subboards[_y][_x].place_stone(approved_cell_index, approved_color)
+	set_ui_state(UI_STATE.SELECT_SUBBOARD)
+
+var stored_subboard_index_to_rotation: Array[int]
+func receive_request_select_subboard(subboard_index_to_rotate: Array[int]) -> void:
+	if ui_state == UI_STATE.SELECT_SUBBOARD:
+		stored_subboard_index_to_rotation = subboard_index_to_rotate
+		set_ui_state(UI_STATE.SELECT_ROTATION)
+
+func receive_request_rotate_subboard(requested_rotation_direction: Pentago.ROTATION_DIRECTION) -> void:
+	if ui_state == UI_STATE.SELECT_ROTATION:
+		request_rotate_subbaord.emit(stored_subboard_index_to_rotation, requested_rotation_direction)
+
+func receive_approve_and_reply_rotate_subboard(approved_subboard_index: Array[int], approved_rotation_direction: Pentago.ROTATION_DIRECTION) -> void:
+	var _x: int = approved_subboard_index[0]
+	var _y: int = approved_subboard_index[1]
+	subboards[_y][_x].rotate_subboard(approved_rotation_direction)
+	set_ui_state(UI_STATE.PLACE_STONE)
+
+func set_ui_state(state_to_set: UI_STATE) -> void:
+	ui_state = state_to_set
+	if ui_state == UI_STATE.PLACE_STONE:
+		request_set_subboard_disabled.emit(true)
+		request_set_cell_disabled.emit(false)
+		request_set_rotation_buttons_disabled.emit(true)
+	elif ui_state == UI_STATE.SELECT_SUBBOARD:
+		request_set_subboard_disabled.emit(false)
+		request_set_cell_disabled.emit(true)
+	elif ui_state == UI_STATE.SELECT_ROTATION:
+		request_set_subboard_disabled.emit(true)
+		request_set_rotation_buttons_disabled.emit(false)
+	elif ui_state == UI_STATE.BLOCKED:
+		request_set_subboard_disabled.emit(true)
+		request_set_cell_disabled.emit(true)
+		request_set_rotation_buttons_disabled.emit(true)

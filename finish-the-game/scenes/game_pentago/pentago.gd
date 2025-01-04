@@ -22,11 +22,18 @@ enum TURN_STATE
 	WHITE_PLACE,
 	WHITE_ROTATE
 }
-
 var turn_state: TURN_STATE = TURN_STATE.BLACK_PLACE
+
+enum ROTATION_DIRECTION
+{
+	CCW,
+	CW
+}
 
 signal approve_and_reply_place_stone(approved_subboard_index: Array[int], approved_cell_index: Array[int], approved_color: CELL_STATE)
 signal deny_and_reply_place_stone(denied_subboard_index: Array[int], denied_cell_index: Array[int])
+signal approve_and_reply_rotate_subboard(approved_subboard_index: Array[int], approved_rotation_direction: ROTATION_DIRECTION)
+signal deny_and_reply_rotate_subboard(denied_subboard_index: Array[int], denied_rotation_direction: ROTATION_DIRECTION)
 
 func _ready() -> void:
 	initialize_board()
@@ -46,11 +53,20 @@ func receive_request_place_stone(requested_subboard_index: Array[int], requested
 		var stone_to_place: CELL_STATE \
 		= CELL_STATE.BLACK if turn_state == TURN_STATE.BLACK_PLACE \
 		else CELL_STATE.WHITE
+		# place the stone
 		board[_y][_x] = stone_to_place
 		increase_turn_state()
 		approve_and_reply_place_stone.emit(requested_subboard_index, requested_cell_index, stone_to_place)
 	else:
 		deny_and_reply_place_stone.emit(requested_subboard_index, requested_cell_index)
+
+func receive_request_rotate_subboard(requested_subboard_index: Array[int], requested_rotation_direction: ROTATION_DIRECTION) -> void:
+	if turn_state == TURN_STATE.BLACK_ROTATE or turn_state == TURN_STATE.WHITE_ROTATE:
+		# rotate the subboard
+		increase_turn_state()
+		approve_and_reply_rotate_subboard.emit(requested_subboard_index, requested_rotation_direction)
+	else:
+		deny_and_reply_rotate_subboard.emit(requested_subboard_index, requested_rotation_direction)
 
 func increase_turn_state():
 	if turn_state == TURN_STATE.BLACK_PLACE:
