@@ -63,10 +63,66 @@ func receive_request_place_stone(requested_subboard_index: Array[int], requested
 func receive_request_rotate_subboard(requested_subboard_index: Array[int], requested_rotation_direction: ROTATION_DIRECTION) -> void:
 	if turn_state == TURN_STATE.BLACK_ROTATE or turn_state == TURN_STATE.WHITE_ROTATE:
 		# rotate the subboard
+		print(board)
+		rotate_subboard(requested_subboard_index, requested_rotation_direction)
+		print(board)
 		increase_turn_state()
 		approve_and_reply_rotate_subboard.emit(requested_subboard_index, requested_rotation_direction)
 	else:
 		deny_and_reply_rotate_subboard.emit(requested_subboard_index, requested_rotation_direction)
+
+func rotate_subboard(subboard_index_to_rotate: Array[int], rotation_direction_to_rotate: ROTATION_DIRECTION) -> void:
+	var s_x: int = subboard_index_to_rotate[0]
+	var s_y: int = subboard_index_to_rotate[1]
+	
+	var matrix_to_rotate: Array[Array] = []
+	for y: int in range(subboard_width):
+		var temp: Array[int] = []
+		for x: int in range(subboard_width):
+			temp.append(board[s_y*subboard_width + y][s_x*subboard_width + x])
+		matrix_to_rotate.append(temp)
+	
+	var rotated_matrix: Array[Array] = \
+	rotate_3x3_matrix_ccw(matrix_to_rotate) if rotation_direction_to_rotate == ROTATION_DIRECTION.CCW \
+	else rotate_3x3_matrix_cw(matrix_to_rotate)
+	
+	for y: int in range(subboard_width):
+		for x: int in range(subboard_width):
+			board[s_y*subboard_width + y][s_x*subboard_width + x] = rotated_matrix[y][x]
+
+func rotate_3x3_matrix_ccw(matrix_to_rotate: Array[Array]) -> Array[Array]:
+	# New matrix initializaiton
+	var matrix: Array[Array] = []
+	for y: int in range(3):
+		var temp: Array[int] = []
+		for x: int in range(3):
+			temp.append(0)
+		matrix.append(temp)
+	
+	# Fill in the new cells
+	for i in range(3):
+		for j in range(3):
+			matrix[3 - 1 - j][i] = matrix_to_rotate[i][j]
+	
+	# Return the rotated_matrix
+	return matrix
+
+func rotate_3x3_matrix_cw(matrix_to_rotate: Array[Array]) -> Array[Array]:
+	# New matrix initializaiton
+	var matrix: Array[Array] = []
+	for y: int in range(3):
+		var temp: Array[int] = []
+		for x: int in range(3):
+			temp.append(0)
+		matrix.append(temp)
+	
+	# Fill in the new cells
+	for i in range(3):
+		for j in range(3):
+			matrix[j][3 - 1 - i] = matrix_to_rotate[i][j]
+	
+	# Return the rotated_matrix
+	return matrix
 
 func increase_turn_state():
 	if turn_state == TURN_STATE.BLACK_PLACE:
