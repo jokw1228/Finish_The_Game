@@ -4,7 +4,7 @@ class_name SlidingPuzzle
 const width = 3
 const height = 3
 
-var board: Array = []
+var board: Array[Array] = []
 var current_empty_index: Array[int]
 
 signal approve_and_reply_slide(approved_index: Array[int], empty_index: Array[int])

@@ -1,20 +1,23 @@
-[gd_scene load_steps=4 format=3 uid="uid://bvaikyypjwmaq"]
+[gd_scene load_steps=6 format=3 uid="uid://bvaikyypjwmaq"]
 
-[ext_resource type="Texture2D" uid="uid://c8k67dj3hhao3" path="res://resources/images/game_pentago/sprite_pentago_sub_board.svg" id="1_4fr2y"]
+[ext_resource type="Texture2D" uid="uid://tdbane5j33pa" path="res://resources/images/game_pentago/sprite_pentago_subboard_transparent.svg" id="1_0ib5u"]
+[ext_resource type="Texture2D" uid="uid://c8k67dj3hhao3" path="res://resources/images/game_pentago/sprite_pentago_subboard.svg" id="1_4fr2y"]
 [ext_resource type="Script" path="res://scenes/game_pentago/pentago_subboard.gd" id="1_aekc6"]
+[ext_resource type="Texture2D" uid="uid://xavaervnbloo" path="res://resources/images/game_pentago/sprite_pentago_subboard_translucent.svg" id="2_uitqs"]
 [ext_resource type="PackedScene" uid="uid://bqfer57y0a5od" path="res://scenes/game_pentago/pentago_cell.tscn" id="3_4yvij"]
 
-[node name="PentagoSubboard" type="TextureButton"]
+[node name="PentagoSubboard" type="TextureButton" node_paths=PackedStringArray("cells_to_export")]
 offset_left = -192.0
 offset_top = -192.0
 offset_right = 192.0
 offset_bottom = 192.0
-texture_normal = ExtResource("1_4fr2y")
-texture_pressed = ExtResource("1_4fr2y")
-texture_hover = ExtResource("1_4fr2y")
-texture_disabled = ExtResource("1_4fr2y")
-texture_focused = ExtResource("1_4fr2y")
+texture_normal = ExtResource("1_0ib5u")
+texture_pressed = ExtResource("2_uitqs")
+texture_hover = ExtResource("2_uitqs")
+texture_disabled = ExtResource("1_0ib5u")
+texture_focused = ExtResource("1_0ib5u")
 script = ExtResource("1_aekc6")
+cells_to_export = [NodePath("GridContainer/PentagoCell00"), NodePath("GridContainer/PentagoCell10"), NodePath("GridContainer/PentagoCell20"), NodePath("GridContainer/PentagoCell01"), NodePath("GridContainer/PentagoCell11"), NodePath("GridContainer/PentagoCell21"), NodePath("GridContainer/PentagoCell02"), NodePath("GridContainer/PentagoCell12"), NodePath("GridContainer/PentagoCell22")]
 
 [node name="GridContainer" type="GridContainer" parent="."]
 layout_mode = 1
@@ -60,3 +63,18 @@ cell_index = Array[int]([1, 2])
 [node name="PentagoCell22" parent="GridContainer" instance=ExtResource("3_4yvij")]
 layout_mode = 2
 cell_index = Array[int]([2, 2])
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(192, 192)
+texture = ExtResource("1_4fr2y")
+
+[connection signal="request_place_stone" from="GridContainer/PentagoCell00" to="." method="receive_request_place_stone"]
+[connection signal="request_place_stone" from="GridContainer/PentagoCell10" to="." method="receive_request_place_stone"]
+[connection signal="request_place_stone" from="GridContainer/PentagoCell20" to="." method="receive_request_place_stone"]
+[connection signal="request_place_stone" from="GridContainer/PentagoCell01" to="." method="receive_request_place_stone"]
+[connection signal="request_place_stone" from="GridContainer/PentagoCell11" to="." method="receive_request_place_stone"]
+[connection signal="request_place_stone" from="GridContainer/PentagoCell21" to="." method="receive_request_place_stone"]
+[connection signal="request_place_stone" from="GridContainer/PentagoCell02" to="." method="receive_request_place_stone"]
+[connection signal="request_place_stone" from="GridContainer/PentagoCell12" to="." method="receive_request_place_stone"]
+[connection signal="request_place_stone" from="GridContainer/PentagoCell22" to="." method="receive_request_place_stone"]

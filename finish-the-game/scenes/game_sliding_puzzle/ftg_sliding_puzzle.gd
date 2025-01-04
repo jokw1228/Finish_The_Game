@@ -11,7 +11,7 @@ func start_ftg() -> void:
 	var last_index: Array[int] = current_empty_index.duplicate(true)
 	var _x: int
 	var _y: int
-	for shuffle_count: int in range(rng.randi_range(2, 4)):
+	for shuffle_count: int in range(rng.randi_range(3, 5)):
 		_x = current_empty_index[0]
 		_y = current_empty_index[1]
 		var candidates: Array = []

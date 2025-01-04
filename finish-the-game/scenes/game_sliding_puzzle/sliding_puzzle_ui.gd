@@ -4,7 +4,7 @@ class_name SlidingPuzzleUI
 const width = 3
 const height = 3
 
-var cells: Array = []
+var cells: Array[Array] = []
 const cell_image_size = 128.0 # pixel size
 
 @export var SlidingPuzzle_node: SlidingPuzzle

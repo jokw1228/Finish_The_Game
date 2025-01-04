@@ -1,11 +1,63 @@
 extends Node2D
+class_name Pentago
 
+const subboard_width = 3
+const subboard_count_x = 2
+const board_width = 6
 
-# Called when the node enters the scene tree for the first time.
+var board: Array[Array] = []
+# 0: empty, 1: black, 2: white
+enum CELL_STATE
+{
+	EMPTY,
+	BLACK,
+	WHITE,
+	BLOCKED # for generating FTG board
+}
+
+enum TURN_STATE
+{
+	BLACK_PLACE,
+	BLACK_ROTATE,
+	WHITE_PLACE,
+	WHITE_ROTATE
+}
+
+var turn_state: TURN_STATE = TURN_STATE.BLACK_PLACE
+
+signal approve_and_reply_place_stone(approved_subboard_index: Array[int], approved_cell_index: Array[int], approved_color: CELL_STATE)
+signal deny_and_reply_place_stone(denied_subboard_index: Array[int], denied_cell_index: Array[int])
+
 func _ready() -> void:
-	pass # Replace with function body.
+	initialize_board()
 
+func initialize_board() -> void:
+	for y: int in range(board_width):
+		var temp: Array[CELL_STATE] = []
+		for x: int in range(board_width):
+			temp.append(CELL_STATE.EMPTY)
+		board.append(temp)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func receive_request_place_stone(requested_subboard_index: Array[int], requested_cell_index: Array[int]) -> void:
+	var _x: int = requested_subboard_index[0]*subboard_width + requested_cell_index[0]
+	var _y: int = requested_subboard_index[1]*subboard_width + requested_cell_index[1]
+	if (board[_y][_x] == CELL_STATE.EMPTY) \
+	and (turn_state == TURN_STATE.BLACK_PLACE or turn_state == TURN_STATE.WHITE_PLACE):
+		var stone_to_place: CELL_STATE \
+		= CELL_STATE.BLACK if turn_state == TURN_STATE.BLACK_PLACE \
+		else CELL_STATE.WHITE
+		board[_y][_x] = stone_to_place
+		increase_turn_state()
+		approve_and_reply_place_stone.emit(requested_subboard_index, requested_cell_index, stone_to_place)
+	else:
+		deny_and_reply_place_stone.emit(requested_subboard_index, requested_cell_index)
+
+func increase_turn_state():
+	if turn_state == TURN_STATE.BLACK_PLACE:
+		turn_state = TURN_STATE.BLACK_ROTATE
+	elif turn_state == TURN_STATE.BLACK_ROTATE:
+		turn_state = TURN_STATE.WHITE_PLACE
+	elif turn_state == TURN_STATE.WHITE_PLACE:
+		turn_state = TURN_STATE.WHITE_ROTATE
+	elif turn_state == TURN_STATE.WHITE_ROTATE:
+		turn_state = TURN_STATE.BLACK_PLACE

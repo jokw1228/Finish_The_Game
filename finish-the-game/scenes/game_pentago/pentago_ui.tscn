@@ -1,6 +1,34 @@
-[gd_scene load_steps=2 format=3 uid="uid://csm2phyw568ys"]
+[gd_scene load_steps=3 format=3 uid="uid://csm2phyw568ys"]
 
 [ext_resource type="Script" path="res://scenes/game_pentago/pentago_ui.gd" id="1_5nll1"]
+[ext_resource type="PackedScene" uid="uid://bvaikyypjwmaq" path="res://scenes/game_pentago/pentago_subboard.tscn" id="2_agnim"]
 
-[node name="PentagoUI" type="Node2D"]
+[node name="PentagoUI" type="GridContainer" node_paths=PackedStringArray("subboards_to_export")]
+offset_left = -386.0
+offset_top = -386.0
+offset_right = 386.0
+offset_bottom = 386.0
+columns = 2
 script = ExtResource("1_5nll1")
+subboards_to_export = [NodePath("PentagoSubboard00"), NodePath("PentagoSubboard10"), NodePath("PentagoSubboard01"), NodePath("PentagoSubboard11")]
+
+[node name="PentagoSubboard00" parent="." instance=ExtResource("2_agnim")]
+layout_mode = 2
+subboard_index = Array[int]([0, 0])
+
+[node name="PentagoSubboard10" parent="." instance=ExtResource("2_agnim")]
+layout_mode = 2
+subboard_index = Array[int]([1, 0])
+
+[node name="PentagoSubboard01" parent="." instance=ExtResource("2_agnim")]
+layout_mode = 2
+subboard_index = Array[int]([0, 1])
+
+[node name="PentagoSubboard11" parent="." instance=ExtResource("2_agnim")]
+layout_mode = 2
+subboard_index = Array[int]([1, 1])
+
+[connection signal="request_place_stone" from="PentagoSubboard00" to="." method="receive_request_place_stone"]
+[connection signal="request_place_stone" from="PentagoSubboard10" to="." method="receive_request_place_stone"]
+[connection signal="request_place_stone" from="PentagoSubboard01" to="." method="receive_request_place_stone"]
+[connection signal="request_place_stone" from="PentagoSubboard11" to="." method="receive_request_place_stone"]

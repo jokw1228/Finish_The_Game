@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c8k67dj3hhao3"
-path="res://.godot/imported/sprite_pentago_sub_board.svg-a558bec6fdf9052aa01619f825eef3d0.ctex"
+uid="uid://tdbane5j33pa"
+path="res://.godot/imported/sprite_pentago_subboard_transparent.svg-21c47cc4b80828da73ff02f44635d744.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/images/game_pentago/sprite_pentago_sub_board.svg"
-dest_files=["res://.godot/imported/sprite_pentago_sub_board.svg-a558bec6fdf9052aa01619f825eef3d0.ctex"]
+source_file="res://resources/images/game_pentago/sprite_pentago_subboard_transparent.svg"
+dest_files=["res://.godot/imported/sprite_pentago_subboard_transparent.svg-21c47cc4b80828da73ff02f44635d744.ctex"]
 
 [params]
 

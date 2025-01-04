@@ -1,4 +1,15 @@
 extends TextureButton
 class_name  PentagoCell
 
+const cell_image_width = 128 # pixel size
+
+signal request_place_stone(requested_cell_index: Array[int])
+
 @export var cell_index: Array[int] = []
+
+func _on_pressed() -> void:
+	request_place_stone.emit(cell_index)
+
+func place_stone(color_to_place: Pentago.CELL_STATE) -> void:
+	var position_to_place: Vector2 = position
+	add_child(PentagoStoneCreator.create(position_to_place, color_to_place))
