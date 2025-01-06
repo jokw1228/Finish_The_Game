@@ -63,9 +63,7 @@ func receive_request_place_stone(requested_subboard_index: Array[int], requested
 func receive_request_rotate_subboard(requested_subboard_index: Array[int], requested_rotation_direction: ROTATION_DIRECTION) -> void:
 	if turn_state == TURN_STATE.BLACK_ROTATE or turn_state == TURN_STATE.WHITE_ROTATE:
 		# rotate the subboard
-		print(board)
 		rotate_subboard(requested_subboard_index, requested_rotation_direction)
-		print(board)
 		increase_turn_state()
 		approve_and_reply_rotate_subboard.emit(requested_subboard_index, requested_rotation_direction)
 	else:

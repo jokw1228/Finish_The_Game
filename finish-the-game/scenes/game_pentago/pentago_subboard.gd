@@ -38,4 +38,9 @@ func _on_pressed() -> void:
 	request_select_subboard.emit(subboard_index)
 
 func rotate_subboard(rotation_direction_to_rotate: Pentago.ROTATION_DIRECTION) -> void:
-	pass
+	var rotation_amount: float = PI/2 \
+	if rotation_direction_to_rotate == Pentago.ROTATION_DIRECTION.CW \
+	else -PI/2
+	
+	var tween_rotation: Tween = get_tree().create_tween()
+	tween_rotation.tween_property(self, "rotation", rotation+rotation_amount, 0.05)

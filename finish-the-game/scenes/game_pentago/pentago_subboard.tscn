@@ -11,6 +11,7 @@ offset_left = -192.0
 offset_top = -192.0
 offset_right = 192.0
 offset_bottom = 192.0
+pivot_offset = Vector2(192, 192)
 disabled = true
 texture_normal = ExtResource("1_0ib5u")
 texture_pressed = ExtResource("2_uitqs")
@@ -23,52 +24,70 @@ cells_to_export = [NodePath("GridContainer/PentagoCell00"), NodePath("GridContai
 [node name="GridContainer" type="GridContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -196.0
+offset_top = -196.0
+offset_right = 196.0
+offset_bottom = 196.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(196, 196)
 columns = 3
+metadata/_edit_lock_ = true
 
 [node name="PentagoCell00" parent="GridContainer" instance=ExtResource("3_4yvij")]
 layout_mode = 2
 cell_index = Array[int]([0, 0])
+metadata/_edit_lock_ = true
 
 [node name="PentagoCell10" parent="GridContainer" instance=ExtResource("3_4yvij")]
 layout_mode = 2
 cell_index = Array[int]([1, 0])
+metadata/_edit_lock_ = true
 
 [node name="PentagoCell20" parent="GridContainer" instance=ExtResource("3_4yvij")]
 layout_mode = 2
 cell_index = Array[int]([2, 0])
+metadata/_edit_lock_ = true
 
 [node name="PentagoCell01" parent="GridContainer" instance=ExtResource("3_4yvij")]
 layout_mode = 2
 cell_index = Array[int]([0, 1])
+metadata/_edit_lock_ = true
 
 [node name="PentagoCell11" parent="GridContainer" instance=ExtResource("3_4yvij")]
 layout_mode = 2
 cell_index = Array[int]([1, 1])
+metadata/_edit_lock_ = true
 
 [node name="PentagoCell21" parent="GridContainer" instance=ExtResource("3_4yvij")]
 layout_mode = 2
 cell_index = Array[int]([2, 1])
+metadata/_edit_lock_ = true
 
 [node name="PentagoCell02" parent="GridContainer" instance=ExtResource("3_4yvij")]
 layout_mode = 2
 cell_index = Array[int]([0, 2])
+metadata/_edit_lock_ = true
 
 [node name="PentagoCell12" parent="GridContainer" instance=ExtResource("3_4yvij")]
 layout_mode = 2
 cell_index = Array[int]([1, 2])
+metadata/_edit_lock_ = true
 
 [node name="PentagoCell22" parent="GridContainer" instance=ExtResource("3_4yvij")]
 layout_mode = 2
 cell_index = Array[int]([2, 2])
+metadata/_edit_lock_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = -1
 position = Vector2(192, 192)
 texture = ExtResource("1_4fr2y")
+metadata/_edit_lock_ = true
 
 [connection signal="pressed" from="." to="." method="_on_pressed"]
 [connection signal="request_set_cell_disabled" from="." to="GridContainer/PentagoCell00" method="receive_request_set_cell_disabled"]
