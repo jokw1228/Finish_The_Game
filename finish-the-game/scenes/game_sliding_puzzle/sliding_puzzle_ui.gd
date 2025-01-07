@@ -49,7 +49,7 @@ func receive_approve_and_reply_slide(approved_index: Array[int], empty_index: Ar
 	cells[empty_index[1]][empty_index[0]] = cells[approved_index[1]][approved_index[0]]
 	cells[approved_index[1]][approved_index[0]] = null
 
-func receive_request_immediate_move(target_index: Array[int], empty_index: Array[int]):
+func receive_request_immediately_move(target_index: Array[int], empty_index: Array[int]):
 	cells[target_index[1]][target_index[0]].set_index(empty_index)
 	
 	var position_to_move: Vector2 = \

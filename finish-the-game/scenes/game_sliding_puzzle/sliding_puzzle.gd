@@ -10,7 +10,7 @@ var current_empty_index: Array[int]
 signal approve_and_reply_slide(approved_index: Array[int], empty_index: Array[int])
 signal deny_and_reply_slide(denied_index: Array[int], empty_index: Array[int])
 
-signal request_immediate_move(target_index: Array[int], empty_index: Array[int])
+signal request_immediately_move(target_index: Array[int], empty_index: Array[int])
 
 func _ready() -> void:
 	initialize_board()

@@ -28,7 +28,7 @@ func start_ftg() -> void:
 		last_index = current_empty_index.duplicate(true)
 		var _current_empty_index: Array[int] = current_empty_index
 		slide_cell(_selected)
-		request_immediate_move.emit(_selected, _current_empty_index)
+		request_immediately_move.emit(_selected, _current_empty_index)
 
 func check_game_cleared(_1: Array[int], _2: Array[int]) -> void: # These parameters are not used.
 	for i: int in range(width*height-1):
