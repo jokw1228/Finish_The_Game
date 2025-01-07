@@ -4,6 +4,8 @@ class_name FTGPentago
 signal request_disable_input()
 signal end_ftg(is_game_cleared: bool)
 
+var color_to_check: CELL_STATE
+
 func start_ftg() -> void:
 	"""
 	'거꾸로 구성' 아이디어
@@ -21,6 +23,7 @@ func start_ftg() -> void:
 	turn_state = TURN_STATE.BLACK_PLACE \
 	if next_player == CELL_STATE.BLACK \
 	else TURN_STATE.WHITE_PLACE
+	color_to_check = next_player
 	
 	# 2) next_player가 5목이 되도록 임의 배치, 그리고 해당 5목이 깨지도록 한 돌 제거.
 	const N = 6
@@ -178,7 +181,7 @@ func check_five_in_a_row(board_to_check: Array[Array], color_to_check: CELL_STAT
 	
 	return false
 
-func check_game_cleared(color_to_check: CELL_STATE) -> void:
+func check_game_cleared(_1, _2) -> void:
 	request_disable_input.emit()
 	if check_five_in_a_row(board, color_to_check) == true:
 		end_ftg.emit(true)

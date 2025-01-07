@@ -1,14 +1,14 @@
 [gd_scene load_steps=3 format=3 uid="uid://diiodgowsdr4u"]
 
 [ext_resource type="Script" path="res://scenes/room/room_logo/room_logo.gd" id="1_62yfl"]
-[ext_resource type="PackedScene" uid="uid://df8lgaxcq5uj7" path="res://scenes/game_sliding_puzzle/ftg_sliding_puzzle.tscn" id="1_nmkcy"]
+[ext_resource type="PackedScene" uid="uid://b4tkaxjfy1dnm" path="res://scenes/game_pentago/ftg_pentago.tscn" id="2_41j2b"]
 
 [node name="RoomLogo" type="Node2D"]
 script = ExtResource("1_62yfl")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="FTGSlidingPuzzle" parent="." instance=ExtResource("1_nmkcy")]
+[node name="FTGPentago" parent="." instance=ExtResource("2_41j2b")]
 
-[connection signal="asdf" from="." to="FTGSlidingPuzzle" method="start_ftg"]
-[connection signal="end_ftg" from="FTGSlidingPuzzle" to="." method="restart"]
+[connection signal="asdf" from="." to="FTGPentago" method="start_ftg"]
+[connection signal="end_ftg" from="FTGPentago" to="." method="restart"]

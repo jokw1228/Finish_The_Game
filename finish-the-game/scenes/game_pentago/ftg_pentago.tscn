@@ -6,4 +6,5 @@
 [node name="FTGPentago" instance=ExtResource("1_104gr")]
 script = ExtResource("2_vmtps")
 
+[connection signal="approve_and_reply_rotate_subboard" from="." to="." method="check_game_cleared"]
 [connection signal="request_disable_input" from="." to="PentagoUI" method="receive_request_disable_input"]
