@@ -35,6 +35,8 @@ signal deny_and_reply_place_stone(denied_subboard_index: Array[int], denied_cell
 signal approve_and_reply_rotate_subboard(approved_subboard_index: Array[int], approved_rotation_direction: ROTATION_DIRECTION)
 signal deny_and_reply_rotate_subboard(denied_subboard_index: Array[int], denied_rotation_direction: ROTATION_DIRECTION)
 
+signal request_immediately_place_stone(target_subboard_index: Array[int], target_cell_index: Array[int], color_to_place: CELL_STATE)
+
 func _ready() -> void:
 	initialize_board()
 
@@ -92,9 +94,9 @@ func rotate_3x3_matrix_ccw(matrix_to_rotate: Array[Array]) -> Array[Array]:
 	# New matrix initializaiton
 	var matrix: Array[Array] = []
 	for y: int in range(3):
-		var temp: Array[int] = []
+		var temp: Array[CELL_STATE] = []
 		for x: int in range(3):
-			temp.append(0)
+			temp.append(CELL_STATE.EMPTY)
 		matrix.append(temp)
 	
 	# Fill in the new cells
@@ -109,9 +111,9 @@ func rotate_3x3_matrix_cw(matrix_to_rotate: Array[Array]) -> Array[Array]:
 	# New matrix initializaiton
 	var matrix: Array[Array] = []
 	for y: int in range(3):
-		var temp: Array[int] = []
+		var temp: Array[CELL_STATE] = []
 		for x: int in range(3):
-			temp.append(0)
+			temp.append(CELL_STATE.EMPTY)
 		matrix.append(temp)
 	
 	# Fill in the new cells

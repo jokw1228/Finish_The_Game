@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dtvp6x5rlrqr2"]
+
+[ext_resource type="Script" path="res://scenes/game_pentago_legacy/ftg_pentago_legacy.gd" id="1_oaf3c"]
+[ext_resource type="PackedScene" uid="uid://4f4fdpxipnid" path="res://scenes/game_pentago_legacy/pentago_board.tscn" id="2_xkso3"]
+
+[node name="FTGPentagoLegacy" type="Node2D" node_paths=PackedStringArray("PentagoBoard_node")]
+script = ExtResource("1_oaf3c")
+PentagoBoard_node = NodePath("PentagoBoard")
+
+[node name="PentagoBoard" parent="." instance=ExtResource("2_xkso3")]
+position = Vector2(540, 960)

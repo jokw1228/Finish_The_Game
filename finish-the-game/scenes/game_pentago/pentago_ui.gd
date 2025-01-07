@@ -74,3 +74,13 @@ func set_ui_state(state_to_set: UI_STATE) -> void:
 		request_set_subboard_disabled.emit(true)
 		request_set_cell_disabled.emit(true)
 		request_set_rotation_buttons_disabled.emit(true)
+
+func receive_request_disable_input():
+	request_set_subboard_disabled.emit(true)
+	request_set_cell_disabled.emit(true)
+	request_set_rotation_buttons_disabled.emit(true)
+	
+func receive_request_immediately_place_stone(target_subboard_index: Array[int], target_cell_index: Array[int], color_to_place: Pentago.CELL_STATE) -> void:
+	var _x: int = target_subboard_index[0]
+	var _y: int = target_subboard_index[1]
+	subboards[_y][_x].place_stone(target_cell_index, color_to_place)

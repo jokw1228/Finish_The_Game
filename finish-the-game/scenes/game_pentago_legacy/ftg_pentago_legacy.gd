@@ -1,5 +1,5 @@
 extends Node2D
-class_name FTGPentago
+class_name FTGPentagoLegacy
 
 @export var PentagoBoard_node: PentagoBoard
 
