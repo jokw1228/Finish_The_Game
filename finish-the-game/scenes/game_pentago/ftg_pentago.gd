@@ -4,6 +4,8 @@ class_name FTGPentago
 signal request_disable_input()
 signal end_ftg(is_game_cleared: bool)
 
+signal request_set_color(color_to_place: Pentago.CELL_STATE)
+
 var color_to_check: CELL_STATE
 
 func start_ftg() -> void:
@@ -24,6 +26,7 @@ func start_ftg() -> void:
 	if next_player == CELL_STATE.BLACK \
 	else TURN_STATE.WHITE_PLACE
 	color_to_check = next_player
+	request_set_color.emit(next_player)
 	
 	# 2) next_player가 5목이 되도록 임의 배치, 그리고 해당 5목이 깨지도록 한 돌 제거.
 	const N = 6

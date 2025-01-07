@@ -1,10 +1,24 @@
-[gd_scene load_steps=3 format=3 uid="uid://b4tkaxjfy1dnm"]
+[gd_scene load_steps=6 format=3 uid="uid://b4tkaxjfy1dnm"]
 
 [ext_resource type="PackedScene" uid="uid://dvbndx48qh0vl" path="res://scenes/game_pentago/pentago.tscn" id="1_104gr"]
 [ext_resource type="Script" path="res://scenes/game_pentago/ftg_pentago.gd" id="2_vmtps"]
+[ext_resource type="Script" path="res://scenes/game_pentago/ftg_pentago_ui.gd" id="3_7f6o7"]
+[ext_resource type="Texture2D" uid="uid://bkkb7k4xa2u4x" path="res://resources/images/game_pentago/sprite_pentago_stone_white.svg" id="4_mekar"]
+[ext_resource type="Texture2D" uid="uid://dt70e76wj8uqa" path="res://resources/images/game_pentago/sprite_pentago_stone_black.svg" id="4_yggx2"]
 
 [node name="FTGPentago" instance=ExtResource("1_104gr")]
 script = ExtResource("2_vmtps")
 
+[node name="FTGPentagoUI" type="Node2D" parent="." index="1" node_paths=PackedStringArray("ColorToPlace_node")]
+script = ExtResource("3_7f6o7")
+ColorToPlace_node = NodePath("ColorToPlace")
+sprite_black = ExtResource("4_yggx2")
+sprite_white = ExtResource("4_mekar")
+
+[node name="ColorToPlace" type="Sprite2D" parent="FTGPentagoUI" index="0"]
+position = Vector2(0, -512)
+texture = ExtResource("4_mekar")
+
 [connection signal="approve_and_reply_rotate_subboard" from="." to="." method="check_game_cleared"]
 [connection signal="request_disable_input" from="." to="PentagoUI" method="receive_request_disable_input"]
+[connection signal="request_set_color" from="." to="FTGPentagoUI" method="receive_request_set_color"]
