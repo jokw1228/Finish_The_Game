@@ -98,8 +98,8 @@ func rotate_3x3_matrix_ccw(matrix_to_rotate: Array[Array]) -> Array[Array]:
 		matrix.append(temp)
 	
 	# Fill in the new cells
-	for i in range(3):
-		for j in range(3):
+	for i: int in range(3):
+		for j: int in range(3):
 			matrix[3 - 1 - j][i] = matrix_to_rotate[i][j]
 	
 	# Return the rotated_matrix
@@ -115,8 +115,8 @@ func rotate_3x3_matrix_cw(matrix_to_rotate: Array[Array]) -> Array[Array]:
 		matrix.append(temp)
 	
 	# Fill in the new cells
-	for i in range(3):
-		for j in range(3):
+	for i: int in range(3):
+		for j: int in range(3):
 			matrix[j][3 - 1 - i] = matrix_to_rotate[i][j]
 	
 	# Return the rotated_matrix

@@ -7,6 +7,9 @@ signal request_place_stone(requested_cell_index: Array[int])
 
 @export var cell_index: Array[int] = []
 
+func set_cell_index(index_to_set: Array[int]):
+	cell_index = index_to_set
+
 func _on_pressed() -> void:
 	request_place_stone.emit(cell_index)
 
