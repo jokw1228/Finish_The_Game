@@ -26,7 +26,7 @@ func start_ftg() -> void:
 		var selected: Array = candidates.pick_random()
 		var _selected: Array[int] = [selected[0], selected[1]]
 		last_index = current_empty_index.duplicate(true)
-		var _current_empty_index: Array[int] = current_empty_index
+		var _current_empty_index: Array[int] = current_empty_index.duplicate(true)
 		slide_cell(_selected)
 		request_immediately_move.emit(_selected, _current_empty_index)
 
