@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://qbkphyepgww2"]
+
+[ext_resource type="Script" path="res://scenes/game_bomb_link/bomb_link.gd" id="1_587d3"]
+
+[node name="BombLink" type="Node2D"]
+script = ExtResource("1_587d3")
