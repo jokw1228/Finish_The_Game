@@ -6,8 +6,11 @@ const height = 10 # 게임오버되지 않는 선에서 폭탄이 존재 가능�
 
 var board: Array[Array] = []
 
-signal request_insert_bomb_row_bottom(bomb_row_to_insert: Array)
-signal request_append_bomb_row_top(bomb_row_to_append: Array)
+signal request_insert_bomb_row_bottom(bomb_row_to_insert: Array[BombLinkBomb])
+signal request_append_bomb_row_top(bomb_row_to_append: Array[BombLinkBomb])
+
+signal approve_and_reply_bomb_rotation(approved_index: Array[int])
+signal deny_and_reply_bomb_rotation(denied_index: Array[int])
 
 func _ready() -> void:
 	initialize_board()
@@ -82,3 +85,14 @@ func apply_gravity() -> void:
 					break
 			if flag == true:
 				break
+
+func receive_request_bomb_rotation(index_to_request: Array[int]) -> void:
+	var _x: int = index_to_request[0]
+	var _y: int = index_to_request[1]
+	if board[_y][_x] == null:
+		deny_and_reply_bomb_rotation.emit(index_to_request)
+		print("있지도 않은 셀 클릭 신호가 들어옴. 뭔가 심각한 버그가 있는 상황임.")
+	elif board[_y][_x].bomb_type == BombLinkBomb.BOMB_TYPE.NORMAL:
+		approve_and_reply_bomb_rotation.emit(index_to_request)
+	else:
+		deny_and_reply_bomb_rotation.emit(index_to_request)

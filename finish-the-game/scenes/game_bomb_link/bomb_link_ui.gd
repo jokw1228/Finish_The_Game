@@ -10,6 +10,8 @@ const top_left_y = -height / 2 * cell_image_size
 
 var cells: Array[Array] = []
 
+signal request_bomb_rotation(index_to_request: Array[int])
+
 func _ready() -> void:
 	initialize_cells()
 
@@ -26,7 +28,7 @@ func receive_request_insert_bomb_row_bottom(bomb_row_to_insert: Array) -> void:
 		var temp: Array[BombLinkBombCell] = []
 		for x: int in range(width):
 			if cells[y][x] != null:
-				cells[y][x].set_index([y-1, x] as Array[int])
+				cells[y][x].set_index([x, y-1] as Array[int])
 				cells[y][x].move_to_position(Vector2(top_left_x + x*cell_image_size, top_left_y + (y-1)*cell_image_size))
 			temp.append(cells[y][x])
 		inserted_cells.append(temp)
@@ -51,4 +53,9 @@ func receive_request_append_bomb_row_top(bomb_row_to_append: Array) -> void:
 	pass
 
 func receive_request_bomb_rotation(index_to_request: Array[int]) -> void:
-	pass
+	request_bomb_rotation.emit(index_to_request)
+
+func receive_approve_and_reply_bomb_rotation(approved_index: Array[int]) -> void:
+	var _x: int = approved_index[0]
+	var _y: int = approved_index[1]
+	cells[_y][_x].rotate_cw()

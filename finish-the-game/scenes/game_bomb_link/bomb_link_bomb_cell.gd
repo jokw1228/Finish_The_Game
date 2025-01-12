@@ -48,3 +48,6 @@ func _on_pressed() -> void:
 
 func move_to_position(position_to_move: Vector2) -> void:
 	position = position_to_move
+
+func rotate_cw() -> void:
+	rotation += PI/2
