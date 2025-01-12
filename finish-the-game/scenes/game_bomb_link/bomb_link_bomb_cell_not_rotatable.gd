@@ -1,0 +1,2 @@
+extends BombLinkBombCell
+class_name BombLinkBombCellNotRotatable

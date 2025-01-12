@@ -19,12 +19,15 @@ func _ready() -> void:
 	for y: int in range(height):
 		var temp: Array[BombLinkBomb] = []
 		for x: int in range(width):
+			var type: BombLinkBomb.BOMB_TYPE = \
+			[BombLinkBomb.BOMB_TYPE.NORMAL, BombLinkBomb.BOMB_TYPE.NOT_ROTATABLE]\
+			.pick_random() as BombLinkBomb.BOMB_TYPE
 			var fuse: BombLinkBomb.FUSE_DIRECTION = \
 			[BombLinkBomb.FUSE_DIRECTION.RIGHT, BombLinkBomb.FUSE_DIRECTION.UP, \
 			BombLinkBomb.FUSE_DIRECTION.LEFT, BombLinkBomb.FUSE_DIRECTION.DOWN]\
 			.pick_random() as BombLinkBomb.FUSE_DIRECTION
 			temp.append(BombLinkBomb.create(\
-			BombLinkBomb.BOMB_TYPE.NORMAL, \
+			type, \
 			fuse\
 			))
 		insert_bomb_row_bottom(temp)

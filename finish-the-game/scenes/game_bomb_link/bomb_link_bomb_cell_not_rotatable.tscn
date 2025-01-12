@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://db3l0uuxc25rn"]
+
+[ext_resource type="PackedScene" uid="uid://4mcgsqcodefa" path="res://scenes/game_bomb_link/bomb_link_bomb_cell.tscn" id="1_h1tyv"]
+[ext_resource type="Texture2D" uid="uid://bqtst8f2k5qk4" path="res://resources/images/game_bomb_link/sprite_bomb_link_bomb_not_rotatable.svg" id="2_ctv6c"]
+[ext_resource type="Script" path="res://scenes/game_bomb_link/bomb_link_bomb_cell_not_rotatable.gd" id="2_edey2"]
+
+[node name="BombLinkBombCellNotRotatable" instance=ExtResource("1_h1tyv")]
+pivot_offset = Vector2(64, 64)
+texture_normal = ExtResource("2_ctv6c")
+texture_pressed = ExtResource("2_ctv6c")
+texture_hover = ExtResource("2_ctv6c")
+texture_disabled = ExtResource("2_ctv6c")
+texture_focused = ExtResource("2_ctv6c")
+script = ExtResource("2_edey2")

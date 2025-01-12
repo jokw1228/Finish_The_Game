@@ -2,6 +2,7 @@ extends TextureButton
 class_name BombLinkBombCell
 
 const BombLinkBombCellNormal_scene = "res://scenes/game_bomb_link/bomb_link_bomb_cell_normal.tscn"
+const BombLinkBombCellNotRotatable_scene = "res://scenes/game_bomb_link/bomb_link_bomb_cell_not_rotatable.tscn"
 
 var index: Array[int]
 
@@ -18,7 +19,7 @@ function_to_connect: Callable\
 	if bomb_type_to_create == BombLinkBomb.BOMB_TYPE.NORMAL:
 		inst = preload(BombLinkBombCellNormal_scene).instantiate() as BombLinkBombCell
 	elif bomb_type_to_create == BombLinkBomb.BOMB_TYPE.NOT_ROTATABLE:
-		pass
+		inst = preload(BombLinkBombCellNotRotatable_scene).instantiate() as BombLinkBombCell
 	
 	inst.position = position_to_set
 	inst.set_fuse_direction(fuse_direction_to_set)
