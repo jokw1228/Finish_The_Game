@@ -11,6 +11,20 @@ signal request_append_bomb_row_top(bomb_row_to_append: Array)
 
 func _ready() -> void:
 	initialize_board()
+	
+	## dummy codes for test
+	for y: int in range(height):
+		var temp: Array[BombLinkBomb] = []
+		for x: int in range(width):
+			var fuse: BombLinkBomb.FUSE_DIRECTION = \
+			[BombLinkBomb.FUSE_DIRECTION.RIGHT, BombLinkBomb.FUSE_DIRECTION.UP, \
+			BombLinkBomb.FUSE_DIRECTION.LEFT, BombLinkBomb.FUSE_DIRECTION.DOWN]\
+			.pick_random() as BombLinkBomb.FUSE_DIRECTION
+			temp.append(BombLinkBomb.create(\
+			BombLinkBomb.BOMB_TYPE.NORMAL, \
+			fuse\
+			))
+		insert_bomb_row_bottom(temp)
 
 func initialize_board() -> void:
 	for y: int in range(height):
