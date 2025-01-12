@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://d225n36pmqh6a"]
+
+[ext_resource type="Texture2D" uid="uid://cxvgjjmvmhs6o" path="res://resources/images/game_bomb_link/sprite_bomb_link_bomb_normal.svg" id="1_05pwm"]
+[ext_resource type="Script" path="res://scenes/game_bomb_link/bomb_link_bomb_cell_normal.gd" id="2_vtg23"]
+
+[node name="BombLinkBombCellNormal" type="Node2D"]
+script = ExtResource("2_vtg23")
+
+[node name="TextureButton" type="TextureButton" parent="."]
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+pivot_offset = Vector2(64, 64)
+texture_normal = ExtResource("1_05pwm")
+texture_pressed = ExtResource("1_05pwm")
+texture_hover = ExtResource("1_05pwm")
+texture_disabled = ExtResource("1_05pwm")
+texture_focused = ExtResource("1_05pwm")

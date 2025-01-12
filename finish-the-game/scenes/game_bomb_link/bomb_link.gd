@@ -6,6 +6,9 @@ const height = 10 # 게임오버되지 않는 선에서 폭탄이 존재 가능�
 
 var board: Array[Array] = []
 
+signal request_insert_bomb_row_bottom(bomb_row_to_insert: Array)
+signal request_append_bomb_row_top(bomb_row_to_append: Array)
+
 func _ready() -> void:
 	initialize_board()
 
@@ -26,6 +29,7 @@ func insert_bomb_row_bottom(bomb_row_to_insert: Array[BombLinkBomb]) -> void:
 	inserted_board.append(bomb_row_to_insert)
 	
 	board = inserted_board
+	request_insert_bomb_row_bottom.emit(bomb_row_to_insert)
 
 func append_bomb_row_top(bomb_row_to_append: Array[BombLinkBomb]) -> void:
 	var appended_board: Array[Array] = []
@@ -37,6 +41,8 @@ func append_bomb_row_top(bomb_row_to_append: Array[BombLinkBomb]) -> void:
 		appended_board.append(temp)
 	
 	board = appended_board
+	request_append_bomb_row_top.emit(bomb_row_to_append)
+	
 	apply_gravity()
 
 func apply_gravity() -> void:

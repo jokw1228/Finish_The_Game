@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://qbkphyepgww2"]
+[gd_scene load_steps=3 format=3 uid="uid://qbkphyepgww2"]
 
 [ext_resource type="Script" path="res://scenes/game_bomb_link/bomb_link.gd" id="1_587d3"]
+[ext_resource type="PackedScene" uid="uid://cqmev7fe50lfb" path="res://scenes/game_bomb_link/bomb_link_ui.tscn" id="2_r05ts"]
 
 [node name="BombLink" type="Node2D"]
 script = ExtResource("1_587d3")
+
+[node name="BombLinkUI" parent="." instance=ExtResource("2_r05ts")]
