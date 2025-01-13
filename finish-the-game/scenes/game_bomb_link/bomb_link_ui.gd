@@ -47,7 +47,7 @@ func receive_request_insert_bomb_row_bottom(bomb_row_to_insert: Array) -> void:
 	
 	cells = inserted_cells
 
-func receive_request_append_bomb_row_top(bomb_row_to_append: Array) -> void:
+func receive_request_append_bomb_row_top(_bomb_row_to_append: Array) -> void:
 	pass
 
 func receive_request_bomb_rotation(index_to_request: Array[int]) -> void:
@@ -57,3 +57,12 @@ func receive_approve_and_reply_bomb_rotation(approved_index: Array[int]) -> void
 	var _x: int = approved_index[0]
 	var _y: int = approved_index[1]
 	cells[_y][_x].rotate_cw()
+
+func receive_request_chain_reaction(chain_reaction_to_execute: Array) -> void:
+	for chain_targets: Array in chain_reaction_to_execute:
+		for chain_target: Array in chain_targets:
+			var _x: int = chain_target[0]
+			var _y: int = chain_target[1]
+			print(_x, _y)
+			cells[_y][_x].queue_free()
+			cells[_y][_x] = null

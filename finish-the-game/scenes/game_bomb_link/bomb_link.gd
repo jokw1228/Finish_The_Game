@@ -122,11 +122,12 @@ func ignite_chain_reaction(index_to_ignite: Array[int]) -> void:
 		exploded.append(temp)
 	
 	var chain_reaction: Array = []
+	chain_reaction.append(index_to_ignite)
 	
 	var ignite_candidates: Array[Array] = []
 	ignite_candidates.append(index_to_ignite)
 	
-	while ignite_candidates.size() != 0: # 좀 불확실한 코드임
+	while !ignite_candidates.is_empty(): # 좀 불확실한 코드임
 		var chain_targets: Array[Array] = []
 		var new_ignite_candidates: Array[Array] = []
 		
@@ -170,6 +171,8 @@ func ignite_chain_reaction(index_to_ignite: Array[int]) -> void:
 		
 		chain_reaction.append(chain_targets)
 		request_chain_reaction.emit(chain_reaction)
+		
+		ignite_candidates = new_ignite_candidates
 
 func receive_request_bomb_rotation(index_to_request: Array[int]) -> void:
 	var _x: int = index_to_request[0]
