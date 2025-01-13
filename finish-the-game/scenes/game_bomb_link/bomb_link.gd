@@ -148,6 +148,7 @@ func receive_request_bomb_rotation(index_to_request: Array[int]) -> void:
 		deny_and_reply_bomb_rotation.emit(index_to_request)
 		print("있지도 않은 셀 클릭 신호가 들어옴. 뭔가 심각한 버그가 있는 상황임.")
 	elif board[_y][_x].bomb_type == BombLinkBomb.BOMB_TYPE.NORMAL:
+		board[_y][_x].rotate_cw()
 		approve_and_reply_bomb_rotation.emit(index_to_request)
 	else:
 		deny_and_reply_bomb_rotation.emit(index_to_request)
