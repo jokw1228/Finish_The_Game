@@ -5,13 +5,8 @@ enum BOMB_TYPE
 {
 	NORMAL,
 	NOT_ROTATABLE,
-	GROUP_LEADER,
-	GROUP_FOLLOWER
 }
 var bomb_type: BOMB_TYPE
-
-static var available_bomb_id: int = 1
-var bomb_group_id: int = -1
 
 enum FUSE_DIRECTION
 {
@@ -25,25 +20,9 @@ var fuse_direction: FUSE_DIRECTION
 static func create(\
 bomb_type_to_set, \
 fuse_direction_to_set: FUSE_DIRECTION\
-) -> BombLinkBomb: # for NORMAL, NOT_ROTATABLE
+) -> BombLinkBomb:
 	var inst: BombLinkBomb = BombLinkBomb.new()
 	inst.bomb_type = bomb_type_to_set
-	inst.fuse_direction = fuse_direction_to_set
-	return inst
-
-static func generate_bomb_group_id() -> int:
-	var value: int = available_bomb_id
-	available_bomb_id += 1
-	return value
-
-static func create_group(\
-bomb_type_to_set, \
-bomb_group_id_to_set, \
-fuse_direction_to_set: FUSE_DIRECTION\
-) -> BombLinkBomb: # for GROUP_LEADER, GROUP_FOLLOWER
-	var inst: BombLinkBomb = BombLinkBomb.new()
-	inst.bomb_type = bomb_type_to_set
-	inst.bomb_group_id = bomb_group_id_to_set
 	inst.fuse_direction = fuse_direction_to_set
 	return inst
 

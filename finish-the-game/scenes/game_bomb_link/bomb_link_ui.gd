@@ -34,17 +34,15 @@ func receive_request_insert_bomb_row_bottom(bomb_row_to_insert: Array) -> void:
 		inserted_cells.append(temp)
 	var row: Array[BombLinkBombCell] = []
 	for x: int in range(width):
-		if bomb_row_to_insert[x].bomb_type == BombLinkBomb.BOMB_TYPE.NORMAL \
-		or bomb_row_to_insert[x].bomb_type == BombLinkBomb.BOMB_TYPE.NOT_ROTATABLE:
-			var inst: BombLinkBombCell = BombLinkBombCell.create(\
-			bomb_row_to_insert[x].bomb_type, \
-			bomb_row_to_insert[x].fuse_direction, \
-			Vector2(top_left_x + x*cell_image_size, top_left_y + (height-1)*cell_image_size), \
-			[x, int(height - 1)], \
-			Callable(self, "receive_request_bomb_rotation")\
-			)
-			row.append(inst)
-			add_child(inst)
+		var inst: BombLinkBombCell = BombLinkBombCell.create(\
+		bomb_row_to_insert[x].bomb_type, \
+		bomb_row_to_insert[x].fuse_direction, \
+		Vector2(top_left_x + x*cell_image_size, top_left_y + (height-1)*cell_image_size), \
+		[x, int(height - 1)], \
+		Callable(self, "receive_request_bomb_rotation")\
+		)
+		row.append(inst)
+		add_child(inst)
 	inserted_cells.append(row)
 	
 	cells = inserted_cells

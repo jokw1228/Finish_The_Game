@@ -14,7 +14,7 @@ fuse_direction_to_set: BombLinkBomb.FUSE_DIRECTION, \
 position_to_set: Vector2, \
 index_to_set: Array[int], \
 function_to_connect: Callable\
-) -> BombLinkBombCell: # for NORMAL, NOT_ROTATABLE
+) -> BombLinkBombCell:
 	var inst: BombLinkBombCell
 	if bomb_type_to_create == BombLinkBomb.BOMB_TYPE.NORMAL:
 		inst = preload(BombLinkBombCellNormal_scene).instantiate() as BombLinkBombCell
