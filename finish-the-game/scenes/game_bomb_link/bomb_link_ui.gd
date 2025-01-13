@@ -64,5 +64,6 @@ func receive_request_chain_reaction(chain_reaction_to_execute:BombLinkChainReact
 		for cell_index_to_explode: Array in step_to_explode:
 			var _x: int = cell_index_to_explode[0] as int
 			var _y: int = cell_index_to_explode[1] as int
-			cells[_y][_x].queue_free()
+			cells[_y][_x].explode()
 			cells[_y][_x] = null
+		await get_tree().create_timer(0.4).timeout

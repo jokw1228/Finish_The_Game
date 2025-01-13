@@ -22,7 +22,7 @@ func start_ftg() -> void:
 			))
 		insert_bomb_row_bottom(temp)
 	
-	await get_tree().create_timer(5.0).timeout
+	await get_tree().create_timer(3.0).timeout
 	drop_fire(LEFT_OR_RIGHT.LEFT)
 	
 	await get_tree().create_timer(1.0).timeout

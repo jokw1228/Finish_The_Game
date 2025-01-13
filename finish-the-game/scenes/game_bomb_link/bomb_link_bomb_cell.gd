@@ -52,3 +52,9 @@ func move_to_position(position_to_move: Vector2) -> void:
 
 func rotate_cw() -> void:
 	rotation += PI/2
+
+func explode() -> void:
+	var tween: Tween = get_tree().create_tween()
+	tween.tween_property(self, "scale", Vector2.ZERO, 0.2)
+	await tween.finished
+	queue_free()
