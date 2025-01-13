@@ -8,6 +8,7 @@ var board: Array[Array] = []
 
 signal request_insert_bomb_row_bottom(bomb_row_to_insert: Array[BombLinkBomb])
 signal request_append_bomb_row_top(bomb_row_to_append: Array[BombLinkBomb])
+signal request_apply_gravity(move_commands_to_execute: Array[BombLinkMoveCommand])
 signal request_chain_reaction(chain_reaction_to_execute: BombLinkChainReaction)
 
 signal approve_and_reply_bomb_rotation(approved_index: Array[int])
@@ -50,6 +51,23 @@ func append_bomb_row_top(bomb_row_to_append: Array[BombLinkBomb]) -> void:
 	apply_gravity()
 
 func apply_gravity() -> void:
+	var move_commands: Array[BombLinkMoveCommand] = []
+	for x: int in range(width):
+		for y: int in range(height-2, -1, -1):
+			if board[y][x] != null:
+				var y_offset: int = 1
+				while board[y+y_offset][x] != null:
+					y_offset += 1
+					if y+y_offset >= height:
+						break
+				y_offset -= 1
+				if y_offset > 0:
+					board[y+y_offset][x] = board[y][x]
+					board[y][x] = null
+					move_commands.append(BombLinkMoveCommand.create([x, y] as Array[int], y_offset))
+	
+	request_apply_gravity.emit(move_commands)
+	'''
 	var flag: bool = true
 	while(flag == true):
 		var last_board: Array[Array] = board.duplicate(true)
@@ -69,6 +87,7 @@ func apply_gravity() -> void:
 					break
 			if flag == true:
 				break
+	'''
 
 enum LEFT_OR_RIGHT {LEFT, RIGHT}
 func drop_fire(side: LEFT_OR_RIGHT) -> void:
@@ -103,7 +122,7 @@ func ignite_chain_reaction(index_to_ignite: Array[int]) -> void:
 	var ignite_targets: Array[Array] = []
 	ignite_targets.append(index_to_ignite)
 	
-	while !ignite_targets.is_empty(): # 좀 불확실한 코드임
+	while !ignite_targets.is_empty():
 		chain_reaction.append_step(ignite_targets)
 		var next_ignite_targets: Array[Array] = []
 		

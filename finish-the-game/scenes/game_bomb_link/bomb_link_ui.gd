@@ -8,6 +8,8 @@ const cell_image_size = 128.0
 const top_left_x = -width / 2 * cell_image_size
 const top_left_y = -height / 2 * cell_image_size
 
+const delay = 0.2
+
 var cells: Array[Array] = []
 
 signal request_bomb_rotation(index_to_request: Array[int])
@@ -50,6 +52,20 @@ func receive_request_insert_bomb_row_bottom(bomb_row_to_insert: Array) -> void:
 func receive_request_append_bomb_row_top(_bomb_row_to_append: Array) -> void:
 	pass
 
+func receive_request_apply_gravity(move_commands_to_execute: Array[BombLinkMoveCommand]) -> void:
+	for move_command: BombLinkMoveCommand in move_commands_to_execute:
+		var target_index: Array[int] = move_command.get_target_index()
+		var _x: int = target_index[0]
+		var _y: int = target_index[1]
+		var y_offset: int = move_command.get_y_offset()
+		
+		cells[_y][_x].set_index([_x, _y+y_offset])
+		cells[_y][_x].move_to_position(Vector2(\
+		top_left_x + _x*cell_image_size, \
+		top_left_y + (_y+y_offset)*cell_image_size) )
+		cells[_y+y_offset][_x] = cells[_y][_x]
+		cells[_y][_x] = null
+
 func receive_request_bomb_rotation(index_to_request: Array[int]) -> void:
 	request_bomb_rotation.emit(index_to_request)
 
@@ -66,4 +82,4 @@ func receive_request_chain_reaction(chain_reaction_to_execute:BombLinkChainReact
 			var _y: int = cell_index_to_explode[1] as int
 			cells[_y][_x].explode()
 			cells[_y][_x] = null
-		await get_tree().create_timer(0.4).timeout
+		await get_tree().create_timer(delay).timeout

@@ -48,6 +48,8 @@ func _on_pressed() -> void:
 	request_bomb_rotation.emit(index)
 
 func move_to_position(position_to_move: Vector2) -> void:
+	#var tween: Tween = get_tree().create_tween()
+	#tween.tween_property(self, "position", position_to_move, BombLinkUI.delay)
 	position = position_to_move
 
 func rotate_cw() -> void:
@@ -55,6 +57,6 @@ func rotate_cw() -> void:
 
 func explode() -> void:
 	var tween: Tween = get_tree().create_tween()
-	tween.tween_property(self, "scale", Vector2.ZERO, 0.2)
+	tween.tween_property(self, "scale", Vector2.ZERO, BombLinkUI.delay)
 	await tween.finished
 	queue_free()
