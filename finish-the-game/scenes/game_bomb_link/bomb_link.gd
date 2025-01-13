@@ -8,7 +8,7 @@ var board: Array[Array] = []
 
 signal request_insert_bomb_row_bottom(bomb_row_to_insert: Array[BombLinkBomb])
 signal request_append_bomb_row_top(bomb_row_to_append: Array[BombLinkBomb])
-signal request_chain_reaction(chain_reaction_to_execute: Array)
+signal request_chain_reaction(chain_reaction_to_execute: BombLinkChainReaction)
 
 signal approve_and_reply_bomb_rotation(approved_index: Array[int])
 signal deny_and_reply_bomb_rotation(denied_index: Array[int])
@@ -108,7 +108,7 @@ func drop_fire(side: LEFT_OR_RIGHT) -> void:
 		if board[y][_x] != null:
 			if board[y][_x].fuse_direction == _fuse_direction:
 				ignite_chain_reaction([_x, y] as Array[int])
-				apply_gravity()
+				#apply_gravity()
 
 func ignite_chain_reaction(index_to_ignite: Array[int]) -> void:
 	var exploded: Array[Array] = []
@@ -121,17 +121,16 @@ func ignite_chain_reaction(index_to_ignite: Array[int]) -> void:
 				temp.append(false)
 		exploded.append(temp)
 	
-	var chain_reaction: Array = []
-	chain_reaction.append(index_to_ignite)
+	var chain_reaction: BombLinkChainReaction = BombLinkChainReaction.new()
 	
-	var ignite_candidates: Array[Array] = []
-	ignite_candidates.append(index_to_ignite)
+	var ignite_targets: Array[Array] = []
+	ignite_targets.append(index_to_ignite)
 	
-	while !ignite_candidates.is_empty(): # 좀 불확실한 코드임
-		var chain_targets: Array[Array] = []
-		var new_ignite_candidates: Array[Array] = []
+	while !ignite_targets.is_empty(): # 좀 불확실한 코드임
+		chain_reaction.append_step(ignite_targets)
+		var next_ignite_targets: Array[Array] = []
 		
-		for ignite_target: Array[int] in ignite_candidates:
+		for ignite_target: Array[int] in ignite_targets:
 			var _x: int = ignite_target[0] as int
 			var _y: int = ignite_target[1] as int
 			
@@ -141,38 +140,29 @@ func ignite_chain_reaction(index_to_ignite: Array[int]) -> void:
 			if _x+1 < width:
 				if exploded[_y][_x+1] == false:
 					if board[_y][_x+1].fuse_direction == BombLinkBomb.FUSE_DIRECTION.LEFT:
-						var chain_target: Array[int] = [_x+1, _y] as Array[int]
-						chain_targets.append(chain_target)
-						new_ignite_candidates.append(chain_target)
+						next_ignite_targets.append([_x+1, _y] as Array[int])
 			
 			# check uppper bomb
 			if _y-1 >= 0:
 				if exploded[_y-1][_x] == false:
 					if board[_y-1][_x].fuse_direction == BombLinkBomb.FUSE_DIRECTION.DOWN:
-						var chain_target: Array[int] = [_x, _y-1] as Array[int]
-						chain_targets.append(chain_target)
-						new_ignite_candidates.append(chain_target)
+						next_ignite_targets.append([_x, _y-1] as Array[int])
 			
 			# check left bomb
 			if _x-1 >= 0:
 				if exploded[_y][_x-1] == false:
 					if board[_y][_x-1].fuse_direction == BombLinkBomb.FUSE_DIRECTION.RIGHT:
-						var chain_target: Array[int] = [_x-1, _y] as Array[int]
-						chain_targets.append(chain_target)
-						new_ignite_candidates.append(chain_target)
+						next_ignite_targets.append([_x-1, _y] as Array[int])
 			
 			# check lower bomb
 			if _y+1 < height:
 				if exploded[_y+1][_x] == false:
 					if board[_y+1][_x].fuse_direction == BombLinkBomb.FUSE_DIRECTION.UP:
-						var chain_target: Array[int] = [_x, _y+1] as Array[int]
-						chain_targets.append(chain_target)
-						new_ignite_candidates.append(chain_target)
+						next_ignite_targets.append([_x, _y+1] as Array[int])
 		
-		chain_reaction.append(chain_targets)
-		request_chain_reaction.emit(chain_reaction)
+		ignite_targets = next_ignite_targets
 		
-		ignite_candidates = new_ignite_candidates
+	request_chain_reaction.emit(chain_reaction)
 
 func receive_request_bomb_rotation(index_to_request: Array[int]) -> void:
 	var _x: int = index_to_request[0]

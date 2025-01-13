@@ -58,11 +58,11 @@ func receive_approve_and_reply_bomb_rotation(approved_index: Array[int]) -> void
 	var _y: int = approved_index[1]
 	cells[_y][_x].rotate_cw()
 
-func receive_request_chain_reaction(chain_reaction_to_execute: Array) -> void:
-	for chain_targets: Array in chain_reaction_to_execute:
-		for chain_target: Array in chain_targets:
-			var _x: int = chain_target[0]
-			var _y: int = chain_target[1]
-			print(_x, _y)
+func receive_request_chain_reaction(chain_reaction_to_execute:BombLinkChainReaction) -> void:
+	for chain_step: int in range(chain_reaction_to_execute.get_step_count()):
+		var step_to_explode: Array[Array] = chain_reaction_to_execute.get_step(chain_step)
+		for cell_index_to_explode: Array in step_to_explode:
+			var _x: int = cell_index_to_explode[0] as int
+			var _y: int = cell_index_to_explode[1] as int
 			cells[_y][_x].queue_free()
 			cells[_y][_x] = null
