@@ -8,8 +8,6 @@ script = ExtResource("1_587d3")
 
 [node name="BombLinkUI" parent="." instance=ExtResource("2_r05ts")]
 
-[node name="Camera2D" type="Camera2D" parent="."]
-
 [connection signal="approve_and_reply_bomb_rotation" from="." to="BombLinkUI" method="receive_approve_and_reply_bomb_rotation"]
 [connection signal="request_chain_reaction" from="." to="BombLinkUI" method="receive_request_chain_reaction"]
 [connection signal="request_insert_bomb_row_bottom" from="." to="BombLinkUI" method="receive_request_insert_bomb_row_bottom"]
