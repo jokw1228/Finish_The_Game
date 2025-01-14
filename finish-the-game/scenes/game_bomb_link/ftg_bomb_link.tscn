@@ -5,3 +5,5 @@
 
 [node name="FTGBombLink" instance=ExtResource("1_hpu67")]
 script = ExtResource("2_h2afn")
+
+[connection signal="all_action_is_ended" from="BombLinkUI" to="." method="_on_bomb_link_ui_all_action_is_ended"]

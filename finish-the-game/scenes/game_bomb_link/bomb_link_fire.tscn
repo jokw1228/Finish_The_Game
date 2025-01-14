@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://b08yvkwohosos"]
+
+[ext_resource type="Texture2D" uid="uid://cwmpl2ax5n376" path="res://resources/images/game_bomb_link/sprite_bomb_link_fire.svg" id="1_s7e1u"]
+[ext_resource type="Script" path="res://scenes/game_bomb_link/bomb_link_fire.gd" id="2_vxar8"]
+
+[node name="BombLinkFire" type="Sprite2D"]
+scale = Vector2(1e-05, 1e-05)
+texture = ExtResource("1_s7e1u")
+script = ExtResource("2_vxar8")

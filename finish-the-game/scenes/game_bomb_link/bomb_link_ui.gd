@@ -2,7 +2,7 @@ extends Node2D
 class_name BombLinkUI
 
 const width = 4
-const height = 10
+const height = 8
 
 const cell_image_size = 128.0
 const top_left_x = -width / 2 * cell_image_size
@@ -14,9 +14,13 @@ var cells: Array[Array] = []
 
 signal request_bomb_rotation(index_to_request: Array[int])
 
+@export var BombLinkFire_node: BombLinkFire
+
 var action_queue: Array[Dictionary] = [] # for apply_gravity() and chain_reaction()
 var action_mutex: bool = true
 signal action_is_ended()
+signal all_action_is_ended()
+
 func enqueue_action(method: Callable, args: Array) -> void:
 	var dict: Dictionary = {
 		"method" : method,
@@ -29,7 +33,13 @@ func enqueue_action(method: Callable, args: Array) -> void:
 
 func process_next_action() -> void:
 	if action_queue.is_empty():
+		var target_y: float = top_left_y + height * cell_image_size + cell_image_size/2
+		BombLinkFire_node.move_to_position(Vector2(BombLinkFire_node.position.x, target_y))
+		await get_tree().create_timer(delay).timeout
+		BombLinkFire_node.incineration()
+		await get_tree().create_timer(delay).timeout
 		action_mutex = true
+		all_action_is_ended.emit()
 	else:
 		var dict: Dictionary = action_queue.pop_front()
 		dict["method"].callv(dict["args"])
@@ -105,6 +115,11 @@ func receive_request_chain_reaction(chain_reaction_to_execute:BombLinkChainReact
 	enqueue_action(Callable(self, "chain_reaction"), [chain_reaction_to_execute])
 
 func chain_reaction(chain_reaction_to_execute:BombLinkChainReaction) -> void:
+	var first_ignite: Array[Array] = chain_reaction_to_execute.get_step(0)
+	var target_y: float = top_left_y + first_ignite[0][1] * cell_image_size + cell_image_size/2
+	BombLinkFire_node.move_to_position(Vector2(BombLinkFire_node.position.x, target_y))
+	await get_tree().create_timer(delay).timeout
+	
 	for chain_step: int in range(chain_reaction_to_execute.get_step_count()):
 		var step_to_explode: Array[Array] = chain_reaction_to_execute.get_step(chain_step)
 		for cell_index_to_explode: Array in step_to_explode:
@@ -115,3 +130,9 @@ func chain_reaction(chain_reaction_to_execute:BombLinkChainReaction) -> void:
 		await get_tree().create_timer(delay).timeout
 	
 	action_is_ended.emit()
+
+func receive_request_set_fire(set_direction: BombLink.LEFT_OR_RIGHT) -> void:
+	var _x: float = top_left_x - cell_image_size/2 if set_direction == BombLink.LEFT_OR_RIGHT.LEFT \
+	else top_left_x + cell_image_size * width + cell_image_size/2
+	BombLinkFire_node.position = Vector2(_x, top_left_y - cell_image_size/2)
+	BombLinkFire_node.spawn()

@@ -2,7 +2,7 @@ extends Node2D
 class_name BombLink
 
 const width = 4
-const height = 10 # 게임오버되지 않는 선에서 폭탄이 존재 가능한 높이 + 1인 값임.
+const height = 8 # 게임오버되지 않는 선에서 폭탄이 존재 가능한 높이 + 1인 값임.
 
 var board: Array[Array] = []
 
@@ -10,6 +10,7 @@ signal request_insert_bomb_row_bottom(bomb_row_to_insert: Array[BombLinkBomb])
 signal request_append_bomb_row_top(bomb_row_to_append: Array[BombLinkBomb])
 signal request_apply_gravity(move_commands_to_execute: Array[BombLinkMoveCommand])
 signal request_chain_reaction(chain_reaction_to_execute: BombLinkChainReaction)
+signal request_set_fire(set_direction: LEFT_OR_RIGHT)
 
 signal approve_and_reply_bomb_rotation(approved_index: Array[int])
 signal deny_and_reply_bomb_rotation(denied_index: Array[int])

@@ -12,4 +12,5 @@ script = ExtResource("1_587d3")
 [connection signal="request_apply_gravity" from="." to="BombLinkUI" method="receive_request_apply_gravity"]
 [connection signal="request_chain_reaction" from="." to="BombLinkUI" method="receive_request_chain_reaction"]
 [connection signal="request_insert_bomb_row_bottom" from="." to="BombLinkUI" method="receive_request_insert_bomb_row_bottom"]
+[connection signal="request_set_fire" from="." to="BombLinkUI" method="receive_request_set_fire"]
 [connection signal="request_bomb_rotation" from="BombLinkUI" to="." method="receive_request_bomb_rotation"]
