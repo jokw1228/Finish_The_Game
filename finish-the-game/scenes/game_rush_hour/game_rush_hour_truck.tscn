@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://cbl0xs0coasm3"]
+
+[ext_resource type="Script" path="res://game_rush_hour_truck.gd" id="1_8a8bi"]
+[ext_resource type="Texture2D" uid="uid://dot6fdfprdjpj" path="res://sprites/sprite_rush_hour_truck_type1.png" id="2_kitll"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fmi6t"]
+
+[node name="truck" type="Area2D"]
+script = ExtResource("1_8a8bi")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_kitll")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_fmi6t")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
