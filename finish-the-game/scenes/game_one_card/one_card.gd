@@ -1,6 +1,12 @@
 extends Node2D
 class_name OneCard
 
+signal allow_place_card
+signal deny_place_card
+signal request_shape_choose
+signal allow_displace_card
+signal deny_displace_card
+
 const shape_string: Array = ["spade", "heart", "diamond", "clover"]
 const rank_string: Array = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
 
@@ -39,7 +45,9 @@ func request_place_card(card: Array, stack_index: int) -> void:
 						   else [shape_change[-1][1], card[1]],
 					  stack_index, [field_stack_1[-1], field_stack_2[-1]],
 					  card_memory[-1], can_one_more):
-		#allow_place_card()
+						
+		allow_place_card.emit()
+		
 		field[stack_index].append(card)
 		card_memory.append(stack_index)
 		moves += 1
@@ -49,11 +57,9 @@ func request_place_card(card: Array, stack_index: int) -> void:
 		else:
 			can_one_more = false
 			if card[1] == 6:
-				#request_shape_choose()
-				pass
+				request_shape_choose.emit()
 	else:
-		#deny_place_card()
-		pass
+		deny_place_card.emit()
 
 
 func can_place_card(card: Array, stack_index: int, stack_fronts: Array, previous_card_index: int, can_one_more: bool) -> bool:
@@ -76,7 +82,7 @@ func recieve_shape_choose(shape: int) -> void:
 
 func request_displace_card(stack_index: int) -> void:
 	if card_memory[-1] == stack_index:
-		#allow_displace_card()
+		allow_displace_card.emit()
 		field[stack_index].remove_at(-1)
 		card_memory.remove_at(-1)
 		
@@ -86,5 +92,5 @@ func request_displace_card(stack_index: int) -> void:
 		moves -= 1
 		
 	else:
-		#deny_displace_card()
+		deny_displace_card.emit()
 		pass
