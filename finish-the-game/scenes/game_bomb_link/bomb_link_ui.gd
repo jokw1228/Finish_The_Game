@@ -82,14 +82,14 @@ func apply_gravity(move_commands_to_execute: Array[BombLinkMoveCommand]) -> void
 		var _y: int = target_index[1]
 		var y_offset: int = move_command.get_y_offset()
 		
-		cells[_y][_x].set_index([_x, _y+y_offset])
+		cells[_y][_x].set_index([_x, _y+y_offset] as Array[int])
 		cells[_y][_x].move_to_position(Vector2(\
 		top_left_x + _x*cell_image_size, \
 		top_left_y + (_y+y_offset)*cell_image_size) )
 		cells[_y+y_offset][_x] = cells[_y][_x]
 		cells[_y][_x] = null
 	
-	await get_tree().create_timer(delay)
+	await get_tree().create_timer(delay).timeout
 	action_is_ended.emit()
 
 func receive_request_bomb_rotation(index_to_request: Array[int]) -> void:

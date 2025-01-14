@@ -56,7 +56,7 @@ func apply_gravity() -> void:
 		for y: int in range(height-2, -1, -1):
 			if board[y][x] != null:
 				var y_offset: int = 1
-				while board[y+y_offset][x] != null:
+				while board[y+y_offset][x] == null:
 					y_offset += 1
 					if y+y_offset >= height:
 						break
@@ -83,7 +83,7 @@ func drop_fire(side: LEFT_OR_RIGHT) -> void:
 		if board[y][_x] != null:
 			if board[y][_x].fuse_direction == _fuse_direction:
 				ignite_chain_reaction([_x, y] as Array[int])
-				#apply_gravity()
+				apply_gravity()
 
 func ignite_chain_reaction(index_to_ignite: Array[int]) -> void:
 	var exploded: Array[Array] = []
@@ -110,6 +110,8 @@ func ignite_chain_reaction(index_to_ignite: Array[int]) -> void:
 			var _y: int = ignite_target[1] as int
 			
 			exploded[_y][_x] = true
+			board[_y][_x].queue_free()
+			board[_y][_x] = null
 			
 			# check right bomb
 			if _x+1 < width:
