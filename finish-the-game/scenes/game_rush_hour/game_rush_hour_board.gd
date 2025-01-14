@@ -14,3 +14,5 @@ func _ready():
 			tile.texture = tile_texture
 			tile.position = Vector2(col * tile_size, row * tile_size)
 			add_child(tile)
+			
+			
