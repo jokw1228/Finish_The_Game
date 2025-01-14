@@ -67,27 +67,6 @@ func apply_gravity() -> void:
 					move_commands.append(BombLinkMoveCommand.create([x, y] as Array[int], y_offset))
 	
 	request_apply_gravity.emit(move_commands)
-	'''
-	var flag: bool = true
-	while(flag == true):
-		var last_board: Array[Array] = board.duplicate(true)
-		
-		for y: int in range(height-2, -1, -1):
-			for x: int in range(width):
-				if board[y][x] != null:
-					if board[y+1][x] != null:
-						board[y+1][x] = board[y][x]
-						board[y][x] = null
-		
-		flag = false
-		for y: int in range(height):
-			for x: int in range(width):
-				if board[y][x] != last_board[y][x]:
-					flag = true
-					break
-			if flag == true:
-				break
-	'''
 
 enum LEFT_OR_RIGHT {LEFT, RIGHT}
 func drop_fire(side: LEFT_OR_RIGHT) -> void:
