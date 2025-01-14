@@ -93,7 +93,8 @@ func apply_gravity(move_commands_to_execute: Array[BombLinkMoveCommand]) -> void
 	action_is_ended.emit()
 
 func receive_request_bomb_rotation(index_to_request: Array[int]) -> void:
-	request_bomb_rotation.emit(index_to_request)
+	if action_mutex == true:
+		request_bomb_rotation.emit(index_to_request)
 
 func receive_approve_and_reply_bomb_rotation(approved_index: Array[int]) -> void:
 	var _x: int = approved_index[0]

@@ -86,16 +86,6 @@ func drop_fire(side: LEFT_OR_RIGHT) -> void:
 				apply_gravity()
 
 func ignite_chain_reaction(index_to_ignite: Array[int]) -> void:
-	var exploded: Array[Array] = []
-	for y: int in range(height):
-		var temp: Array[bool] = []
-		for x: int in range(width):
-			if board[y][x] == null:
-				temp.append(true)
-			else:
-				temp.append(false)
-		exploded.append(temp)
-	
 	var chain_reaction: BombLinkChainReaction = BombLinkChainReaction.new()
 	
 	var ignite_targets: Array[Array] = []
@@ -109,31 +99,30 @@ func ignite_chain_reaction(index_to_ignite: Array[int]) -> void:
 			var _x: int = ignite_target[0] as int
 			var _y: int = ignite_target[1] as int
 			
-			exploded[_y][_x] = true
 			board[_y][_x].queue_free()
 			board[_y][_x] = null
 			
 			# check right bomb
 			if _x+1 < width:
-				if exploded[_y][_x+1] == false:
+				if board[_y][_x+1] != null:
 					if board[_y][_x+1].fuse_direction == BombLinkBomb.FUSE_DIRECTION.LEFT:
 						next_ignite_targets.append([_x+1, _y] as Array[int])
 			
 			# check uppper bomb
 			if _y-1 >= 0:
-				if exploded[_y-1][_x] == false:
+				if board[_y-1][_x] != null:
 					if board[_y-1][_x].fuse_direction == BombLinkBomb.FUSE_DIRECTION.DOWN:
 						next_ignite_targets.append([_x, _y-1] as Array[int])
 			
 			# check left bomb
 			if _x-1 >= 0:
-				if exploded[_y][_x-1] == false:
+				if board[_y][_x-1] != null:
 					if board[_y][_x-1].fuse_direction == BombLinkBomb.FUSE_DIRECTION.RIGHT:
 						next_ignite_targets.append([_x-1, _y] as Array[int])
 			
 			# check lower bomb
 			if _y+1 < height:
-				if exploded[_y+1][_x] == false:
+				if board[_y+1][_x] != null:
 					if board[_y+1][_x].fuse_direction == BombLinkBomb.FUSE_DIRECTION.UP:
 						next_ignite_targets.append([_x, _y+1] as Array[int])
 		
