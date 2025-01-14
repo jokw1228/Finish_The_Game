@@ -4,3 +4,5 @@
 
 [node name="BombLinkUI" type="Node2D"]
 script = ExtResource("1_nb8nu")
+
+[connection signal="action_is_ended" from="." to="." method="process_next_action"]
