@@ -1,8 +1,9 @@
 extends BombLink
 class_name FTGBombLink
 
-signal request_disable_input()
 signal end_ftg(is_game_cleared: bool)
+
+signal start_timer(duration: float)
 
 func start_ftg() -> void:
 	## dummy codes for test
@@ -22,9 +23,11 @@ func start_ftg() -> void:
 		insert_bomb_row_bottom(temp)
 	
 	var left_or_right: LEFT_OR_RIGHT = [LEFT_OR_RIGHT.LEFT, LEFT_OR_RIGHT.RIGHT].pick_random()
-	drop_fire(left_or_right, 3.0)
+	const duration: float = 3.0
+	drop_fire(left_or_right, duration)
+	start_timer.emit(duration)
 
 
 func _on_bomb_link_ui_all_action_is_ended() -> void:
-	await get_tree().create_timer(0.4).timeout
+	await get_tree().create_timer(0.2).timeout
 	end_ftg.emit(true)
