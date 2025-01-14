@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=3 uid="uid://dp6hm2w4mkvli"]
+
+[ext_resource type="Script" path="res://scenes/game_orbito/orbito_ui.gd" id="1_qgrcw"]
+[ext_resource type="FontFile" uid="uid://c5igkpjkatnoi" path="res://resources/fonts/acknowtt.ttf" id="2_05lnp"]
+[ext_resource type="PackedScene" uid="uid://dj0pb3rpmucem" path="res://scenes/game_orbito/orbito_board.tscn" id="3_oto0j"]
+[ext_resource type="Texture2D" uid="uid://cbbxgmbhthjew" path="res://resources/images/game_orbito/sprite_orbito_stone_black.svg" id="4_okl51"]
+[ext_resource type="Script" path="res://scenes/game_orbito/orbito_turn_order.gd" id="5_ffn4r"]
+[ext_resource type="Texture2D" uid="uid://4hs2sut4tcmd" path="res://resources/images/game_orbito/sprite_orbito_stone_white.svg" id="6_t3hbx"]
+
+[node name="orbito_ui" type="Node2D"]
+script = ExtResource("1_qgrcw")
+
+[node name="orbit_button" type="Button" parent="."]
+offset_left = -172.0
+offset_top = 384.0
+offset_right = 172.0
+offset_bottom = 506.0
+theme_override_fonts/font = ExtResource("2_05lnp")
+theme_override_font_sizes/font_size = 128
+text = "ORBIT"
+
+[node name="orbito_board" parent="." instance=ExtResource("3_oto0j")]
+
+[node name="orbito_turn_order" type="Sprite2D" parent="."]
+position = Vector2(0, -512)
+texture = ExtResource("4_okl51")
+script = ExtResource("5_ffn4r")
+sprite_black = ExtResource("4_okl51")
+sprite_white = ExtResource("6_t3hbx")
+
+[node name="do_not_move_button" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -383.0
+offset_top = 384.0
+offset_right = 383.0
+offset_bottom = 506.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_05lnp")
+theme_override_font_sizes/font_size = 128
+text = "Do not move"
+
+[connection signal="request_move_stone" from="." to="orbito_board" method="receive_request_move_stone"]
+[connection signal="request_place_stone" from="." to="orbito_board" method="receive_request_place_stone"]
+[connection signal="request_remove_stone" from="." to="orbito_board" method="receive_request_remove_stone"]
+[connection signal="pressed" from="orbit_button" to="." method="_on_orbit_button_pressed"]
+[connection signal="request_select_cell" from="orbito_board" to="." method="receive_request_select_stone"]
+[connection signal="pressed" from="do_not_move_button" to="." method="_on_do_not_move_button_pressed"]

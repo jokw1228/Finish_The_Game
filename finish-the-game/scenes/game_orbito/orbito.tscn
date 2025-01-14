@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://bo4gvwvim4g5s"]
+
+[ext_resource type="Script" path="res://scenes/game_orbito/orbito.gd" id="1_vywsl"]
+[ext_resource type="PackedScene" uid="uid://dp6hm2w4mkvli" path="res://scenes/game_orbito/orbito_ui.tscn" id="2_gqxxv"]
+
+[node name="orbito" type="Node2D"]
+script = ExtResource("1_vywsl")
+
+[node name="orbito_ui" parent="." instance=ExtResource("2_gqxxv")]
+position = Vector2(558, 926)
+
+[connection signal="approve_and_reply_do_not_move" from="." to="orbito_ui" method="receive_approve_and_reply_do_not_move"]
+[connection signal="approve_and_reply_move_stone" from="." to="orbito_ui" method="receive_approve_and_reply_move_stone"]
+[connection signal="approve_and_reply_orbit_board" from="." to="orbito_ui" method="receive_approve_and_reply_orbit_board"]
+[connection signal="approve_and_reply_place_stone" from="." to="orbito_ui" method="receive_approve_and_reply_place_stone"]
+[connection signal="approve_and_reply_remove_stone" from="." to="orbito_ui" method="receive_approve_and_reply_remove_stone"]
+[connection signal="do_not_move" from="orbito_ui" to="." method="receive_do_not_move"]
+[connection signal="orbit_board" from="orbito_ui" to="." method="receive_orbit_board"]
+[connection signal="select_stone" from="orbito_ui" to="." method="receive_select_stone"]

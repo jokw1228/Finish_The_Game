@@ -1,0 +1,119 @@
+[gd_scene load_steps=4 format=3 uid="uid://dj0pb3rpmucem"]
+
+[ext_resource type="Texture2D" uid="uid://c0h2hx7uxg88q" path="res://resources/images/game_orbito/sprite_orbito_board.png" id="1_1kysq"]
+[ext_resource type="Script" path="res://scenes/game_orbito/orbito_board.gd" id="2_ef8nq"]
+[ext_resource type="PackedScene" uid="uid://bq2esjc1gfe81" path="res://scenes/game_orbito/orbito_cell.tscn" id="3_s4rxc"]
+
+[node name="orbito_board" type="Sprite2D" node_paths=PackedStringArray("cells_to_export")]
+texture = ExtResource("1_1kysq")
+script = ExtResource("2_ef8nq")
+cells_to_export = [NodePath("GridContainer/orbito_cell00"), NodePath("GridContainer/orbito_cell01"), NodePath("GridContainer/orbito_cell02"), NodePath("GridContainer/orbito_cell03"), NodePath("GridContainer/orbito_cell10"), NodePath("GridContainer/orbito_cell11"), NodePath("GridContainer/orbito_cell12"), NodePath("GridContainer/orbito_cell13"), NodePath("GridContainer/orbito_cell20"), NodePath("GridContainer/orbito_cell21"), NodePath("GridContainer/orbito_cell22"), NodePath("GridContainer/orbito_cell23"), NodePath("GridContainer/orbito_cell30"), NodePath("GridContainer/orbito_cell31"), NodePath("GridContainer/orbito_cell32"), NodePath("GridContainer/orbito_cell33")]
+
+[node name="GridContainer" type="GridContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -262.0
+offset_top = -262.0
+offset_right = -122.0
+offset_bottom = -122.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 4
+
+[node name="orbito_cell00" parent="GridContainer" instance=ExtResource("3_s4rxc")]
+layout_mode = 2
+cell_index = Array[int]([0, 0])
+
+[node name="orbito_cell10" parent="GridContainer" instance=ExtResource("3_s4rxc")]
+layout_mode = 2
+cell_index = Array[int]([1, 0])
+
+[node name="orbito_cell20" parent="GridContainer" instance=ExtResource("3_s4rxc")]
+layout_mode = 2
+cell_index = Array[int]([2, 0])
+
+[node name="orbito_cell30" parent="GridContainer" instance=ExtResource("3_s4rxc")]
+layout_mode = 2
+cell_index = Array[int]([3, 0])
+
+[node name="orbito_cell01" parent="GridContainer" instance=ExtResource("3_s4rxc")]
+layout_mode = 2
+cell_index = Array[int]([0, 1])
+
+[node name="orbito_cell11" parent="GridContainer" instance=ExtResource("3_s4rxc")]
+layout_mode = 2
+cell_index = Array[int]([1, 1])
+
+[node name="orbito_cell21" parent="GridContainer" instance=ExtResource("3_s4rxc")]
+layout_mode = 2
+cell_index = Array[int]([2, 1])
+
+[node name="orbito_cell31" parent="GridContainer" instance=ExtResource("3_s4rxc")]
+layout_mode = 2
+cell_index = Array[int]([3, 1])
+
+[node name="orbito_cell02" parent="GridContainer" instance=ExtResource("3_s4rxc")]
+layout_mode = 2
+cell_index = Array[int]([0, 2])
+
+[node name="orbito_cell12" parent="GridContainer" instance=ExtResource("3_s4rxc")]
+layout_mode = 2
+cell_index = Array[int]([1, 2])
+
+[node name="orbito_cell22" parent="GridContainer" instance=ExtResource("3_s4rxc")]
+layout_mode = 2
+cell_index = Array[int]([2, 2])
+
+[node name="orbito_cell32" parent="GridContainer" instance=ExtResource("3_s4rxc")]
+layout_mode = 2
+cell_index = Array[int]([3, 2])
+
+[node name="orbito_cell03" parent="GridContainer" instance=ExtResource("3_s4rxc")]
+layout_mode = 2
+cell_index = Array[int]([0, 3])
+
+[node name="orbito_cell13" parent="GridContainer" instance=ExtResource("3_s4rxc")]
+layout_mode = 2
+cell_index = Array[int]([1, 3])
+
+[node name="orbito_cell23" parent="GridContainer" instance=ExtResource("3_s4rxc")]
+layout_mode = 2
+cell_index = Array[int]([2, 3])
+
+[node name="orbito_cell33" parent="GridContainer" instance=ExtResource("3_s4rxc")]
+layout_mode = 2
+cell_index = Array[int]([3, 3])
+
+[connection signal="pressed" from="GridContainer/orbito_cell00" to="GridContainer/orbito_cell00" method="_on_pressed"]
+[connection signal="select_cell" from="GridContainer/orbito_cell00" to="." method="receive_select_cell"]
+[connection signal="pressed" from="GridContainer/orbito_cell10" to="GridContainer/orbito_cell10" method="_on_pressed"]
+[connection signal="select_cell" from="GridContainer/orbito_cell10" to="." method="receive_select_cell"]
+[connection signal="pressed" from="GridContainer/orbito_cell20" to="GridContainer/orbito_cell20" method="_on_pressed"]
+[connection signal="select_cell" from="GridContainer/orbito_cell20" to="." method="receive_select_cell"]
+[connection signal="pressed" from="GridContainer/orbito_cell30" to="GridContainer/orbito_cell30" method="_on_pressed"]
+[connection signal="select_cell" from="GridContainer/orbito_cell30" to="." method="receive_select_cell"]
+[connection signal="pressed" from="GridContainer/orbito_cell01" to="GridContainer/orbito_cell01" method="_on_pressed"]
+[connection signal="select_cell" from="GridContainer/orbito_cell01" to="." method="receive_select_cell"]
+[connection signal="pressed" from="GridContainer/orbito_cell11" to="GridContainer/orbito_cell11" method="_on_pressed"]
+[connection signal="select_cell" from="GridContainer/orbito_cell11" to="." method="receive_select_cell"]
+[connection signal="pressed" from="GridContainer/orbito_cell21" to="GridContainer/orbito_cell21" method="_on_pressed"]
+[connection signal="select_cell" from="GridContainer/orbito_cell21" to="." method="receive_select_cell"]
+[connection signal="pressed" from="GridContainer/orbito_cell31" to="GridContainer/orbito_cell31" method="_on_pressed"]
+[connection signal="select_cell" from="GridContainer/orbito_cell31" to="." method="receive_select_cell"]
+[connection signal="pressed" from="GridContainer/orbito_cell02" to="GridContainer/orbito_cell02" method="_on_pressed"]
+[connection signal="select_cell" from="GridContainer/orbito_cell02" to="." method="receive_select_cell"]
+[connection signal="pressed" from="GridContainer/orbito_cell12" to="GridContainer/orbito_cell12" method="_on_pressed"]
+[connection signal="select_cell" from="GridContainer/orbito_cell12" to="." method="receive_select_cell"]
+[connection signal="pressed" from="GridContainer/orbito_cell22" to="GridContainer/orbito_cell22" method="_on_pressed"]
+[connection signal="select_cell" from="GridContainer/orbito_cell22" to="." method="receive_select_cell"]
+[connection signal="pressed" from="GridContainer/orbito_cell32" to="GridContainer/orbito_cell32" method="_on_pressed"]
+[connection signal="select_cell" from="GridContainer/orbito_cell32" to="." method="receive_select_cell"]
+[connection signal="pressed" from="GridContainer/orbito_cell03" to="GridContainer/orbito_cell03" method="_on_pressed"]
+[connection signal="select_cell" from="GridContainer/orbito_cell03" to="." method="receive_select_cell"]
+[connection signal="pressed" from="GridContainer/orbito_cell13" to="GridContainer/orbito_cell13" method="_on_pressed"]
+[connection signal="select_cell" from="GridContainer/orbito_cell13" to="." method="receive_select_cell"]
+[connection signal="pressed" from="GridContainer/orbito_cell23" to="GridContainer/orbito_cell23" method="_on_pressed"]
+[connection signal="select_cell" from="GridContainer/orbito_cell23" to="." method="receive_select_cell"]
+[connection signal="pressed" from="GridContainer/orbito_cell33" to="GridContainer/orbito_cell33" method="_on_pressed"]
+[connection signal="select_cell" from="GridContainer/orbito_cell33" to="." method="receive_select_cell"]
