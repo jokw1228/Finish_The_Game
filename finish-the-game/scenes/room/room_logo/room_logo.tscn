@@ -1,8 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://diiodgowsdr4u"]
+[gd_scene load_steps=3 format=3 uid="uid://diiodgowsdr4u"]
 
 [ext_resource type="Script" path="res://scenes/room/room_logo/room_logo.gd" id="1_62yfl"]
+[ext_resource type="PackedScene" uid="uid://bxxisui7gmjw6" path="res://scenes/background/background_marquee_controller.tscn" id="2_ghbvt"]
 
 [node name="RoomLogo" type="Node2D"]
 script = ExtResource("1_62yfl")
+
+[node name="BackgroundMarqueeController" parent="." instance=ExtResource("2_ghbvt")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
