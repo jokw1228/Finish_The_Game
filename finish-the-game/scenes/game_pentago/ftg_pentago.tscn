@@ -23,7 +23,7 @@ sprite_white = ExtResource("4_mekar")
 position = Vector2(0, -576)
 texture = ExtResource("4_mekar")
 
-[connection signal="approve_and_reply_rotate_subboard" from="." to="." method="check_game_cleared"]
+[connection signal="approve_and_reply_rotate_subboard" from="." to="." method="check_game_is_cleared"]
 [connection signal="pause_timer" from="." to="GameUtilsGameTimer" method="pause_timer"]
 [connection signal="request_disable_input" from="." to="PentagoUI" method="receive_request_disable_input"]
 [connection signal="request_set_color" from="." to="FTGPentagoUI" method="receive_request_set_color"]

@@ -190,7 +190,7 @@ func check_five_in_a_row(board_to_check: Array[Array], color_to_check: CELL_STAT
 	
 	return false
 
-func check_game_cleared(_1, _2) -> void:
+func check_game_is_cleared(_1, _2) -> void:
 	request_disable_input.emit()
 	if check_five_in_a_row(board, player_color) == true:
 		pause_timer.emit()
