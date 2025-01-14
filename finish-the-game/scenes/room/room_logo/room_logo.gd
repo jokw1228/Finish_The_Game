@@ -8,6 +8,7 @@ signal start_ftg()
 func _ready() -> void:
 	FTGs.append(load("res://scenes/game_pentago/ftg_pentago.tscn"))
 	FTGs.append(load("res://scenes/game_sliding_puzzle/ftg_sliding_puzzle.tscn"))
+	FTGs.append(load("res://scenes/game_orbito/ftg_orbito.tscn"))
 	
 	var picked_ftg: Resource = FTGs.pop_front()
 	current_ftg = picked_ftg.instantiate()

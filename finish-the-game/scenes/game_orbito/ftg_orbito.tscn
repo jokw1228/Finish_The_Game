@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://ctfbxf7wpw8ey"]
+
+[ext_resource type="PackedScene" uid="uid://bo4gvwvim4g5s" path="res://scenes/game_orbito/orbito.tscn" id="1_osd4v"]
+[ext_resource type="Script" path="res://scenes/game_orbito/ftg_orbito.gd" id="2_g4fvi"]
+
+[node name="FTGOrbito" instance=ExtResource("1_osd4v")]
+script = ExtResource("2_g4fvi")
+
+[node name="orbito_ui" parent="." index="0"]
+position = Vector2(0, 0)
+
+[connection signal="approve_and_reply_orbit_board" from="." to="." method="check_game_cleared"]
