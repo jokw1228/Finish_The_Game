@@ -1,10 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://df8lgaxcq5uj7"]
+[gd_scene load_steps=4 format=3 uid="uid://df8lgaxcq5uj7"]
 
 [ext_resource type="PackedScene" uid="uid://cy0xw6owknf55" path="res://scenes/game_sliding_puzzle/sliding_puzzle.tscn" id="1_2qjcy"]
 [ext_resource type="Script" path="res://scenes/game_sliding_puzzle/ftg_sliding_puzzle.gd" id="1_qrknv"]
+[ext_resource type="PackedScene" uid="uid://32twi0juyy6u" path="res://scenes/game_utils/game_utils_game_timer.tscn" id="3_w0jtw"]
 
 [node name="FTGSlidingPuzzle" instance=ExtResource("1_2qjcy")]
 script = ExtResource("1_qrknv")
 
+[node name="GameUtilsGameTimer" parent="." index="0" instance=ExtResource("3_w0jtw")]
+
 [connection signal="approve_and_reply_slide" from="." to="." method="check_game_cleared"]
+[connection signal="pause_timer" from="." to="GameUtilsGameTimer" method="pause_timer"]
 [connection signal="request_disable_input" from="." to="SlidingPuzzleUI" method="receive_request_disable_input"]
+[connection signal="start_timer" from="." to="GameUtilsGameTimer" method="start_timer"]
+[connection signal="timeout" from="GameUtilsGameTimer" to="." method="_on_game_utils_game_timer_timeout"]
