@@ -1,0 +1,84 @@
+extends OneCard
+class_name FTGOneCard
+
+signal end_ftg(is_game_cleared: bool)
+
+func start_ftg() -> void:
+	initialize_card()
+	
+	var card_set: Array = []
+	for i in range(4):
+		for j in range(13):
+			card_set.append([i, j])
+	
+	var rng = RandomNumberGenerator.new()
+	rng.randomize()
+	
+	var temp_cards: Array = []
+	var temp_: Array = []
+	var prev_index: int = rng.randi_range(0, 1)
+	can_one_more = true
+	var can_shape_change: bool = false
+	
+	for i in range(2):
+		temp_cards.append(card_set[rng.randi_range(0, 51 - i)])
+		set_delete(card_set, temp_cards[i])
+		field[i].append(temp_cards[i])
+	
+	var available_set: Array = []
+	var weights: PackedFloat32Array = []
+	for i in range(6):
+		available_set = []
+		weights = []
+		temp_ = []
+			
+		if can_one_more:
+			for j in card_set:
+				for k in range(2):
+					if can_place_card(j, k, temp_cards, prev_index, can_one_more):
+						available_set.append([j, k])
+						
+						if k == prev_index:
+							weights.append(1)
+						else:
+							weights.append(10)
+			
+		elif can_shape_change:
+			for j in card_set:
+				for k in range(4):
+					if can_place_card([k, j[1]], prev_index, temp_cards, prev_index, can_one_more):
+						available_set.append([[k, j[1]], prev_index])
+						
+						if j[1] in [6, 10, 12]:
+							weights.append(3)
+						else:
+							weights.append(1)
+			
+		else:
+			for j in card_set:
+				if can_place_card(j, prev_index, temp_cards, prev_index, can_one_more):
+					available_set.append([j, prev_index])
+					
+					if j[1] in [6, 10, 12]:
+						weights.append(3)
+					else:
+						weights.append(1)
+		
+		temp_ = available_set[rng.rand_weighted(weights)]
+		
+		set_delete(card_set, temp_[0])
+		hand_card_set.append(temp_[0])
+		temp_cards[temp_[1]].append(temp_[0])
+		
+		prev_index = temp_[1]
+		if temp_[0][1] in [10, 12]:
+			can_one_more = true
+			can_shape_change = false
+		elif temp_[0][1] == 6:
+			can_one_more = false
+			can_shape_change = true
+		else:
+			can_one_more = false
+			can_shape_change = false
+	
+	can_one_more = true

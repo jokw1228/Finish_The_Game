@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cyfxu7guehqm7"]
+
+[ext_resource type="Script" path="res://scenes/game_one_card/one_card_ui.gd" id="1_qq7na"]
+
+[node name="OneCardUi" type="Node2D"]
+script = ExtResource("1_qq7na")

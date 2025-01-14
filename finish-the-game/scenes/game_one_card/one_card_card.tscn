@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=3 uid="uid://2wggrsm86m31"]
+
+[ext_resource type="Script" path="res://scenes/game_one_card/one_card_card.gd" id="1_6o7j5"]
+[ext_resource type="Texture2D" uid="uid://b6jftgse2ihxp" path="res://resources/images/game_one_card/sprite_one_card_empty_card.png" id="1_o1mc7"]
+[ext_resource type="Texture2D" uid="uid://dkwwpnsjed7n2" path="res://resources/images/game_one_card/sprite_one_card_spade.png" id="2_vnr14"]
+
+[node name="OneCardCard" type="TextureButton"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_6o7j5")
+
+[node name="card" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_o1mc7")
+
+[node name="shape" type="TextureRect" parent="card"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_vnr14")
+
+[node name="rank" type="Label" parent="card"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -37.0
+offset_top = -153.0
+offset_right = 37.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 96
+text = "A"
+horizontal_alignment = 1
+vertical_alignment = 1
