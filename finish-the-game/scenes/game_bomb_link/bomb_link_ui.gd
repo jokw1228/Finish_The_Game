@@ -16,7 +16,7 @@ signal request_bomb_rotation(index_to_request: Array[int])
 
 @export var BombLinkFire_node: BombLinkFire
 
-var action_queue: Array[Dictionary] = [] # for apply_gravity(), chain_reaction(), and incineration()
+var action_queue: Array[Dictionary] = [] # for apply_gravity(), chain_reaction(), and extinguish()
 var action_mutex: bool = true
 signal action_is_ended()
 signal all_action_is_ended()
@@ -126,14 +126,14 @@ func chain_reaction(chain_reaction_to_execute:BombLinkChainReaction) -> void:
 	
 	action_is_ended.emit()
 
-func receive_request_incineration() -> void:
-	enqueue_action(Callable(self, "incineration"), [])
+func receive_request_extinguish() -> void:
+	enqueue_action(Callable(self, "extinguish"), [])
 
-func incineration() -> void:
+func extinguish() -> void:
 	var target_y: float = top_left_y + height * cell_image_size + cell_image_size/2
 	BombLinkFire_node.move_to_position(Vector2(BombLinkFire_node.position.x, target_y))
 	await get_tree().create_timer(delay).timeout
-	BombLinkFire_node.incineration()
+	BombLinkFire_node.extinguish()
 	await get_tree().create_timer(delay).timeout
 	
 	action_is_ended.emit()

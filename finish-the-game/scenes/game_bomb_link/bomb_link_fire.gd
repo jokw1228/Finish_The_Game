@@ -10,6 +10,6 @@ func spawn() -> void:
 	var tween: Tween = get_tree().create_tween()
 	tween.tween_property(self, "scale", Vector2(1, 1), BombLinkUI.delay)
 
-func incineration() -> void:
+func extinguish() -> void:
 	var tween: Tween = get_tree().create_tween()
 	tween.tween_property(self, "scale", Vector2(0, 0), BombLinkUI.delay)

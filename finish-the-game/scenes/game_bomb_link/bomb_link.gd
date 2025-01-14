@@ -11,7 +11,7 @@ signal request_append_bomb_row_top(bomb_row_to_append: Array[BombLinkBomb])
 signal request_apply_gravity(move_commands_to_execute: Array[BombLinkMoveCommand])
 signal request_set_fire(set_direction: LEFT_OR_RIGHT)
 signal request_chain_reaction(chain_reaction_to_execute: BombLinkChainReaction)
-signal request_incineration
+signal request_extinguish()
 
 signal approve_and_reply_bomb_rotation(approved_index: Array[int])
 signal deny_and_reply_bomb_rotation(denied_index: Array[int])
@@ -87,7 +87,7 @@ func drop_fire(side: LEFT_OR_RIGHT) -> void:
 				ignite_chain_reaction([_x, y] as Array[int])
 				apply_gravity()
 	
-	request_incineration.emit()
+	request_extinguish.emit()
 
 func ignite_chain_reaction(index_to_ignite: Array[int]) -> void:
 	var chain_reaction: BombLinkChainReaction = BombLinkChainReaction.new()
