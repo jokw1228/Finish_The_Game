@@ -2,7 +2,7 @@ extends Node2D
 class_name BombLink
 
 const width = 4
-const height = 8 # 게임오버되지 않는 선에서 폭탄이 존재 가능한 높이 + 1인 값임.
+const height = 6 # 게임오버되지 않는 선에서 폭탄이 존재 가능한 높이 + 1인 값임.
 
 var board: Array[Array] = []
 
@@ -71,7 +71,10 @@ func apply_gravity() -> void:
 	request_apply_gravity.emit(move_commands)
 
 enum LEFT_OR_RIGHT {LEFT, RIGHT}
-func drop_fire(side: LEFT_OR_RIGHT) -> void:
+func drop_fire(side: LEFT_OR_RIGHT, waiting_time: float) -> void:
+	request_set_fire.emit(side)
+	await get_tree().create_timer(waiting_time).timeout
+	
 	var _x: int
 	var _fuse_direction: BombLinkBomb.FUSE_DIRECTION
 	if side == LEFT_OR_RIGHT.LEFT:

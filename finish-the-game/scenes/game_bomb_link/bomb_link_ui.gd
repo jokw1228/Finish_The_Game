@@ -2,7 +2,7 @@ extends Node2D
 class_name BombLinkUI
 
 const width = 4
-const height = 8
+const height = 6
 
 const cell_image_size = 128.0
 const top_left_x = -width / 2 * cell_image_size

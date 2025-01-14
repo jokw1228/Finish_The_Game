@@ -22,9 +22,7 @@ func start_ftg() -> void:
 		insert_bomb_row_bottom(temp)
 	
 	var left_or_right: LEFT_OR_RIGHT = [LEFT_OR_RIGHT.LEFT, LEFT_OR_RIGHT.RIGHT].pick_random()
-	request_set_fire.emit(left_or_right)
-	await get_tree().create_timer(4.0).timeout
-	drop_fire(left_or_right)
+	drop_fire(left_or_right, 3.0)
 
 
 func _on_bomb_link_ui_all_action_is_ended() -> void:
