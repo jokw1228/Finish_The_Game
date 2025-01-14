@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://brmqeailit5kb"]
+
+[ext_resource type="PackedScene" uid="uid://c8whyrgf2mmqi" path="res://scenes/game_one_card/one_card.tscn" id="1_8lopt"]
+[ext_resource type="Script" path="res://scenes/game_one_card/ftg_one_card.gd" id="2_323vh"]
+
+[node name="FTGOneCard" instance=ExtResource("1_8lopt")]
+script = ExtResource("2_323vh")

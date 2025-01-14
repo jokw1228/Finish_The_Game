@@ -4,7 +4,6 @@
 [ext_resource type="Script" path="res://scenes/game_sliding_puzzle/sliding_puzzle_cell.gd" id="2_8we1a"]
 
 [node name="SlidingPuzzleCell" type="TextureButton" node_paths=PackedStringArray("Number_node")]
-anchors_preset = -1
 offset_left = -64.0
 offset_top = -64.0
 offset_right = 64.0

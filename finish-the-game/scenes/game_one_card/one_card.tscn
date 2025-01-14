@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8whyrgf2mmqi"]
+
+[ext_resource type="Script" path="res://scenes/game_one_card/one_card.gd" id="1_r1u6r"]
+[ext_resource type="PackedScene" uid="uid://cyfxu7guehqm7" path="res://scenes/game_one_card/one_card_ui.tscn" id="1_x3au4"]
+
+[node name="OneCard" type="Node2D"]
+script = ExtResource("1_r1u6r")
+
+[node name="OneCardUi" parent="." instance=ExtResource("1_x3au4")]
