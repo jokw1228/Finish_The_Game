@@ -9,6 +9,7 @@ var current_ftg: Node
 signal start_ftg()
 
 signal request_set_all_label_text(label_text_to_set)
+signal request_display_ftg_result(result: bool)
 
 func _ready() -> void:
 	center = get_viewport().size / 2
@@ -28,7 +29,9 @@ func _ready() -> void:
 	start_ftg.emit()
 	request_set_all_label_text.emit(picked_ftg[1])
 
-func end_ftg(_1: bool) -> void:
+func end_ftg(result: bool) -> void:
+	request_display_ftg_result.emit(result)
+	
 	await get_tree().create_timer(0.5).timeout
 	
 	var tween_fade_out: Tween = get_tree().create_tween()
