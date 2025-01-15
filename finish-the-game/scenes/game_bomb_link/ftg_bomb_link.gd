@@ -15,11 +15,15 @@ func start_ftg() -> void:
 			[BombLinkBomb.BOMB_TYPE.NORMAL, BombLinkBomb.BOMB_TYPE.NOT_ROTATABLE]\
 			.pick_random() as BombLinkBomb.BOMB_TYPE
 			'''
-			var type_candidates: Array[BombLinkBomb.BOMB_TYPE] = \
-			[BombLinkBomb.BOMB_TYPE.NORMAL, BombLinkBomb.BOMB_TYPE.NOT_ROTATABLE]
-			var w: float = RandomNumberGenerator.new().randf_range(0, 1)
-			var type: BombLinkBomb.BOMB_TYPE = type_candidates[0] if w < 0.95 \
-			else type_candidates[1] # 아직 알고리즘 다 못 만들어서 그냥 일반 폭탄만 만듦.
+			var type: BombLinkBomb.BOMB_TYPE
+			if x != 0 and x != width - 1 and y != 0 and y != height - 1:
+				var type_candidates: Array[BombLinkBomb.BOMB_TYPE] = \
+				[BombLinkBomb.BOMB_TYPE.NORMAL, BombLinkBomb.BOMB_TYPE.NOT_ROTATABLE]
+				var w: float = RandomNumberGenerator.new().randf_range(0, 1)
+				type = type_candidates[0] if w < 0.4 \
+				else type_candidates[1]
+			else:
+				type = BombLinkBomb.BOMB_TYPE.NORMAL
 			
 			var fuse: BombLinkBomb.FUSE_DIRECTION = \
 			[BombLinkBomb.FUSE_DIRECTION.RIGHT, BombLinkBomb.FUSE_DIRECTION.UP, \
