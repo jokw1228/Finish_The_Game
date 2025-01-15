@@ -15,7 +15,7 @@ func start_ftg() -> void:
 	rng.randomize()
 	
 	var temp_cards: Array = []
-	var temp_: Array = []
+	var temp_: Array = []  # [[_, _], _]
 	var prev_index: int = rng.randi_range(0, 1)
 	can_one_more = true
 	var can_shape_change: bool = false
@@ -41,21 +41,33 @@ func start_ftg() -> void:
 					if can_place_card(j, k, [temp_cards[0][-1], temp_cards[1][-1]], prev_index, can_one_more):
 						available_set.append([j, k])
 						
-						if k == prev_index:
-							weights.append(1)
+						if j[1] in [6, 10, 12]:
+							if k == prev_index:
+								weights.append(1)
+							else:
+								weights.append(10)
 						else:
-							weights.append(10)
+							if k == prev_index:
+								weights.append(1)
+							else:
+								weights.append(7)
 			
 		elif can_shape_change:
 			for j in card_set:
 				for k in range(4):
 					if can_place_card([k, j[1]], prev_index, [temp_cards[0][-1], temp_cards[1][-1]], prev_index, can_one_more):
-						available_set.append([[k, j[1]], prev_index])
+						available_set.append([j, prev_index])
 						
 						if j[1] in [6, 10, 12]:
-							weights.append(3)
+							if j[0] != temp_cards[prev_index][-1][0]:
+								weights.append(5)
+							else:
+								weights.append(2.5)
 						else:
-							weights.append(1)
+							if j[0] != temp_cards[prev_index][-1][0]:
+								weights.append(3)
+							else:
+								weights.append(1)
 			
 		else:
 			for j in card_set:
@@ -63,7 +75,7 @@ func start_ftg() -> void:
 					available_set.append([j, prev_index])
 					
 					if j[1] in [6, 10, 12]:
-						weights.append(3)
+						weights.append(2.5)
 					else:
 						weights.append(1)
 		
@@ -87,3 +99,7 @@ func start_ftg() -> void:
 	can_one_more = true
 	
 	init_UI.emit()
+
+func finish_game() -> void:
+	stop_UI.emit()
+	end_ftg.emit(true)

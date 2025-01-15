@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://c8whyrgf2mmqi"]
+[gd_scene load_steps=6 format=3 uid="uid://c8whyrgf2mmqi"]
 
 [ext_resource type="Script" path="res://scenes/game_one_card/one_card.gd" id="1_r1u6r"]
 [ext_resource type="PackedScene" uid="uid://cyfxu7guehqm7" path="res://scenes/game_one_card/one_card_ui.tscn" id="1_x3au4"]
 [ext_resource type="PackedScene" uid="uid://2wggrsm86m31" path="res://scenes/game_one_card/one_card_card.tscn" id="3_bm24i"]
+[ext_resource type="PackedScene" uid="uid://dyrx72gotfeqt" path="res://scenes/game_one_card/one_card_button.tscn" id="4_rb7vl"]
+[ext_resource type="PackedScene" uid="uid://2qtuvg03igeg" path="res://scenes/game_one_card/one_card_shape_button.tscn" id="5_2uha6"]
 
 [node name="OneCard" type="Node2D"]
 script = ExtResource("1_r1u6r")
@@ -10,6 +12,8 @@ script = ExtResource("1_r1u6r")
 [node name="OneCardUi" parent="." node_paths=PackedStringArray("one_card_main") instance=ExtResource("1_x3au4")]
 one_card_main = NodePath("..")
 single_card = ExtResource("3_bm24i")
+card_button = ExtResource("4_rb7vl")
+small_card_button = ExtResource("5_2uha6")
 
 [connection signal="allow_displace_card" from="." to="OneCardUi" method="_allowed_displace_card"]
 [connection signal="allow_place_card" from="." to="OneCardUi" method="_allowed_place_card"]
@@ -17,6 +21,7 @@ single_card = ExtResource("3_bm24i")
 [connection signal="deny_place_card" from="." to="OneCardUi" method="_denied_place_card"]
 [connection signal="init_UI" from="." to="OneCardUi" method="_init_ui"]
 [connection signal="request_shape_choose" from="." to="OneCardUi" method="_requested_shape_choose"]
+[connection signal="stop_UI" from="." to="OneCardUi" method="_stop_ui"]
 [connection signal="recieve_shape_choose" from="OneCardUi" to="." method="_recieved_shape_choose"]
 [connection signal="request_displace_card" from="OneCardUi" to="." method="_requested_displace_card"]
 [connection signal="request_place_card" from="OneCardUi" to="." method="_requested_place_card"]

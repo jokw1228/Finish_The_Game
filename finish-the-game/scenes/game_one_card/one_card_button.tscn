@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://dyrx72gotfeqt"]
+
+[ext_resource type="Texture2D" uid="uid://c8nxe11agya86" path="res://resources/images/game_one_card/sprite_one_card_empty_card.png" id="1_fnvku"]
+[ext_resource type="Script" path="res://scenes/game_one_card/one_card_button.gd" id="1_r04ge"]
+
+[node name="OneCardButton" type="TextureButton"]
+script = ExtResource("1_r04ge")
+
+[node name="CardRect" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0)
+z_index = 12
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_fnvku")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
