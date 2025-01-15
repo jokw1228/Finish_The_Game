@@ -4,6 +4,7 @@
 [ext_resource type="Script" path="res://scenes/game_utils/game_utils_game_timer.gd" id="1_shaqc"]
 
 [node name="GameUtilsGameTimer" type="TextureProgressBar"]
+modulate = Color(1, 1, 1, 0.25098)
 offset_left = -512.0
 offset_top = -512.0
 offset_right = 512.0
