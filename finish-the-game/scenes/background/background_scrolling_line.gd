@@ -3,7 +3,8 @@ class_name BackgroundScrollingLine
 
 var generating: bool = true
 
-var label_text: String = "test text"
+@export var scrolling_label_scene: PackedScene
+var label_text: String = "ORBITO"
 var label_speed: float = 256.0
 var label_period: float = 1.8
 enum LABEL_DIRECTION {
@@ -18,18 +19,17 @@ func _ready() -> void:
 
 func scrolling() -> void:
 	while generating:
-		var inst: Label = Label.new()
+		var inst: BackgroundScrollingLabel = scrolling_label_scene.instantiate() as BackgroundScrollingLabel
 		inst.text = label_text
 		add_child(inst)
 		
+		inst.set_speed(label_speed)
+		inst.set_direction(label_direction)
+		
 		if label_direction == LABEL_DIRECTION.LEFT:
 			inst.position = Vector2(size.x, 0)
-			var tween_position: Tween = get_tree().create_tween()
-			tween_position.tween_property(inst, "position", Vector2(-inst.size.x, 0), size.x / label_speed)
 		elif label_direction == LABEL_DIRECTION.RIGHT:
 			inst.position = Vector2(-inst.size.x, 0)
-			var tween_position: Tween = get_tree().create_tween()
-			tween_position.tween_property(inst, "position", Vector2(size.x, 0), size.x / label_speed)
 		
 		await get_tree().create_timer(label_period).timeout
 

@@ -1,12 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://c0um3j51a2ad3"]
+[gd_scene load_steps=3 format=3 uid="uid://c0um3j51a2ad3"]
 
 [ext_resource type="Script" path="res://scenes/background/background_scrolling_line.gd" id="1_3qg54"]
+[ext_resource type="PackedScene" uid="uid://cjug3ch2h2ld1" path="res://scenes/background/background_scrolling_label.tscn" id="2_dc8ew"]
 
 [node name="BackgroundScrollingLine" type="ColorRect"]
 modulate = Color(1, 1, 1, 0.12549)
-anchors_preset = -1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = 840.0
 offset_bottom = -1824.0
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(0, 0, 0, 1)
 script = ExtResource("1_3qg54")
+scrolling_label_scene = ExtResource("2_dc8ew")
