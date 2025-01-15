@@ -4,16 +4,20 @@ class_name RushHour
 @export var player_scene: PackedScene
 @export var truck_scene: PackedScene
 
+var mouse_sprite: Sprite2D 
+
 const board_size = 6
 const cell_size = 128
 # 0 = empty
 # 1 = player
 # 2 = truck2
 # 3 = truck3
-
+var player_piece
 var board  = []
 var state : bool #selecting  confirming the move
 var selected_piece : Node = null #position of selected piece
+var mouse_offset  = Vector2(0,0)
+
 
 #const tiles = preload("res://game_rush_hour_board.tscn")
 
@@ -21,6 +25,15 @@ var selected_piece : Node = null #position of selected piece
 func _ready():
 	create_grid()
 	place_pieces()
+	mouse_sprite = Sprite2D.new()
+	mouse_sprite.texture = preload("res://resources/images/game_rush_hour/sprite_rush_hour_truck_type1.png")  # Replace with your texture path
+	#add_child(mouse_sprite)
+	
+func _process(delta):
+	# Update the sprite position to match the global mouse position
+	var mouse_offset = get_global_mouse_position() - global_position
+	mouse_sprite.position = mouse_offset
+	
 
 func create_grid():
 	for x in range(board_size):
@@ -44,6 +57,8 @@ func place_piece(cell, row, col, horizontal):
 	var piece
 	if cell == 1:
 		piece = player_scene.instantiate()
+		player_piece = piece 
+		
 	else:
 		piece = truck_scene.instantiate()
 		if cell == 2:
@@ -51,13 +66,16 @@ func place_piece(cell, row, col, horizontal):
 		else:
 			piece.truck_type = 2
 			
-	piece.position = Vector2(col * cell_size, row * cell_size)
-	
-	
 	if horizontal:
 		piece.direction = 0
+		piece.position = Vector2(col * cell_size-64, row * cell_size)
+		
 	else:
 		piece.direction = 1
+		piece.position = Vector2(col * cell_size, row * cell_size+64)
+		
+	print("piece pos:", piece.position)
+
 	add_child(piece)
 
 #

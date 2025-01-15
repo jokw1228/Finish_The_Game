@@ -1,9 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://cbl0xs0coasm3"]
+[gd_scene load_steps=5 format=3 uid="uid://cbl0xs0coasm3"]
 
 [ext_resource type="Script" path="res://scenes/game_rush_hour/game_rush_hour_truck.gd" id="1_6tjk8"]
 [ext_resource type="Texture2D" uid="uid://dot6fdfprdjpj" path="res://resources/images/game_rush_hour/sprite_rush_hour_truck_type1.png" id="2_kitll"]
+[ext_resource type="Script" path="res://scenes/game_rush_hour/sprite_2d.gd" id="3_sxq2v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fmi6t"]
+size = Vector2(249, 125)
 
 [node name="truck" type="Area2D"]
 script = ExtResource("1_6tjk8")
@@ -11,8 +13,10 @@ metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_kitll")
+script = ExtResource("3_sxq2v")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_fmi6t")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

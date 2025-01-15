@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dy8xbfk5a6hug"]
+
+[ext_resource type="PackedScene" uid="uid://ba5ots6xrtlsc" path="res://scenes/game_rush_hour/game_rush_hour.tscn" id="1_utnt5"]
+[ext_resource type="Script" path="res://scenes/game_rush_hour/ftg_rush_hour.gd" id="2_teswx"]
+
+[node name="FTGRushHour" instance=ExtResource("1_utnt5")]
+script = ExtResource("2_teswx")
+player_scene = null
+truck_scene = null
