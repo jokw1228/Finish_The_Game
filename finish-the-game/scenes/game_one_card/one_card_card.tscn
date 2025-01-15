@@ -8,6 +8,7 @@
 script = ExtResource("1_6o7j5")
 
 [node name="card" type="TextureRect" parent="."]
+layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("1_o1mc7")

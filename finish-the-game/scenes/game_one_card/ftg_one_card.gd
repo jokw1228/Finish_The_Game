@@ -2,6 +2,8 @@ extends OneCard
 class_name FTGOneCard
 
 signal end_ftg(is_game_cleared: bool)
+signal start_timer(duration: float)
+signal pause_timer()
 
 func start_ftg() -> void:
 	initialize_card()
@@ -99,7 +101,16 @@ func start_ftg() -> void:
 	can_one_more = true
 	
 	init_UI.emit()
+	
+	const duration = 20.0
+	start_timer.emit(duration)
 
 func finish_game() -> void:
 	stop_UI.emit()
+	pause_timer.emit()
+	await get_tree().create_timer(0.2).timeout
 	end_ftg.emit(true)
+
+func _on_game_utils_game_timer_timeout() -> void:
+	stop_UI.emit()
+	end_ftg.emit(false)
