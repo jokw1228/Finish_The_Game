@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bnyfbqonp1qby"]
+
+[ext_resource type="Script" path="res://scenes/ui/background/background_scrolling_controller.gd" id="1_woxh1"]
+[ext_resource type="PackedScene" uid="uid://c0um3j51a2ad3" path="res://scenes/ui/background/background_scrolling_line.tscn" id="2_ipqn4"]
+
+[node name="BackgroundScrollingController" type="CanvasLayer"]
+layer = -10
+script = ExtResource("1_woxh1")
+scrolling_line_scene = ExtResource("2_ipqn4")
+
+[node name="Background" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.12549, 0.12549, 0.12549, 1)

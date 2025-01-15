@@ -2,14 +2,16 @@ extends Node2D
 class_name BombLink
 
 const width = 4
-const height = 10 # 게임오버되지 않는 선에서 폭탄이 존재 가능한 높이 + 1인 값임.
+const height = 6 # 게임오버되지 않는 선에서 폭탄이 존재 가능한 높이 + 1인 값임.
 
 var board: Array[Array] = []
 
 signal request_insert_bomb_row_bottom(bomb_row_to_insert: Array[BombLinkBomb])
 signal request_append_bomb_row_top(bomb_row_to_append: Array[BombLinkBomb])
 signal request_apply_gravity(move_commands_to_execute: Array[BombLinkMoveCommand])
+signal request_set_fire(set_direction: LEFT_OR_RIGHT)
 signal request_chain_reaction(chain_reaction_to_execute: BombLinkChainReaction)
+signal request_extinguish()
 
 signal approve_and_reply_bomb_rotation(approved_index: Array[int])
 signal deny_and_reply_bomb_rotation(denied_index: Array[int])
@@ -56,7 +58,7 @@ func apply_gravity() -> void:
 		for y: int in range(height-2, -1, -1):
 			if board[y][x] != null:
 				var y_offset: int = 1
-				while board[y+y_offset][x] != null:
+				while board[y+y_offset][x] == null:
 					y_offset += 1
 					if y+y_offset >= height:
 						break
@@ -69,7 +71,10 @@ func apply_gravity() -> void:
 	request_apply_gravity.emit(move_commands)
 
 enum LEFT_OR_RIGHT {LEFT, RIGHT}
-func drop_fire(side: LEFT_OR_RIGHT) -> void:
+func drop_fire(side: LEFT_OR_RIGHT, waiting_time: float) -> void:
+	request_set_fire.emit(side)
+	await get_tree().create_timer(waiting_time).timeout
+	
 	var _x: int
 	var _fuse_direction: BombLinkBomb.FUSE_DIRECTION
 	if side == LEFT_OR_RIGHT.LEFT:
@@ -83,19 +88,11 @@ func drop_fire(side: LEFT_OR_RIGHT) -> void:
 		if board[y][_x] != null:
 			if board[y][_x].fuse_direction == _fuse_direction:
 				ignite_chain_reaction([_x, y] as Array[int])
-				#apply_gravity()
+				apply_gravity()
+	
+	request_extinguish.emit()
 
 func ignite_chain_reaction(index_to_ignite: Array[int]) -> void:
-	var exploded: Array[Array] = []
-	for y: int in range(height):
-		var temp: Array[bool] = []
-		for x: int in range(width):
-			if board[y][x] == null:
-				temp.append(true)
-			else:
-				temp.append(false)
-		exploded.append(temp)
-	
 	var chain_reaction: BombLinkChainReaction = BombLinkChainReaction.new()
 	
 	var ignite_targets: Array[Array] = []
@@ -109,29 +106,30 @@ func ignite_chain_reaction(index_to_ignite: Array[int]) -> void:
 			var _x: int = ignite_target[0] as int
 			var _y: int = ignite_target[1] as int
 			
-			exploded[_y][_x] = true
+			board[_y][_x].queue_free()
+			board[_y][_x] = null
 			
 			# check right bomb
 			if _x+1 < width:
-				if exploded[_y][_x+1] == false:
+				if board[_y][_x+1] != null:
 					if board[_y][_x+1].fuse_direction == BombLinkBomb.FUSE_DIRECTION.LEFT:
 						next_ignite_targets.append([_x+1, _y] as Array[int])
 			
 			# check uppper bomb
 			if _y-1 >= 0:
-				if exploded[_y-1][_x] == false:
+				if board[_y-1][_x] != null:
 					if board[_y-1][_x].fuse_direction == BombLinkBomb.FUSE_DIRECTION.DOWN:
 						next_ignite_targets.append([_x, _y-1] as Array[int])
 			
 			# check left bomb
 			if _x-1 >= 0:
-				if exploded[_y][_x-1] == false:
+				if board[_y][_x-1] != null:
 					if board[_y][_x-1].fuse_direction == BombLinkBomb.FUSE_DIRECTION.RIGHT:
 						next_ignite_targets.append([_x-1, _y] as Array[int])
 			
 			# check lower bomb
 			if _y+1 < height:
-				if exploded[_y+1][_x] == false:
+				if board[_y+1][_x] != null:
 					if board[_y+1][_x].fuse_direction == BombLinkBomb.FUSE_DIRECTION.UP:
 						next_ignite_targets.append([_x, _y+1] as Array[int])
 		

@@ -4,9 +4,12 @@ class_name FTGPentago
 signal request_disable_input()
 signal end_ftg(is_game_cleared: bool)
 
+signal start_timer(duration: float)
+signal pause_timer()
+
 signal request_set_color(color_to_place: Pentago.CELL_STATE)
 
-var color_to_check: CELL_STATE
+var player_color: CELL_STATE
 
 func start_ftg() -> void:
 	"""
@@ -25,7 +28,7 @@ func start_ftg() -> void:
 	turn_state = TURN_STATE.BLACK_PLACE \
 	if next_player == CELL_STATE.BLACK \
 	else TURN_STATE.WHITE_PLACE
-	color_to_check = next_player
+	player_color = next_player
 	request_set_color.emit(next_player)
 	
 	# 2) next_player가 5목이 되도록 임의 배치, 그리고 해당 5목이 깨지도록 한 돌 제거.
@@ -135,6 +138,9 @@ func start_ftg() -> void:
 				var target_cell_index: Array[int] = \
 				[int(x%subboard_width), int(y%subboard_width)]
 				request_immediately_place_stone.emit(target_subboard_index, target_cell_index, board[y][x])
+	
+	const duration = 8.0
+	start_timer.emit(duration)
 
 func check_five_in_a_row(board_to_check: Array[Array], color_to_check: CELL_STATE) -> bool:
 	const N = 6
@@ -184,9 +190,16 @@ func check_five_in_a_row(board_to_check: Array[Array], color_to_check: CELL_STAT
 	
 	return false
 
-func check_game_cleared(_1, _2) -> void:
+func check_game_is_cleared(_1, _2) -> void:
 	request_disable_input.emit()
-	if check_five_in_a_row(board, color_to_check) == true:
+	if check_five_in_a_row(board, player_color) == true:
+		pause_timer.emit()
 		end_ftg.emit(true)
 	else:
+		pause_timer.emit()
 		end_ftg.emit(false)
+
+
+func _on_game_utils_game_timer_timeout() -> void:
+	request_disable_input.emit()
+	end_ftg.emit(false)

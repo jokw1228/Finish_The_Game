@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://b3fbsp14s0uh"]
+
+[ext_resource type="Script" path="res://scenes/ui/overlay/ftg_result_overlay_controller.gd" id="1_8upoi"]
+[ext_resource type="PackedScene" uid="uid://kenny1vodevb" path="res://scenes/ui/overlay/ftg_result_overlay_o.tscn" id="2_pkulb"]
+
+[node name="FTGResultOverlayController" type="CanvasLayer"]
+script = ExtResource("1_8upoi")
+o_scene = ExtResource("2_pkulb")

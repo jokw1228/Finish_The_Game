@@ -1,13 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cjnc2qjxpcxh7"]
+[gd_scene load_steps=3 format=3 uid="uid://cjnc2qjxpcxh7"]
 
 [ext_resource type="PackedScene" uid="uid://qbkphyepgww2" path="res://scenes/game_bomb_link/bomb_link.tscn" id="1_hpu67"]
 [ext_resource type="Script" path="res://scenes/game_bomb_link/ftg_bomb_link.gd" id="2_h2afn"]
-[ext_resource type="PackedScene" uid="uid://32twi0juyy6u" path="res://scenes/game_utils/game_utils_game_timer.tscn" id="3_44r82"]
 
 [node name="FTGBombLink" instance=ExtResource("1_hpu67")]
 script = ExtResource("2_h2afn")
 
-[node name="GameUtilsGameTimer" parent="." index="0" instance=ExtResource("3_44r82")]
-
-[connection signal="start_timer" from="." to="GameUtilsGameTimer" method="start_timer"]
 [connection signal="all_action_is_ended" from="BombLinkUI" to="." method="_on_bomb_link_ui_all_action_is_ended"]
