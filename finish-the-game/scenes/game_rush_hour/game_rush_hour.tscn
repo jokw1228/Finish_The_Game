@@ -35,10 +35,10 @@ script = ExtResource("1_yxq04")
 player_scene = ExtResource("2_hyu2u")
 truck_scene = ExtResource("3_jxlkg")
 
-[node name="game_rush_hour_board" parent="." instance=ExtResource("4_ii0i4")]
-
 [node name="GameUtilsGameTimer" parent="." instance=ExtResource("5_lyg4o")]
 script = SubResource("GDScript_bxxpx")
+
+[node name="game_rush_hour_board" parent="." instance=ExtResource("4_ii0i4")]
 
 [connection signal="pause_timer" from="." to="GameUtilsGameTimer" method="pause_timer"]
 [connection signal="start_timer" from="." to="GameUtilsGameTimer" method="start_timer"]
