@@ -8,11 +8,19 @@ class_name RushHourBoard
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var tile_texture = tile_texture_path
+	var grid_width = grid_size * tile_size
+	var grid_height = grid_size * tile_size
+	var viewport_size = get_viewport_rect().size
+	var start_position = Vector2(
+		(viewport_size.x - grid_width/2) / 2,
+		(viewport_size.y - grid_height-grid_height/2) / 2
+	)
 	for row in range(grid_size):
 		for col in range(grid_size):
 			var tile = Sprite2D.new()
 			tile.texture = tile_texture
-			tile.position = Vector2(col * tile_size, row * tile_size)
+			tile.position = start_position - Vector2(col * tile_size, row * tile_size)
 			add_child(tile)
+	
 			
 			

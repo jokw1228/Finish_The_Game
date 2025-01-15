@@ -13,4 +13,3 @@ truck_scene = ExtResource("3_jxlkg")
 [node name="game_rush_hour_board" parent="." instance=ExtResource("4_ii0i4")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
-offset = Vector2(250, 200)

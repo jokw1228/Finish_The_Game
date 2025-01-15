@@ -7,3 +7,5 @@
 script = ExtResource("2_teswx")
 player_scene = null
 truck_scene = null
+
+[connection signal="player_piece_instantiated" from="." to="." method="_on_player_piece_instantiated"]
