@@ -7,13 +7,11 @@ signal request_shape_choose
 signal allow_displace_card
 signal deny_displace_card
 
-const shape_string: Array = ["spade", "heart", "diamond", "clover"]
-const rank_string: Array = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
+signal init_UI
 
 var hand_card_set: Array[Array] = []  # [[shape, rank]]
 var field_stack_1: Array[Array] = []
 var field_stack_2: Array[Array] = []
-var field: Array[Array] = [field_stack_1, field_stack_2]
 
 var card_memory: Array[int] = [0]  # store chosen stack index
 var can_one_more: bool = true
@@ -40,7 +38,7 @@ func initialize_card() -> void:
 	moves = 0
 
 
-func request_place_card(card: Array, stack_index: int) -> void:
+func _requested_place_card(card: Array, stack_index: int) -> void:
 	if can_place_card(card if shape_change == [] or shape_change[-1][0] != moves - 1
 						   else [shape_change[-1][1], card[1]],
 					  stack_index, [field_stack_1[-1], field_stack_2[-1]],
@@ -48,7 +46,11 @@ func request_place_card(card: Array, stack_index: int) -> void:
 						
 		allow_place_card.emit()
 		
-		field[stack_index].append(card)
+		if stack_index == 0:
+			field_stack_1.append(card)
+		else:
+			field_stack_2.append(card)
+			
 		card_memory.append(stack_index)
 		moves += 1
 		
@@ -76,14 +78,19 @@ func can_place_card(card: Array, stack_index: int, stack_fronts: Array, previous
 	return false
 
 
-func recieve_shape_choose(shape: int) -> void:
+func _recieved_shape_choose(shape: int) -> void:
 	shape_change.append([moves, shape])
 
 
-func request_displace_card(stack_index: int) -> void:
+func _requested_displace_card(stack_index: int) -> void:
 	if card_memory[-1] == stack_index:
 		allow_displace_card.emit()
-		field[stack_index].remove_at(-1)
+		
+		if stack_index == 0:
+			field_stack_1.remove_at(-1)
+		else:
+			field_stack_1.remove_at(-1)
+		
 		card_memory.remove_at(-1)
 		
 		if shape_change[-1][0] == moves - 1:
@@ -93,4 +100,3 @@ func request_displace_card(stack_index: int) -> void:
 		
 	else:
 		deny_displace_card.emit()
-		pass

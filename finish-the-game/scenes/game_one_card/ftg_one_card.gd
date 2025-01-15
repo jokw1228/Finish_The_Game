@@ -21,13 +21,16 @@ func start_ftg() -> void:
 	var can_shape_change: bool = false
 	
 	for i in range(2):
-		temp_cards.append(card_set[rng.randi_range(0, 51 - i)])
-		set_delete(card_set, temp_cards[i])
-		field[i].append(temp_cards[i])
+		temp_cards.append([card_set[rng.randi_range(0, 51 - i)]])
+		set_delete(card_set, temp_cards[i][0])
+		if i == 0:
+			field_stack_1.append(temp_cards[i][0])
+		else:
+			field_stack_2.append(temp_cards[i][0])
 	
 	var available_set: Array = []
 	var weights: PackedFloat32Array = []
-	for i in range(6):
+	for i in range(8):
 		available_set = []
 		weights = []
 		temp_ = []
@@ -35,7 +38,7 @@ func start_ftg() -> void:
 		if can_one_more:
 			for j in card_set:
 				for k in range(2):
-					if can_place_card(j, k, temp_cards, prev_index, can_one_more):
+					if can_place_card(j, k, [temp_cards[0][-1], temp_cards[1][-1]], prev_index, can_one_more):
 						available_set.append([j, k])
 						
 						if k == prev_index:
@@ -46,7 +49,7 @@ func start_ftg() -> void:
 		elif can_shape_change:
 			for j in card_set:
 				for k in range(4):
-					if can_place_card([k, j[1]], prev_index, temp_cards, prev_index, can_one_more):
+					if can_place_card([k, j[1]], prev_index, [temp_cards[0][-1], temp_cards[1][-1]], prev_index, can_one_more):
 						available_set.append([[k, j[1]], prev_index])
 						
 						if j[1] in [6, 10, 12]:
@@ -56,7 +59,7 @@ func start_ftg() -> void:
 			
 		else:
 			for j in card_set:
-				if can_place_card(j, prev_index, temp_cards, prev_index, can_one_more):
+				if can_place_card(j, prev_index, [temp_cards[0][-1], temp_cards[1][-1]], prev_index, can_one_more):
 					available_set.append([j, prev_index])
 					
 					if j[1] in [6, 10, 12]:
@@ -82,3 +85,5 @@ func start_ftg() -> void:
 			can_shape_change = false
 	
 	can_one_more = true
+	
+	init_UI.emit()
