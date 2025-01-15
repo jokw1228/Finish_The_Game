@@ -12,7 +12,7 @@ signal request_set_all_label_text(label_text_to_set)
 signal request_display_ftg_result(result: bool)
 
 func _ready() -> void:
-	center = get_viewport().size / 2
+	center = get_viewport().get_visible_rect().size / 2
 	
 	FTGs.append([load("res://scenes/game_pentago/ftg_pentago.tscn"), "PENTAGO"])
 	FTGs.append([load("res://scenes/game_sliding_puzzle/ftg_sliding_puzzle.tscn"), "SLD.PZL."])

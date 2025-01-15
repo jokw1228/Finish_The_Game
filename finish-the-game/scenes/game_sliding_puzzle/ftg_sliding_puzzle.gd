@@ -42,6 +42,8 @@ func check_game_cleared(_1: Array[int], _2: Array[int]) -> void: # These paramet
 			return
 	request_disable_input.emit()
 	pause_timer.emit()
+	
+	await get_tree().create_timer(0.2).timeout
 	end_ftg.emit(true)
 
 func _on_game_utils_game_timer_timeout() -> void:
