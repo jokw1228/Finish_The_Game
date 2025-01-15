@@ -1,0 +1,16 @@
+[gd_scene load_steps=5 format=3 uid="uid://ba5ots6xrtlsc"]
+
+[ext_resource type="Script" path="res://scenes/game_rush_hour/game_rush_hour.gd" id="1_yxq04"]
+[ext_resource type="PackedScene" uid="uid://bc4s1x08b3x32" path="res://scenes/game_rush_hour/game_rush_hour_player.tscn" id="2_hyu2u"]
+[ext_resource type="PackedScene" uid="uid://cbl0xs0coasm3" path="res://scenes/game_rush_hour/game_rush_hour_truck.tscn" id="3_jxlkg"]
+[ext_resource type="PackedScene" uid="uid://uiwqmyxyu4tj" path="res://scenes/game_rush_hour/game_rush_hour_board.tscn" id="4_ii0i4"]
+
+[node name="rush_hour" type="Node2D"]
+script = ExtResource("1_yxq04")
+player_scene = ExtResource("2_hyu2u")
+truck_scene = ExtResource("3_jxlkg")
+
+[node name="game_rush_hour_board" parent="." instance=ExtResource("4_ii0i4")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(250, 200)
