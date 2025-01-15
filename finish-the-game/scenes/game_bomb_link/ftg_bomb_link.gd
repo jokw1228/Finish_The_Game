@@ -18,8 +18,8 @@ func start_ftg() -> void:
 			var type_candidates: Array[BombLinkBomb.BOMB_TYPE] = \
 			[BombLinkBomb.BOMB_TYPE.NORMAL, BombLinkBomb.BOMB_TYPE.NOT_ROTATABLE]
 			var w: float = RandomNumberGenerator.new().randf_range(0, 1)
-			var type: BombLinkBomb.BOMB_TYPE = type_candidates[0] if w < 0.8 \
-			else type_candidates[1]
+			var type: BombLinkBomb.BOMB_TYPE = type_candidates[0] if w < 0.95 \
+			else type_candidates[1] # 아직 알고리즘 다 못 만들어서 그냥 일반 폭탄만 만듦.
 			
 			var fuse: BombLinkBomb.FUSE_DIRECTION = \
 			[BombLinkBomb.FUSE_DIRECTION.RIGHT, BombLinkBomb.FUSE_DIRECTION.UP, \
@@ -30,7 +30,7 @@ func start_ftg() -> void:
 		insert_bomb_row_bottom(temp)
 	
 	var left_or_right: LEFT_OR_RIGHT = [LEFT_OR_RIGHT.LEFT, LEFT_OR_RIGHT.RIGHT].pick_random()
-	const duration: float = 10.0
+	const duration: float = 15.0
 	drop_fire(left_or_right, duration)
 	start_timer.emit(duration)
 

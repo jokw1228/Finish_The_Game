@@ -139,7 +139,7 @@ func start_ftg() -> void:
 				[int(x%subboard_width), int(y%subboard_width)]
 				request_immediately_place_stone.emit(target_subboard_index, target_cell_index, board[y][x])
 	
-	const duration = 5.0
+	const duration = 8.0
 	start_timer.emit(duration)
 
 func check_five_in_a_row(board_to_check: Array[Array], color_to_check: CELL_STATE) -> bool:
