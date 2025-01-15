@@ -21,7 +21,7 @@ func initialize_scrolling_lines() -> void:
 		inst.position.x = -PI/3 * inst.size.y
 		inst.rotation = -PI/6
 		inst.set_label_speed(128 + 64 * i)
-		inst.set_label_period(4.5 * 128 / (128 + 64 * float(i)))
+		inst.set_label_period(4.0 * 128 / (128 + 64 * float(i)))
 		
 		var inst2: BackgroundScrollingLine = scrolling_line_scene.instantiate() as BackgroundScrollingLine
 		add_child(inst2)
@@ -32,7 +32,7 @@ func initialize_scrolling_lines() -> void:
 		inst2.position.x = width - inst.position.x
 		inst2.rotation = inst.rotation + PI
 		inst2.set_label_speed(128 + 64 * i)
-		inst2.set_label_period(4.5 * 128 / (128 + 64 * float(i)))
+		inst2.set_label_period(4.0 * 128 / (128 + 64 * float(i)))
 		
 		if i % 2 == 1:
 			inst.toggle_label_direction()

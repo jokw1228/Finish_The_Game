@@ -25,10 +25,11 @@ func scrolling() -> void:
 		inst.set_speed(label_speed)
 		inst.set_direction(label_direction)
 		
+		const x_offset = 456.0
 		if label_direction == LABEL_DIRECTION.LEFT:
-			inst.position = Vector2(size.x, 0)
+			inst.position = Vector2(size.x + x_offset, 0)
 		elif label_direction == LABEL_DIRECTION.RIGHT:
-			inst.position = Vector2(-inst.size.x, 0)
+			inst.position = Vector2(-x_offset, 0)
 		
 		await get_tree().create_timer(label_period).timeout
 
