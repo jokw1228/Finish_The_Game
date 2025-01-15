@@ -16,4 +16,4 @@ func display_ftg_result(result: bool) -> void:
 		inst.position = center
 
 func _ready() -> void:
-	center = get_viewport().size / 2
+	center = get_viewport().get_visible_rect().size / 2

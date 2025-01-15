@@ -10,6 +10,7 @@ offset_top = -512.0
 offset_right = 512.0
 offset_bottom = 512.0
 pivot_offset = Vector2(512, 512)
+mouse_filter = 2
 value = 100.0
 fill_mode = 5
 texture_under = ExtResource("1_1de26")

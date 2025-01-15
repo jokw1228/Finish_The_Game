@@ -192,11 +192,12 @@ func check_five_in_a_row(board_to_check: Array[Array], color_to_check: CELL_STAT
 
 func check_game_is_cleared(_1, _2) -> void:
 	request_disable_input.emit()
+	pause_timer.emit()
+	
+	await get_tree().create_timer(0.3).timeout
 	if check_five_in_a_row(board, player_color) == true:
-		pause_timer.emit()
 		end_ftg.emit(true)
 	else:
-		pause_timer.emit()
 		end_ftg.emit(false)
 
 
