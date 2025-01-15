@@ -6,6 +6,9 @@ class_name RushHour
 
 var mouse_sprite: Sprite2D 
 
+signal start_timer(duration: float)
+signal pause_timer()
+
 const board_size = 6
 const cell_size = 128
 var flag = 0
@@ -39,10 +42,12 @@ func _ready():
 	place_pieces()
 	mouse_sprite = Sprite2D.new()
 	mouse_sprite.texture = preload("res://resources/images/game_rush_hour/sprite_rush_hour_truck_type1.png") 
-	
+	const duration = 10.0
+	start_timer.emit(duration)
 	#add_child(mouse_sprite)
 func start_ftg():
 	print("start ftg")
+	
 	
 func _process(delta):
 	# Update the sprite position to match the global mouse position
@@ -50,10 +55,11 @@ func _process(delta):
 	#mouse_sprite.position = mouse_offset
 	#print(player_piece.position)
 	#print(player_piece.position.distance_to(target_location))
-	print(player_piece.position)
+	#print(player_piece.position)
 	if not flag and player_piece and player_piece.position.distance_to(target_location) < threshold:
 		end_ftg.emit(true)
 		flag = 1
+		pause_timer.emit()
 		
 		#print("ftg")
 
@@ -61,9 +67,9 @@ func _process(delta):
 func create_grid():
 	for x in range(board_size):
 		for y in range(board_size):
-			board.append([0, 0, 0, 2, 0, 3])
-			board.append([0, 0, 0, 2, 0, 3])
-			board.append([1, 1, 0, 0, 0, 3])
+			board.append([0, 0, 0, 2, 0, 0])
+			board.append([0, 0, 0, 2, 0, 2])
+			board.append([1, 1, 0, 0, 0, 2])
 			board.append([0, 0, 0, 0, 0, 0])
 			board.append([0, 0, 0, 2, 2, 0])
 			board.append([0, 0, 0, 0, 0, 0])
@@ -157,3 +163,6 @@ func place_pieces():
 					
 func get_player_position(target_location):
 	return player_piece.position.distance_to(target_location)
+
+func _on_game_utils_game_timer_timeout() -> void:
+	end_ftg.emit(false)

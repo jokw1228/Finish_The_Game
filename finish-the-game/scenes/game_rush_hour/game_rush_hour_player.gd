@@ -10,8 +10,8 @@ var is_selected = false
 var truck_type
 
 var mouse_offset  
-var camera_offset = Vector2(500,900)
-var delay = 5
+var camera_offset = Vector2(120,0)
+var delay = 10
 var grid_size = 128 
 var board_size = Vector2(768, 768) 
 var additional_offset = Vector2(0 ,256) 
@@ -52,8 +52,8 @@ func _physics_process(delta: float):
 			new_position = Vector2(
 			get_global_mouse_position().x - mouse_offset.x,  
 			position.y)
-			
-			new_position.x = round((new_position.x) / grid_size) * grid_size/2 -32		
+			#new_position.x = round((new_position.x) / grid_size) * grid_size/2 -32
+			new_position.x = round((new_position.x) / grid_size) * grid_size/2 -256
 		else:
 			new_position = Vector2(
 			position.x,  # Keep x constant
@@ -105,6 +105,7 @@ func _on_area_entered(body: Node2D) -> void:
 	print("collided!")
 	collide.emit()
 	target_pos = start_pos
+	position = start_pos
 	is_selected = false
 
 	

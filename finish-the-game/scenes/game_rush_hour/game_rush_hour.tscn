@@ -1,9 +1,34 @@
-[gd_scene load_steps=5 format=3 uid="uid://ba5ots6xrtlsc"]
+[gd_scene load_steps=7 format=3 uid="uid://ba5ots6xrtlsc"]
 
 [ext_resource type="Script" path="res://scenes/game_rush_hour/game_rush_hour.gd" id="1_yxq04"]
 [ext_resource type="PackedScene" uid="uid://bc4s1x08b3x32" path="res://scenes/game_rush_hour/game_rush_hour_player.tscn" id="2_hyu2u"]
 [ext_resource type="PackedScene" uid="uid://cbl0xs0coasm3" path="res://scenes/game_rush_hour/game_rush_hour_truck.tscn" id="3_jxlkg"]
 [ext_resource type="PackedScene" uid="uid://uiwqmyxyu4tj" path="res://scenes/game_rush_hour/game_rush_hour_board.tscn" id="4_ii0i4"]
+[ext_resource type="PackedScene" uid="uid://bp7kmpmd6x7wb" path="res://scenes/game_rush_hour/game_utils_game_timer.tscn" id="5_lyg4o"]
+
+[sub_resource type="GDScript" id="GDScript_bxxpx"]
+script/source = "extends TextureProgressBar
+#class_name GameUtilsGameTimer
+
+signal timeout
+
+var tween_time: Tween
+
+func start_timer(duration: float):
+	visible = true
+	tween_time = get_tree().create_tween()
+	tween_time.tween_property(self, \"value\", 0.0, duration)
+	await tween_time.finished
+	timeout.emit()
+
+func pause_timer():
+	if tween_time.is_running():
+		tween_time.pause()
+
+func resume_timer():
+	if tween_time.is_valid():
+		tween_time.play()
+"
 
 [node name="RushHour" type="Node2D"]
 script = ExtResource("1_yxq04")
@@ -12,4 +37,9 @@ truck_scene = ExtResource("3_jxlkg")
 
 [node name="game_rush_hour_board" parent="." instance=ExtResource("4_ii0i4")]
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="GameUtilsGameTimer" parent="." instance=ExtResource("5_lyg4o")]
+script = SubResource("GDScript_bxxpx")
+
+[connection signal="pause_timer" from="." to="GameUtilsGameTimer" method="pause_timer"]
+[connection signal="start_timer" from="." to="GameUtilsGameTimer" method="start_timer"]
+[connection signal="timeout" from="GameUtilsGameTimer" to="." method="_on_game_utils_game_timer_timeout"]

@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://bp7kmpmd6x7wb"]
+
+[ext_resource type="Texture2D" uid="uid://bg2kxfmto362t" path="res://resources/images/game_utils/sprite_game_timer_outline.svg" id="1_ic3m5"]
+[ext_resource type="Script" path="res://scenes/game_utils/game_utils_game_timer.gd" id="2_v72u2"]
+
+[node name="GameUtilsGameTimer" type="TextureProgressBar"]
+modulate = Color(1, 1, 1, 0.25098)
+offset_left = -512.0
+offset_top = -512.0
+offset_right = 512.0
+offset_bottom = 512.0
+pivot_offset = Vector2(512, 512)
+value = 100.0
+fill_mode = 5
+texture_under = ExtResource("1_ic3m5")
+texture_progress = ExtResource("1_ic3m5")
+tint_under = Color(1, 1, 1, 0.25098)
+tint_over = Color(1, 1, 1, 0)
+script = ExtResource("2_v72u2")

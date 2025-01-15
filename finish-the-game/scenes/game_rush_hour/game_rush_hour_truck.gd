@@ -5,7 +5,8 @@ var truck_type
 var is_selected = false
 var mouse_offset  
 #var camera_offset = Vector2(250,700)
-var camera_offset = Vector2(500,900)
+#var camera_offset = Vector2(500,900)
+var camera_offset = Vector2(0,50)
 var delay = 5
 var grid_size = 128 
 var board_size = Vector2(768, 768) 
@@ -64,13 +65,14 @@ func _physics_process(delta: float):
 			new_position = Vector2(
 			get_global_mouse_position().x - mouse_offset.x,  
 			position.y)
-			new_position.x = round((new_position.x) / grid_size) * grid_size/2 -32
+			#new_position.x = round((new_position.x) / grid_size) * grid_size/2 -32
+			new_position.x = round((new_position.x) / grid_size) * grid_size/2  -256
 	
 		else:
 			new_position = Vector2(
 			position.x,  # Keep x constant
 			get_global_mouse_position().y - mouse_offset.y)
-			new_position.y = round(new_position.y / grid_size) * grid_size/2 -16
+			new_position.y = round(new_position.y / grid_size) * grid_size/2 -256
 
 			#lobal_position.y + rotated_vector.y - mouse_offset.y)
 		#new_position = new_position.clamp(Vector2(64, 64), Vector2(768-192, 768-192))
@@ -81,7 +83,8 @@ func _physics_process(delta: float):
 				new_position =new_position.clamp(Vector2(-128-96, -128-96), Vector2(128*3-96, 128*3-96))
 		else:		
 			new_position = new_position.clamp(Vector2(-128-96, -128-64), Vector2(128*3-96, 128*3-96))
-			
+		
+		target_pos = new_position
 		
 		tween.tween_property(self, "position", new_position, delay * delta)
 
@@ -127,6 +130,6 @@ func is_collision(position: Vector2) -> bool:
 func _on_area_entered(body: Node2D) -> void:
 	print("collided!")
 	collide.emit()
-	#position = start_pos
+	#position = start_pos + target_pos 
 		
 	is_selected = false
