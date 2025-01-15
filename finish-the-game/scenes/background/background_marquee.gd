@@ -1,2 +1,0 @@
-extends Label
-class_name BackgroundMarquee
