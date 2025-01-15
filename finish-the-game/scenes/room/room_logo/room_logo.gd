@@ -8,7 +8,7 @@ var current_ftg: Node
 
 signal start_ftg()
 
-signal set_all_label_text(label_text_to_set)
+signal request_set_all_label_text(label_text_to_set)
 
 func _ready() -> void:
 	center = get_viewport().size / 2
@@ -26,7 +26,7 @@ func _ready() -> void:
 	add_child(current_ftg)
 	FTGs.push_back(picked_ftg)
 	start_ftg.emit()
-	set_all_label_text.emit(picked_ftg[1])
+	request_set_all_label_text.emit(picked_ftg[1])
 
 func end_ftg(_1: bool) -> void:
 	await get_tree().create_timer(0.5).timeout
@@ -47,7 +47,7 @@ func end_ftg(_1: bool) -> void:
 	add_child(current_ftg)
 	FTGs.push_back(picked_ftg)
 	start_ftg.emit()
-	set_all_label_text.emit(picked_ftg[1])
+	request_set_all_label_text.emit(picked_ftg[1])
 	
 	var tween_fade_in: Tween = get_tree().create_tween()
 	tween_fade_in.tween_property\
