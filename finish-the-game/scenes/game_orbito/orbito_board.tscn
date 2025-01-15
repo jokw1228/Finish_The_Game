@@ -1,11 +1,11 @@
 [gd_scene load_steps=4 format=3 uid="uid://dj0pb3rpmucem"]
 
-[ext_resource type="Texture2D" uid="uid://c0h2hx7uxg88q" path="res://resources/images/game_orbito/sprite_orbito_board.png" id="1_1kysq"]
+[ext_resource type="Texture2D" uid="uid://652vpnw4chxg" path="res://resources/images/game_orbito/sprite_orbito_board.svg" id="1_mynl4"]
 [ext_resource type="Script" path="res://scenes/game_orbito/orbito_board.gd" id="2_ef8nq"]
 [ext_resource type="PackedScene" uid="uid://bq2esjc1gfe81" path="res://scenes/game_orbito/orbito_cell.tscn" id="3_s4rxc"]
 
 [node name="orbito_board" type="Sprite2D" node_paths=PackedStringArray("cells_to_export")]
-texture = ExtResource("1_1kysq")
+texture = ExtResource("1_mynl4")
 script = ExtResource("2_ef8nq")
 cells_to_export = [NodePath("GridContainer/orbito_cell00"), NodePath("GridContainer/orbito_cell01"), NodePath("GridContainer/orbito_cell02"), NodePath("GridContainer/orbito_cell03"), NodePath("GridContainer/orbito_cell10"), NodePath("GridContainer/orbito_cell11"), NodePath("GridContainer/orbito_cell12"), NodePath("GridContainer/orbito_cell13"), NodePath("GridContainer/orbito_cell20"), NodePath("GridContainer/orbito_cell21"), NodePath("GridContainer/orbito_cell22"), NodePath("GridContainer/orbito_cell23"), NodePath("GridContainer/orbito_cell30"), NodePath("GridContainer/orbito_cell31"), NodePath("GridContainer/orbito_cell32"), NodePath("GridContainer/orbito_cell33")]
 
