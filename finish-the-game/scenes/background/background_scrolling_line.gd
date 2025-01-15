@@ -4,7 +4,7 @@ class_name BackgroundScrollingLine
 var generating: bool = false
 
 @export var scrolling_label_scene: PackedScene
-var label_text: String = "ORBITO"
+var label_text: String = ""
 var label_speed: float = 256.0
 var label_period: float = 1.8
 enum LABEL_DIRECTION {
@@ -43,6 +43,7 @@ func set_label_text(label_text_to_set: String) -> void:
 	label_text = label_text_to_set
 	for label: BackgroundScrollingLabel in (get_children() as Array[BackgroundScrollingLabel]):
 		label.text = label_text
+	
 
 func set_label_speed(label_speed_to_set: float) -> void:
 	label_speed = label_speed_to_set
