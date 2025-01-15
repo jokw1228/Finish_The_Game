@@ -3,23 +3,17 @@
 [ext_resource type="Script" path="res://scenes/background/background_scrolling_controller.gd" id="1_woxh1"]
 [ext_resource type="PackedScene" uid="uid://c0um3j51a2ad3" path="res://scenes/background/background_scrolling_line.tscn" id="2_ipqn4"]
 
-[node name="BackgroundScrollingController" type="Control"]
-z_index = -10
-layout_mode = 3
-anchors_preset = 0
+[node name="BackgroundScrollingController" type="CanvasLayer"]
+layer = -10
 script = ExtResource("1_woxh1")
 
 [node name="Background" type="ColorRect" parent="."]
-layout_mode = 0
-offset_left = -540.0
-offset_top = -960.0
-offset_right = 540.0
-offset_bottom = 960.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(0.12549, 0.12549, 0.12549, 1)
 
 [node name="BackgroundScrollingLine" parent="." instance=ExtResource("2_ipqn4")]
-layout_mode = 0
-offset_left = -540.0
-offset_top = -960.0
-offset_right = 540.0
-offset_bottom = -864.0
+anchors_preset = 15

@@ -9,3 +9,4 @@ script = ExtResource("1_62yfl")
 [node name="BackgroundScrollingController" parent="." instance=ExtResource("2_krxod")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
