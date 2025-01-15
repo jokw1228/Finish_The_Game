@@ -20,7 +20,7 @@ func start_ftg() -> void:
 				var type_candidates: Array[BombLinkBomb.BOMB_TYPE] = \
 				[BombLinkBomb.BOMB_TYPE.NORMAL, BombLinkBomb.BOMB_TYPE.NOT_ROTATABLE]
 				var w: float = RandomNumberGenerator.new().randf_range(0, 1)
-				type = type_candidates[0] if w < 0.4 \
+				type = type_candidates[0] if w < 0.6 \
 				else type_candidates[1]
 			else:
 				type = BombLinkBomb.BOMB_TYPE.NORMAL

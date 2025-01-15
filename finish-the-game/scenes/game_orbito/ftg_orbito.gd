@@ -204,7 +204,7 @@ func make_kill_angle() -> Array[Array]:
 			break
 	#end while
 	
-	const duration = 8.0
+	const duration = 12.0
 	start_timer.emit(duration)
 	return completed_board
 		
