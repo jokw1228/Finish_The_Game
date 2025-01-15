@@ -1,7 +1,7 @@
 extends ColorRect
 class_name BackgroundScrollingLine
 
-var generating: bool = true
+var generating: bool = false
 
 @export var scrolling_label_scene: PackedScene
 var label_text: String = "ORBITO"
@@ -14,7 +14,6 @@ enum LABEL_DIRECTION {
 var label_direction: LABEL_DIRECTION = LABEL_DIRECTION.RIGHT
 
 func _ready() -> void:
-	await get_tree().create_timer(0.5).timeout
 	scrolling()
 
 func scrolling() -> void:
@@ -33,11 +32,22 @@ func scrolling() -> void:
 		
 		await get_tree().create_timer(label_period).timeout
 
+func set_generating(generating_to_set: bool) -> void:
+	if generating == false and generating_to_set == true:
+		generating = true
+		scrolling()
+	else:
+		generating = generating_to_set
+
 func set_label_text(label_text_to_set: String) -> void:
 	label_text = label_text_to_set
+	for label: BackgroundScrollingLabel in (get_children() as Array[BackgroundScrollingLabel]):
+		label.text = label_text
 
 func set_label_speed(label_speed_to_set: float) -> void:
 	label_speed = label_speed_to_set
+	for label: BackgroundScrollingLabel in (get_children() as Array[BackgroundScrollingLabel]):
+		label.set_speed(label_speed)
 
 func set_label_period(label_period_to_set: float) -> void:
 	label_period = label_period_to_set
