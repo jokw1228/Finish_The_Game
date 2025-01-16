@@ -13,3 +13,6 @@ script = ExtResource("1_62yfl")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
+
+[connection signal="request_display_ftg_result" from="." to="FTGResultOverlayController" method="display_ftg_result"]
+[connection signal="request_set_all_label_text" from="." to="BackgroundScrollingController" method="set_all_label_text"]
