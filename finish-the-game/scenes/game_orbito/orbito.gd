@@ -87,6 +87,8 @@ func receive_orbit_board():
 		orbit_board()
 		increase_turn_state()
 		approve_and_reply_orbit_board.emit()
+		#print(board)
+		#replace_all_stones()
 	
 var orbited_board: Array[Array] = []
 func orbit_board() -> void:
@@ -108,7 +110,6 @@ func orbit_board() -> void:
 			else:
 				rotated_board[y][x] = board[y][x-1]
 	board = rotated_board
-	replace_all_stones()
 	orbited_board = rotated_board.duplicate(true)
 	count_stone += 1
 	

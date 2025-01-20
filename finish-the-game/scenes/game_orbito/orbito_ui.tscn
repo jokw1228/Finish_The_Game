@@ -45,8 +45,10 @@ theme_override_font_sizes/font_size = 128
 text = "Do not move"
 
 [connection signal="request_move_stone" from="." to="orbito_board" method="receive_request_move_stone"]
+[connection signal="request_orbit_ui" from="." to="orbito_board" method="receive_request_orbit_ui"]
 [connection signal="request_place_stone" from="." to="orbito_board" method="receive_request_place_stone"]
 [connection signal="request_remove_stone" from="." to="orbito_board" method="receive_request_remove_stone"]
+[connection signal="request_set_cells_disabled" from="." to="orbito_board" method="_on_orbito_ui_request_set_cells_disabled"]
 [connection signal="pressed" from="orbit_button" to="." method="_on_orbit_button_pressed"]
 [connection signal="request_select_cell" from="orbito_board" to="." method="receive_request_select_stone"]
 [connection signal="pressed" from="do_not_move_button" to="." method="_on_do_not_move_button_pressed"]

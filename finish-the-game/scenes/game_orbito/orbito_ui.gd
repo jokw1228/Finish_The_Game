@@ -20,10 +20,13 @@ var turn_color = TURN_COLOR.BLACK
 
 signal select_stone(cell_index: Array[int])
 signal orbit_board()
+signal request_orbit_ui()
 signal request_place_stone(cell_index: Array[int], color_to_place)
 signal request_move_stone(start_cell_index: Array[int], end_cell_index:Array[int], color_to_place: Orbito.CELL_STATE)
 signal request_remove_stone(cell_index: Array[int])
 signal do_not_move()
+
+signal request_set_cells_disabled(disable)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -37,18 +40,19 @@ func receive_request_select_stone(cell_index: Array[int]):
 		select_stone.emit(cell_index)
 		
 func receive_approve_and_reply_move_stone(approved_start_cell_index: Array[int], approved_end_cell_index: Array[int], approved_color: Orbito.CELL_STATE):
-	ui_state = UI_STATE.PLACE_STONE
+	set_ui_state(UI_STATE.PLACE_STONE)
 	hide_do_not_move_button()
 	request_move_stone.emit(approved_start_cell_index, approved_end_cell_index, approved_color)
 	
 func receive_approve_and_reply_place_stone(approved_cell_index: Array[int], approved_color: Orbito.CELL_STATE):
-	ui_state = UI_STATE.ORBIT
+	set_ui_state(UI_STATE.ORBIT)
 	request_place_stone.emit(approved_cell_index, approved_color)
 	show_orbit_button()
 
 func receive_approve_and_reply_orbit_board():
 	hide_orbit_button()
-	ui_state = UI_STATE.MOVE_STONE
+	request_orbit_ui.emit()
+	set_ui_state(UI_STATE.MOVE_STONE)
 	if (turn_color == TURN_COLOR.BLACK):
 		turn_color = TURN_COLOR.WHITE
 	elif (turn_color == TURN_COLOR.WHITE):
@@ -58,10 +62,13 @@ func receive_approve_and_reply_orbit_board():
 	
 func receive_approve_and_reply_do_not_move():
 	hide_do_not_move_button()
-	ui_state = UI_STATE.PLACE_STONE
+	set_ui_state(UI_STATE.PLACE_STONE)
 	
 func receive_approve_and_reply_remove_stone(approved_cell_index: Array[int]):
 	request_remove_stone.emit(approved_cell_index)
+	
+func receive_set_ui_disabled(disable):
+	request_set_cells_disabled.emit(disable)
 	
 func show_orbit_button():
 	$orbit_button.show()
@@ -88,11 +95,14 @@ func set_turn_color(color_to_set):
 func set_ui_state(state_to_set):
 	ui_state = state_to_set
 	if ui_state == UI_STATE.MOVE_STONE:
+		#request_set_cells_disabled.emit(false)
 		show_do_not_move_button()
 		hide_orbit_button()
 	elif ui_state == UI_STATE.PLACE_STONE:
+		#request_set_cells_disabled.emit(false)
 		hide_do_not_move_button()
 		hide_orbit_button()
 	elif ui_state == UI_STATE.ORBIT:
+		request_set_cells_disabled.emit(true)
 		hide_do_not_move_button()
 		show_orbit_button()

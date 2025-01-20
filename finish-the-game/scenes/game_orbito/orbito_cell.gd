@@ -7,7 +7,7 @@ signal select_cell(selected_cell_index: Array[int])
 
 @export var cell_index: Array[int] = []
 
-func set_cell_index(index_to_set: Array[int]) -> void:
+func set_cell_index(index_to_set) -> void:
 	cell_index = index_to_set
 
 # Called when the node enters the scene tree for the first time.
@@ -17,7 +17,7 @@ func _on_pressed() -> void:
 func place_stone(color_to_place: Orbito.CELL_STATE) -> void:
 	add_child(OrbitoStoneGenerator.generate(Vector2(cell_image_width/2, cell_image_width/2), color_to_place))
 
-func receive_request_set_cell_disabled(disabled_to_set):
+func set_cell_disabled(disabled_to_set):
 	disabled = disabled_to_set
 	
 func remove_stone():
