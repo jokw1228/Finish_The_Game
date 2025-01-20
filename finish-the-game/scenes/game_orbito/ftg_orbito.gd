@@ -1,7 +1,7 @@
 extends Orbito
 class_name FTGOrbito
 
-signal request_disable_input()
+signal request_disable_input(disable)
 signal end_ftg(is_game_cleared: bool)
 
 signal start_timer(duration: float)
@@ -29,6 +29,7 @@ func start_ftg():
 		turn_state = TURN_STATE.WHITE_MOVE
 		$orbito_ui.set_turn_color(OrbitoUI.TURN_COLOR.WHITE)
 		opponent_color = CELL_STATE.BLACK
+	request_disable_input.emit(false)
 		
 		
 func make_kill_angle() -> Array[Array]:
@@ -237,21 +238,21 @@ func four_in_a_row(board_to_check: Array[Array], state: CELL_STATE) -> bool:
 func check_game_cleared():
 	if four_in_a_row(orbited_board, my_color):
 		if four_in_a_row(orbited_board, opponent_color):
-			request_disable_input.emit()
+			request_disable_input.emit(true)
 			pause_timer.emit()
 			end_ftg.emit(false)
 			return
 		else:
-			request_disable_input.emit()
+			request_disable_input.emit(true)
 			pause_timer.emit()
 			end_ftg.emit(true)
 			return
-	request_disable_input.emit()
+	request_disable_input.emit(true)
 	pause_timer.emit()
 	end_ftg.emit(false)
 	return
 	
 func _on_game_utils_game_timer_timeout() -> void:
-	request_disable_input.emit()
+	request_disable_input.emit(true)
 	end_ftg.emit(false)
 	return
