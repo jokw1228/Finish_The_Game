@@ -42,7 +42,7 @@ func start_ftg() -> void:
 				
 				fuse_candidates.append(BombLinkBomb.FUSE_DIRECTION.RIGHT)
 				
-				fuse_candidates.append(BombLinkBomb.FUSE_DIRECTION.UP)
+				fuse_candidates.append(BombLinkBomb.FUSE_DIRECTION.DOWN)
 				
 				if current_row[x-1].bomb_type == BombLinkBomb.BOMB_TYPE.NORMAL \
 				or (current_row[x-1].bomb_type == BombLinkBomb.BOMB_TYPE.NOT_ROTATABLE \
@@ -51,8 +51,8 @@ func start_ftg() -> void:
 				
 				if last_row[x].bomb_type == BombLinkBomb.BOMB_TYPE.NORMAL \
 				or (last_row[x].bomb_type == BombLinkBomb.BOMB_TYPE.NOT_ROTATABLE \
-				and last_row[x].fuse_direction != BombLinkBomb.FUSE_DIRECTION.UP):
-					fuse_candidates.append(BombLinkBomb.FUSE_DIRECTION.DOWN)
+				and last_row[x].fuse_direction != BombLinkBomb.FUSE_DIRECTION.DOWN):
+					fuse_candidates.append(BombLinkBomb.FUSE_DIRECTION.UP)
 				
 				fuse = fuse_candidates.pick_random()
 			
