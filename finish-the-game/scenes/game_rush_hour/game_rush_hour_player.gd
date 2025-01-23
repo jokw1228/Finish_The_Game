@@ -80,13 +80,6 @@ func _physics_process(delta: float):
 			#lobal_position.y + rotated_vector.y - mouse_offset.y)
 		new_position = new_position.clamp(Vector2(-128-96, -128-96), Vector2(128*3-96, 128*3-96))
 		tween.tween_property(self, "position", new_position, delay * delta)
-	
-
-		
-
-	#move_and_collide(collide * delta)
-	
-
 
 func _input(event):
 	if is_selected:
@@ -97,10 +90,7 @@ func _input(event):
 		input_dir = Vector2.ZERO 
 	
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
-		#print("check1")
 		if event.pressed:
-			#print("check2")
-			#print("Event Position:", event.position)
 			if direction == 0:
 				local_mouse_pos = to_local(event.position-Vector2(-128,128))
 			else:
@@ -108,37 +98,12 @@ func _input(event):
 			
 			local_mouse_pos = to_local(event.position-camera_offset)
 			if sprite.get_rect().has_point(local_mouse_pos):
-				#print('clicked on sprite')
 				is_selected = true
 				#mouse_offset = global_position+Vector2(-200,-100)
 				mouse_offset = get_global_mouse_position()-global_position
 		
 		else:
 			is_selected = false
-	
-	print(input_dir)
 
-
-
-
-
-func move_piece(dis):
-	var new_pos = start_pos + dis * board_size
-	if !board_limits.has_point(new_pos /board_size):
-		target_pos = new_pos
-	else:
-		target_pos = start_pos
-	position = target_pos
-
-func is_collision(position: Vector2) -> bool:
-	return false
-	
-		
-func _on_area_entered(body: Node2D) -> void:
-	print("collided!")
-	collide.emit()
-	target_pos = start_pos
-	position = start_pos
-	is_selected = false
 
 	
