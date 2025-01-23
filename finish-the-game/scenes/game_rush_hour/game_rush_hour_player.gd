@@ -1,4 +1,4 @@
-extends Node2D
+extends CharacterBody2D
 
 @onready var sprite = $Sprite2D
 
@@ -10,7 +10,7 @@ var is_selected = false
 var truck_type
 
 var mouse_offset  
-var camera_offset = Vector2(120,0)
+var camera_offset = Vector2(-120,0)
 var delay = 10
 var grid_size = 128 
 var board_size = Vector2(768, 768) 
@@ -22,8 +22,13 @@ var original_position =  Vector2(0,0)
 var start_pos = Vector2()
 var target_pos = Vector2() 
 var board_limits = Rect2(Vector2(0, 0), Vector2(6, 6))
+var speed = 300
 
-signal collide
+var input_dir = Vector2(0,0)
+var previous_mouse_position =  Vector2(0,0)
+
+var collide = Vector2(0,0)
+
 signal selected
 
 
@@ -36,14 +41,26 @@ func _ready():
 	
 func _set_direction(num):
 	direction = num
+	
+func get_input():
+	collide = input_dir * speed
 
-	
-	
-#func _process(delta):
-	
-	#position = position.lerp(target_pos, 10*delta)
-	
 func _physics_process(delta: float):
+	collide = input_dir.round() * speed
+	if direction == 0:
+		collide.y = 0
+		position.y = clamp(position.y, start_pos.y, start_pos.y) 
+	else:
+		collide.x = 0
+		position.x = clamp(position.x, start_pos.x, start_pos.x)  # Keep x fixed
+	var collision = move_and_collide(collide * delta)
+	if collision:
+		is_selected = false
+	if direction == 0:
+		position.y = clamp(position.y, start_pos.y, start_pos.y) 
+	else:
+		position.x = clamp(position.x, start_pos.x, start_pos.x)
+		
 	if is_selected == true:
 		var tween = get_tree().create_tween()
 		var current_position = position
@@ -63,13 +80,24 @@ func _physics_process(delta: float):
 			#lobal_position.y + rotated_vector.y - mouse_offset.y)
 		new_position = new_position.clamp(Vector2(-128-96, -128-96), Vector2(128*3-96, 128*3-96))
 		tween.tween_property(self, "position", new_position, delay * delta)
+	
+
+		
+
+	#move_and_collide(collide * delta)
+	
 
 
 func _input(event):
+	if is_selected:
+		var current_mouse_position = get_global_mouse_position()
+		input_dir = (current_mouse_position - previous_mouse_position).normalized()
+		previous_mouse_position = current_mouse_position
+	else:
+		input_dir = Vector2.ZERO 
 	
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		#print("check1")
-		start_pos = position
 		if event.pressed:
 			#print("check2")
 			#print("Event Position:", event.position)
@@ -84,8 +112,13 @@ func _input(event):
 				is_selected = true
 				#mouse_offset = global_position+Vector2(-200,-100)
 				mouse_offset = get_global_mouse_position()-global_position
+		
 		else:
 			is_selected = false
+	
+	print(input_dir)
+
+
 
 
 
