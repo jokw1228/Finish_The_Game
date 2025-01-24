@@ -14,6 +14,7 @@ signal request_display_ftg_result(result: bool)
 func _ready() -> void:
 	center = get_viewport().get_visible_rect().size / 2
 	
+	FTGs.append([load("res://scenes/game_set/ftg_set.tscn"), "SET"])
 	FTGs.append([load("res://scenes/game_pentago/ftg_pentago.tscn"), "PENTAGO"])
 	FTGs.append([load("res://scenes/game_sliding_puzzle/ftg_sliding_puzzle.tscn"), "SLD.PZL."])
 	FTGs.append([load("res://scenes/game_orbito/ftg_orbito.tscn"), "ORBITO"])
