@@ -18,9 +18,9 @@ var local_mouse_pos
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fmi6t"]
-size = Vector2(223, 95)
+size = Vector2(229, 110)
 
-[node name="truck" type="Area2D"]
+[node name="truck" type="CharacterBody2D"]
 script = ExtResource("1_6tjk8")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -29,7 +29,7 @@ texture = ExtResource("2_kitll")
 script = SubResource("GDScript_qg7p2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(3.5, -2.5)
+position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_fmi6t")
 
-[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
