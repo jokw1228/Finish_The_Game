@@ -67,11 +67,14 @@ func _process(delta: float) -> void:
 		
 	if truck_type == 2:
 		if direction == 0:
-			position =position.clamp(Vector2(-128-40, -128-96), Vector2(128*2+64-96, 128*3-96))
+			position =position.clamp(Vector2(-128-40, -128-128), Vector2(128*2+64-96, 128*3+96))
 		else:
-			position =position.clamp(Vector2(-128-96-64, -128-8), Vector2(128*3-96, 128*2))
+			position =position.clamp(Vector2(-128-96-64, -128-8), Vector2(128*3-32, 128*2+16))
 	else:
-		position = position.clamp(Vector2(-128-96, -128-64), Vector2(128*3-96, 128*3-96))
+		if direction == 0:
+			position = position.clamp(Vector2(-128-96, -128-64), Vector2(128*3-96, 128*3))
+		else:
+			position = position.clamp(Vector2(-128-128-64, -128-64), Vector2(128*3-96, 128*3))
 	
 func _physics_process(delta: float):
 	collide = input_dir * speed
@@ -98,6 +101,8 @@ func _physics_process(delta: float):
 		prev_position = position
 		var new_position = Vector2(0,0)
 		if direction == 0:
+			if truck_type ==2:
+				additional_offset.x = 100
 			new_position = Vector2(
 			get_global_mouse_position().x - mouse_offset.x-additional_offset.x,  
 			position.y)
@@ -112,11 +117,14 @@ func _physics_process(delta: float):
 
 		if truck_type == 2:
 			if direction == 0:
-				new_position =new_position.clamp(Vector2(-128-40, -128-96), Vector2(128*2+64-96, 128*3-96))
+				position =position.clamp(Vector2(-128-40, -128-128), Vector2(128*2+64-96, 128*3+96))
 			else:
-				new_position =new_position.clamp(Vector2(-128-96-64, -128-8), Vector2(128*3-96, 128*2))
-		else:		
-			new_position = new_position.clamp(Vector2(-128-96, -128-64), Vector2(128*3-96, 128*3-96))
+				position =position.clamp(Vector2(-128-96-64, -128-8), Vector2(128*3-32, 128*2+32))
+		else:
+			if direction == 0:
+				position = position.clamp(Vector2(-128-96, -128-64), Vector2(128*3-96, 128*3))
+			else:
+				position = position.clamp(Vector2(-128-128-64, -128-64), Vector2(128*3-96, 128*3))
 		
 		target_pos = new_position
 		

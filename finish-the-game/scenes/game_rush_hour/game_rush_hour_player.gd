@@ -8,13 +8,13 @@ var is_selected = false
 
 
 var truck_type
-
+@onready var collision_shape = $CollisionShape2D
 var mouse_offset  
 var camera_offset = Vector2(-120,0)
 var delay = 10
 var grid_size = 128 
 var board_size = Vector2(768, 768) 
-var additional_offset = Vector2(0 ,256) 
+var additional_offset = Vector2(0 , 640) 
 var local_mouse_pos
 var mouse_sprite: Sprite2D 
 var original_position =  Vector2(0,0)
@@ -28,24 +28,18 @@ var input_dir = Vector2(0,0)
 var previous_mouse_position =  Vector2(0,0)
 
 var collide = Vector2(0,0)
-
-signal selected
-
+var prev_position = Vector2(0,0)
 
 func _ready():
 	start_pos = position
+	prev_position = position
 	if direction == 1:
 		sprite.rotation_degrees = 90
+		collision_shape.rotation_degrees = 90
 
-	
-	
-func _set_direction(num):
-	direction = num
-	
-func get_input():
-	collide = input_dir * speed
 
 func _physics_process(delta: float):
+	print(position)
 	collide = input_dir.round() * speed
 	if direction == 0:
 		collide.y = 0
@@ -60,25 +54,29 @@ func _physics_process(delta: float):
 		position.y = clamp(position.y, start_pos.y, start_pos.y) 
 	else:
 		position.x = clamp(position.x, start_pos.x, start_pos.x)
+	
+	if not is_selected and collision:
+		position = prev_position
 		
 	if is_selected == true:
 		var tween = get_tree().create_tween()
 		var current_position = position
 		var new_position = Vector2(0,0)
+		prev_position = position
 		if direction == 0:
 			new_position = Vector2(
-			get_global_mouse_position().x - mouse_offset.x,  
+			get_global_mouse_position().x - mouse_offset.x - additional_offset.x,  
 			position.y)
 			#new_position.x = round((new_position.x) / grid_size) * grid_size/2 -32
 			new_position.x = round((new_position.x) / grid_size) * grid_size/2 -256
 		else:
 			new_position = Vector2(
 			position.x,  # Keep x constant
-			get_global_mouse_position().y - mouse_offset.y)
+			get_global_mouse_position().y - mouse_offset.y- additional_offset.y)
 			new_position.y = round(new_position.y / grid_size) * grid_size/2 -32
 
 			#lobal_position.y + rotated_vector.y - mouse_offset.y)
-		new_position = new_position.clamp(Vector2(-128-96, -128-96), Vector2(128*3-96, 128*3-96))
+		new_position = new_position.clamp(Vector2(-128-96, -128-64), Vector2(128*3-96, 128*3-96))
 		tween.tween_property(self, "position", new_position, delay * delta)
 
 func _input(event):
