@@ -9,4 +9,6 @@ script = ExtResource("2_o4qy1")
 
 [node name="GameUtilsGameTimer" parent="." index="0" instance=ExtResource("3_gkc8q")]
 
+[connection signal="pause_timer" from="." to="GameUtilsGameTimer" method="pause_timer"]
+[connection signal="start_timer" from="." to="GameUtilsGameTimer" method="start_timer"]
 [connection signal="timeout" from="GameUtilsGameTimer" to="." method="_on_game_utils_game_timer_timeout"]

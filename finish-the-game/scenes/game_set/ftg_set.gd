@@ -6,10 +6,6 @@ signal start_timer(duration: float)
 signal pause_timer()
 
 
-func _ready() -> void:
-	start_ftg()
-
-
 func set_delete(set: Array, element) -> void:
 	if element in set:
 		set.remove_at(set.find(element))
@@ -29,25 +25,53 @@ func generate_cards(cards: Array, ranges: Array, object: Array) -> void:
 func start_ftg() -> void:
 	initialize_game_set()
 	
+	card_num = 9  ##
+	attribute_num = 3  ##
+	
 	var card_set: Array = []
+	var solution_set: Array = []
 	var temp_ranges = []
 	for i in range(attribute_num):
 		temp_ranges.append(3)
 	
 	generate_cards(card_set, temp_ranges, [true])
 	
+	for i in range(int(attribute_num / 3)):
+		temp_ranges.append([])
+	
 	var rng = RandomNumberGenerator.new()
 	rng.randomize()
 	
-	#########
+	var temp_card: Array
+	var no_solution: bool = false
+	for i in range(int(card_num / 3)):
+		no_solution = true
+		
+		while no_solution:
+			if solution_set != []:
+				for j in solution_set:
+					card_set.append(j)
+				solution_set.clear()
+			
+			for j in range(2):
+				temp_card = card_set[randi_range(0, len(card_set) - 1)]
+				solution_set.append(temp_card)
+				set_delete(card_set, temp_card)
+			
+			for j in card_set:
+				if can_delete_card_set(solution_set + [j]):
+					field_card_set += solution_set + [j]
+					set_delete(card_set, j)
+					solution_set.clear()
+					no_solution = false
+					break
 	
-	for i in range(9):
-		field_card_set.append(card_set[randi_range(0, 26)])
+	field_card_set.shuffle()
 	
-	init_UI.emit(9)
+	init_UI.emit(card_num)
 	
-	const duration = 10.0
-	#start_timer.emit(duration)
+	const duration = 12.0
+	start_timer.emit(duration)
 
 
 func finish_game() -> void:

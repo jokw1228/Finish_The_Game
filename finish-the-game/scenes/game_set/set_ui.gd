@@ -53,6 +53,7 @@ func initialize_ui(num: int = 9) -> void:
 		card_num = 9
 		for i in range(9):
 			var card: SetCard = single_card.instantiate()
+			print("game_set: card generated")
 			card.set_ui = self
 			
 			if set_main.attribute_num == 2:
@@ -67,6 +68,7 @@ func initialize_ui(num: int = 9) -> void:
 			add_child(card)
 			
 			var button: SetCardButton = card_button.instantiate()
+			print("game_set: button generated")
 			button.set_ui = self
 			
 			button.initialize_button(i)
@@ -129,8 +131,8 @@ func place_card(object, card_position: int, is_teleport: bool = true) -> void:
 		object.position = card_pixel_position
 	else:
 		var tween: Tween = get_tree().create_tween()
-		tween.tween_property(object, "position", card_pixel_position, 0.05)
-		tween.tween_property(object, "rotation", 90, 0.05)
+		tween.tween_property(object, "position", card_pixel_position, 0.15)
+		tween.tween_property(object, "rotation", deg_to_rad(90), 0.15)
 
 
 func card_pressed(pressed_index: int) -> void:
