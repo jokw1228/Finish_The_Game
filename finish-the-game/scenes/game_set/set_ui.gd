@@ -6,6 +6,7 @@ signal request_delete_cards(card_index_set: Array[int])
 @export var set_main: Set
 @export var single_card: PackedScene
 @export var card_button: PackedScene
+@export var small_card_button: PackedScene
 
 var shape_image: Array[Array] = [\
 	[\
@@ -44,7 +45,7 @@ const standard_shape_position = [\
 								]
 
 
-func initialize_ui(num: int = 9) -> void:
+func initialize_ui(num: int = 9, is_button_exist: bool = false) -> void:
 	field_cards = []
 	chosen_cards_index = []
 	stop_set_UI = false
@@ -67,12 +68,13 @@ func initialize_ui(num: int = 9) -> void:
 			field_cards.append(card)
 			add_child(card)
 			
-			var button: SetCardButton = card_button.instantiate()
-			print("game_set: button generated")
-			button.set_ui = self
-			
-			button.initialize_button(i)
-			add_child(button)
+			if not is_button_exist:
+				var button: SetCardButton = card_button.instantiate()
+				print("game_set: button generated")
+				button.set_ui = self
+				
+				button.initialize_button(i)
+				add_child(button)
 			
 	elif num == 12:
 		card_num = 12
@@ -91,20 +93,34 @@ func initialize_ui(num: int = 9) -> void:
 			field_cards[i].append(card)
 			add_child(card)
 			
-			var button: SetCardButton = card_button.instantiate()
-			button.set_ui = self
-			place_card(button, i)
-			button.initialize_button(i)
-			add_child(button)
+			if not is_button_exist:
+				var button: SetCardButton = card_button.instantiate()
+				button.set_ui = self
+				place_card(button, i)
+				button.initialize_button(i)
+				add_child(button)
+			
+	if not is_button_exist:
+		var retry_button: SetRetryButton = small_card_button.instantiate()
+		print("game_set: button generated")
+		retry_button.set_ui = self
+		
+		retry_button.initialize_small_button()
+		add_child(retry_button)
 
 
-func place_card(object, card_position: int, is_teleport: bool = true) -> void:
+func place_card(object, card_position: int, is_teleport: bool = true, is_small_button: bool = false) -> void:
 	# -1 position : at deleted card stack
 	var card_pixel_position: Vector2 = Vector2.ZERO
 	
-	if card_position == -1:
+	if is_small_button:
+		card_pixel_position.x = -(size_unit * 0.5)
+		card_pixel_position.y = size_unit * 7 + interval_unit * 6 +\
+								-(size_unit * 4 + interval_unit * 3)
+	
+	elif card_position == -1:
 		card_pixel_position.x = size_unit * 1
-		card_pixel_position.y = -(size_unit * 3 + interval_unit * 3)
+		card_pixel_position.y = -(size_unit * 4 + interval_unit * 3)
 		
 		if is_teleport:
 			#object.z_index = field_cards[card_position][-2].z_index + 1
@@ -117,7 +133,7 @@ func place_card(object, card_position: int, is_teleport: bool = true) -> void:
 									-(size_unit * 1.5 + interval_unit * 1)
 			card_pixel_position.y = size_unit * 2 * (0.5 + int(card_position / 3)) +\
 									interval_unit * (2 + int(card_position / 3)) +\
-									-(size_unit * 3 + interval_unit * 3)
+									-(size_unit * 4 + interval_unit * 3)
 			
 		elif card_num == 12:
 			card_pixel_position.x = size_unit * (card_position % 4) +\
@@ -125,7 +141,7 @@ func place_card(object, card_position: int, is_teleport: bool = true) -> void:
 									-(size_unit * 2 + interval_unit * 1.5)
 			card_pixel_position.y = size_unit * 2 * (0.5 + int(card_position / 4)) +\
 									interval_unit * (2 + int(card_position / 4)) +\
-									-(size_unit * 3 + interval_unit * 3)
+									-(size_unit * 4 + interval_unit * 3)
 	
 	if is_teleport:
 		object.position = card_pixel_position
@@ -163,6 +179,15 @@ func _denied_delete_cards() -> void:
 		field_cards[i].move_card(false)
 	
 	chosen_cards_index.clear()
+
+
+func ui_retry() -> void:
+	if not stop_set_UI:
+		for field_card in field_cards:
+			remove_child(field_card)
+			field_card.queue_free()
+		set_main.retry()
+		initialize_ui(card_num)
 
 
 func _init_ui(card_num: int) -> void:

@@ -1,13 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://dm7k1x0i48ey4"]
+[gd_scene load_steps=4 format=3 uid="uid://dm7k1x0i48ey4"]
 
 [ext_resource type="Script" path="res://scenes/game_set/set.gd" id="1_fea74"]
 [ext_resource type="PackedScene" uid="uid://ueqerdgbd8k5" path="res://scenes/game_set/set_ui.tscn" id="2_45jbs"]
+[ext_resource type="PackedScene" uid="uid://cs7yax5rdklyy" path="res://scenes/game_set/set_retry_button.tscn" id="3_wedto"]
 
 [node name="Set" type="Node2D"]
 script = ExtResource("1_fea74")
 
 [node name="SetUi" parent="." node_paths=PackedStringArray("set_main") instance=ExtResource("2_45jbs")]
 set_main = NodePath("..")
+small_card_button = ExtResource("3_wedto")
 
 [connection signal="allow_delete_cards" from="." to="SetUi" method="_allowed_delete_cards"]
 [connection signal="deny_delete_cards" from="." to="SetUi" method="_denied_delete_cards"]
