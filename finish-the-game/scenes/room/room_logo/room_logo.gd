@@ -20,6 +20,7 @@ func _ready() -> void:
 	FTGs.append([load("res://scenes/game_bomb_link/ftg_bomb_link.tscn"), "BOMBLINK"])
 	FTGs.append([load("res://scenes/game_rush_hour/game_rush_hour.tscn"), "RUSHHOUR"])
 	FTGs.append([load("res://scenes/game_one_card/ftg_one_card.tscn"), "ONECARD"])
+	FTGs.append([load("res://scenes/game_set/ftg_set.tscn"), "SET"])
 	
 	var picked_ftg = FTGs.pop_front()
 	current_ftg = picked_ftg[0].instantiate()

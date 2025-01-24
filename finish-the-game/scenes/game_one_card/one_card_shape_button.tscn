@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dkwwpnsjed7n2" path="res://resources/images/game_one_card/sprite_one_card_spade.png" id="3_66iao"]
 
 [node name="OneCardShapeButton" type="TextureButton"]
+action_mode = 0
 script = ExtResource("1_vo6ce")
 
 [node name="card" type="TextureRect" parent="."]
