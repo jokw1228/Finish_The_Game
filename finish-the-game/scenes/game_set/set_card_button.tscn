@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bhahj2meygah1"]
+
+[ext_resource type="Script" path="res://scenes/game_set/set_card_button.gd" id="1_2b86i"]
+
+[node name="SetCardButton" type="TextureButton"]
+offset_right = 128.0
+offset_bottom = 256.0
+action_mode = 0
+script = ExtResource("1_2b86i")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

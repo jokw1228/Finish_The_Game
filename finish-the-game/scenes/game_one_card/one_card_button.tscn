@@ -4,6 +4,7 @@
 [ext_resource type="Script" path="res://scenes/game_one_card/one_card_button.gd" id="1_r04ge"]
 
 [node name="OneCardButton" type="TextureButton"]
+action_mode = 0
 script = ExtResource("1_r04ge")
 
 [node name="CardRect" type="TextureRect" parent="."]
