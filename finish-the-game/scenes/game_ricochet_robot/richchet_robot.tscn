@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhturp3wt4sgo"]
+
+[ext_resource type="Script" path="res://scenes/game_ricochet_robot/richchet_robot.gd" id="1_wqumb"]
+[ext_resource type="PackedScene" uid="uid://dehqiuoqmmh3m" path="res://scenes/game_ricochet_robot/ricochet_robot_ui.tscn" id="2_pdsq7"]
+
+[node name="RichchetRobot" type="Node2D"]
+script = ExtResource("1_wqumb")
+
+[node name="RicochetRobotUI" parent="." instance=ExtResource("2_pdsq7")]
+position = Vector2(550, 836)
+
+[connection signal="request_generate_goal_ui" from="." to="RicochetRobotUI" method="receive_request_generate_goal_ui"]
+[connection signal="request_generate_robots_ui" from="." to="RicochetRobotUI" method="receive_request_generate_robots_ui"]
+[connection signal="request_generate_wall_ui" from="." to="RicochetRobotUI" method="receive_request_generate_wall_ui"]
+[connection signal="request_move_robot_ui" from="." to="RicochetRobotUI" method="receive_request_move_robot_ui"]
+[connection signal="request_reset_ui" from="." to="RicochetRobotUI" method="receive_request_reset_ui"]
+[connection signal="deliver_move_finished_to_game" from="RicochetRobotUI" to="." method="receive_move_finished"]
+[connection signal="request_cell_pressed_to_game" from="RicochetRobotUI" to="." method="receive_request_cell_pressed"]
