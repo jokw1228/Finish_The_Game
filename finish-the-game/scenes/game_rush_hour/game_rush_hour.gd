@@ -33,6 +33,8 @@ var viewport_size = get_viewport_rect().size
 #(viewport_size.y - grid_height/4-320) / 2)
 var start_position = Vector2(-320+30,-320)
 
+var piece_list = []
+signal start(value: Vector2)
 
 
 
@@ -43,28 +45,97 @@ signal player_piece_instantiated(player_piece)
 func _ready():
 	select_grid()
 	place_pieces()
-	mouse_sprite = Sprite2D.new()
-	mouse_sprite.texture = preload("res://resources/images/game_rush_hour/sprite_rush_hour_truck_type1.png") 
 	const duration = 10.0
 	start_timer.emit(duration)
-	#add_child(mouse_sprite)
-	print( get_viewport().size)
+	start.emit(target_location)
+	#print(piece_list)
+	#print_board(board)
+	
 func start_ftg():
 	print("start ftg")
 	
 	
 func _process(delta):
 	#debugging
-	var pos = get_viewport().get_mouse_position()
+	#var pos = get_viewport().get_mouse_position()
 	#print("Mouse po: ", pos)
-	if not flag and player_piece and player_piece.position.distance_to(target_location) < threshold:
-		end_ftg.emit(true)
+	if flag == 0 and player_piece and player_piece.cell_loc == target_location:
 		pause_timer.emit()
+		end_ftg.emit(true)
 		flag = 1
 	
+	_update_board(board)
+	#print_board(board)
+
 		#print("ftg")
-#func _update_board():
-	
+func _update_board(board):
+	for i in range(board_size):
+		for j in range(board_size):
+			board[i][j] = 0
+	var cell = Vector2(0,0)
+	var offset = Vector2(0,64)
+	var temp 
+	for piece in piece_list:
+		#print(piece)
+		var board_start = Vector2(-226-128, -256-64)
+		#var board_finish = Vector2(286+128, 384+64)
+		if piece.piece_type == "truck2":
+			offset.x = 128*3/2
+			if piece.direction == 0:
+				#find col
+				cell.x = round( (piece.position.x - board_start.x+offset.x*0.7)/cell_size)-1
+				if cell.x < 0: cell.x = 0
+				elif cell.x > 5: cell.x = 5
+				board[piece.cell_loc.y][cell.x] = 3
+				board[piece.cell_loc.y][cell.x-1] = 3
+				board[piece.cell_loc.y][cell.x-2] = 3
+				piece.cell_loc.x = cell.x
+			else:
+				temp = offset.x
+				offset.x = offset.y
+				offset.y = temp
+				cell.y = round( (piece.position.y - board_start.y-offset.y*0.7)/cell_size)-1
+				if cell.y < 0: cell.y = 0
+				elif cell.y > 5: cell.y = 5
+				board[cell.y][piece.cell_loc.x] = 3
+				board[cell.y-1][piece.cell_loc.x] = 3
+				board[cell.y-2][piece.cell_loc.x] = 3
+				piece.cell_loc.y = cell.y
+			
+		else:
+			offset.x = 128
+			if piece.direction == 0:
+				#find col
+				cell.x = round( (piece.position.x - board_start.x+offset.x*0.7)/cell_size)-1
+				#print(cell.x)
+				if cell.x < 0: cell.x = 0
+				elif cell.x > 5: cell.x = 5
+				if piece.piece_type == "truck1":
+					board[piece.cell_loc.y][cell.x] = 2
+					board[piece.cell_loc.y][cell.x-1] = 2
+				else:
+					board[piece.cell_loc.y][cell.x] = 1
+					board[piece.cell_loc.y][cell.x-1] = 1
+				piece.cell_loc.x = cell.x
+			else:
+				temp = offset.x
+				offset.x = offset.y
+				offset.y = temp
+				cell.y = round( (piece.position.y - board_start.y-offset.y*0.003)/cell_size)-1
+				if cell.y < 0: cell.y = 0
+				elif cell.y > 5: cell.y = 5
+				if piece.piece_type == "truck1":
+					board[cell.y][piece.cell_loc.x] = 2
+					board[cell.y-1][piece.cell_loc.x] = 2
+				else:
+					board[cell.y][piece.cell_loc.x]  = 1
+					board[cell.y-1][piece.cell_loc.x] = 1
+				piece.cell_loc.y = cell.y
+
+func print_board(board):
+	for k in board:
+		print(k)
+	print("")
 
 func create_grid():
 	for x in range(board_size):
@@ -85,16 +156,16 @@ func select_grid():
 				 [0, 0, 0, 0, 2, 2],
 				 [0, 2, 2, 0, 0, 0]]
 	var board2 = [[0, 0, 0, 0, 0, 0],
+				[0, 0, 0, 0, 0, 0],
 				[0, 0, 0, 2, 0, 0],
 				[1, 1, 0, 2, 0, 0],
-				[0, 0, 0, 0, 0, 0],
 				[0, 3, 3,3 , 2, 0],
 				[0, 0, 0, 0, 2, 0]]
 	var board3 = [[0, 0, 0, 0, 0, 0],
 				[0, 0, 0, 3, 0, 0],
 				[0, 0, 0, 3, 0, 0],
-				[1, 1, 2, 3, 0, 0],
-				[0, 0, 2, 2, 2, 0],
+				[0, 0, 2, 3, 2, 0],
+				[1, 1, 2, 0, 2, 0],
 				[0, 0, 0, 0, 0, 0]]
 	var board4 = [[3, 3, 3, 0, 2, 0],
 				 [0, 0, 0, 0, 2, 3],
@@ -102,11 +173,11 @@ func select_grid():
 				 [0, 0, 1, 0, 0, 3],
 				 [2, 0, 1, 0, 0, 0],
 				 [2, 3, 3, 3, 2, 2]]
-	var board5 = [[3, 3, 3, 0, 2, 0],
-				 [0, 0, 0, 0, 2, 3],
+	var board5 = [[0, 3, 3, 3, 0, 0],
+				 [0, 0, 0, 2, 2, 3],
 				 [0, 0, 0, 0, 0, 3],
-				 [0, 0, 1, 0, 0, 3],
-				 [2, 0, 1, 0, 0, 0],
+				 [0, 0, 0, 1, 0, 3],
+				 [2, 0, 0, 1, 0, 0],
 				 [2, 3, 3, 3, 2, 2]]
 	var board6 = [[0, 3, 3, 3, 2, 0],
 				 [0, 0, 2, 2, 2, 3],
@@ -114,13 +185,34 @@ func select_grid():
 				 [0, 2, 0, 0, 0, 3],
 				 [0, 0, 0, 1, 0, 0],
 				 [0, 0, 0, 1, 2, 2]]
-	var arr = [[board1, Vector2(288, 0)], [board2, Vector2(288, 0)], [board3, Vector2(288, 128)], [board4, Vector2(-34, -48*4)], [board5, Vector2(-34, -48*4)], [board6, Vector2(94, -48*4)]]
+	var test1 = [[2, 0, 0, 0, 0, 2],
+				 [2, 0, 2, 0, 0, 2],
+				 [0, 0, 2, 0, 0, 0],
+				 [0, 0, 0, 0, 0, 0],
+				 [2, 0, 0, 0, 0, 2],
+				 [2, 0, 0, 0, 0, 2]]
+	var test2 = [[2, 2, 0, 0, 2, 2],
+				 [0, 0, 2, 0, 0, 0],
+				 [0, 0, 2, 0, 0, 0],
+				 [0, 0, 0, 0, 2, 0],
+				 [0, 0, 0, 0, 2, 0],
+				 [2, 2, 0, 0, 2, 2]]
+				
+	var test3 = [[3, 3, 3, 0, 0, 0],
+				 [0, 0, 2, 3, 3, 3],
+				 [0, 0, 2, 0, 0, 0],
+				 [0, 0, 0, 0, 0, 0],
+				 [3, 3, 3, 0, 0, 0],
+				 [0, 0, 0, 3, 3, 3]]
+				
+	#Vector2(col,row)			
+	var arr = [[board1, Vector2(5,2)], [board2, Vector2(5,3)], [board3, Vector2(5,4)], [board4, Vector2(2, 0)], [board5, Vector2(3, 0)], [board6, Vector2(3, 0)]]
 	
 	var selected_array = arr[randi() % arr.size()]
 	board = selected_array[0]
+	#board = board5
 	target_location = selected_array[1]
-	#board = board8
-	#target_location =  Vector2(94, -48*4)
+	#target_location =  Vector2(3, 0)
 	
 func is_horizontal(row, col,value):
 	if value == 3:
@@ -138,8 +230,6 @@ func place_piece(cell, row, col, horizontal):
 	if cell == 1:
 		piece = player_scene.instantiate()
 		player_piece = piece 
-		#emit_signal("player_piece_instantiated", player_piece)
-		#print("player_piece initialized:", player_piece)
 		var half = cell_size/2
 		if horizontal:
 			piece.direction = 0
@@ -150,15 +240,12 @@ func place_piece(cell, row, col, horizontal):
 			piece.direction = 1
 		
 			piece.position = start_position +  Vector2(col * cell_size, row * cell_size+128)
-			
-			#print(col, row, position)
-			#(540, -1375)
-			#(540, 785)
-			
+
 	else:
 		piece = truck_scene.instantiate()
 		#truck type one
 		if cell == 2:
+			piece.piece_type = "truck1"
 			piece.truck_type = 1
 			if horizontal:
 				piece.direction = 0
@@ -169,6 +256,7 @@ func place_piece(cell, row, col, horizontal):
 			
 		#truck type 2
 		else:
+			piece.piece_type = "truck2"
 			piece.truck_type = 2
 			if horizontal:
 				piece.direction = 0
@@ -176,9 +264,13 @@ func place_piece(cell, row, col, horizontal):
 			else:
 				piece.direction = 1
 				piece.position = start_position + Vector2(col * cell_size, row * cell_size+128+64)
+	
+	piece.cell_loc = Vector2(col,row) # save as x and y
 	add_child(piece)		
 	if cell == 1:
+		piece.piece_type = "player"
 		player_piece = piece 
+	piece_list.append(piece)
 	
 func mark_pos(row, col, value, horizontal, checked_pos):
 	var i = 0
@@ -216,4 +308,6 @@ func get_player_position(target_location):
 	return player_piece.position.distance_to(target_location)
 
 func _on_game_utils_game_timer_timeout() -> void:
-	end_ftg.emit(false)
+	if not flag:
+		end_ftg.emit(false)
+		flag = 2
