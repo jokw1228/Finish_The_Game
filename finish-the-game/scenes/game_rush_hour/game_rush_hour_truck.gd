@@ -29,9 +29,12 @@ var speed = 300
 var input_dir = Vector2(0,0)
 var previous_mouse_position =  Vector2(0,0)
 var collide = Vector2(0,0)
+var center 
+#var camera_position = get_viewport().get_camera().global_position
 
 func _ready():
 	#position = position.snapped(Vector2(board_size, board_size))
+	center = get_viewport().get_visible_rect().size / 2
 	target_pos = position
 	start_pos = position
 	prev_position = position
@@ -40,7 +43,7 @@ func _ready():
 	var truck2 = preload("res://resources/images/game_rush_hour/sprite_rush_hour_truck_type2.png")
 	if truck_type == 1:
 		sprite.texture = truck1
-		collision_shape.shape.extents = Vector2(126, 62)
+		collision_shape.shape.extents = Vector2(124, 60)
 		if direction == 0:
 			camera_offset = Vector2(0,50)
 		else:
@@ -49,7 +52,7 @@ func _ready():
 	else:
 		sprite.texture = truck2
 		collision_shape.shape = RectangleShape2D.new()
-		collision_shape.shape.extents = Vector2(190, 62)
+		collision_shape.shape.extents = Vector2(188, 60)
 		if direction == 0:
 			camera_offset = Vector2(0,50)
 		else:
@@ -59,22 +62,27 @@ func _ready():
 		collision_shape.rotation_degrees = 90
 		
 func _process(delta: float) -> void:
+	if is_selected:
+		sprite.modulate = Color(0, 0, 0.2)
+	else:
+		sprite.modulate = Color(1, 1, 1)
+	
 	if direction == 0:
 		position.y = start_pos.y
 	else:
 		position.x = start_pos.x
-		
-		
 	if truck_type == 2:
 		if direction == 0:
-			position =position.clamp(Vector2(-128-40, -128-128), Vector2(128*2+64-96, 128*3+96))
+			position =position.clamp(Vector2(-128-40, -128*2), Vector2(128*2-32, 128*3+96))
 		else:
-			position =position.clamp(Vector2(-128-96-64, -128-8), Vector2(128*3-32, 128*2+16))
+			position =position.clamp(Vector2(-128*2-32, -128-8), Vector2(128*3-32, 128*2+8))
 	else:
 		if direction == 0:
-			position = position.clamp(Vector2(-128-96, -128-64), Vector2(128*3-96, 128*3))
+			position = position.clamp(Vector2(-128-96, -128*2), Vector2(128*3-96, 128*3))
 		else:
-			position = position.clamp(Vector2(-128-128-64, -128-64), Vector2(128*3-96, 128*3))
+			position = position.clamp(Vector2(-128*2-64, -128-64), Vector2(128*3-32, 128*2+64))
+		
+
 	
 func _physics_process(delta: float):
 	collide = input_dir * speed
@@ -92,8 +100,8 @@ func _physics_process(delta: float):
 		position.y = clamp(position.y, start_pos.y, start_pos.y) 
 	else:
 		position.x = clamp(position.x, start_pos.x, start_pos.x)
-	if not is_selected and collision:
-		position = prev_position
+	#if not is_selected and collision:
+		#position = prev_position
 	
 	if is_selected == true:
 		var tween = get_tree().create_tween()
@@ -104,31 +112,31 @@ func _physics_process(delta: float):
 			if truck_type ==2:
 				additional_offset.x = 100
 			new_position = Vector2(
-			get_global_mouse_position().x - mouse_offset.x-additional_offset.x,  
+			get_global_mouse_position().x - mouse_offset.x-512-28,
 			position.y)
-			#new_position.x = round((new_position.x) / grid_size) * grid_size/2 -32
-			new_position.x = round((new_position.x) / grid_size) * grid_size/2  -256
-	
+			#new_position.x = round((new_position.x) / grid_size) * grid_size
+			#new_position.x = round((new_position.x) / grid_size) * grid_size/2  -256
+		#(2560, 1494)
 		else:
 			new_position = Vector2(
 			position.x,  # Keep x constant
-			get_global_mouse_position().y - mouse_offset.y-additional_offset.y,)
-			new_position.y = round(new_position.y / grid_size) * grid_size/2 -256
-
+			get_global_mouse_position().y - mouse_offset.y-1024+64,)
+			#new_position.y = round(new_position.y / grid_size) * grid_size
 		if truck_type == 2:
 			if direction == 0:
-				position =position.clamp(Vector2(-128-40, -128-128), Vector2(128*2+64-96, 128*3+96))
+				new_position =new_position.clamp(Vector2(-128-40, -128*2), Vector2(128*2-32, 128*3+96))
 			else:
-				position =position.clamp(Vector2(-128-96-64, -128-8), Vector2(128*3-32, 128*2+32))
+				new_position =new_position.clamp(Vector2(-128*2-32, -128-8), Vector2(128*3-32, 128*2+8))
 		else:
 			if direction == 0:
-				position = position.clamp(Vector2(-128-96, -128-64), Vector2(128*3-96, 128*3))
+				new_position = new_position.clamp(Vector2(-128-96, -128*2), Vector2(128*3-96, 128*3))
 			else:
-				position = position.clamp(Vector2(-128-128-64, -128-64), Vector2(128*3-96, 128*3))
+				new_position = new_position.clamp(Vector2(-128*2-64, -128-64), Vector2(128*3-32, 128*2+64))
+		collision = move_and_collide(collide * delta)
+		if collision:
+			new_position = new_position.clamp(position, collision.get_position())
+		position += (new_position - position) * delta * 3
 		
-		target_pos = new_position
-		
-		tween.tween_property(self, "position", new_position, delay * delta)
 
 
 func _input(event):
@@ -141,8 +149,8 @@ func _input(event):
 		
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
-
-			local_mouse_pos = to_local(event.position)
+			#var global_mouse_pos = get_global_mouse_position()
+			local_mouse_pos = sprite.to_local(event.position)
 			
 			if sprite.get_rect().has_point(local_mouse_pos):
 				#print('clicked on sprite')

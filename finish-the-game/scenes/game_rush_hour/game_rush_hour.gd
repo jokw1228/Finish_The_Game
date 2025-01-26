@@ -24,7 +24,7 @@ var selected_piece : Node = null #position of selected piece
 var mouse_offset  = Vector2(0,0)
 signal end_ftg(game_cleard: bool)
 var target_location = Vector2(288, 0) 
-var threshold = 10
+var threshold = 20
 var grid_width = board_size * cell_size
 var grid_height = board_size * cell_size
 var viewport_size = get_viewport_rect().size
@@ -48,6 +48,7 @@ func _ready():
 	const duration = 10.0
 	start_timer.emit(duration)
 	#add_child(mouse_sprite)
+	print( get_viewport().size)
 func start_ftg():
 	print("start ftg")
 	
@@ -58,11 +59,12 @@ func _process(delta):
 	#print("Mouse po: ", pos)
 	if not flag and player_piece and player_piece.position.distance_to(target_location) < threshold:
 		end_ftg.emit(true)
-		flag = 1
 		pause_timer.emit()
-		
+		flag = 1
+	
 		#print("ftg")
-
+#func _update_board():
+	
 
 func create_grid():
 	for x in range(board_size):
@@ -77,11 +79,11 @@ func create_grid():
 			
 func select_grid():
 	var board1 = [[0, 0, 0, 0, 0, 3],
-				[0, 0, 2, 0, 3, 3],
-				[1, 1, 2, 0, 3, 3],
-				[0, 0, 0, 0, 3, 0],
-				[0, 0, 0, 0, 2, 2],
-				[0, 2, 2, 0, 0, 0]]
+				 [0, 0, 2, 0, 3, 3],
+				 [1, 1, 2, 0, 3, 3],
+				 [0, 0, 0, 0, 3, 0],
+				 [0, 0, 0, 0, 2, 2],
+				 [0, 2, 2, 0, 0, 0]]
 	var board2 = [[0, 0, 0, 0, 0, 0],
 				[0, 0, 0, 2, 0, 0],
 				[1, 1, 0, 2, 0, 0],
@@ -117,15 +119,17 @@ func select_grid():
 	var selected_array = arr[randi() % arr.size()]
 	board = selected_array[0]
 	target_location = selected_array[1]
-	#board = board6
+	#board = board8
 	#target_location =  Vector2(94, -48*4)
 	
-
-
 func is_horizontal(row, col,value):
+	if value == 3:
+		return  col +1 < len(board[row]) and board[row][col+1] == value and (col +2 < len(board[row]) and board[row][col+2] == value)
 	return col +1 < len(board[row]) and board[row][col+1] == value
 	
 func is_vertical(row, col,value):
+	if value == 3:
+		return  row +1 < len(board[row]) and board[row+1][col] == value and (row +2 < len(board[row]) and board[row+2][col] == value)
 	return row +1 < len(board) and board[row+1][col] == value
 	
 func place_piece(cell, row, col, horizontal):
@@ -147,7 +151,7 @@ func place_piece(cell, row, col, horizontal):
 		
 			piece.position = start_position +  Vector2(col * cell_size, row * cell_size+128)
 			
-			print(col, row, position)
+			#print(col, row, position)
 			#(540, -1375)
 			#(540, 785)
 			
@@ -176,17 +180,22 @@ func place_piece(cell, row, col, horizontal):
 	if cell == 1:
 		player_piece = piece 
 	
-
-	
 func mark_pos(row, col, value, horizontal, checked_pos):
+	var i = 0
+	if value == 3:
+		i = 3
+	else:
+		i = 2
 	if horizontal:
-		while col < len(board[row]) and board[row][col] == value:
+		while col < len(board[row]) and board[row][col] == value and i >0:
 			checked_pos.append(Vector2(row, col))
 			col += 1
+			i-=1
 	else:
-		while row < len(board) and board[row][col] == value:
+		while row < len(board) and board[row][col] == value and i >0:
 			checked_pos.append(Vector2(row, col))
 			row += 1
+			i-=1
 
 func place_pieces():
 	var checked_pos = []
