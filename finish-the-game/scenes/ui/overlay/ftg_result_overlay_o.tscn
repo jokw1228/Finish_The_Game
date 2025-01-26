@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://scenes/ui/overlay/ftg_result_overlay_o.gd" id="1_dqk78"]
 
 [node name="FTGResultOverlayO" type="Control"]
+modulate = Color(1, 1, 1, 0.501961)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

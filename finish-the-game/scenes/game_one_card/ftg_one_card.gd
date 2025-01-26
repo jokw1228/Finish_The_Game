@@ -2,6 +2,8 @@ extends OneCard
 class_name FTGOneCard
 
 signal end_ftg(is_game_cleared: bool)
+signal start_timer(duration: float)
+signal pause_timer()
 
 func start_ftg() -> void:
 	initialize_card()
@@ -15,19 +17,22 @@ func start_ftg() -> void:
 	rng.randomize()
 	
 	var temp_cards: Array = []
-	var temp_: Array = []
+	var temp_: Array = []  # [[_, _], _]
 	var prev_index: int = rng.randi_range(0, 1)
 	can_one_more = true
 	var can_shape_change: bool = false
 	
 	for i in range(2):
-		temp_cards.append(card_set[rng.randi_range(0, 51 - i)])
-		set_delete(card_set, temp_cards[i])
-		field[i].append(temp_cards[i])
+		temp_cards.append([card_set[rng.randi_range(0, 51 - i)]])
+		set_delete(card_set, temp_cards[i][0])
+		if i == 0:
+			field_stack_1.append(temp_cards[i][0])
+		else:
+			field_stack_2.append(temp_cards[i][0])
 	
 	var available_set: Array = []
 	var weights: PackedFloat32Array = []
-	for i in range(6):
+	for i in range(8):
 		available_set = []
 		weights = []
 		temp_ = []
@@ -35,32 +40,44 @@ func start_ftg() -> void:
 		if can_one_more:
 			for j in card_set:
 				for k in range(2):
-					if can_place_card(j, k, temp_cards, prev_index, can_one_more):
+					if can_place_card(j, k, [temp_cards[0][-1], temp_cards[1][-1]], prev_index, can_one_more):
 						available_set.append([j, k])
 						
-						if k == prev_index:
-							weights.append(1)
+						if j[1] in [6, 10, 12]:
+							if k == prev_index:
+								weights.append(1)
+							else:
+								weights.append(10)
 						else:
-							weights.append(10)
+							if k == prev_index:
+								weights.append(1)
+							else:
+								weights.append(7)
 			
 		elif can_shape_change:
 			for j in card_set:
 				for k in range(4):
-					if can_place_card([k, j[1]], prev_index, temp_cards, prev_index, can_one_more):
-						available_set.append([[k, j[1]], prev_index])
+					if can_place_card([k, j[1]], prev_index, [temp_cards[0][-1], temp_cards[1][-1]], prev_index, can_one_more):
+						available_set.append([j, prev_index])
 						
 						if j[1] in [6, 10, 12]:
-							weights.append(3)
+							if j[0] != temp_cards[prev_index][-1][0]:
+								weights.append(5)
+							else:
+								weights.append(2.5)
 						else:
-							weights.append(1)
+							if j[0] != temp_cards[prev_index][-1][0]:
+								weights.append(3)
+							else:
+								weights.append(1)
 			
 		else:
 			for j in card_set:
-				if can_place_card(j, prev_index, temp_cards, prev_index, can_one_more):
+				if can_place_card(j, prev_index, [temp_cards[0][-1], temp_cards[1][-1]], prev_index, can_one_more):
 					available_set.append([j, prev_index])
 					
 					if j[1] in [6, 10, 12]:
-						weights.append(3)
+						weights.append(2.5)
 					else:
 						weights.append(1)
 		
@@ -82,3 +99,18 @@ func start_ftg() -> void:
 			can_shape_change = false
 	
 	can_one_more = true
+	
+	init_UI.emit()
+	
+	const duration = 20.0
+	start_timer.emit(duration)
+
+func finish_game() -> void:
+	stop_UI.emit()
+	pause_timer.emit()
+	await get_tree().create_timer(0.2).timeout
+	end_ftg.emit(true)
+
+func _on_game_utils_game_timer_timeout() -> void:
+	stop_UI.emit()
+	end_ftg.emit(false)

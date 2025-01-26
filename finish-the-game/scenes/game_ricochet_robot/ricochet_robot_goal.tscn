@@ -1,0 +1,19 @@
+[gd_scene load_steps=7 format=3 uid="uid://ctdarii2rjum8"]
+
+[ext_resource type="Texture2D" uid="uid://wae7jlml5x1r" path="res://resources/images/game_ricochet_robot/red_goal.svg" id="1_8h4fg"]
+[ext_resource type="Script" path="res://scenes/game_ricochet_robot/ricochet_robot_goal.gd" id="1_s71c3"]
+[ext_resource type="Texture2D" uid="uid://bas1qgwkswf6" path="res://resources/images/game_ricochet_robot/greeen_goal.svg" id="3_fwqkh"]
+[ext_resource type="Texture2D" uid="uid://d1gycc6jjuhwu" path="res://resources/images/game_ricochet_robot/blue_goal.svg" id="4_4pwqy"]
+[ext_resource type="Texture2D" uid="uid://dxmlxekklhgnf" path="res://resources/images/game_ricochet_robot/yellow_goal.svg" id="5_3s2bi"]
+[ext_resource type="Texture2D" uid="uid://bgsfbdt33djwr" path="res://resources/images/game_ricochet_robot/black_goal.svg" id="6_p2eie"]
+
+[node name="RicochetRobotGoal" type="Sprite2D"]
+scale = Vector2(0.125, 0.125)
+texture = ExtResource("1_8h4fg")
+centered = false
+script = ExtResource("1_s71c3")
+goal_red = ExtResource("1_8h4fg")
+goal_green = ExtResource("3_fwqkh")
+goal_blue = ExtResource("4_4pwqy")
+goal_yellow = ExtResource("5_3s2bi")
+goal_black = ExtResource("6_p2eie")

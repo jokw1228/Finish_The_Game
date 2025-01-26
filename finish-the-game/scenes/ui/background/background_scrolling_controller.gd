@@ -8,8 +8,8 @@ func _ready() -> void:
 	initialize_scrolling_lines()
 
 func initialize_scrolling_lines() -> void:
-	var width: float = get_viewport().size.x
-	var height: float = get_viewport().size.y
+	var width: float = get_viewport().get_visible_rect().size.x
+	var height: float = get_viewport().get_visible_rect().size.y
 	const count = 3
 	for i: int in range(count):
 		var inst: BackgroundScrollingLine = scrolling_line_scene.instantiate() as BackgroundScrollingLine
@@ -28,7 +28,7 @@ func initialize_scrolling_lines() -> void:
 		scrolling_lines.append(inst2)
 		
 		inst2.size.x = 796 + 256 * i
-		inst2.position.y = height - inst.position.y + 128
+		inst2.position.y = height - inst.position.y
 		inst2.position.x = width - inst.position.x
 		inst2.rotation = inst.rotation + PI
 		inst2.set_label_speed(128 + 64 * i)
