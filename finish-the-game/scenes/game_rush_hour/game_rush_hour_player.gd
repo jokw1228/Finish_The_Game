@@ -31,8 +31,6 @@ var collide = Vector2(0,0)
 var prev_position = Vector2(0,0)
 var max_speed = 50
 
-var piece_type = ""
-var cell_loc = Vector2(0,0)
 
 
 func _ready():

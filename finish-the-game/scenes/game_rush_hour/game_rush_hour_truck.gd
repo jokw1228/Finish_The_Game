@@ -30,8 +30,6 @@ var input_dir = Vector2(0,0)
 var previous_mouse_position =  Vector2(0,0)
 var collide = Vector2(0,0)
 var center 
-var piece_type = ""
-var cell_loc = Vector2(0,0)
 #var camera_position = get_viewport().get_camera().global_position
 
 func _ready():
