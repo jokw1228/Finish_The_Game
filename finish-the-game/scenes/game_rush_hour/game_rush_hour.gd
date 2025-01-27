@@ -204,7 +204,7 @@ func select_grid():
 	#Vector2(col,row)			
 	var arr = [board1, board2, board3, board4, board5, board6]
 	var selected_array = randi() % arr.size()
-	board = board5
+	board = arr[selected_array]
 	find_target_location()
 	#for debugging:
 	#board = board5
