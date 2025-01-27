@@ -32,14 +32,14 @@ var viewport_size = get_viewport_rect().size
 #(viewport_size.x - grid_width/4-256) / 2,
 #(viewport_size.y - grid_height/4-320) / 2)
 var start_position = Vector2(-320+30,-320)
-
+var player_direction = 0
+var checked_pos = []
 var piece_list = []
 signal start(value: Vector2)
 
 
 
 signal player_piece_instantiated(player_piece)
-#const tiles = preload("res://game_rush_hour_board.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -47,7 +47,7 @@ func _ready():
 	place_pieces()
 	const duration = 10.0
 	start_timer.emit(duration)
-	start.emit(target_location)
+	start.emit(target_location, player_direction)
 	#print(piece_list)
 	#print_board(board)
 	
@@ -136,16 +136,6 @@ func print_board(board):
 	for k in board:
 		print(k)
 	print("")
-
-func create_grid():
-	for x in range(board_size):
-		for y in range(board_size):
-			board.append([0, 0, 0, 2, 0, 0])
-			board.append([0, 0, 0, 2, 0, 2])
-			board.append([1, 1, 0, 0, 0, 2])
-			board.append([0, 0, 0, 0, 0, 0])
-			board.append([0, 0, 0, 2, 2, 0])
-			board.append([0, 0, 0, 0, 0, 0])
 			
 			
 func select_grid():
@@ -174,7 +164,7 @@ func select_grid():
 				 [2, 0, 1, 0, 0, 0],
 				 [2, 3, 3, 3, 2, 2]]
 	var board5 = [[0, 3, 3, 3, 0, 0],
-				 [0, 0, 0, 2, 2, 3],
+				 [0, 0, 0, 0, 0, 3],
 				 [0, 0, 0, 0, 0, 3],
 				 [0, 0, 0, 1, 0, 3],
 				 [2, 0, 0, 1, 0, 0],
@@ -198,35 +188,70 @@ func select_grid():
 				 [0, 0, 0, 0, 2, 0],
 				 [2, 2, 0, 0, 2, 2]]
 				
-	var test3 = [[3, 3, 3, 0, 0, 0],
-				 [0, 0, 2, 3, 3, 3],
-				 [0, 0, 2, 0, 0, 0],
+	var test3 = [[3, 0, 0, 0, 0, 3],
+				 [3, 0, 2, 3, 3, 3],
+				 [3, 0, 2, 0, 0, 3],
 				 [0, 0, 0, 0, 0, 0],
 				 [3, 3, 3, 0, 0, 0],
 				 [0, 0, 0, 3, 3, 3]]
+	var test4 = [[3, 3, 3, 0, 0, 3],
+				 [3, 3, 3, 0, 0, 3],
+				 [3, 3, 3, 0, 0, 3],
+				 [0, 0, 0, 0, 1, 0],
+				 [3, 3, 3, 0, 1, 0],
+				 [0, 0, 0, 3, 3, 3]]
 				
 	#Vector2(col,row)			
-	var arr = [[board1, Vector2(5,2)], [board2, Vector2(5,3)], [board3, Vector2(5,4)], [board4, Vector2(2, 0)], [board5, Vector2(3, 0)], [board6, Vector2(3, 0)]]
-	
-	var selected_array = arr[randi() % arr.size()]
-	board = selected_array[0]
+	var arr = [board1, board2, board3, board4, board5, board6]
+	var selected_array = randi() % arr.size()
+	board = board5
+	find_target_location()
+	#for debugging:
 	#board = board5
-	target_location = selected_array[1]
 	#target_location =  Vector2(3, 0)
+	
+#exit is always at top or left side of board
+func find_target_location():
+	for row in board_size:
+		for col in board_size:
+			if board[row][col] == 1:
+				if is_horizontal(row, col,1):
+					target_location = Vector2(5,row)
+					player_direction = 0
+				elif is_vertical(row, col,1):
+					target_location = Vector2(col,0)
+					player_direction = 1
+					
+				
 	
 func is_horizontal(row, col,value):
 	if value == 3:
+		for i in range(3):
+			if Vector2(row, col+i) in checked_pos:
+				return false
 		return  col +1 < len(board[row]) and board[row][col+1] == value and (col +2 < len(board[row]) and board[row][col+2] == value)
+	if value == 2:
+		for j in range(2):
+			if Vector2(row, col+j) in checked_pos:
+				return false
 	return col +1 < len(board[row]) and board[row][col+1] == value
 	
 func is_vertical(row, col,value):
 	if value == 3:
+		for i in range(3):
+			if Vector2(row+i, col) in checked_pos:
+				return false
 		return  row +1 < len(board[row]) and board[row+1][col] == value and (row +2 < len(board[row]) and board[row+2][col] == value)
+	if value == 2:
+		for j in range(2):
+			if Vector2(row+j, col) in checked_pos:
+				return false
 	return row +1 < len(board) and board[row+1][col] == value
 	
 func place_piece(cell, row, col, horizontal):
 	var piece
 	#place player piece
+	
 	if cell == 1:
 		piece = player_scene.instantiate()
 		player_piece = piece 
@@ -290,7 +315,6 @@ func mark_pos(row, col, value, horizontal, checked_pos):
 			i-=1
 
 func place_pieces():
-	var checked_pos = []
 	for row in range(board_size):
 		for col in range(board_size):
 			var cell = board[row][col]

@@ -45,20 +45,13 @@ func _ready():
 	var truck2 = preload("res://resources/images/game_rush_hour/sprite_rush_hour_truck_type2.png")
 	if truck_type == 1:
 		sprite.texture = truck1
-		collision_shape.shape.extents = Vector2(124, 60)
-		if direction == 0:
-			camera_offset = Vector2(0,50)
-		else:
-			camera_offset = Vector2(0,-100)
+		collision_shape.shape = RectangleShape2D.new()
+		collision_shape.shape.extents = Vector2(128-8, 64-8)
 			
 	else:
 		sprite.texture = truck2
 		collision_shape.shape = RectangleShape2D.new()
-		collision_shape.shape.extents = Vector2(188, 60)
-		if direction == 0:
-			camera_offset = Vector2(0,50)
-		else:
-			camera_offset = Vector2(0,50)
+		collision_shape.shape.extents = Vector2(192-8, 64-8)
 	if direction == 1:
 		sprite.rotation_degrees = 90
 		collision_shape.rotation_degrees = 90
@@ -106,7 +99,6 @@ func _physics_process(delta: float):
 		#position = prev_position
 	
 	if is_selected == true:
-		var tween = get_tree().create_tween()
 		var current_position = position
 		prev_position = position
 		var new_position = Vector2(0,0)

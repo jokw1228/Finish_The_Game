@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bc4s1x08b3x32" path="res://scenes/game_rush_hour/game_rush_hour_player.tscn" id="2_hyu2u"]
 [ext_resource type="PackedScene" uid="uid://cbl0xs0coasm3" path="res://scenes/game_rush_hour/game_rush_hour_truck.tscn" id="3_jxlkg"]
 [ext_resource type="PackedScene" uid="uid://uiwqmyxyu4tj" path="res://scenes/game_rush_hour/game_rush_hour_board.tscn" id="4_ii0i4"]
-[ext_resource type="PackedScene" uid="uid://bp7kmpmd6x7wb" path="res://scenes/game_rush_hour/game_utils_game_timer.tscn" id="5_lyg4o"]
+[ext_resource type="PackedScene" uid="uid://cugd4lapex6pa" path="res://scenes/game_rush_hour/game_utils_game_timer.tscn" id="5_lyg4o"]
 
 [sub_resource type="GDScript" id="GDScript_bxxpx"]
 script/source = "extends TextureProgressBar
