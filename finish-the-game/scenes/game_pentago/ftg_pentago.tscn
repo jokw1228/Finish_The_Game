@@ -42,3 +42,4 @@ disabled = true
 [connection signal="start_timer" from="." to="GameUtilsGameTimer" method="start_timer"]
 [connection signal="timeout" from="GameUtilsGameTimer" to="." method="_on_game_utils_game_timer_timeout"]
 [connection signal="request_retry" from="GameUtilsRetryButton" to="." method="close_retry_button"]
+[connection signal="request_retry" from="GameUtilsRetryButton" to="." method="ftg_rollback"]

@@ -224,6 +224,22 @@ func remember_rotated_subboard(approved_subboard_index: Array[int], approved_rot
 	rotated_subboard_index = approved_subboard_index
 	rotated_subboard_direction = approved_rotation_direction
 
+func ftg_rollback() -> void: # Hard Coding...
+	var rotated_subboard_direction_inversion: ROTATION_DIRECTION = \
+	ROTATION_DIRECTION.CCW if rotated_subboard_direction == ROTATION_DIRECTION.CW \
+	else ROTATION_DIRECTION.CW
+	
+	PentagoUI_node.receive_approve_and_reply_rotate_subboard\
+	(rotated_subboard_index, rotated_subboard_direction_inversion)
+	
+	var cell: PentagoCell = \
+	PentagoUI_node.subboards[placed_subboard_index[1]][placed_subboard_index[0]]\
+	.cells[placed_cell_index[1]][placed_cell_index[0]]
+	
+	cell.get_child(0).queue_free()
+	
+	PentagoUI_node.set_ui_state(PentagoUI_node.UI_STATE.PLACE_STONE)
+
 @export var retry_button: GameUtilsRetryButton
 
 func open_retry_button() -> void:
