@@ -1,7 +1,7 @@
 extends Pentago
 class_name FTGPentago
 
-signal request_disable_input()
+signal request_disable_input(disable_to_set: bool)
 signal end_ftg(is_game_cleared: bool)
 
 signal start_timer(duration: float)
@@ -191,7 +191,7 @@ func check_five_in_a_row(board_to_check: Array[Array], color_to_check: CELL_STAT
 	return false
 
 func check_game_is_cleared(_1, _2) -> void:
-	request_disable_input.emit()
+	request_disable_input.emit(true)
 	
 	var is_cleared: bool = check_five_in_a_row(board, player_color)
 	
@@ -224,21 +224,29 @@ func remember_rotated_subboard(approved_subboard_index: Array[int], approved_rot
 	rotated_subboard_index = approved_subboard_index
 	rotated_subboard_direction = approved_rotation_direction
 
-func ftg_rollback() -> void: # Hard Coding...
+func ftg_rollback() -> void: # 슈퍼 하드 코딩...Pentago나 PentagoUI 수정 시 이쪽 코드 정상 작동 안 할 확률 매우 높음.
 	var rotated_subboard_direction_inversion: ROTATION_DIRECTION = \
 	ROTATION_DIRECTION.CCW if rotated_subboard_direction == ROTATION_DIRECTION.CW \
 	else ROTATION_DIRECTION.CW
 	
-	PentagoUI_node.receive_approve_and_reply_rotate_subboard\
-	(rotated_subboard_index, rotated_subboard_direction_inversion)
+	rotate_subboard(rotated_subboard_index, rotated_subboard_direction_inversion)
+	
+	PentagoUI_node.subboards[rotated_subboard_index[1]][rotated_subboard_index[0]].rotate_subboard(rotated_subboard_direction_inversion)
 	
 	var cell: PentagoCell = \
 	PentagoUI_node.subboards[placed_subboard_index[1]][placed_subboard_index[0]]\
 	.cells[placed_cell_index[1]][placed_cell_index[0]]
-	
 	cell.get_child(0).queue_free()
 	
+	board[placed_subboard_index[1]*subboard_width+placed_cell_index[1]][placed_subboard_index[0]*subboard_width+placed_cell_index[0]] \
+	= CELL_STATE.EMPTY
+	
+	turn_state = TURN_STATE.BLACK_PLACE \
+	if player_color == CELL_STATE.BLACK \
+	else TURN_STATE.WHITE_PLACE
+	
 	PentagoUI_node.set_ui_state(PentagoUI_node.UI_STATE.PLACE_STONE)
+	request_disable_input.emit(false)
 
 @export var retry_button: GameUtilsRetryButton
 
