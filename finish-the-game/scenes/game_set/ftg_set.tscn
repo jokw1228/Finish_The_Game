@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dm7k1x0i48ey4" path="res://scenes/game_set/set.tscn" id="1_oer4n"]
 [ext_resource type="Script" path="res://scenes/game_set/ftg_set.gd" id="2_o4qy1"]
-[ext_resource type="PackedScene" uid="uid://32twi0juyy6u" path="res://scenes/game_utils/game_utils_game_timer.tscn" id="3_gkc8q"]
+[ext_resource type="PackedScene" uid="uid://32twi0juyy6u" path="res://scenes/game_utils/game_utils_game_timer/game_utils_game_timer.tscn" id="3_gkc8q"]
 
 [node name="FTGSet" instance=ExtResource("1_oer4n")]
 script = ExtResource("2_o4qy1")

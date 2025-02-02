@@ -204,3 +204,9 @@ func check_game_is_cleared(_1, _2) -> void:
 func _on_game_utils_game_timer_timeout() -> void:
 	request_disable_input.emit()
 	end_ftg.emit(false)
+
+func remember_stone_placed(approved_subboard_index: Array[int], approved_cell_index: Array[int], approved_color: CELL_STATE) -> void:
+	pass
+
+func remember_subboard_rotated(approved_subboard_index: Array[int], approved_rotation_direction: ROTATION_DIRECTION) -> void:
+	pass
