@@ -192,21 +192,60 @@ func check_five_in_a_row(board_to_check: Array[Array], color_to_check: CELL_STAT
 
 func check_game_is_cleared(_1, _2) -> void:
 	request_disable_input.emit()
-	pause_timer.emit()
 	
-	await get_tree().create_timer(0.3).timeout
-	if check_five_in_a_row(board, player_color) == true:
+	var is_cleared: bool = check_five_in_a_row(board, player_color)
+	
+	if is_cleared == true:
+		pause_timer.emit()
+		await get_tree().create_timer(0.3).timeout
 		end_ftg.emit(true)
-	else:
-		end_ftg.emit(false)
+	
+	elif is_cleared == false:
+		await get_tree().create_timer(0.3).timeout
+		open_retry_button()
 
 
 func _on_game_utils_game_timer_timeout() -> void:
 	request_disable_input.emit()
 	end_ftg.emit(false)
 
-func remember_stone_placed(approved_subboard_index: Array[int], approved_cell_index: Array[int], approved_color: CELL_STATE) -> void:
-	pass
 
-func remember_subboard_rotated(approved_subboard_index: Array[int], approved_rotation_direction: ROTATION_DIRECTION) -> void:
-	pass
+@export var PentagoUI_node: PentagoUI
+
+var placed_subboard_index: Array[int]
+var placed_cell_index: Array[int]
+func remember_placed_stone(approved_subboard_index: Array[int], approved_cell_index: Array[int], _approved_color: CELL_STATE) -> void:
+	placed_subboard_index = approved_subboard_index
+	placed_cell_index = approved_cell_index
+
+var rotated_subboard_index: Array[int]
+var rotated_subboard_direction: ROTATION_DIRECTION
+func remember_rotated_subboard(approved_subboard_index: Array[int], approved_rotation_direction: ROTATION_DIRECTION) -> void:
+	rotated_subboard_index = approved_subboard_index
+	rotated_subboard_direction = approved_rotation_direction
+
+@export var retry_button: GameUtilsRetryButton
+
+func open_retry_button() -> void:
+	retry_button.set_disabled(false)
+	
+	var opened_position: Vector2 = Vector2(256, 512)
+	const duration = 0.2
+	
+	var tween_position: Tween = get_tree().create_tween()
+	tween_position.tween_property\
+	(retry_button, "position", opened_position, duration)\
+	.set_trans(Tween.TRANS_CUBIC)\
+	.set_ease(Tween.EASE_OUT)
+
+func close_retry_button() -> void:
+	retry_button.set_disabled(true)
+	
+	var closed_position: Vector2 = Vector2(256+512, 512)
+	const duration = 0.2
+	
+	var tween_position: Tween = get_tree().create_tween()
+	tween_position.tween_property\
+	(retry_button, "position", closed_position, duration)\
+	.set_trans(Tween.TRANS_CUBIC)\
+	.set_ease(Tween.EASE_OUT)

@@ -17,6 +17,7 @@ retry_sprite = NodePath("RetryOverlay/RetrySprite")
 [node name="RetryOverlay" type="CanvasLayer" parent="."]
 
 [node name="RetrySprite" type="Sprite2D" parent="RetryOverlay"]
+modulate = Color(1, 1, 1, 0)
 position = Vector2(540, 960)
 texture = ExtResource("3_ve0pf")
 
