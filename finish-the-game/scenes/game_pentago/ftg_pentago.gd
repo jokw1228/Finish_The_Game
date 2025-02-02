@@ -102,7 +102,7 @@ func start_ftg() -> void:
 		var test_zero_indexes: Array[Array] = zero_indexes.duplicate(true)
 		
 		const MIN_PLACEMENT = 1
-		const MAX_PLACEMENT = 10
+		const MAX_PLACEMENT = 8
 		var placement: int = rng.randi_range(MIN_PLACEMENT, MAX_PLACEMENT)
 		
 		for i: int in range(placement):
