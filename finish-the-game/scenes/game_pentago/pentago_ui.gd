@@ -5,7 +5,7 @@ const subboard_width = 3
 const subboard_count_x = 2
 
 signal request_place_stone(requested_subboard_index: Array[int], requested_cell_index: Array[int])
-signal request_rotate_subbaord(requested_subboard_index: Array[int], requested_rotation_direction: Pentago.ROTATION_DIRECTION)
+signal request_rotate_subboard(requested_subboard_index: Array[int], requested_rotation_direction: Pentago.ROTATION_DIRECTION)
 
 signal request_set_subboard_disabled(disabled_to_set: bool)
 signal request_set_cell_disabled(disabled_to_set: bool)
@@ -50,7 +50,7 @@ func receive_request_select_subboard(subboard_index_to_rotate: Array[int]) -> vo
 
 func receive_request_rotate_subboard(requested_rotation_direction: Pentago.ROTATION_DIRECTION) -> void:
 	if ui_state == UI_STATE.SELECT_ROTATION:
-		request_rotate_subbaord.emit(stored_subboard_index_to_rotation, requested_rotation_direction)
+		request_rotate_subboard.emit(stored_subboard_index_to_rotation, requested_rotation_direction)
 
 func receive_approve_and_reply_rotate_subboard(approved_subboard_index: Array[int], approved_rotation_direction: Pentago.ROTATION_DIRECTION) -> void:
 	var _x: int = approved_subboard_index[0]
