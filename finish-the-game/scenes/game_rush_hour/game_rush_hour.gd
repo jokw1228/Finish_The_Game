@@ -37,8 +37,6 @@ var checked_pos = []
 var piece_list = []
 signal start(value: Vector2)
 
-
-
 signal player_piece_instantiated(player_piece)
 
 # Called when the node enters the scene tree for the first time.
@@ -210,6 +208,10 @@ func select_grid():
 	#board = board5
 	#target_location =  Vector2(3, 0)
 	
+	
+	
+#func generate_board(num_pieces,)
+
 #exit is always at top or left side of board
 func find_target_location():
 	for row in board_size:
@@ -223,7 +225,9 @@ func find_target_location():
 					player_direction = 1
 					
 				
-	
+#board configurations like 2 2
+#                          2 2 
+#are evaluated as two horizontal pieces
 func is_horizontal(row, col,value):
 	if value == 3:
 		for i in range(3):
