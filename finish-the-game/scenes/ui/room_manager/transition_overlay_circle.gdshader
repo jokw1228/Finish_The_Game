@@ -1,7 +1,7 @@
 shader_type canvas_item;
 
 uniform float hole_radius : hint_range(0.0, 1.0) = 1.0;
-uniform float edge_softness : hint_range(0.0, 0.1) = 0.02;
+uniform float edge_softness : hint_range(0.0, 0.1) = 0.00;
 
 void fragment() {
 	vec2 centered = UV - vec2(0.5);

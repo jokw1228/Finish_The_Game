@@ -4,7 +4,7 @@ extends Node
 @export var transition_overlay: TransitionOverlay
 
 var transition_mutex: bool = true
-func transition_to_room(room_to_go: PackedScene) -> void:
+func transition_to_room(room_to_go: String) -> void:
 	if transition_mutex == false:
 		return
 	transition_mutex = false
@@ -12,7 +12,9 @@ func transition_to_room(room_to_go: PackedScene) -> void:
 	# fade out
 	await transition_overlay.fade_out()
 	
-	get_tree().change_scene_to_packed(room_to_go)
+	await get_tree().create_timer(0.2).timeout
+	get_tree().change_scene_to_file(room_to_go)
+	await get_tree().create_timer(0.2).timeout
 	
 	# fade in
 	await transition_overlay.fade_in()

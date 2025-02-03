@@ -1,13 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://ko4medea03s8"]
+[gd_scene load_steps=4 format=3 uid="uid://ko4medea03s8"]
 
 [ext_resource type="Script" path="res://scenes/room/room_logo/room_logo.gd" id="1_62yfl"]
-[ext_resource type="PackedScene" uid="uid://diiodgowsdr4u" path="res://scenes/room/room_logo_legacy/room_logo_legacy.tscn" id="2_0negl"]
 [ext_resource type="Texture2D" uid="uid://dnmvl2uhit4ex" path="res://resources/images/room_logo/sprite_cat_and_dog.png" id="2_d58t4"]
 [ext_resource type="Texture2D" uid="uid://c3ipgea14k7na" path="res://resources/images/room_logo/sprite_korea_univ.svg" id="3_drqxy"]
 
 [node name="RoomLogo" type="Node2D"]
 script = ExtResource("1_62yfl")
-room_main = ExtResource("2_0negl")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0

@@ -1,7 +1,7 @@
 extends Node2D
 class_name RoomLogo
 
-@export var room_main: PackedScene
+var room_main: String = "res://scenes/room/room_main/room_main.tscn"
 
 func _ready() -> void:
 	room_logo_animation()
