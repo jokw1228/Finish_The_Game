@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://bp7kmpmd6x7wb"]
+[gd_scene load_steps=3 format=3 uid="uid://c8g5fymta7uib"]
 
-[ext_resource type="Texture2D" uid="uid://bg2kxfmto362t" path="res://resources/images/game_utils/sprite_game_timer_outline.svg" id="1_ic3m5"]
-[ext_resource type="Script" path="res://scenes/game_utils/game_utils_game_timer.gd" id="2_v72u2"]
+[ext_resource type="Texture2D" uid="uid://bg2kxfmto362t" path="res://resources/images/game_utils/game_utils_game_timer/sprite_game_timer_outline.svg" id="1_ic3m5"]
+[ext_resource type="Script" path="res://scenes/game_utils/game_utils_game_timer/game_utils_game_timer.gd" id="2_v72u2"]
 
 [node name="GameUtilsGameTimer" type="TextureProgressBar"]
 modulate = Color(1, 1, 1, 0.25098)

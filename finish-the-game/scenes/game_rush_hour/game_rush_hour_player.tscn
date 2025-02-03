@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://xyqgb4w3qrff" path="res://resources/images/game_rush_hour/sprite_rush_hour_player.png" id="2_l7f1l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7eh2i"]
-size = Vector2(253, 124)
+size = Vector2(248, 116)
 
 [node name="player" type="CharacterBody2D"]
 script = ExtResource("1_k55j4")
@@ -15,5 +15,5 @@ z_as_relative = false
 texture = ExtResource("2_l7f1l")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, 0)
+position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_7eh2i")

@@ -29,6 +29,11 @@ var previous_mouse_position =  Vector2(0,0)
 
 var collide = Vector2(0,0)
 var prev_position = Vector2(0,0)
+var max_speed = 50
+
+var piece_type = ""
+var cell_loc = Vector2(0,0)
+
 
 func _ready():
 	start_pos = position
@@ -36,10 +41,21 @@ func _ready():
 	if direction == 1:
 		sprite.rotation_degrees = 90
 		collision_shape.rotation_degrees = 90
+		
 
+func _process(delta: float):
+	if is_selected:
+		sprite.modulate = Color(0, 0, 0.5)
+	else:
+		sprite.modulate = Color(1, 1, 1)
+	if direction == 0:
+		position = position.clamp(Vector2(-128-96, -128*2+8), Vector2(128*3-96-8, 128*3-8))
+	else:
+		position = position.clamp(Vector2(-128*2-32, -128-64+8), Vector2(128*3-32-8, 128*3-64-8))
+	
 
 func _physics_process(delta: float):
-	print(position)
+	#print(position)
 	collide = input_dir.round() * speed
 	if direction == 0:
 		collide.y = 0
@@ -47,9 +63,14 @@ func _physics_process(delta: float):
 	else:
 		collide.x = 0
 		position.x = clamp(position.x, start_pos.x, start_pos.x)  # Keep x fixed
+		
+	if collide.length() > max_speed:
+		collide = collide.normalized() * max_speed
+	
 	var collision = move_and_collide(collide * delta)
 	if collision:
 		is_selected = false
+		
 	if direction == 0:
 		position.y = clamp(position.y, start_pos.y, start_pos.y) 
 	else:
@@ -59,28 +80,35 @@ func _physics_process(delta: float):
 		position = prev_position
 		
 	if is_selected == true:
-		var tween = get_tree().create_tween()
 		var current_position = position
 		var new_position = Vector2(0,0)
 		prev_position = position
+		#collision = move_and_collide(collide * delta)
 		if direction == 0:
 			new_position = Vector2(
-			get_global_mouse_position().x - mouse_offset.x - additional_offset.x,  
+			get_global_mouse_position().x - mouse_offset.x-512-28,
 			position.y)
 			#new_position.x = round((new_position.x) / grid_size) * grid_size/2 -32
-			new_position.x = round((new_position.x) / grid_size) * grid_size/2 -256
+			#new_position.x = round((new_position.x) / grid_size) * grid_size/2 -256
+			
 		else:
 			new_position = Vector2(
 			position.x,  # Keep x constant
-			get_global_mouse_position().y - mouse_offset.y- additional_offset.y)
-			new_position.y = round(new_position.y / grid_size) * grid_size/2 -32
-
-			#lobal_position.y + rotated_vector.y - mouse_offset.y)
-		new_position = new_position.clamp(Vector2(-128-96, -128-64), Vector2(128*3-96, 128*3-96))
-		tween.tween_property(self, "position", new_position, delay * delta)
-
+			get_global_mouse_position().y - mouse_offset.y-1024+64,)
+			#new_position.y = round(new_position.y / grid_size) * grid_size/2 -32
+		collision = move_and_collide(collide * delta)
+		if direction == 0:
+			new_position = new_position.clamp(Vector2(-128-96, -128*2+8), Vector2(128*3-96-8, 128*3-8))
+		else:
+			new_position = new_position.clamp(Vector2(-128*2-32, -128-64+8), Vector2(128*3-32-8, 128*3-64-8))
+		if collision:
+			new_position = new_position.clamp(position, collision.get_position())
+		position += (new_position - position) * delta * 3
+		
+			
 func _input(event):
 	if is_selected:
+		sprite.modulate
 		var current_mouse_position = get_global_mouse_position()
 		input_dir = (current_mouse_position - previous_mouse_position).normalized()
 		previous_mouse_position = current_mouse_position
@@ -89,12 +117,9 @@ func _input(event):
 	
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
-			if direction == 0:
-				local_mouse_pos = to_local(event.position-Vector2(-128,128))
-			else:
-				local_mouse_pos = to_local(event.position-Vector2(-128,128))
-			
-			local_mouse_pos = to_local(event.position-camera_offset)
+			#var global_mouse_pos = get_global_mouse_position()
+
+			local_mouse_pos = sprite.to_local(event.position)
 			if sprite.get_rect().has_point(local_mouse_pos):
 				is_selected = true
 				#mouse_offset = global_position+Vector2(-200,-100)

@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://txf8ygkaavx0"]
+
+[ext_resource type="Texture2D" uid="uid://b3eju70n1vntq" path="res://resources/images/game_utils/game_utils_retry_button/sprite_retry_button.svg" id="1_d12cu"]
+[ext_resource type="Script" path="res://scenes/game_utils/game_utils_retry_button/game_utils_retry_button.gd" id="1_jhvfm"]
+[ext_resource type="Texture2D" uid="uid://djkl0b2ckjd6v" path="res://resources/images/game_utils/game_utils_retry_button/sprite_retry_overlay.svg" id="3_ve0pf"]
+
+[node name="GameUtilsRetryButton" type="TextureButton" node_paths=PackedStringArray("retry_sprite")]
+offset_right = 256.0
+offset_bottom = 256.0
+texture_normal = ExtResource("1_d12cu")
+texture_pressed = ExtResource("1_d12cu")
+texture_hover = ExtResource("1_d12cu")
+texture_disabled = ExtResource("1_d12cu")
+script = ExtResource("1_jhvfm")
+retry_sprite = NodePath("RetryOverlay/RetrySprite")
+
+[node name="RetryOverlay" type="CanvasLayer" parent="."]
+
+[node name="RetrySprite" type="Sprite2D" parent="RetryOverlay"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(540, 960)
+texture = ExtResource("3_ve0pf")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
+[connection signal="request_retry" from="." to="." method="animate_retry_sprite"]
