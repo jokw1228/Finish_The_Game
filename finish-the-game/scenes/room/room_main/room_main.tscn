@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dej30dvp0aefe"]
+[gd_scene load_steps=5 format=3 uid="uid://dej30dvp0aefe"]
 
 [ext_resource type="PackedScene" uid="uid://bnyfbqonp1qby" path="res://scenes/ui/background/background_scrolling_controller.tscn" id="1_dlowq"]
 [ext_resource type="Script" path="res://scenes/room/room_main/room_main.gd" id="1_n65dx"]
 [ext_resource type="Script" path="res://scenes/room/room_main/utils/tap_anywhere_to_start.gd" id="3_vweoc"]
+[ext_resource type="Texture2D" uid="uid://duv1kw67dqpoe" path="res://resources/images/room_main/sprite_scroll_right_arrow.svg" id="4_6y3y6"]
 
 [node name="RoomMain" type="Control" node_paths=PackedStringArray("background_scrolling_controller")]
 layout_mode = 3
@@ -13,9 +14,11 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_n65dx")
 background_scrolling_controller = NodePath("BackgroundScrollingController")
+metadata/_edit_lock_ = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
+metadata/_edit_lock_ = true
 
 [node name="BackgroundScrollingController" parent="." instance=ExtResource("1_dlowq")]
 
@@ -28,8 +31,10 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_lock_ = true
 
 [node name="AreYouReadyToFinishIt" type="Label" parent="Title"]
+layout_mode = 0
 offset_left = -540.0
 offset_top = -384.0
 offset_right = 526.0
@@ -43,8 +48,10 @@ text = "ARE YOU READY
 TO FINISH IT?"
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_lock_ = true
 
 [node name="FTGTitle" type="Label" parent="Title"]
+layout_mode = 0
 offset_left = -540.0
 offset_top = -960.0
 offset_right = 548.0
@@ -62,6 +69,7 @@ vertical_alignment = 1
 metadata/_edit_lock_ = true
 
 [node name="TapAnywhereToStart" type="Label" parent="Title"]
+layout_mode = 0
 offset_left = -540.0
 offset_top = 256.0
 offset_right = 526.0
@@ -75,3 +83,51 @@ TO START"
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("3_vweoc")
+metadata/_edit_lock_ = true
+
+[node name="StageSelection" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+metadata/_edit_lock_ = true
+
+[node name="Arrows" type="Control" parent="StageSelection"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="RightArrow" type="TextureRect" parent="StageSelection/Arrows"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -64.0
+offset_right = -64.0
+offset_bottom = 64.0
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("4_6y3y6")
+metadata/_edit_lock_ = true
+
+[node name="LeftArrow" type="TextureRect" parent="StageSelection/Arrows"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 64.0
+offset_top = -64.0
+offset_right = 128.0
+offset_bottom = 64.0
+grow_vertical = 2
+texture = ExtResource("4_6y3y6")
+flip_h = true
+metadata/_edit_lock_ = true

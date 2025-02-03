@@ -25,11 +25,29 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.12549, 0.12549, 0.12549, 1)
 
-[node name="SpriteCatAndDog" type="Sprite2D" parent="."]
-position = Vector2(540, 1280)
+[node name="TextureKoreaUniv" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -16.0
+offset_top = 736.0
+offset_right = -502.0
+offset_bottom = -590.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_drqxy")
+
+[node name="TextureCatAndDog" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 576.0
+offset_top = 800.0
+offset_right = 520.0
+offset_bottom = -96.0
+grow_horizontal = 2
+grow_vertical = 2
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("2_d58t4")
-
-[node name="SpriteKoreaUniv" type="Sprite2D" parent="."]
-position = Vector2(540, 640)
-texture = ExtResource("3_drqxy")
