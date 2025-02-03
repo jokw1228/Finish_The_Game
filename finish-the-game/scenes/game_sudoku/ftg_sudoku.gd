@@ -41,7 +41,7 @@ func check_inc_ans():
 	
 			
 func check_game_cleared():
-	print("hi")
+	#print("hi")
 	for i in range(len(arr)):
 		if not board[arr[i].x][arr[i].y] == ans_board[arr[i].x][arr[i].y]:
 			return
