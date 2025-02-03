@@ -4,23 +4,32 @@
 [ext_resource type="Texture2D" uid="uid://dnmvl2uhit4ex" path="res://resources/images/room_logo/sprite_cat_and_dog.png" id="2_d58t4"]
 [ext_resource type="Texture2D" uid="uid://c3ipgea14k7na" path="res://resources/images/room_logo/sprite_korea_univ.svg" id="3_drqxy"]
 
-[node name="RoomLogo" type="Node2D"]
+[node name="RoomLogo" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_62yfl")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
 
 [node name="ColorRect" type="ColorRect" parent="."]
-offset_right = 1080.0
-offset_bottom = 1920.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(0.12549, 0.12549, 0.12549, 1)
-metadata/_edit_lock_ = true
 
 [node name="SpriteCatAndDog" type="Sprite2D" parent="."]
-position = Vector2(540, 640)
-scale = Vector2(0.5, 0.5)
+position = Vector2(540, 1280)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("2_d58t4")
 
 [node name="SpriteKoreaUniv" type="Sprite2D" parent="."]
-position = Vector2(540, 1280)
+position = Vector2(540, 640)
 texture = ExtResource("3_drqxy")

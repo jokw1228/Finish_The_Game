@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 class_name RoomLogo
 
 var room_main: String = "res://scenes/room/room_main/room_main.tscn"

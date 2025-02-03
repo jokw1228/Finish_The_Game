@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 class_name RoomMain
 
 @export var background_scrolling_controller: BackgroundScrollingController
