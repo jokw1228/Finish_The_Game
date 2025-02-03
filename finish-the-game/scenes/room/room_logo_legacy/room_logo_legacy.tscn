@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://diiodgowsdr4u"]
+
+[ext_resource type="Script" path="res://scenes/room/room_logo_legacy/room_logo_legacy.gd" id="1_bedc5"]
+[ext_resource type="PackedScene" uid="uid://bnyfbqonp1qby" path="res://scenes/ui/background/background_scrolling_controller.tscn" id="2_8ioem"]
+[ext_resource type="PackedScene" uid="uid://b3fbsp14s0uh" path="res://scenes/ui/overlay/ftg_result_overlay_controller.tscn" id="3_lfi8p"]
+
+[node name="RoomLogoLegacy" type="Node2D"]
+script = ExtResource("1_bedc5")
+
+[node name="BackgroundScrollingController" parent="." instance=ExtResource("2_8ioem")]
+
+[node name="FTGResultOverlayController" parent="." instance=ExtResource("3_lfi8p")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+
+[connection signal="request_display_ftg_result" from="." to="FTGResultOverlayController" method="display_ftg_result"]
+[connection signal="request_set_all_label_text" from="." to="BackgroundScrollingController" method="set_all_label_text"]
