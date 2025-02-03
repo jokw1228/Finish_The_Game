@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://c8whyrgf2mmqi" path="res://scenes/game_one_card/one_card.tscn" id="1_8lopt"]
 [ext_resource type="Script" path="res://scenes/game_one_card/ftg_one_card.gd" id="2_323vh"]
-[ext_resource type="PackedScene" uid="uid://32twi0juyy6u" path="res://scenes/game_utils/game_utils_game_timer.tscn" id="3_ef7ex"]
+[ext_resource type="PackedScene" uid="uid://32twi0juyy6u" path="res://scenes/game_utils/game_utils_game_timer/game_utils_game_timer.tscn" id="3_ef7ex"]
 
 [node name="FTGOneCard" instance=ExtResource("1_8lopt")]
 script = ExtResource("2_323vh")

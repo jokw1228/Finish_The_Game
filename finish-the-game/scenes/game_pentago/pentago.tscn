@@ -13,4 +13,4 @@ metadata/_edit_lock_ = true
 [connection signal="approve_and_reply_rotate_subboard" from="." to="PentagoUI" method="receive_approve_and_reply_rotate_subboard"]
 [connection signal="request_immediately_place_stone" from="." to="PentagoUI" method="receive_request_immediately_place_stone"]
 [connection signal="request_place_stone" from="PentagoUI" to="." method="receive_request_place_stone"]
-[connection signal="request_rotate_subbaord" from="PentagoUI" to="." method="receive_request_rotate_subboard"]
+[connection signal="request_rotate_subboard" from="PentagoUI" to="." method="receive_request_rotate_subboard"]

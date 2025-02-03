@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bg2kxfmto362t"
-path="res://.godot/imported/sprite_game_timer_outline.svg-56a7adb7641d7beeeae2a18c169e1e14.ctex"
+uid="uid://b3eju70n1vntq"
+path="res://.godot/imported/sprite_retry_button.svg-16e7c064deb893b82ea807965b24b899.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/images/game_utils/sprite_game_timer_outline.svg"
-dest_files=["res://.godot/imported/sprite_game_timer_outline.svg-56a7adb7641d7beeeae2a18c169e1e14.ctex"]
+source_file="res://resources/images/game_utils/game_utils_retry_button/sprite_retry_button.svg"
+dest_files=["res://.godot/imported/sprite_retry_button.svg-16e7c064deb893b82ea807965b24b899.ctex"]
 
 [params]
 

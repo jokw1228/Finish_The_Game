@@ -1,0 +1,82 @@
+[gd_scene load_steps=9 format=3 uid="uid://cl5t3aqp7lxbh"]
+
+[ext_resource type="Script" path="res://scenes/ui/room_manager/room_manager.gd" id="1_5x1jh"]
+[ext_resource type="Shader" path="res://scenes/ui/room_manager/transition_overlay_circle.gdshader" id="2_anmln"]
+[ext_resource type="Script" path="res://scenes/ui/room_manager/transition_overlay.gd" id="3_t13uo"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v0lkp"]
+shader = ExtResource("2_anmln")
+shader_parameter/hole_radius = 1.0
+shader_parameter/edge_softness = 0.0
+
+[sub_resource type="Animation" id="Animation_t5vd7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/hole_radius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_0486t"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/hole_radius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_aaxq0"]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/hole_radius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6sq1a"]
+_data = {
+"RESET": SubResource("Animation_t5vd7"),
+"fade_in": SubResource("Animation_0486t"),
+"fade_out": SubResource("Animation_aaxq0")
+}
+
+[node name="RoomManager" type="Node" node_paths=PackedStringArray("transition_overlay")]
+script = ExtResource("1_5x1jh")
+transition_overlay = NodePath("CanvasLayer/TransitionOverlay")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TransitionOverlay" type="ColorRect" parent="CanvasLayer" node_paths=PackedStringArray("animation_player")]
+material = SubResource("ShaderMaterial_v0lkp")
+offset_right = 1080.0
+offset_bottom = 1920.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+script = ExtResource("3_t13uo")
+animation_player = NodePath("AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/TransitionOverlay"]
+libraries = {
+"": SubResource("AnimationLibrary_6sq1a")
+}
