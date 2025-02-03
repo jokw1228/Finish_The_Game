@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://2iqkt2dicrub" path="res://scenes/game_sudoku/sudoku.tscn" id="1_cfnm0"]
 [ext_resource type="Script" path="res://scenes/game_sudoku/ftg_sudoku.gd" id="2_u0awp"]
-[ext_resource type="PackedScene" uid="uid://32twi0juyy6u" path="res://scenes/game_utils/game_utils_game_timer.tscn" id="2_y5k4x"]
+[ext_resource type="PackedScene" uid="uid://malrulcvhlnu" path="res://scenes/game_utils/game_utils_game_timer.tscn" id="2_y5k4x"]
 
 [node name="FtgSudoku" instance=ExtResource("1_cfnm0")]
 script = ExtResource("2_u0awp")
