@@ -8,14 +8,14 @@ signal end_ftg(is_game_cleared: bool)
 signal start_timer(duration: float)
 signal pause_timer()
 
-const duration = 15.0
+const duration = 25.0
 
 var timeout = false
 
 signal disable_input
 
 func start_ftg():
-	var ans_num = randi() %16 + 5
+	var ans_num = randi() %10 + 5
 	var rand_row
 	var rand_col
 	var i = 0
@@ -34,7 +34,7 @@ func start_ftg():
 	#print(arr)
 
 func check_inc_ans():
-	if num_inc >=5:
+	if num_inc >=num_mistakes:
 		pause_timer.emit()
 		if not timeout:
 			end_ftg.emit(false)

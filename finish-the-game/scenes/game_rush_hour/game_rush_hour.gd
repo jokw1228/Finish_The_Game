@@ -50,7 +50,7 @@ func _ready():
 	#select_grid()
 	find_target_location()
 	place_pieces()
-	const duration = 5
+	const duration = 10
 	start_timer.emit(duration)
 	start.emit(target_location, player_direction)
 	
@@ -59,7 +59,7 @@ func _ready():
 	
 	
 func start_ftg():
-	print("start ftg")
+	print()
 	
 	
 func _process(delta):
@@ -221,6 +221,7 @@ func select_grid():
 	
 func generate_board():
 	#map = "BBCCKLDDoIKLGAAIKoGooJEEHooJooHFFFoo"
+	#map = "oooEoooooEFGAAoEFGoooooooDoooooDBBox"
 	str_board = []
 	var temp_str_board = []
 	for i in range(6):
@@ -240,9 +241,9 @@ func generate_board():
 	
 	#for p in range(board_size):
 		#for k in range(board_size):
-	print_board(str_board)
+	#print_board(str_board)
 	board = temp_str_board.duplicate(true)
-	print_board(board)
+	#print_board(board)
 	
 
 #exit is always at top or left side of board

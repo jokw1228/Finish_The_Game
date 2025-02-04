@@ -27,6 +27,8 @@ var ans_selected = false
 
 var ans_index = 0
 
+var num_mistakes = 10
+
 var is_grid_selected = false
 @onready var grid:GridContainer = $SudokuGrid
 #@onready var sprite:Sprite2D = $SudokuBoard
@@ -46,7 +48,7 @@ func _ready() -> void:
 	#	board.append(nums)
 	#_create_sudoku()
 	#size = 1080x1920
-	label.text = "Mistakes: 0/5"
+	label.text = "Mistakes: 0/" + str(num_mistakes)
 	label.position = Vector2(-320+8,-526)
 	grid.position = Vector2(-428-32,-428)
 	#sprite.position = Vector2(0.5,-256+32)
@@ -74,7 +76,7 @@ func add_to_grid():
 			button.connect("pressed", Callable(self, "_on_button_pressed").bind(button, i, j))
 			var style = StyleBoxFlat.new()
 			
-			style.bg_color = Color(0.8, 0.8, 0.8) 
+			style.bg_color = Color(0.8, 0.8, 0.8, 0.8) 
 			
 			button.add_theme_stylebox_override("normal", style)
 			
@@ -146,10 +148,10 @@ func _on_button_pressed(button, i, j):
 	emit_signal("grid_selected",button, i, j)
 	is_grid_selected = true
 	if ans_selected == true:
-		change_button_color(ans_index,  Color(0.8, 0.8, 0.8))
+		change_button_color(ans_index,  Color(0.8, 0.8, 0.8, 0.8))
 	if button !=  curr_button:
 		change_button_color(board[i][j],  Color(0.6, 0.8, 1))
-		change_button_color(curr_button_index,  Color(0.8, 0.8, 0.8))
+		change_button_color(curr_button_index,  Color(0.8, 0.8, 0.8, 0.8))
 	curr_button = button
 	curr_button_index = board[i][j]
 	ans_selected = false
@@ -157,7 +159,7 @@ func _on_button_pressed(button, i, j):
 func _on_select_grid_choose_ans(index, button, i, j):
 
 	if is_grid_selected and puzzle_board[i][j] == 0:
-		change_button_color(curr_button_index, Color(0.8, 0.8, 0.8))
+		change_button_color(curr_button_index, Color(0.8, 0.8, 0.8, 0.8))
 		ans_selected = true
 		ans_index = index
 		button.text = str(index)
@@ -184,8 +186,8 @@ func _on_select_grid_choose_ans(index, button, i, j):
 
 func _on_inc_answer():
 	num_inc+=1
-	label.text = "Mistakes: " + str(num_inc) + "/5"
+	label.text = "Mistakes: " + str(num_inc) + "/" + str(num_mistakes)
 
 
 func _on_select_grid_ans_unselected(index):
-	change_button_color(index, Color(0.8, 0.8, 0.8))
+	change_button_color(index, Color(0.8, 0.8, 0.8, 0.8))
