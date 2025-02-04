@@ -22,16 +22,20 @@ func filp_card(is_up: bool):
 	
 	if is_up:
 		tween.tween_property(self, "scale", Vector2.DOWN, 0.15)
+		await tween.finished
 		
 		$Card.texture = memory_ui.card_image[0]
 		$Shape.texture = memory_ui.shape_image[shape_info]
 		
+		tween = get_tree().create_tween()
 		tween.tween_property(self, "scale", Vector2.LEFT + Vector2.DOWN, 0.15)
 		
 	else:
 		tween.tween_property(self, "scale", Vector2.DOWN, 0.15)
+		await tween.finished
 
 		$Card.texture = memory_ui.card_image[1]
 		$Shape.texture = null
 		
+		tween = get_tree().create_tween()
 		tween.tween_property(self, "scale", Vector2.RIGHT + Vector2.DOWN, 0.15)
