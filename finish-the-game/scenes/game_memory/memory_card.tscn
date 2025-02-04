@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://cx7ip7pk108p3"]
+
+[ext_resource type="Script" path="res://scenes/game_memory/memory_card.gd" id="1_7usp8"]
+[ext_resource type="Texture2D" uid="uid://byh14nhlnlbm" path="res://resources/images/game_memory/sprite_memory_unknown_card.png" id="2_snnaa"]
+[ext_resource type="Texture2D" uid="uid://dsbip3oy3230y" path="res://resources/images/game_memory/sprite_memory_diamond_black.png" id="3_nt8l3"]
+
+[node name="MemoryCard" type="TextureRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -952.0
+offset_bottom = -1664.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7usp8")
+
+[node name="Card" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 256.0
+texture = ExtResource("2_snnaa")
+
+[node name="Shape" type="TextureRect" parent="."]
+layout_mode = 0
+offset_top = 64.0
+offset_right = 128.0
+offset_bottom = 192.0
+texture = ExtResource("3_nt8l3")

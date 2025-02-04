@@ -70,7 +70,7 @@ func start_ftg() -> void:
 	
 	init_UI.emit(card_num)
 	
-	const duration = 12.0
+	const duration = 15.0
 	start_timer.emit(duration)
 
 

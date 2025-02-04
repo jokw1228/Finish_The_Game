@@ -57,5 +57,11 @@ func _requested_delete_cards(card_index_set: Array[int]) -> void:
 		deny_delete_cards.emit()
 
 
+func retry() -> void:
+	deleted_card_num = 0
+	for i in range(len(field_card_set)):
+		field_card_set[i][0] = true
+
+
 func finish_game() -> void:
 	pass

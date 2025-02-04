@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cmuh1gia1wly0"]
+
+[ext_resource type="Script" path="res://scenes/game_memory/memory_card_button.gd" id="1_3r6rh"]
+
+[node name="MemoryCardButton" type="TextureButton"]
+offset_right = 128.0
+offset_bottom = 256.0
+action_mode = 0
+script = ExtResource("1_3r6rh")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
