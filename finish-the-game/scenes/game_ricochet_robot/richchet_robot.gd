@@ -11,6 +11,7 @@ signal request_reset_ui()
 
 signal request_move_robot_ui(robot_to_move: COLOR, location_from: Vector2, location_to: Vector2)
 signal move_finished()
+signal game_clear()
 
 enum WALL
 {
@@ -43,6 +44,9 @@ var goal: Vector2
 var goal_color: int
 var robot_location: Array[Vector2]
 
+var test_robot_location: Array[Vector2] = [Vector2(0,0), Vector2(0,1), Vector2(0,2), Vector2(0,3), Vector2(0,4)]
+	
+
 var board_r1 = [
 	[[WALL.NORTH,WALL.WEST],[WALL.NORTH],[WALL.NORTH],[WALL.NORTH,WALL.EAST],[WALL.NORTH,WALL.WEST],[WALL.NORTH],[WALL.NORTH],[WALL.NORTH]],
 	[[WALL.WEST],[],[],[],[],[],[],[]],
@@ -61,7 +65,7 @@ var board_list = [red_boards]
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	initialize_board()
-	robot_location = [Vector2(0,0), Vector2(0,1), Vector2(0,2), Vector2(0,3), Vector2(0,4)]
+	robot_location = test_robot_location
 	request_generate_wall_ui.emit(board,board_size)
 	request_generate_goal_ui.emit(goal,goal_color,board_size)
 	request_generate_robots_ui.emit(robot_location)
@@ -84,12 +88,12 @@ func initialize_board():
 	elif board_size == 16:
 		pass #추후에 구현할 큰 보드의 리코셰로봇
 		
-func reset_board():
+func reset_board(new_robot_location: Array[Vector2]):
 	request_reset_ui.emit()
-	initialize_board()
+	#initialize_board()
 	turn_state = TURN_STATE.SELECT
 	color_selected = COLOR.NONE
-	robot_location = [Vector2(0,0), Vector2(0,1), Vector2(0,2), Vector2(0,3), Vector2(0,4)]
+	robot_location = new_robot_location
 	request_generate_wall_ui.emit(board,board_size)
 	request_generate_goal_ui.emit(goal,goal_color,board_size)
 	request_generate_robots_ui.emit(robot_location)
@@ -112,7 +116,9 @@ func receive_request_cell_pressed(cell_index: Vector2) -> void:
 				await move_finished
 				if robot_location[int(color_selected)] == goal and color_selected == goal_color:
 					print("Congrats!")
-					reset_board()
+					game_clear.emit()
+					#initialize_board()
+					#reset_board(test_robot_location)
 					print("Board Reseted!")
 			else:
 				increase_turn_state()
