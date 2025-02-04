@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://d4et0qldhkn1b"]
+
+[ext_resource type="PackedScene" uid="uid://2iqkt2dicrub" path="res://scenes/game_sudoku/sudoku.tscn" id="1_cfnm0"]
+[ext_resource type="Script" path="res://scenes/game_sudoku/ftg_sudoku.gd" id="2_u0awp"]
+[ext_resource type="PackedScene" uid="uid://32twi0juyy6u" path="res://scenes/game_utils/game_utils_game_timer/game_utils_game_timer.tscn" id="3_srq5v"]
+
+[node name="FtgSudoku" instance=ExtResource("1_cfnm0")]
+script = ExtResource("2_u0awp")
+
+[node name="GameUtilsGameTimer" parent="." index="0" instance=ExtResource("3_srq5v")]
+
+[connection signal="disable_input" from="." to="SelectGrid" method="_on_ftg_sudoku_disable_input"]
+[connection signal="inc_answer" from="." to="." method="check_inc_ans"]
+[connection signal="pause_timer" from="." to="GameUtilsGameTimer" method="pause_timer"]
+[connection signal="start_timer" from="." to="GameUtilsGameTimer" method="start_timer"]
+[connection signal="timeout" from="GameUtilsGameTimer" to="." method="_on_game_utils_game_timer_timeout"]
+[connection signal="choose_ans" from="SelectGrid" to="." method="check_game_cleared"]

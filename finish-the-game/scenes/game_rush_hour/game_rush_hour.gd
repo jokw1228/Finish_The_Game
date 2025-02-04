@@ -18,7 +18,9 @@ var flag = 0
 # 2 = truck2
 # 3 = truck3
 var player_piece = null
+var map 
 var board  = []
+var str_board = []
 var state : bool #selecting  confirming the move
 var selected_piece : Node = null #position of selected piece
 var mouse_offset  = Vector2(0,0)
@@ -37,22 +39,27 @@ var checked_pos = []
 var piece_list = []
 signal start(value: Vector2)
 
-
-
+signal gen_map
 signal player_piece_instantiated(player_piece)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	select_grid()
+	var num = randi_range(5, 12)
+	gen_map.emit(num)
+	generate_board()
+	#select_grid()
+	find_target_location()
 	place_pieces()
-	const duration = 10.0
+	const duration = 10
 	start_timer.emit(duration)
 	start.emit(target_location, player_direction)
+	
 	#print(piece_list)
 	#print_board(board)
 	
+	
 func start_ftg():
-	print("start ftg")
+	print()
 	
 	
 func _process(delta):
@@ -205,48 +212,114 @@ func select_grid():
 	var arr = [board1, board2, board3, board4, board5, board6]
 	var selected_array = randi() % arr.size()
 	board = arr[selected_array]
-	find_target_location()
+	
 	#for debugging:
 	#board = board5
 	#target_location =  Vector2(3, 0)
 	
+	
+	
+func generate_board():
+	#map = "BBCCKLDDoIKLGAAIKoGooJEEHooJooHFFFoo"
+	#map = "oooEoooooEFGAAoEFGoooooooDoooooDBBox"
+	str_board = []
+	var temp_str_board = []
+	for i in range(6):
+		var row = []
+		var row2 = [0,0,0,0,0,0]
+		for j in range(6):
+			row.append(map[i * 6 + j]) 
+		str_board.append(row)
+		#board.append(row2)
+	temp_str_board = str_board.duplicate(true)
+	for row in range(board_size):
+		for col in range(board_size):
+			if str(temp_str_board[row][col]) == "o" or str(temp_str_board[row][col]) == "x":
+				temp_str_board[row][col] = 0
+			mark_map_horizontal(temp_str_board, row, col)
+			mark_map_vertical(temp_str_board, row, col)
+	
+	#for p in range(board_size):
+		#for k in range(board_size):
+	#print_board(str_board)
+	board = temp_str_board.duplicate(true)
+	#print_board(board)
+	
+
 #exit is always at top or left side of board
 func find_target_location():
 	for row in board_size:
 		for col in board_size:
 			if board[row][col] == 1:
-				if is_horizontal(row, col,1):
+				if is_horizontal(board, row, col):
 					target_location = Vector2(5,row)
 					player_direction = 0
-				elif is_vertical(row, col,1):
+				elif is_vertical(board, row, col):
 					target_location = Vector2(col,0)
 					player_direction = 1
 					
 				
+#board configurations like 2 2
+#                          2 2 
+#are evaluated as two horizontal pieces
+func mark_map_horizontal(r_board, row, col):
+	var letter = r_board[row][col]
+	var value =2
+	if not letter is int and letter != "o" and letter != "x":
+		if col +1 < len(r_board[row]) and str(r_board[row][col+1]) == letter and (col +2 < len(r_board[row]) and str(r_board[row][col+2]) == letter):
+			for i in range(3):
+				r_board[row][col+i] = 3
+		elif col +1 < len(r_board[row]) and str(r_board[row][col+1]) == letter:
+			if letter == "A":
+				value = 1
+			for i in range(2):
+				r_board[row][col+i] = value
 	
-func is_horizontal(row, col,value):
+func mark_map_vertical(r_board, row, col):
+	var letter = r_board[row][col]
+	var value = 2
+	if not letter is int and letter != "o" and letter != "x":
+		if row +1 < len(r_board[row]) and str(r_board[row+1][col]) == letter and (row +2 < len(r_board[row]) and str(r_board[row+2][col])  == letter):
+			for i in range(3):
+				r_board[row+i][col] = 3
+		elif row +1 < len(r_board) and str(r_board[row+1][col]) == letter:
+			if letter == "A":
+				value = 1
+			for i in range(2):
+				r_board[row+i][col] = value
+
+
+
+func is_horizontal(r_board, row, col):
+	var value = r_board[row][col]
+	var letter =  str_board[row][col]
 	if value == 3:
 		for i in range(3):
 			if Vector2(row, col+i) in checked_pos:
 				return false
-		return  col +1 < len(board[row]) and board[row][col+1] == value and (col +2 < len(board[row]) and board[row][col+2] == value)
+		return  col +1 < len(r_board[row]) and str_board[row][col+1] == letter and (col +2 < len(r_board[row]) and str_board[row][col+2] == letter)
 	if value == 2:
 		for j in range(2):
 			if Vector2(row, col+j) in checked_pos:
-				return false
-	return col +1 < len(board[row]) and board[row][col+1] == value
+				return 
+				false
+	#print(letter)
+	#print(str_board[row][col+1])
+	return col +1 < len(r_board[row]) and str_board[row][col+1] == letter
 	
-func is_vertical(row, col,value):
+func is_vertical(r_board, row, col):
+	var value = r_board[row][col]
+	var letter =  str_board[row][col]
 	if value == 3:
 		for i in range(3):
 			if Vector2(row+i, col) in checked_pos:
 				return false
-		return  row +1 < len(board[row]) and board[row+1][col] == value and (row +2 < len(board[row]) and board[row+2][col] == value)
+		return  row +1 < len(r_board[row]) and str_board[row+1][col] == letter and (row +2 < len(str_board[row]) and str_board[row+2][col] == letter)
 	if value == 2:
 		for j in range(2):
 			if Vector2(row+j, col) in checked_pos:
 				return false
-	return row +1 < len(board) and board[row+1][col] == value
+	return row +1 < len(r_board) and str_board[row+1][col] == letter
 	
 func place_piece(cell, row, col, horizontal):
 	var piece
@@ -291,6 +364,7 @@ func place_piece(cell, row, col, horizontal):
 				piece.position = start_position + Vector2(col * cell_size, row * cell_size+128+64)
 	
 	piece.cell_loc = Vector2(col,row) # save as x and y
+	#print("position: ", piece.position )
 	add_child(piece)		
 	if cell == 1:
 		piece.piece_type = "player"
@@ -318,12 +392,13 @@ func place_pieces():
 	for row in range(board_size):
 		for col in range(board_size):
 			var cell = board[row][col]
+			#var letter = str_board[row][col]
 			if cell != 0 and Vector2(row, col) not in checked_pos:
-				if is_horizontal(row, col, cell):
+				if is_horizontal(board, row, col):
 					#print("HOrizontal Row and col: ",row," ", col)
 					place_piece(cell, row, col, true)
 					mark_pos(row, col,cell, true, checked_pos)
-				elif is_vertical(row, col, cell):
+				elif is_vertical(board, row, col):
 					#print("Vertifcal Row and col: ",row," ", col)
 					place_piece(cell, row, col,false)
 					mark_pos(row, col, cell, false, checked_pos)
@@ -335,3 +410,7 @@ func _on_game_utils_game_timer_timeout() -> void:
 	if not flag:
 		end_ftg.emit(false)
 		flag = 2
+
+
+func _on_map_chosen(chosen_map) -> void:
+	map = chosen_map

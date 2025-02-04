@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://c2vta8f2njppa"]
+
+[ext_resource type="PackedScene" uid="uid://32twi0juyy6u" path="res://scenes/game_utils/game_utils_game_timer/game_utils_game_timer.tscn" id="1_5iixb"]
+[ext_resource type="Script" path="res://scenes/game_ladder/ftg_ladder.gd" id="1_wysop"]
+
+[node name="FtgLadder" type="Node2D"]
+
+[node name="GameUtilsGameTimer" parent="." instance=ExtResource("1_5iixb")]
+
+[node name="Node2D" type="Node2D" parent="."]
+script = ExtResource("1_wysop")
+
+[connection signal="pause_timer" from="Node2D" to="GameUtilsGameTimer" method="pause_timer"]
+[connection signal="start_timer" from="Node2D" to="GameUtilsGameTimer" method="start_timer"]

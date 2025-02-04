@@ -32,6 +32,7 @@ var collide = Vector2(0,0)
 var center 
 var piece_type = ""
 var cell_loc = Vector2(0,0)
+var flag = 0
 #var camera_position = get_viewport().get_camera().global_position
 
 func _ready():
@@ -47,6 +48,7 @@ func _ready():
 		sprite.texture = truck1
 		collision_shape.shape = RectangleShape2D.new()
 		collision_shape.shape.extents = Vector2(128-8, 64-8)
+		#collision_shape.shape.extents = Vector2(64, )
 			
 	else:
 		sprite.texture = truck2
@@ -58,6 +60,7 @@ func _ready():
 		
 func _process(delta: float) -> void:
 	if is_selected:
+		flag = 1
 		sprite.modulate = Color(0, 0, 0.2)
 	else:
 		sprite.modulate = Color(1, 1, 1)
@@ -81,20 +84,21 @@ func _process(delta: float) -> void:
 	
 func _physics_process(delta: float):
 	collide = input_dir * speed
-	if direction == 0:
-		collide.y = 0
-		position.y = start_pos.y
-	else:
-		collide.x = 0
-		position.x = start_pos.x
-	var collision = move_and_collide(collide * delta)
-	if collision:
-		is_selected = false
-	#horixontal or vertical fix
-	if direction == 0:
-		position.y = clamp(position.y, start_pos.y, start_pos.y) 
-	else:
-		position.x = clamp(position.x, start_pos.x, start_pos.x)
+	if flag != 0:
+		if direction == 0:
+			collide.y = 0
+			position.y = start_pos.y
+		else:
+			collide.x = 0
+			position.x = start_pos.x
+		var collision = move_and_collide(collide * delta)
+		if collision:
+			is_selected = false
+		#horixontal or vertical fix
+		if direction == 0:
+			position.y = clamp(position.y, start_pos.y, start_pos.y) 
+		else:
+			position.x = clamp(position.x, start_pos.x, start_pos.x)
 	#if not is_selected and collision:
 		#position = prev_position
 	
@@ -126,10 +130,12 @@ func _physics_process(delta: float):
 				new_position = new_position.clamp(Vector2(-128-96, -128*2), Vector2(128*3-96, 128*3))
 			else:
 				new_position = new_position.clamp(Vector2(-128*2-64, -128-64), Vector2(128*3-32, 128*2+64))
-		collision = move_and_collide(collide * delta)
-		if collision:
-			new_position = new_position.clamp(position, collision.get_position())
-		position += (new_position - position) * delta * 3
+				
+		if flag != 0:
+			var collision = move_and_collide(collide * delta)
+			if collision:
+				new_position = new_position.clamp(position, collision.get_position())
+			position += (new_position - position) * delta * 3
 		
 
 

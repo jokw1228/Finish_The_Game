@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://2iqkt2dicrub"]
+
+[ext_resource type="Script" path="res://scenes/game_sudoku/sudoku.gd" id="1_s0c0p"]
+[ext_resource type="Script" path="res://scenes/game_sudoku/select_grid.gd" id="2_tno3c"]
+
+[node name="Sudoku" type="Node2D"]
+script = ExtResource("1_s0c0p")
+
+[node name="SudokuGrid" type="GridContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+columns = 9
+
+[node name="SelectGrid" type="GridContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+columns = 9
+script = ExtResource("2_tno3c")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 86.0
+
+[connection signal="grid_selected" from="." to="SelectGrid" method="_on_sudoku_grid_selected"]
+[connection signal="inc_answer" from="." to="." method="_on_inc_answer"]
+[connection signal="ans_unselected" from="SelectGrid" to="." method="_on_select_grid_ans_unselected"]
+[connection signal="choose_ans" from="SelectGrid" to="." method="_on_select_grid_choose_ans"]
