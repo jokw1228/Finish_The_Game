@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://blc1e6inun3jp"]
+
+[ext_resource type="Script" path="res://scenes/game_memory/memory.gd" id="1_0xrms"]
+[ext_resource type="PackedScene" uid="uid://ixyt0pj0bjtk" path="res://scenes/game_memory/menory_ui.tscn" id="1_loipg"]
+[ext_resource type="PackedScene" uid="uid://cx7ip7pk108p3" path="res://scenes/game_memory/memory_card.tscn" id="3_fw1p0"]
+[ext_resource type="PackedScene" uid="uid://cmuh1gia1wly0" path="res://scenes/game_memory/memory_card_button.tscn" id="4_c06k4"]
+
+[node name="Memory" type="Node2D"]
+script = ExtResource("1_0xrms")
+
+[node name="MenoryUi" parent="." node_paths=PackedStringArray("memory_main") instance=ExtResource("1_loipg")]
+memory_main = NodePath("..")
+single_card = ExtResource("3_fw1p0")
+card_button = ExtResource("4_c06k4")
+
+[connection signal="allow_delete_cards" from="." to="MenoryUi" method="_allowed_delete_cards"]
+[connection signal="deny_delete_cards" from="." to="MenoryUi" method="_denied_delete_cards"]
+[connection signal="init_UI" from="." to="MenoryUi" method="_init_ui"]
+[connection signal="stop_UI" from="." to="MenoryUi" method="_stop_ui"]
+[connection signal="request_delete_cards" from="MenoryUi" to="." method="_requested_delete_cards"]

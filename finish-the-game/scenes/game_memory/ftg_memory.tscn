@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://de6qpnr3duits"]
+
+[ext_resource type="PackedScene" uid="uid://blc1e6inun3jp" path="res://scenes/game_memory/memory.tscn" id="1_icwk1"]
+[ext_resource type="Script" path="res://scenes/game_memory/ftg_memory.gd" id="2_7nti4"]
+[ext_resource type="PackedScene" uid="uid://32twi0juyy6u" path="res://scenes/game_utils/game_utils_game_timer.tscn" id="3_jcwst"]
+
+[node name="FTGMemory" instance=ExtResource("1_icwk1")]
+script = ExtResource("2_7nti4")
+
+[node name="GameUtilsGameTimer" parent="." index="0" instance=ExtResource("3_jcwst")]
+
+[connection signal="pause_timer" from="." to="GameUtilsGameTimer" method="pause_timer"]
+[connection signal="start_timer" from="." to="GameUtilsGameTimer" method="start_timer"]
+[connection signal="timeout" from="GameUtilsGameTimer" to="." method="_on_game_utils_game_timer_timeout"]
