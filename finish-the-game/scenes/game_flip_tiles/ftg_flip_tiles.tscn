@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://dwc152ueebkqx"]
+
+[ext_resource type="PackedScene" uid="uid://doek8h0o1rjoe" path="res://scenes/game_flip_tiles/flip_tiles.tscn" id="1_p6kc0"]
+[ext_resource type="Script" path="res://scenes/game_flip_tiles/ftg_flip_tiles.gd" id="2_i7vpk"]
+[ext_resource type="PackedScene" uid="uid://32twi0juyy6u" path="res://scenes/game_utils/game_utils_game_timer.tscn" id="3_eo88v"]
+
+[node name="FTGFlipTiles" instance=ExtResource("1_p6kc0")]
+script = ExtResource("2_i7vpk")
+
+[node name="GameUtilsGameTimer" parent="." index="0" instance=ExtResource("3_eo88v")]
+
+[connection signal="end_game" from="." to="." method="_on_end_game"]
+[connection signal="pause_timer" from="." to="GameUtilsGameTimer" method="pause_timer"]
+[connection signal="request_disable_input" from="." to="FlipTilesUi" method="_on_ftg_flip_tiles_request_disable_input"]
+[connection signal="start_timer" from="." to="GameUtilsGameTimer" method="start_timer"]
+[connection signal="timeout" from="GameUtilsGameTimer" to="." method="_on_game_utils_game_timer_timeout"]
