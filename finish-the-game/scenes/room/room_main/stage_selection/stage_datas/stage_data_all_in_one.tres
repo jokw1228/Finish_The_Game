@@ -8,3 +8,4 @@ script = ExtResource("1_88gpf")
 stage_name = "ALL-IN-ONE"
 stage_description = "Literally all-in-one."
 stage_thumbnail = ExtResource("2_m6hw3")
+stage_info = ExtResource("2_m6hw3")

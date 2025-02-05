@@ -9,3 +9,4 @@ stage_name = "PENTAGO"
 stage_description = "A more advanced version
 of Gomoku."
 stage_thumbnail = ExtResource("2_yr1k3")
+stage_info = ExtResource("2_yr1k3")

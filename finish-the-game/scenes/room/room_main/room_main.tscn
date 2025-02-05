@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://dej30dvp0aefe"]
+[gd_scene load_steps=36 format=3 uid="uid://dej30dvp0aefe"]
 
 [ext_resource type="PackedScene" uid="uid://bnyfbqonp1qby" path="res://scenes/ui/background/background_scrolling_controller.tscn" id="1_dlowq"]
 [ext_resource type="Script" path="res://scenes/room/room_main/room_main.gd" id="1_n65dx"]
@@ -16,8 +16,30 @@
 [ext_resource type="Texture2D" uid="uid://bv7atnqlumm5v" path="res://resources/images/room_main/sprite_stage_select_button_pressed.svg" id="9_iix68"]
 [ext_resource type="Texture2D" uid="uid://b740514y845t1" path="res://resources/images/room_main/sprite_stage_select_button_hover.svg" id="10_fcyev"]
 [ext_resource type="Texture2D" uid="uid://7ubl3whm1t5l" path="res://resources/images/room_main/sprite_stage_info_button.svg" id="11_0wuu7"]
+[ext_resource type="Texture2D" uid="uid://b32myqx2oy2xj" path="res://resources/images/room_main/sprite_stage_info_exit_button.svg" id="11_1hixd"]
+[ext_resource type="Script" path="res://scenes/room/room_main/stage_selection/stage_info_popup.gd" id="11_gf4ly"]
 [ext_resource type="Texture2D" uid="uid://dhluva8gvwwnm" path="res://resources/images/room_main/sprite_stage_info_button_pressed.svg" id="12_m8uk3"]
+[ext_resource type="Texture2D" uid="uid://c8if0bimm45hi" path="res://resources/images/room_main/sprite_stage_info_exit_button_pressed.svg" id="12_no27d"]
+[ext_resource type="Texture2D" uid="uid://cwf26empdh58y" path="res://resources/images/room_main/sprite_stage_info_exit_button_pressed_hover.svg" id="13_ajdkn"]
 [ext_resource type="Texture2D" uid="uid://slxrhykhrq3o" path="res://resources/images/room_main/sprite_stage_info_button_pressed_hover.svg" id="13_ofovp"]
+[ext_resource type="Texture2D" uid="uid://gv3sc4ppndl8" path="res://resources/images/room_main/stage_datas/sprite_stage_line.svg" id="15_2wsay"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ou4vn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cfgqg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ymeh4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dt6y8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8mxk2"]
+
+[sub_resource type="Theme" id="Theme_q2p7c"]
+VScrollBar/styles/grabber = SubResource("StyleBoxEmpty_ou4vn")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxEmpty_cfgqg")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxEmpty_ymeh4")
+VScrollBar/styles/scroll = SubResource("StyleBoxEmpty_dt6y8")
+VScrollBar/styles/scroll_focus = SubResource("StyleBoxEmpty_8mxk2")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_joprb"]
 
@@ -132,6 +154,66 @@ stage_name = NodePath("StageName")
 stage_description = NodePath("StageDescription")
 metadata/_edit_lock_ = true
 
+[node name="StageInfoPopup" type="ColorRect" parent="StageSelection" node_paths=PackedStringArray("stage_info_texture")]
+z_index = 10
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 0.501961)
+script = ExtResource("11_gf4ly")
+stage_info_texture = NodePath("ScrollContainer/VBoxContainer/StageInfoTexture")
+metadata/_edit_lock_ = true
+
+[node name="StageInfoExitButton" type="TextureButton" parent="StageSelection/StageInfoPopup"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -160.0
+offset_top = 32.0
+offset_right = -32.0
+offset_bottom = 160.0
+grow_horizontal = 0
+texture_normal = ExtResource("11_1hixd")
+texture_pressed = ExtResource("12_no27d")
+texture_hover = ExtResource("13_ajdkn")
+texture_disabled = ExtResource("11_1hixd")
+metadata/_edit_lock_ = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="StageSelection/StageInfoPopup"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 156.0
+offset_top = 256.0
+offset_right = -156.0
+offset_bottom = -256.0
+theme = SubResource("Theme_q2p7c")
+horizontal_scroll_mode = 0
+metadata/_edit_lock_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="StageSelection/StageInfoPopup/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_edit_lock_ = true
+
+[node name="StageInfoTexture" type="TextureRect" parent="StageSelection/StageInfoPopup/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("11_1hixd")
+stretch_mode = 5
+metadata/_edit_lock_ = true
+
+[node name="TextureRect" type="TextureRect" parent="StageSelection/StageInfoPopup/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("15_2wsay")
+
+[node name="TextureRect2" type="TextureRect" parent="StageSelection/StageInfoPopup/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("15_2wsay")
+
 [node name="StageInfoButton" type="TextureButton" parent="StageSelection"]
 layout_mode = 1
 anchors_preset = -1
@@ -147,6 +229,7 @@ texture_normal = ExtResource("11_0wuu7")
 texture_pressed = ExtResource("12_m8uk3")
 texture_hover = ExtResource("13_ofovp")
 texture_disabled = ExtResource("11_0wuu7")
+metadata/_edit_lock_ = true
 
 [node name="StageName" type="Label" parent="StageSelection"]
 layout_mode = 1
@@ -309,5 +392,9 @@ metadata/_edit_lock_ = true
 [connection signal="player_started_game" from="." to="Title" method="receive_player_started_game"]
 [connection signal="player_started_game" from="." to="StageSelection" method="receive_player_started_game"]
 [connection signal="player_has_tapped_anywhere" from="Title" to="." method="receive_player_has_tapped_anywhere"]
+[connection signal="current_stage_has_been_changed" from="StageSelection" to="StageSelection/StageInfoPopup" method="receive_current_stage_has_been_changed"]
+[connection signal="request_set_stage_datas" from="StageSelection" to="StageSelection/StageInfoPopup" method="receive_request_set_stage_datas"]
 [connection signal="request_set_stage_datas" from="StageSelection" to="StageSelection/StageScrollContainer" method="receive_request_set_stage_datas"]
+[connection signal="pressed" from="StageSelection/StageInfoPopup/StageInfoExitButton" to="StageSelection/StageInfoPopup" method="_on_stage_info_exit_button_pressed"]
+[connection signal="pressed" from="StageSelection/StageInfoButton" to="StageSelection/StageInfoPopup" method="_on_stage_info_button_pressed"]
 [connection signal="current_stage_has_been_changed" from="StageSelection/StageScrollContainer" to="StageSelection" method="receive_current_stage_has_been_changed"]

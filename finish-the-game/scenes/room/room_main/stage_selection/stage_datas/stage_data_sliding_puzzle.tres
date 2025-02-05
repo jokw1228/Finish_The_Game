@@ -10,3 +10,4 @@ PUZZLE"
 stage_description = "1, 2, 3... in order.
 Easy, right?"
 stage_thumbnail = ExtResource("2_4qoo0")
+stage_info = ExtResource("2_4qoo0")
