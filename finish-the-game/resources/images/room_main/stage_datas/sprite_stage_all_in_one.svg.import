@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://gv3sc4ppndl8"
-path="res://.godot/imported/sprite_stage_line.svg-74afeb896388c8a35bff3e009058221b.ctex"
+uid="uid://dwp74ng1k3jc3"
+path="res://.godot/imported/sprite_stage_all_in_one.svg-cb7eb02c7e31e28b800d21d7e9bf5717.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/images/room_main/sprite_stage_line.svg"
-dest_files=["res://.godot/imported/sprite_stage_line.svg-74afeb896388c8a35bff3e009058221b.ctex"]
+source_file="res://resources/images/room_main/stage_datas/sprite_stage_all_in_one.svg"
+dest_files=["res://.godot/imported/sprite_stage_all_in_one.svg-cb7eb02c7e31e28b800d21d7e9bf5717.ctex"]
 
 [params]
 

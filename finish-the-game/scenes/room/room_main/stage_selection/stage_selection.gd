@@ -9,8 +9,10 @@ var current_stage_index: int = 0
 @export var stage_name: Label
 @export var stage_description: Label
 
+signal request_set_stage_datas(stage_datas_to_set: Array[StageData])
 func _ready() -> void:
 	update_stage_info()
+	request_set_stage_datas.emit(stage_datas)
 
 func receive_player_started_game() -> void:
 	is_ready_to_get_input = true

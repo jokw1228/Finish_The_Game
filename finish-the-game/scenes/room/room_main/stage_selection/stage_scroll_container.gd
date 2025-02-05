@@ -1,17 +1,23 @@
 extends ScrollContainer
 class_name StageScrollContainer
 
-var stage_count: int
-var stage_width: float
+var stage_count: int = 0
+var stage_width: float = 768
 
-@export var stage_container: HBoxContainer
+@export var stage_thumbnail_container: HBoxContainer
 
-func _ready() -> void:
-	stage_count = stage_container.get_child_count()
-	if stage_count > 0:
-		stage_width = stage_container.get_child(0).size.x
-	else:
+func receive_request_set_stage_datas(stage_datas_to_set: Array[StageData]) -> void:
+	initialize(stage_datas_to_set)
+
+func initialize(stage_datas: Array[StageData]) -> void:
+	stage_count = stage_datas.size()
+	if stage_count <= 0:
 		stage_width = 0
+	
+	for stage_data: StageData in stage_datas:
+		var image: TextureRect = TextureRect.new()
+		image.texture = stage_data.stage_thumbnail
+		stage_thumbnail_container.add_child(image)
 
 func _gui_input(event: InputEvent) -> void:
 	if (event is InputEventScreenTouch and not event.is_pressed())\
