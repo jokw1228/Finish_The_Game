@@ -25,6 +25,7 @@ func snap_to_nearest_stage() -> void:
 	
 	var target_stage: int = int(round(scroll_horizontal / stage_width))
 	target_stage = clamp(target_stage, 0, stage_count - 1)
+	set_current_stage(target_stage)
 	var target_scroll: float = target_stage * stage_width
 	
 	if tween_snap != null:
@@ -33,3 +34,10 @@ func snap_to_nearest_stage() -> void:
 	tween_snap.tween_property(self, "scroll_horizontal", target_scroll, 0.1)\
 	.set_trans(Tween.TRANS_CUBIC)\
 	.set_ease(Tween.EASE_OUT)
+
+var current_stage: int = 0
+signal current_stage_has_been_changed(changed_current_stage: int)
+func set_current_stage(current_stage_to_set: int) -> void:
+	if current_stage != current_stage_to_set:
+		current_stage = current_stage_to_set
+		current_stage_has_been_changed.emit(current_stage)
