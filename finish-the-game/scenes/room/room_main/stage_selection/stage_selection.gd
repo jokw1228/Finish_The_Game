@@ -50,3 +50,8 @@ func receive_stage_info_button_pressed() -> void:
 func receive_stage_info_exit_button_pressed() -> void:
 	if stage_selection_state == StageSelectionState.STAGE_INFO_POPPED_UP:
 		set_state(StageSelectionState.STAGE_SCROLLING)
+
+func receive_stage_selection_button_pressed() -> void:
+	if stage_selection_state == StageSelectionState.STAGE_SCROLLING:
+		#RoomManager.transition_to_room( blahblah current_stage_index )
+		set_state(StageSelectionState.NO)

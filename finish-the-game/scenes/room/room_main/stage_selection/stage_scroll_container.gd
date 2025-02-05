@@ -17,6 +17,7 @@ func initialize(stage_datas: Array[StageData]) -> void:
 	for stage_data: StageData in stage_datas:
 		var image: TextureRect = TextureRect.new()
 		image.texture = stage_data.stage_thumbnail
+		image.set_mouse_filter(Control.MOUSE_FILTER_IGNORE)
 		stage_thumbnail_container.add_child(image)
 
 func _gui_input(event: InputEvent) -> void:
@@ -47,3 +48,29 @@ func set_current_stage(current_stage_to_set: int) -> void:
 	if current_stage != current_stage_to_set:
 		current_stage = current_stage_to_set
 		current_stage_has_been_changed.emit(current_stage)
+
+func receive_stage_selection_state_has_been_changed(changed_state: StageSelection.StageSelectionState) -> void:
+	if changed_state == StageSelection.StageSelectionState.STAGE_SCROLLING:
+		enable_input()
+	else:
+		disable_input()
+
+func enable_input() -> void:
+	set_mouse_filter(Control.MOUSE_FILTER_PASS)
+	
+	%StageSelectionButton.disabled = false
+	%StageSelectionButton.set_mouse_filter(Control.MOUSE_FILTER_PASS)
+
+func disable_input() -> void:
+	set_mouse_filter(Control.MOUSE_FILTER_IGNORE)
+	
+	%StageThumbnailContainer.set_mouse_filter(Control.MOUSE_FILTER_IGNORE)
+	#for inst in %StageThumbnailContainer.get_children():
+	#	inst.set_mouse_filter(Control.MOUSE_FILTER_IGNORE)
+	
+	%StageSelectionButton.disabled = true
+	%StageSelectionButton.set_mouse_filter(Control.MOUSE_FILTER_IGNORE)
+
+signal stage_selection_button_pressed()
+func _on_stage_selection_button_pressed() -> void:
+	stage_selection_button_pressed.emit()

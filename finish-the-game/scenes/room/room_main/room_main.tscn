@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://dej30dvp0aefe"]
+[gd_scene load_steps=35 format=3 uid="uid://dej30dvp0aefe"]
 
 [ext_resource type="PackedScene" uid="uid://bnyfbqonp1qby" path="res://scenes/ui/background/background_scrolling_controller.tscn" id="1_dlowq"]
 [ext_resource type="Script" path="res://scenes/room/room_main/room_main.gd" id="1_n65dx"]
@@ -22,7 +22,6 @@
 [ext_resource type="Texture2D" uid="uid://c8if0bimm45hi" path="res://resources/images/room_main/sprite_stage_info_exit_button_pressed.svg" id="12_no27d"]
 [ext_resource type="Texture2D" uid="uid://cwf26empdh58y" path="res://resources/images/room_main/sprite_stage_info_exit_button_pressed_hover.svg" id="13_ajdkn"]
 [ext_resource type="Texture2D" uid="uid://slxrhykhrq3o" path="res://resources/images/room_main/sprite_stage_info_button_pressed_hover.svg" id="13_ofovp"]
-[ext_resource type="Texture2D" uid="uid://gv3sc4ppndl8" path="res://resources/images/room_main/stage_datas/sprite_stage_line.svg" id="15_2wsay"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ou4vn"]
 
@@ -161,7 +160,7 @@ layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color(0, 0, 0, 0.501961)
+color = Color(0, 0, 0, 0.752941)
 script = ExtResource("11_gf4ly")
 stage_info_texture = NodePath("ScrollContainer/VBoxContainer/StageInfoTexture")
 metadata/_edit_lock_ = true
@@ -206,14 +205,6 @@ layout_mode = 2
 texture = ExtResource("11_1hixd")
 stretch_mode = 5
 metadata/_edit_lock_ = true
-
-[node name="TextureRect" type="TextureRect" parent="StageSelection/StageInfoPopup/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-texture = ExtResource("15_2wsay")
-
-[node name="TextureRect2" type="TextureRect" parent="StageSelection/StageInfoPopup/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-texture = ExtResource("15_2wsay")
 
 [node name="StageInfoButton" type="TextureButton" parent="StageSelection"]
 layout_mode = 1
@@ -291,12 +282,14 @@ stage_thumbnail_container = NodePath("StageThumbnailContainer")
 metadata/_edit_lock_ = true
 
 [node name="StageThumbnailContainer" type="HBoxContainer" parent="StageSelection/StageScrollContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 metadata/_edit_lock_ = true
 
 [node name="StageSelectionButton" type="TextureButton" parent="StageSelection"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.504
@@ -397,8 +390,11 @@ metadata/_edit_lock_ = true
 [connection signal="request_set_stage_datas" from="StageSelection" to="StageSelection/StageInfoPopup" method="receive_request_set_stage_datas"]
 [connection signal="request_set_stage_datas" from="StageSelection" to="StageSelection/StageScrollContainer" method="receive_request_set_stage_datas"]
 [connection signal="stage_selection_state_has_been_changed" from="StageSelection" to="StageSelection/StageInfoPopup" method="receive_stage_selection_state_has_been_changed"]
+[connection signal="stage_selection_state_has_been_changed" from="StageSelection" to="StageSelection/StageScrollContainer" method="receive_stage_selection_state_has_been_changed"]
 [connection signal="stage_info_button_pressed" from="StageSelection/StageInfoPopup" to="StageSelection" method="receive_stage_info_button_pressed"]
 [connection signal="stage_info_exit_button_pressed" from="StageSelection/StageInfoPopup" to="StageSelection" method="receive_stage_info_exit_button_pressed"]
 [connection signal="pressed" from="StageSelection/StageInfoPopup/StageInfoExitButton" to="StageSelection/StageInfoPopup" method="_on_stage_info_exit_button_pressed"]
 [connection signal="pressed" from="StageSelection/StageInfoButton" to="StageSelection/StageInfoPopup" method="_on_stage_info_button_pressed"]
 [connection signal="current_stage_has_been_changed" from="StageSelection/StageScrollContainer" to="StageSelection" method="receive_current_stage_has_been_changed"]
+[connection signal="stage_selection_button_pressed" from="StageSelection/StageScrollContainer" to="StageSelection" method="receive_stage_selection_button_pressed"]
+[connection signal="pressed" from="StageSelection/StageSelectionButton" to="StageSelection/StageScrollContainer" method="_on_stage_selection_button_pressed"]

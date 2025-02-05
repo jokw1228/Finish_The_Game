@@ -43,6 +43,7 @@ func receive_stage_selection_state_has_been_changed(changed_state: StageSelectio
 		close_popup()
 
 func open_popup() -> void:
+	$ScrollContainer.scroll_vertical = 0
 	visible = true
 
 func close_popup() -> void:
