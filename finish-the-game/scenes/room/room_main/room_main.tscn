@@ -129,45 +129,6 @@ stage_name = NodePath("StageName")
 stage_description = NodePath("StageDescription")
 metadata/_edit_lock_ = true
 
-[node name="Arrows" type="Control" parent="StageSelection"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-metadata/_edit_lock_ = true
-
-[node name="RightArrow" type="TextureRect" parent="StageSelection/Arrows"]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -128.0
-offset_top = -64.0
-offset_right = -64.0
-offset_bottom = 64.0
-grow_horizontal = 0
-grow_vertical = 2
-texture = ExtResource("4_6y3y6")
-metadata/_edit_lock_ = true
-
-[node name="LeftArrow" type="TextureRect" parent="StageSelection/Arrows"]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 64.0
-offset_top = -64.0
-offset_right = 128.0
-offset_bottom = 64.0
-grow_vertical = 2
-texture = ExtResource("4_6y3y6")
-flip_h = true
-metadata/_edit_lock_ = true
-
 [node name="StageName" type="Label" parent="StageSelection"]
 layout_mode = 1
 anchors_preset = 8
@@ -189,6 +150,7 @@ theme_override_font_sizes/font_size = 128
 text = "STAGE NAME"
 horizontal_alignment = 1
 vertical_alignment = 2
+metadata/_edit_lock_ = true
 
 [node name="StageDescription" type="Label" parent="StageSelection"]
 layout_mode = 1
@@ -233,13 +195,15 @@ metadata/_edit_lock_ = true
 
 [node name="StageSelectionButton" type="TextureButton" parent="StageSelection"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 284.0
-offset_top = 1344.0
-offset_right = -284.0
-offset_bottom = -384.0
+anchors_preset = -1
+anchor_left = 0.504
+anchor_top = 0.5
+anchor_right = 0.504
+anchor_bottom = 0.5
+offset_left = -260.32
+offset_top = 384.0
+offset_right = 251.68
+offset_bottom = 576.0
 grow_horizontal = 2
 grow_vertical = 2
 texture_normal = ExtResource("8_7buss")
@@ -260,6 +224,67 @@ text = "STAGE
 SELECT"
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="StageDescription2" type="Label" parent="StageSelection"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -540.0
+offset_top = 576.0
+offset_right = 540.0
+offset_bottom = 708.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.501961, 0.501961, 0.501961, 1)
+theme_override_constants/line_spacing = -16
+theme_override_font_sizes/font_size = 64
+text = "SLIDE TO
+SELECT STAGE"
+horizontal_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Arrows" type="Control" parent="StageSelection"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="RightArrow" type="TextureRect" parent="StageSelection/Arrows"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -64.0
+offset_right = -64.0
+offset_bottom = 64.0
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("4_6y3y6")
+metadata/_edit_lock_ = true
+
+[node name="LeftArrow" type="TextureRect" parent="StageSelection/Arrows"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 64.0
+offset_top = -64.0
+offset_right = 128.0
+offset_bottom = 64.0
+grow_vertical = 2
+texture = ExtResource("4_6y3y6")
+flip_h = true
 metadata/_edit_lock_ = true
 
 [connection signal="player_started_game" from="." to="Title" method="receive_player_started_game"]
