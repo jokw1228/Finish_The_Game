@@ -1,28 +1,34 @@
-[gd_scene load_steps=13 format=3 uid="uid://dej30dvp0aefe"]
+[gd_scene load_steps=19 format=3 uid="uid://dej30dvp0aefe"]
 
 [ext_resource type="PackedScene" uid="uid://bnyfbqonp1qby" path="res://scenes/ui/background/background_scrolling_controller.tscn" id="1_dlowq"]
 [ext_resource type="Script" path="res://scenes/room/room_main/room_main.gd" id="1_n65dx"]
-[ext_resource type="Script" path="res://scenes/room/room_main/utils/tap_anywhere_to_start.gd" id="3_vweoc"]
+[ext_resource type="Script" path="res://scenes/room/room_main/title/title.gd" id="3_b62d5"]
+[ext_resource type="Script" path="res://scenes/room/room_main/title/tap_anywhere_to_start.gd" id="3_vweoc"]
 [ext_resource type="Texture2D" uid="uid://duv1kw67dqpoe" path="res://resources/images/room_main/sprite_scroll_right_arrow.svg" id="4_6y3y6"]
-[ext_resource type="Script" path="res://scenes/room/room_main/utils/stage_scroll_container.gd" id="5_olpks"]
-[ext_resource type="Texture2D" uid="uid://dnmvl2uhit4ex" path="res://resources/images/room_logo/sprite_cat_and_dog.png" id="6_qjfyd"]
+[ext_resource type="Script" path="res://scenes/room/room_main/stage_selection/stage_selection.gd" id="5_84lgk"]
+[ext_resource type="Script" path="res://scenes/room/room_main/stage_selection/stage_scroll_container.gd" id="5_olpks"]
+[ext_resource type="Texture2D" uid="uid://dwp74ng1k3jc3" path="res://resources/images/room_main/sprite_stage_all_in_one.svg" id="6_8jc7h"]
+[ext_resource type="Texture2D" uid="uid://gv3sc4ppndl8" path="res://resources/images/room_main/sprite_stage_line.svg" id="7_stej0"]
+[ext_resource type="Texture2D" uid="uid://sjuu8ju6x547" path="res://resources/images/room_main/sprite_stage_select_button.svg" id="8_7buss"]
+[ext_resource type="Texture2D" uid="uid://bv7atnqlumm5v" path="res://resources/images/room_main/sprite_stage_select_button_pressed.svg" id="9_iix68"]
+[ext_resource type="Texture2D" uid="uid://b740514y845t1" path="res://resources/images/room_main/sprite_stage_select_button_hover.svg" id="10_fcyev"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_37bg5"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_joprb"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ebw3v"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ga27h"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ryp0x"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fi16y"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3d1om"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2hyhu"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o1uob"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dttff"]
 
 [sub_resource type="Theme" id="Theme_yxa80"]
-HScrollBar/styles/grabber = SubResource("StyleBoxEmpty_37bg5")
-HScrollBar/styles/grabber_highlight = SubResource("StyleBoxEmpty_ebw3v")
-HScrollBar/styles/grabber_pressed = SubResource("StyleBoxEmpty_ryp0x")
-HScrollBar/styles/scroll = SubResource("StyleBoxEmpty_3d1om")
-HScrollBar/styles/scroll_focus = SubResource("StyleBoxEmpty_o1uob")
+HScrollBar/styles/grabber = SubResource("StyleBoxEmpty_joprb")
+HScrollBar/styles/grabber_highlight = SubResource("StyleBoxEmpty_ga27h")
+HScrollBar/styles/grabber_pressed = SubResource("StyleBoxEmpty_fi16y")
+HScrollBar/styles/scroll = SubResource("StyleBoxEmpty_2hyhu")
+HScrollBar/styles/scroll_focus = SubResource("StyleBoxEmpty_dttff")
 
 [node name="RoomMain" type="Control" node_paths=PackedStringArray("background_scrolling_controller")]
 layout_mode = 3
@@ -42,7 +48,6 @@ metadata/_edit_lock_ = true
 [node name="BackgroundScrollingController" parent="." instance=ExtResource("1_dlowq")]
 
 [node name="Title" type="Control" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -51,7 +56,7 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
-metadata/_edit_lock_ = true
+script = ExtResource("3_b62d5")
 
 [node name="AreYouReadyToFinishIt" type="Label" parent="Title"]
 layout_mode = 0
@@ -110,8 +115,11 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 1920.0
+offset_bottom = 1920.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("5_84lgk")
 metadata/_edit_lock_ = true
 
 [node name="Arrows" type="Control" parent="StageSelection"]
@@ -153,31 +161,81 @@ texture = ExtResource("4_6y3y6")
 flip_h = true
 metadata/_edit_lock_ = true
 
+[node name="Label" type="Label" parent="StageSelection"]
+layout_mode = 0
+offset_top = 384.0
+offset_right = 1080.0
+offset_bottom = 576.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 16
+theme_override_constants/shadow_offset_y = 16
+theme_override_font_sizes/font_size = 128
+text = "STAGE NAME"
+horizontal_alignment = 1
+vertical_alignment = 2
+
 [node name="StageScrollContainer" type="ScrollContainer" parent="StageSelection" node_paths=PackedStringArray("stage_container")]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 480.0
-offset_bottom = -480.0
+offset_left = 157.0
+offset_top = 577.0
+offset_right = -155.0
+offset_bottom = -575.0
 theme = SubResource("Theme_yxa80")
 vertical_scroll_mode = 0
 script = ExtResource("5_olpks")
 stage_container = NodePath("StageContainer")
+metadata/_edit_lock_ = true
 
 [node name="StageContainer" type="HBoxContainer" parent="StageSelection/StageScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+metadata/_edit_lock_ = true
 
-[node name="TextureRect" type="TextureRect" parent="StageSelection/StageScrollContainer/StageContainer"]
+[node name="AllInOne" type="TextureRect" parent="StageSelection/StageScrollContainer/StageContainer"]
 layout_mode = 2
-texture = ExtResource("6_qjfyd")
+texture = ExtResource("6_8jc7h")
+metadata/_edit_lock_ = true
 
-[node name="TextureRect2" type="TextureRect" parent="StageSelection/StageScrollContainer/StageContainer"]
+[node name="Line" type="TextureRect" parent="StageSelection/StageScrollContainer/StageContainer"]
 layout_mode = 2
-texture = ExtResource("6_qjfyd")
+texture = ExtResource("7_stej0")
+metadata/_edit_lock_ = true
 
-[node name="TextureRect3" type="TextureRect" parent="StageSelection/StageScrollContainer/StageContainer"]
-layout_mode = 2
-texture = ExtResource("6_qjfyd")
+[node name="StageSelectionButton" type="TextureButton" parent="StageSelection"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 284.0
+offset_top = 1344.0
+offset_right = -284.0
+offset_bottom = -384.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("8_7buss")
+texture_pressed = ExtResource("9_iix68")
+texture_hover = ExtResource("10_fcyev")
+texture_disabled = ExtResource("8_7buss")
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="StageSelection/StageSelectionButton"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -8.0
+offset_bottom = -8.0
+theme_override_constants/line_spacing = -32
+text = "STAGE
+SELECT"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[connection signal="player_started_game" from="." to="Title" method="receive_player_started_game"]
+[connection signal="player_started_game" from="." to="StageSelection" method="receive_player_started_game"]
+[connection signal="player_has_tapped_anywhere" from="Title" to="." method="receive_player_has_tapped_anywhere"]
