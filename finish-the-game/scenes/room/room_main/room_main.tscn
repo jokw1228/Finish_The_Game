@@ -1,9 +1,28 @@
-[gd_scene load_steps=5 format=3 uid="uid://dej30dvp0aefe"]
+[gd_scene load_steps=13 format=3 uid="uid://dej30dvp0aefe"]
 
 [ext_resource type="PackedScene" uid="uid://bnyfbqonp1qby" path="res://scenes/ui/background/background_scrolling_controller.tscn" id="1_dlowq"]
 [ext_resource type="Script" path="res://scenes/room/room_main/room_main.gd" id="1_n65dx"]
 [ext_resource type="Script" path="res://scenes/room/room_main/utils/tap_anywhere_to_start.gd" id="3_vweoc"]
 [ext_resource type="Texture2D" uid="uid://duv1kw67dqpoe" path="res://resources/images/room_main/sprite_scroll_right_arrow.svg" id="4_6y3y6"]
+[ext_resource type="Script" path="res://scenes/room/room_main/utils/stage_scroll_container.gd" id="5_olpks"]
+[ext_resource type="Texture2D" uid="uid://dnmvl2uhit4ex" path="res://resources/images/room_logo/sprite_cat_and_dog.png" id="6_qjfyd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_37bg5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ebw3v"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ryp0x"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3d1om"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o1uob"]
+
+[sub_resource type="Theme" id="Theme_yxa80"]
+HScrollBar/styles/grabber = SubResource("StyleBoxEmpty_37bg5")
+HScrollBar/styles/grabber_highlight = SubResource("StyleBoxEmpty_ebw3v")
+HScrollBar/styles/grabber_pressed = SubResource("StyleBoxEmpty_ryp0x")
+HScrollBar/styles/scroll = SubResource("StyleBoxEmpty_3d1om")
+HScrollBar/styles/scroll_focus = SubResource("StyleBoxEmpty_o1uob")
 
 [node name="RoomMain" type="Control" node_paths=PackedStringArray("background_scrolling_controller")]
 layout_mode = 3
@@ -23,6 +42,7 @@ metadata/_edit_lock_ = true
 [node name="BackgroundScrollingController" parent="." instance=ExtResource("1_dlowq")]
 
 [node name="Title" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -86,7 +106,6 @@ script = ExtResource("3_vweoc")
 metadata/_edit_lock_ = true
 
 [node name="StageSelection" type="Control" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -133,3 +152,32 @@ grow_vertical = 2
 texture = ExtResource("4_6y3y6")
 flip_h = true
 metadata/_edit_lock_ = true
+
+[node name="StageScrollContainer" type="ScrollContainer" parent="StageSelection" node_paths=PackedStringArray("stage_container")]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 480.0
+offset_bottom = -480.0
+theme = SubResource("Theme_yxa80")
+vertical_scroll_mode = 0
+script = ExtResource("5_olpks")
+stage_container = NodePath("StageContainer")
+
+[node name="StageContainer" type="HBoxContainer" parent="StageSelection/StageScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="StageSelection/StageScrollContainer/StageContainer"]
+layout_mode = 2
+texture = ExtResource("6_qjfyd")
+
+[node name="TextureRect2" type="TextureRect" parent="StageSelection/StageScrollContainer/StageContainer"]
+layout_mode = 2
+texture = ExtResource("6_qjfyd")
+
+[node name="TextureRect3" type="TextureRect" parent="StageSelection/StageScrollContainer/StageContainer"]
+layout_mode = 2
+texture = ExtResource("6_qjfyd")
