@@ -19,4 +19,4 @@ func slide_out() -> void:
 	var target_position = Vector2(position.x, -viewport_height)
 
 	create_tween().tween_property(self, "position", target_position, 0.5)\
-	.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
