@@ -6,7 +6,6 @@
 [resource]
 script = ExtResource("1_kd67q")
 stage_name = "LINE"
-stage_description = "The shortest distance
-between two points
-is a straight line."
+stage_description = "The shortest distance between
+two points is a straight line."
 stage_thumbnail = ExtResource("2_6syiw")
