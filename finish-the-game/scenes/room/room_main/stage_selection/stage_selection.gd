@@ -27,6 +27,7 @@ func set_state(state_to_set: StageSelectionState) -> void:
 func receive_player_started_game() -> void:
 	set_state(StageSelectionState.STAGE_SCROLLING)
 	slide_in()
+	%SFXActivated.play()
 
 func slide_in() -> void:
 	var target_position = Vector2(0, 0)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://dej30dvp0aefe"]
+[gd_scene load_steps=49 format=3 uid="uid://dej30dvp0aefe"]
 
 [ext_resource type="PackedScene" uid="uid://bnyfbqonp1qby" path="res://scenes/ui/background/background_scrolling_controller.tscn" id="1_dlowq"]
 [ext_resource type="Script" path="res://scenes/room/room_main/room_main.gd" id="1_n65dx"]
@@ -32,6 +32,10 @@
 [ext_resource type="Resource" uid="uid://b4duxm5suub27" path="res://scenes/room/room_main/stage_selection/stage_datas/stage_data_ricochet.tres" id="18_fspxu"]
 [ext_resource type="Resource" uid="uid://dcwo6mvyc0pqe" path="res://scenes/room/room_main/stage_selection/stage_datas/stage_data_ladder.tres" id="19_sp3sy"]
 [ext_resource type="Resource" uid="uid://ctmsgd7eo8k65" path="res://scenes/room/room_main/stage_selection/stage_datas/stage_data_matching.tres" id="20_obiaw"]
+[ext_resource type="AudioStream" uid="uid://ba4e1k070clly" path="res://resources/audio/sfx/room_main/sfx_stage_selection_activated.wav" id="21_apy0c"]
+[ext_resource type="AudioStream" uid="uid://bexei7qh5wag" path="res://resources/audio/sfx/general_purpose/sfx_button_click.wav" id="25_of2xw"]
+[ext_resource type="AudioStream" uid="uid://cy22b31erctiw" path="res://resources/audio/sfx/room_main/sfx_stage_selection_scroll_snap.wav" id="31_7egul"]
+[ext_resource type="AudioStream" uid="uid://weo6ylx5t0x5" path="res://resources/audio/sfx/general_purpose/sfx_button_click_heavy.wav" id="32_7an72"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ou4vn"]
 
@@ -163,6 +167,11 @@ stage_name = NodePath("StageName")
 stage_description = NodePath("StageDescription")
 metadata/_edit_lock_ = true
 
+[node name="SFXActivated" type="AudioStreamPlayer" parent="StageSelection"]
+unique_name_in_owner = true
+stream = ExtResource("21_apy0c")
+bus = &"SFX"
+
 [node name="StageInfoPopup" type="ColorRect" parent="StageSelection" node_paths=PackedStringArray("stage_info_texture")]
 visible = false
 z_index = 10
@@ -190,6 +199,10 @@ texture_pressed = ExtResource("12_no27d")
 texture_hover = ExtResource("13_ajdkn")
 texture_disabled = ExtResource("11_1hixd")
 metadata/_edit_lock_ = true
+
+[node name="SFXButtonClick" type="AudioStreamPlayer" parent="StageSelection/StageInfoPopup/StageInfoExitButton"]
+stream = ExtResource("25_of2xw")
+bus = &"SFX"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="StageSelection/StageInfoPopup"]
 layout_mode = 1
@@ -223,15 +236,19 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -92.0
+offset_left = -64.0
 offset_top = -768.0
-offset_right = 36.0
+offset_right = 64.0
 offset_bottom = -640.0
 texture_normal = ExtResource("11_0wuu7")
 texture_pressed = ExtResource("12_m8uk3")
 texture_hover = ExtResource("13_ofovp")
 texture_disabled = ExtResource("11_0wuu7")
 metadata/_edit_lock_ = true
+
+[node name="SFXButtonClick" type="AudioStreamPlayer" parent="StageSelection/StageInfoButton"]
+stream = ExtResource("25_of2xw")
+bus = &"SFX"
 
 [node name="StageName" type="Label" parent="StageSelection"]
 layout_mode = 1
@@ -299,6 +316,11 @@ size_flags_vertical = 3
 theme_override_constants/separation = 0
 metadata/_edit_lock_ = true
 
+[node name="SFXScrollSnap" type="AudioStreamPlayer" parent="StageSelection/StageScrollContainer"]
+unique_name_in_owner = true
+stream = ExtResource("31_7egul")
+bus = &"SFX"
+
 [node name="StageSelectionButton" type="TextureButton" parent="StageSelection"]
 unique_name_in_owner = true
 layout_mode = 1
@@ -332,6 +354,10 @@ SELECT"
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_lock_ = true
+
+[node name="SFXButtonClickHeavy" type="AudioStreamPlayer" parent="StageSelection/StageSelectionButton"]
+stream = ExtResource("32_7an72")
+bus = &"SFX"
 
 [node name="StageDescription2" type="Label" parent="StageSelection"]
 layout_mode = 1
@@ -405,7 +431,10 @@ metadata/_edit_lock_ = true
 [connection signal="stage_info_button_pressed" from="StageSelection/StageInfoPopup" to="StageSelection" method="receive_stage_info_button_pressed"]
 [connection signal="stage_info_exit_button_pressed" from="StageSelection/StageInfoPopup" to="StageSelection" method="receive_stage_info_exit_button_pressed"]
 [connection signal="pressed" from="StageSelection/StageInfoPopup/StageInfoExitButton" to="StageSelection/StageInfoPopup" method="_on_stage_info_exit_button_pressed"]
+[connection signal="pressed" from="StageSelection/StageInfoPopup/StageInfoExitButton" to="StageSelection/StageInfoPopup/StageInfoExitButton/SFXButtonClick" method="play"]
 [connection signal="pressed" from="StageSelection/StageInfoButton" to="StageSelection/StageInfoPopup" method="_on_stage_info_button_pressed"]
+[connection signal="pressed" from="StageSelection/StageInfoButton" to="StageSelection/StageInfoButton/SFXButtonClick" method="play"]
 [connection signal="current_stage_has_been_changed" from="StageSelection/StageScrollContainer" to="StageSelection" method="receive_current_stage_has_been_changed"]
 [connection signal="stage_selection_button_pressed" from="StageSelection/StageScrollContainer" to="StageSelection" method="receive_stage_selection_button_pressed"]
 [connection signal="pressed" from="StageSelection/StageSelectionButton" to="StageSelection/StageScrollContainer" method="_on_stage_selection_button_pressed"]
+[connection signal="pressed" from="StageSelection/StageSelectionButton" to="StageSelection/StageSelectionButton/SFXButtonClickHeavy" method="play"]

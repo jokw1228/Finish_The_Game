@@ -41,6 +41,8 @@ func snap_to_nearest_stage() -> void:
 	tween_snap.tween_property(self, "scroll_horizontal", target_scroll, 0.1)\
 	.set_trans(Tween.TRANS_CUBIC)\
 	.set_ease(Tween.EASE_OUT)
+	
+	%SFXScrollSnap.play()
 
 var current_stage: int = 0
 signal current_stage_has_been_changed(changed_current_stage: int)
