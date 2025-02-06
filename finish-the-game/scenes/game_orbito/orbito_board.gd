@@ -138,7 +138,7 @@ func receive_request_orbit_ui() -> void:
 			tween.tween_property(cells[x][y],"position",cells[x][y].position + to_move, 0.25)
 	orbit_cells()
 	await tween.finished
-	_on_orbito_ui_request_set_cells_disabled(false)
+	#_on_orbito_ui_request_set_cells_disabled(false)
 	return
 
 func receive_request_remove_stone(cell_index: Array[int]):
