@@ -14,9 +14,6 @@ signal request_set_rotation_buttons_disabled(disabled_to_set: bool)
 @export var subboards_to_export: Array[PentagoSubboard] = []
 var subboards: Array[Array] = []
 
-@export var sfx_place_stone: AudioStreamPlayer
-@export var sfx_rotate_subboard: AudioStreamPlayer
-
 enum UI_STATE
 {
 	PLACE_STONE,
@@ -44,7 +41,7 @@ func receive_approve_and_reply_place_stone(approved_subboard_index: Array[int], 
 	var _y: int = approved_subboard_index[1]
 	subboards[_y][_x].place_stone(approved_cell_index, approved_color)
 	set_ui_state(UI_STATE.SELECT_SUBBOARD)
-	sfx_place_stone.play()
+	%SFXPlaceStone.play()
 
 var stored_subboard_index_to_rotation: Array[int]
 func receive_request_select_subboard(subboard_index_to_rotate: Array[int]) -> void:
@@ -61,7 +58,7 @@ func receive_approve_and_reply_rotate_subboard(approved_subboard_index: Array[in
 	var _y: int = approved_subboard_index[1]
 	subboards[_y][_x].rotate_subboard(approved_rotation_direction)
 	set_ui_state(UI_STATE.PLACE_STONE)
-	sfx_rotate_subboard.play()
+	%SFXRotateSubboard.play()
 
 func set_ui_state(state_to_set: UI_STATE) -> void:
 	ui_state = state_to_set

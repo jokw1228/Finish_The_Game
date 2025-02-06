@@ -1,12 +1,24 @@
-[gd_scene load_steps=3 format=3 uid="uid://cqmev7fe50lfb"]
+[gd_scene load_steps=5 format=3 uid="uid://cqmev7fe50lfb"]
 
 [ext_resource type="Script" path="res://scenes/game_bomb_link/bomb_link_ui.gd" id="1_nb8nu"]
 [ext_resource type="PackedScene" uid="uid://b08yvkwohosos" path="res://scenes/game_bomb_link/bomb_link_fire.tscn" id="2_k27qc"]
+[ext_resource type="AudioStream" uid="uid://cif4hkx1r00i8" path="res://resources/audio/sfx/game_bomb_link/sfx_game_bomb_link_explode.wav" id="3_87vim"]
+[ext_resource type="AudioStream" uid="uid://ha3c3foyqtqv" path="res://resources/audio/sfx/game_bomb_link/sfx_game_bomb_link_ignite.wav" id="3_i08sx"]
 
 [node name="BombLinkUI" type="Node2D" node_paths=PackedStringArray("BombLinkFire_node")]
 script = ExtResource("1_nb8nu")
 BombLinkFire_node = NodePath("BombLinkFire")
 
 [node name="BombLinkFire" parent="." instance=ExtResource("2_k27qc")]
+
+[node name="SFXIgnite" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("3_i08sx")
+bus = &"SFX"
+
+[node name="SFXExplode" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("3_87vim")
+bus = &"SFX"
 
 [connection signal="action_is_ended" from="." to="." method="process_next_action"]

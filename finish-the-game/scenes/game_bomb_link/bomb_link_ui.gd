@@ -113,6 +113,7 @@ func chain_reaction(chain_reaction_to_execute:BombLinkChainReaction) -> void:
 	var first_ignite: Array[Array] = chain_reaction_to_execute.get_step(0)
 	var target_y: float = top_left_y + first_ignite[0][1] * cell_image_size + cell_image_size/2
 	BombLinkFire_node.move_to_position(Vector2(BombLinkFire_node.position.x, target_y))
+	%SFXIgnite.play()
 	await get_tree().create_timer(delay).timeout
 	
 	for chain_step: int in range(chain_reaction_to_execute.get_step_count()):
@@ -122,6 +123,7 @@ func chain_reaction(chain_reaction_to_execute:BombLinkChainReaction) -> void:
 			var _y: int = cell_index_to_explode[1] as int
 			cells[_y][_x].explode()
 			cells[_y][_x] = null
+		%SFXExplode.play()
 		await get_tree().create_timer(delay).timeout
 	
 	action_is_ended.emit()

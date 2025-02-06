@@ -9,11 +9,9 @@
 [ext_resource type="AudioStream" uid="uid://bd8twx25b3mqk" path="res://resources/audio/sfx/game_pentago/sfx_game_pentago_place_stone.wav" id="6_v867a"]
 [ext_resource type="AudioStream" uid="uid://yw4ys7trwd7q" path="res://resources/audio/sfx/game_pentago/sfx_game_pentago_rotate_subboard.wav" id="8_4cgwq"]
 
-[node name="PentagoUI" type="Node2D" node_paths=PackedStringArray("subboards_to_export", "sfx_place_stone", "sfx_rotate_subboard")]
+[node name="PentagoUI" type="Node2D" node_paths=PackedStringArray("subboards_to_export")]
 script = ExtResource("1_5nll1")
 subboards_to_export = [NodePath("GridContainer/PentagoSubboard00"), NodePath("GridContainer/PentagoSubboard10"), NodePath("GridContainer/PentagoSubboard01"), NodePath("GridContainer/PentagoSubboard11")]
-sfx_place_stone = NodePath("SFXPlaceStone")
-sfx_rotate_subboard = NodePath("SFXRotateSubboard")
 
 [node name="GridContainer" type="GridContainer" parent="."]
 offset_left = -384.0
@@ -71,10 +69,12 @@ stream = ExtResource("6_ty5bu")
 bus = &"SFX"
 
 [node name="SFXPlaceStone" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
 stream = ExtResource("6_v867a")
 bus = &"SFX"
 
 [node name="SFXRotateSubboard" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
 stream = ExtResource("8_4cgwq")
 bus = &"SFX"
 

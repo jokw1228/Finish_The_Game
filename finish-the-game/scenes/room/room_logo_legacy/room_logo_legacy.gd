@@ -14,7 +14,7 @@ signal request_display_ftg_result(result: bool)
 func _ready() -> void:
 	center = get_viewport().get_visible_rect().size / 2
 	
-	FTGs.append([load("res://scenes/game_sliding_puzzle/ftg_sliding_puzzle.tscn"), "SLD.PZL."])
+	FTGs.append([load("res://scenes/game_bomb_link/ftg_bomb_link.tscn"), "BOMBLINK"])
 	'''
 	FTGs.append([load("res://scenes/game_ladder/ftg_ladder.tscn"), "LADDER"])
 	FTGs.append([load("res://scenes/game_memory/ftg_memory.tscn"), "MEMORY"])
