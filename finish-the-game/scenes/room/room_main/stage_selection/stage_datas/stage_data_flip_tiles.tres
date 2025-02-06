@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="StageData" load_steps=3 format=3 uid="uid://bhdddu4ehlhy0"]
+
+[ext_resource type="Script" path="res://scenes/room/room_main/stage_selection/stage_datas/stage_data.gd" id="1_socso"]
+[ext_resource type="Texture2D" uid="uid://s1htlilrrn6x" path="res://resources/images/room_main/stage_datas/sprite_stage_flip_tiles.svg" id="2_ik2t5"]
+
+[resource]
+script = ExtResource("1_socso")
+stage_name = "FLIP
+TILES"
+stage_description = "A simple game
+about flipping tiles."
+stage_thumbnail = ExtResource("2_ik2t5")
+stage_info = ExtResource("2_ik2t5")
