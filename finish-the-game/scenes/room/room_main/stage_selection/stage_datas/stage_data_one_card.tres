@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="StageData" load_steps=3 format=3 uid="uid://cj4djpoawjidx"]
+
+[ext_resource type="Script" path="res://scenes/room/room_main/stage_selection/stage_datas/stage_data.gd" id="1_nn5lq"]
+[ext_resource type="Texture2D" uid="uid://cpbrvkrawm0fh" path="res://resources/images/room_main/stage_datas/sprite_stage_onecard.png" id="2_j71vf"]
+
+[resource]
+script = ExtResource("1_nn5lq")
+stage_name = "ONE
+CARD"
+stage_description = "Keep putting out cards of
+the same pattern or number!"
+stage_thumbnail = ExtResource("2_j71vf")
+stage_info = ExtResource("2_j71vf")
