@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="StageData" load_steps=3 format=3 uid="uid://cl0kijgf13wy0"]
+
+[ext_resource type="Script" path="res://scenes/room/room_main/stage_selection/stage_datas/stage_data.gd" id="1_f34t3"]
+[ext_resource type="Texture2D" uid="uid://cqj7u4wgrmifx" path="res://resources/images/room_main/stage_datas/sprite_stage_orbito.png" id="2_vofvx"]
+
+[resource]
+script = ExtResource("1_f34t3")
+stage_name = "ORBITO"
+stage_description = "Finish four-in-a-row!
+(WARNING: stones orbit!)"
+stage_thumbnail = ExtResource("2_vofvx")
+stage_info = ExtResource("2_vofvx")
