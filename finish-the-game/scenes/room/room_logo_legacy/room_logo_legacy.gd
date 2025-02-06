@@ -13,7 +13,7 @@ signal request_display_ftg_result(result: bool)
 
 func _ready() -> void:
 	center = get_viewport().get_visible_rect().size / 2
-	
+	FTGs.append([load("res://scenes/game_ladder/ftg_ladder.tscn"), "LADDER"])
 	FTGs.append([load("res://scenes/game_memory/ftg_memory.tscn"), "MEMORY"])
 	FTGs.append([load("res://scenes/game_one_card/ftg_one_card.tscn"), "ONECARD"])
 	FTGs.append([load("res://scenes/game_set/ftg_set.tscn"), "SET"])

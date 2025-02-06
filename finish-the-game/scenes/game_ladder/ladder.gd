@@ -4,13 +4,13 @@ class_name Ladder
 # 상수 정의
 const LINE_NUM: int = 5
 
-const LINE_THICKNESS: float = 6
+const LINE_THICKNESS: float = 12
 const ANIME_LINE_THICKNESS: float = LINE_THICKNESS * 1.5
 const CIRCLE_SIZE: float = 8
 const POS_CIRCLE_SIZE: float = 20
 
-const TOP_MARGIN: int = 100    # 상단 여백
-const BOTTOM_MARGIN: int = 100 # 하단 여백
+const TOP_MARGIN: int = 300    # 상단 여백
+const BOTTOM_MARGIN: int = 300 # 하단 여백
 
 const ANIMATION_DURATION: float = 2.0  # 전체 애니메이션 시간
 const CIRCLE_ANIMATION_DURATION: float = 0.2
@@ -53,19 +53,22 @@ func _ready() -> void:
 func init() -> void:
 	var viewport_size: Vector2 = get_viewport_rect().size
 	
-	# 화면을 LINE_NUM 개의 영역으로 균등하게 나누는 방식
+	# 화면 중앙으로 position 설정
+	#position = Vector2(-viewport_size.x / 2, -viewport_size.y / 2)
+	position = Vector2(0, 0)
+	
+	# 기존 로직 유지
 	LINE_SPACING = viewport_size.x / (LINE_NUM + 1)  
 	LINE_BASE = LINE_SPACING
 	
 	CLICK_MAGNET_LIMIT = LINE_BASE * 0.3
 	
-	# 세로선 초기 위치 설정
 	for i in range(LINE_NUM):
 		vertical_lines.append(LINE_BASE + i * LINE_SPACING)
 
 func _process(_delta: float) -> void:
 	# 마우스 위치 업데이트
-	var mouse_pos: Vector2 = get_viewport().get_mouse_position()
+	var mouse_pos: Vector2 = convert_to_local(get_viewport().get_mouse_position())
 	current_mouse_pos = mouse_pos
 	# 가장 가까운 세로선의 x 좌표 찾기
 	var nearest_x: float = find_nearest_vertical(mouse_pos.x, CLICK_MAGNET_LIMIT)
@@ -157,6 +160,9 @@ func _draw() -> void:
 		
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		# 마우스 위치를 로컬 좌표로 변환
+		var local_pos = convert_to_local(event.position)
+		
 		if !nearest_vertical_pos:
 			first_click_pos = Vector2.ZERO
 		elif nearest_vertical_pos.y < TOP_MARGIN:
@@ -165,10 +171,14 @@ func _input(event: InputEvent) -> void:
 			first_click_pos = nearest_vertical_pos
 		else:
 			# 같은 열 클릭 방지
-			var clicked_pos = Vector2(find_nearest_vertical(event.position.x), event.position.y)
-			if abs(abs(clicked_pos.x - first_click_pos.x) - LINE_SPACING) < 0.1 && !check_cross([first_click_pos.x, first_click_pos.y, clicked_pos.x, clicked_pos.y]):  # 거리 체크
+			var clicked_pos = Vector2(find_nearest_vertical(local_pos.x), local_pos.y)
+			if abs(abs(clicked_pos.x - first_click_pos.x) - LINE_SPACING) < 0.1 && !check_cross([first_click_pos.x, first_click_pos.y, clicked_pos.x, clicked_pos.y]):
 				add_horizontal_line(first_click_pos, clicked_pos)
 			first_click_pos = Vector2.ZERO
+
+func convert_to_local(global_pos: Vector2) -> Vector2:
+	return global_pos
+	#return global_pos - position
 
 func draw_simulation(start_x: float) -> void:
 	var path: Array = simulate_path(start_x)
