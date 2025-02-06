@@ -13,6 +13,9 @@ signal request_display_ftg_result(result: bool)
 
 func _ready() -> void:
 	center = get_viewport().get_visible_rect().size / 2
+	
+	FTGs.append([load("res://scenes/game_pentago/ftg_pentago.tscn"), "PENTAGO"])
+	'''
 	FTGs.append([load("res://scenes/game_ladder/ftg_ladder.tscn"), "LADDER"])
 	FTGs.append([load("res://scenes/game_memory/ftg_memory.tscn"), "MEMORY"])
 	FTGs.append([load("res://scenes/game_one_card/ftg_one_card.tscn"), "ONECARD"])
@@ -22,6 +25,7 @@ func _ready() -> void:
 	FTGs.append([load("res://scenes/game_orbito/ftg_orbito.tscn"), "ORBITO"])
 	FTGs.append([load("res://scenes/game_bomb_link/ftg_bomb_link.tscn"), "BOMBLINK"])
 	FTGs.append([load("res://scenes/game_rush_hour/game_rush_hour.tscn"), "RUSHHOUR"])
+	'''
 	
 	var picked_ftg = FTGs.pop_front()
 	current_ftg = picked_ftg[0].instantiate()

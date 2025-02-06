@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://txf8ygkaavx0"]
+[gd_scene load_steps=6 format=3 uid="uid://txf8ygkaavx0"]
 
 [ext_resource type="Texture2D" uid="uid://b3eju70n1vntq" path="res://resources/images/game_utils/game_utils_retry_button/sprite_retry_button.svg" id="1_d12cu"]
 [ext_resource type="Script" path="res://scenes/game_utils/game_utils_retry_button/game_utils_retry_button.gd" id="1_jhvfm"]
 [ext_resource type="Texture2D" uid="uid://djkl0b2ckjd6v" path="res://resources/images/game_utils/game_utils_retry_button/sprite_retry_overlay.svg" id="3_ve0pf"]
+[ext_resource type="AudioStream" uid="uid://bexei7qh5wag" path="res://resources/audio/sfx/general_purpose/sfx_button_click.wav" id="4_21v4e"]
+[ext_resource type="AudioStream" uid="uid://2plqf6bx1m7x" path="res://resources/audio/sfx/game_utils/game_utils_retry_button/sfx_retry.wav" id="5_tki2s"]
 
 [node name="GameUtilsRetryButton" type="TextureButton" node_paths=PackedStringArray("retry_sprite")]
 offset_right = 256.0
@@ -21,5 +23,15 @@ modulate = Color(1, 1, 1, 0)
 position = Vector2(540, 960)
 texture = ExtResource("3_ve0pf")
 
+[node name="SFXButtonClick" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_21v4e")
+bus = &"SFX"
+
+[node name="SFXRetry" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_tki2s")
+bus = &"SFX"
+
 [connection signal="pressed" from="." to="." method="_on_pressed"]
+[connection signal="pressed" from="." to="SFXButtonClick" method="play"]
+[connection signal="pressed" from="." to="SFXRetry" method="play"]
 [connection signal="request_retry" from="." to="." method="animate_retry_sprite"]

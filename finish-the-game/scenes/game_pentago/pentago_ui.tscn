@@ -1,14 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://csm2phyw568ys"]
+[gd_scene load_steps=9 format=3 uid="uid://csm2phyw568ys"]
 
 [ext_resource type="Script" path="res://scenes/game_pentago/pentago_ui.gd" id="1_5nll1"]
 [ext_resource type="PackedScene" uid="uid://bvaikyypjwmaq" path="res://scenes/game_pentago/pentago_subboard.tscn" id="2_agnim"]
 [ext_resource type="Texture2D" uid="uid://cnx1rpyegf8ni" path="res://resources/images/game_pentago/sprite_pentago_rotate_ccw.svg" id="3_0ljni"]
 [ext_resource type="Script" path="res://scenes/game_pentago/pentago_rotation_buttons.gd" id="3_pi8c5"]
 [ext_resource type="Texture2D" uid="uid://bhfte5rcglv3u" path="res://resources/images/game_pentago/sprite_pentago_rotate_cw.svg" id="4_h0bko"]
+[ext_resource type="AudioStream" uid="uid://bexei7qh5wag" path="res://resources/audio/sfx/general_purpose/sfx_button_click.wav" id="6_ty5bu"]
+[ext_resource type="AudioStream" uid="uid://bd8twx25b3mqk" path="res://resources/audio/sfx/game_pentago/sfx_game_pentago_place_stone.wav" id="6_v867a"]
+[ext_resource type="AudioStream" uid="uid://yw4ys7trwd7q" path="res://resources/audio/sfx/game_pentago/sfx_game_pentago_rotate_subboard.wav" id="8_4cgwq"]
 
-[node name="PentagoUI" type="Node2D" node_paths=PackedStringArray("subboards_to_export")]
+[node name="PentagoUI" type="Node2D" node_paths=PackedStringArray("subboards_to_export", "sfx_place_stone", "sfx_rotate_subboard")]
 script = ExtResource("1_5nll1")
 subboards_to_export = [NodePath("GridContainer/PentagoSubboard00"), NodePath("GridContainer/PentagoSubboard10"), NodePath("GridContainer/PentagoSubboard01"), NodePath("GridContainer/PentagoSubboard11")]
+sfx_place_stone = NodePath("SFXPlaceStone")
+sfx_rotate_subboard = NodePath("SFXRotateSubboard")
 
 [node name="GridContainer" type="GridContainer" parent="."]
 offset_left = -384.0
@@ -61,6 +66,18 @@ texture_pressed = ExtResource("4_h0bko")
 texture_hover = ExtResource("4_h0bko")
 texture_disabled = ExtResource("4_h0bko")
 
+[node name="SFXButtonClick" type="AudioStreamPlayer" parent="PentagoRotationButtons"]
+stream = ExtResource("6_ty5bu")
+bus = &"SFX"
+
+[node name="SFXPlaceStone" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_v867a")
+bus = &"SFX"
+
+[node name="SFXRotateSubboard" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_4cgwq")
+bus = &"SFX"
+
 [connection signal="request_set_cell_disabled" from="." to="GridContainer/PentagoSubboard00" method="receive_request_set_cell_disabled"]
 [connection signal="request_set_cell_disabled" from="." to="GridContainer/PentagoSubboard10" method="receive_request_set_cell_disabled"]
 [connection signal="request_set_cell_disabled" from="." to="GridContainer/PentagoSubboard01" method="receive_request_set_cell_disabled"]
@@ -80,4 +97,6 @@ texture_disabled = ExtResource("4_h0bko")
 [connection signal="request_select_subboard" from="GridContainer/PentagoSubboard11" to="." method="receive_request_select_subboard"]
 [connection signal="request_rotate_subboard" from="PentagoRotationButtons" to="." method="receive_request_rotate_subboard"]
 [connection signal="pressed" from="PentagoRotationButtons/CCW" to="PentagoRotationButtons" method="_on_ccw_pressed"]
+[connection signal="pressed" from="PentagoRotationButtons/CCW" to="PentagoRotationButtons/SFXButtonClick" method="play"]
 [connection signal="pressed" from="PentagoRotationButtons/CW" to="PentagoRotationButtons" method="_on_cw_pressed"]
+[connection signal="pressed" from="PentagoRotationButtons/CW" to="PentagoRotationButtons/SFXButtonClick" method="play"]
