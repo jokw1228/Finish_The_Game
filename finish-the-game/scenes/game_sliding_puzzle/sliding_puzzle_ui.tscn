@@ -1,6 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://bicct86wv601l"]
+[gd_scene load_steps=3 format=3 uid="uid://bicct86wv601l"]
 
 [ext_resource type="Script" path="res://scenes/game_sliding_puzzle/sliding_puzzle_ui.gd" id="1_ha03d"]
+[ext_resource type="AudioStream" uid="uid://b5j1mib5i4fus" path="res://resources/audio/sfx/game_sliding_puzzle/sfx_game_sliding_puzzle_slide.wav" id="2_gqlh4"]
 
-[node name="SlidingPuzzleUI" type="Node2D"]
+[node name="SlidingPuzzleUI" type="Node2D" node_paths=PackedStringArray("sfx_slide")]
 script = ExtResource("1_ha03d")
+sfx_slide = NodePath("SFXSlide")
+
+[node name="SFXSlide" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_gqlh4")
+bus = &"SFX"
