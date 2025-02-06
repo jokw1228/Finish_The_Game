@@ -8,7 +8,7 @@
    version="1.1"
    id="svg1"
    inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
-   sodipodi:docname="sprite_orbito_board.svg"
+   sodipodi:docname="sprite_orbito_board_fixed.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -31,17 +31,19 @@
      inkscape:window-x="-6"
      inkscape:window-y="-6"
      inkscape:window-maximized="1"
-     inkscape:current-layer="layer3" />
+     inkscape:current-layer="layer3"
+     showgrid="false">
+    <inkscape:page
+       x="0"
+       y="0"
+       width="135.46666"
+       height="135.46667"
+       id="page1"
+       margin="0"
+       bleed="0" />
+  </sodipodi:namedview>
   <defs
-     id="defs1">
-    <inkscape:perspective
-       sodipodi:type="inkscape:persp3d"
-       inkscape:vp_x="0 : 67.733335 : 1"
-       inkscape:vp_y="0 : 1000 : 0"
-       inkscape:vp_z="135.46666 : 67.733335 : 1"
-       inkscape:persp3d-origin="67.73333 : 45.155557 : 1"
-       id="perspective3" />
-  </defs>
+     id="defs1" />
   <g
      inkscape:label="board"
      inkscape:groupmode="layer"
@@ -243,8 +245,8 @@
        inkscape:rounded="1.0408341e-17"
        inkscape:randomized="0"
        d="M 20.33339,24.504124 14.548987,34.523003 8.7645849,24.504124 Z"
-       transform="matrix(0,1.0977798,-0.84507125,0,92.674396,68.695081)"
-       inkscape:transform-center-x="1.4111103" />
+       transform="matrix(0,1.0977798,0.84507125,0,42.792269,68.695081)"
+       inkscape:transform-center-x="-1.4111103" />
     <path
        sodipodi:type="star"
        style="fill:#ffffff;stroke-width:0.2747"
