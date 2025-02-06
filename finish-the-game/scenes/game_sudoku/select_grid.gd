@@ -41,11 +41,11 @@ func _on_button_pressed(index):
 	
 
 func _on_sudoku_grid_selected(button, i, j):
-	
-	grid_selected = true
-	selected_button = button
-	selected_row = i
-	selected_column = j
+	if is_selectable:
+		grid_selected = true
+		selected_button = button
+		selected_row = i
+		selected_column = j
 	
 
 
