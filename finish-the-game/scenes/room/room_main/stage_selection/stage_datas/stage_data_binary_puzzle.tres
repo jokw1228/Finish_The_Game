@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="StageData" load_steps=3 format=3 uid="uid://dfic1humgx3jf"]
+
+[ext_resource type="Script" path="res://scenes/room/room_main/stage_selection/stage_datas/stage_data.gd" id="1_ucws0"]
+[ext_resource type="Texture2D" uid="uid://ca6ns2uqo205p" path="res://resources/images/room_main/stage_datas/sprite_stage_binary_puzzle.png" id="2_iiwoo"]
+
+[resource]
+script = ExtResource("1_ucws0")
+stage_name = "BINARY
+PUZZLE"
+stage_description = "Fill in 0s and 1s,
+no more than two in a row,
+equal amounts per line!"
+stage_thumbnail = ExtResource("2_iiwoo")
+stage_info = ExtResource("2_iiwoo")
