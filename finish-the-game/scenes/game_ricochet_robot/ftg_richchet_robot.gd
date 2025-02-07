@@ -4,9 +4,6 @@ class_name FTGRicochetRobot
 signal request_disable_input(disable)
 signal end_ftg(is_game_cleared: bool)
 
-signal start_timer(duration: float)
-signal pause_timer()
-
 
 var impossible_location: Array[Vector2] = [Vector2(7,7),Vector2(7,8),Vector2(8,7),Vector2(8,8)]
 var new_robot_location: Array[Vector2] = []

@@ -8,6 +8,7 @@ script = ExtResource("1_vn41w")
 
 [node name="RicochetRobotBoard" parent="." instance=ExtResource("2_iixg3")]
 
+[connection signal="deliver_disable_input" from="." to="RicochetRobotBoard" method="receive_disable_input"]
 [connection signal="request_generate_goal_to_board" from="." to="RicochetRobotBoard" method="receive_request_generate_goal"]
 [connection signal="request_generate_robots_to_board" from="." to="RicochetRobotBoard" method="receive_request_generate_robots"]
 [connection signal="request_generate_wall_to_board" from="." to="RicochetRobotBoard" method="receive_request_generate_wall"]
