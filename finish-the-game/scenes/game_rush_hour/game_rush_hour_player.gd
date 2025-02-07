@@ -34,6 +34,8 @@ var max_speed = 50
 var piece_type = ""
 var cell_loc = Vector2(0,0)
 
+signal can_move
+
 
 func _ready():
 	start_pos = position
@@ -96,14 +98,24 @@ func _physics_process(delta: float):
 			position.x,  # Keep x constant
 			get_global_mouse_position().y - mouse_offset.y-1024+64,)
 			#new_position.y = round(new_position.y / grid_size) * grid_size/2 -32
-		collision = move_and_collide(collide * delta)
 		if direction == 0:
 			new_position = new_position.clamp(Vector2(-128-96, -128*2+8), Vector2(128*3-96-8, 128*3-8))
 		else:
 			new_position = new_position.clamp(Vector2(-128*2-32, -128-64+8), Vector2(128*3-32-8, 128*3-64-8))
+		position += (new_position - position) *delta *100
+		var move_vector = new_position - position
+		collision = move_and_collide(move_vector)
 		if collision:
+			print("collision")
 			new_position = new_position.clamp(position, collision.get_position())
-		position += (new_position - position) * delta * 3
+			var push_vector = collision.get_normal() * 0.5  # Small separation push
+			#position += push_vector*10
+			is_selected = false
+		else:
+			position += (new_position - position)
+		#var snapped_x = round(position.x / grid_size) * grid_size
+		#var snapped_y = round(position.y / grid_size) * grid_size
+		#position = Vector2(snapped_x, snapped_y)
 		
 			
 func _input(event):
