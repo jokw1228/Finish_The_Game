@@ -17,7 +17,7 @@ signal request_display_ftg_result(result: bool)
 
 func _ready() -> void:
 	center = get_viewport().get_visible_rect().size / 2
-	
+	'''
 	FTGs.append([load("res://scenes/game_ladder/ftg_ladder.tscn"), "LADDER"])
 	FTGs.append([load("res://scenes/game_memory/ftg_memory.tscn"), "MEMORY"])
 	FTGs.append([load("res://scenes/game_one_card/ftg_one_card.tscn"), "ONECARD"])
@@ -30,7 +30,7 @@ func _ready() -> void:
 	FTGs.append([load("res://scenes/game_ricochet_robot/ftg_richchet_robot.tscn"), "RICOCHET_ROBOT"])
 	'''
 	
-	ftg_add("LADDER", 5, load("res://scenes/game_ladder/ftg_ladder.tscn"))
+	ftg_add("LADDER", 3, load("res://scenes/game_ladder/ftg_ladder.tscn"))
 	ftg_add("MEMORY", 5, load("res://scenes/game_memory/ftg_memory.tscn"))
 	ftg_add("ONECARD", 5, load("res://scenes/game_one_card/ftg_one_card.tscn"))
 	ftg_add("SET", 7, load("res://scenes/game_set/ftg_set.tscn"))
