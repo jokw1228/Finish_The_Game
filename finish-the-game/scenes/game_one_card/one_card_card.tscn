@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://2wggrsm86m31"]
+[gd_scene load_steps=5 format=3 uid="uid://2wggrsm86m31"]
 
 [ext_resource type="Script" path="res://scenes/game_one_card/one_card_card.gd" id="1_6o7j5"]
 [ext_resource type="Texture2D" uid="uid://c8nxe11agya86" path="res://resources/images/game_one_card/sprite_one_card_empty_card.png" id="1_o1mc7"]
 [ext_resource type="Texture2D" uid="uid://dkwwpnsjed7n2" path="res://resources/images/game_one_card/sprite_one_card_spade.png" id="2_vnr14"]
+[ext_resource type="Texture2D" uid="uid://bc1einn7ayeih" path="res://resources/images/game_one_card/sprite_one_card_outline2.png" id="4_qmbs4"]
 
 [node name="OneCardCard" type="TextureRect"]
 script = ExtResource("1_6o7j5")
@@ -36,3 +37,11 @@ theme_override_font_sizes/font_size = 96
 text = "A"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Outline" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 160.0
+offset_bottom = 288.0
+texture = ExtResource("4_qmbs4")

@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dgfam4swo5kr7" path="res://scenes/game_matching/matching_card.tscn" id="3_xdyp0"]
 [ext_resource type="PackedScene" uid="uid://bv8gg5pbvy418" path="res://scenes/game_matching/matching_card_button.tscn" id="4_jyts1"]
 [ext_resource type="PackedScene" uid="uid://b4hyqkdqaychv" path="res://scenes/game_matching/matching_card_big_button.tscn" id="5_aq0bc"]
-[ext_resource type="Texture2D" uid="uid://cnv8vxa0r2hhv" path="res://resources/images/game_matching/card_small_outline.png" id="7_m4qx2"]
+[ext_resource type="Texture2D" uid="uid://cnv8vxa0r2hhv" path="res://resources/images/game_matching/sprite_matching_small_outline.png" id="7_m4qx2"]
 
 [node name="FTGMatching" instance=ExtResource("1_i3j05")]
 script = ExtResource("2_4tkbr")

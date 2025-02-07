@@ -4,7 +4,7 @@ class_name OneCard
 signal allow_place_card
 signal deny_place_card
 signal request_shape_choose
-signal allow_displace_card
+signal allow_displace_card(to_index: int)
 signal deny_displace_card
 
 signal init_UI
@@ -19,6 +19,11 @@ var card_memory: Array[int] = [0]  # store chosen stack index
 var can_one_more: bool = true
 var shape_change: Array = []  # [[turn, changed_shape]]
 var moves: int = 0
+
+# About Difficulty
+var time_limit: float
+var card_amount: int
+var hard_card_multiplyer: int
 
 
 func set_delete(set: Array, element) -> void:
@@ -38,40 +43,7 @@ func initialize_card() -> void:
 	can_one_more = true
 	shape_change = []
 	moves = 0
-
-
-func _requested_place_card(card: Array, stack_index: int) -> void:
-	#print(shape_change, moves)
 	
-	var stack_fronts: Array = [field_stack_1[-1], field_stack_2[-1]]
-	if shape_change != [] and shape_change[-1][0] == moves:
-		stack_fronts[stack_index][0] = shape_change[-1][1]
-	
-	if can_place_card(card, stack_index, stack_fronts, card_memory[-1], can_one_more):
-		if stack_index == 0:
-			field_stack_1.append(card)
-		else:
-			field_stack_2.append(card)
-		
-		#hand_card_set
-		
-		card_memory.append(stack_index)
-		moves += 1
-		
-		allow_place_card.emit()
-		
-		if card[1] == 10 or card[1] == 12:
-			can_one_more = true
-		else:
-			can_one_more = false
-			if card[1] == 6:
-				request_shape_choose.emit()
-		
-		if moves == 8:
-			finish_game()
-			
-	else:
-		deny_place_card.emit()
 
 
 func can_place_card(card: Array, stack_index: int, stack_fronts: Array,\
@@ -89,17 +61,66 @@ func can_place_card(card: Array, stack_index: int, stack_fronts: Array,\
 	return false
 
 
+func _requested_place_card(card_index: int, stack_index: int) -> void:
+	#print(shape_change, moves)
+	
+	var stack_fronts: Array = [[field_stack_1[-1][0], field_stack_1[-1][1]], [field_stack_2[-1][0], field_stack_2[-1][1]]]
+	if shape_change != [] and shape_change[-1][0] == moves:
+		stack_fronts[stack_index][0] = shape_change[-1][1]
+	
+	if can_place_card(hand_card_set[card_index], stack_index, stack_fronts, card_memory[-1], can_one_more):
+		if stack_index == 0:
+			field_stack_1.append(hand_card_set[card_index])
+		else:
+			field_stack_2.append(hand_card_set[card_index])
+		
+		card_memory.append(stack_index)
+		moves += 1
+		
+		allow_place_card.emit()
+		
+		if hand_card_set[card_index][1] == 10 or \
+		   hand_card_set[card_index][1] == 11 or \
+		   hand_card_set[card_index][1] == 12:
+			
+			can_one_more = true
+			
+		else:
+			can_one_more = false
+		
+		if moves == card_amount:
+			finish_game()
+		elif hand_card_set[card_index][1] == 6:
+			request_shape_choose.emit()
+			
+		hand_card_set[card_index] = [-1]
+	else:
+		deny_place_card.emit()
+
+
 func _recieved_shape_choose(shape: int) -> void:
 	shape_change.append([moves, shape])
 
 
 func _requested_displace_card(stack_index: int) -> void:
 	if card_memory[-1] == stack_index:
-		allow_displace_card.emit()
+		print("allow_displace_card")
+		
+		var temp_index: int = -1
+		for i in range(card_amount):
+			if hand_card_set[i][0] == -1:
+				temp_index = i
+				break
+		
+		if temp_index == -1:
+			deny_displace_card.emit()
+			return
 		
 		if stack_index == 0:
+			hand_card_set[temp_index] = field_stack_1[len(field_stack_1) - 1]
 			field_stack_1.remove_at(len(field_stack_1) - 1)
 		else:
+			hand_card_set[temp_index] = field_stack_2[len(field_stack_2) - 1]
 			field_stack_2.remove_at(len(field_stack_2) - 1)
 		
 		card_memory.remove_at(len(card_memory) - 1)
@@ -108,11 +129,11 @@ func _requested_displace_card(stack_index: int) -> void:
 			shape_change.remove_at(len(shape_change) - 1)
 		
 		moves -= 1
+		allow_displace_card.emit(temp_index)
 		
 	else:
 		deny_displace_card.emit()
 
 
 func finish_game() -> void:
-	#print("CLEAR")
-	stop_UI.emit()
+	pass

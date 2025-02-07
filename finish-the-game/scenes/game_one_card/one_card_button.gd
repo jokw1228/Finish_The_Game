@@ -13,5 +13,5 @@ func initialize_button(is_in_field: bool, button_pos_index: int):
 
 
 func _on_pressed() -> void:
-	print(is_field, pos_index, "pressed")
+	print("one_card : ", is_field, pos_index, " pressed")
 	one_card_ui.card_pressed(is_field, pos_index)

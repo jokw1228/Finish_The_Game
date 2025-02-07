@@ -5,8 +5,10 @@ signal end_ftg(is_game_cleared: bool)
 signal start_timer(duration: float)
 signal pause_timer()
 
+
 func start_ftg() -> void:
 	initialize_card()
+	handle_difficulty(1)
 	
 	var card_set: Array = []
 	for i in range(4):
@@ -32,7 +34,7 @@ func start_ftg() -> void:
 	
 	var available_set: Array = []
 	var weights: PackedFloat32Array = []
-	for i in range(8):
+	for i in range(card_amount):
 		available_set = []
 		weights = []
 		temp_ = []
@@ -43,11 +45,11 @@ func start_ftg() -> void:
 					if can_place_card(j, k, [temp_cards[0][-1], temp_cards[1][-1]], prev_index, can_one_more):
 						available_set.append([j, k])
 						
-						if j[1] in [6, 10, 12]:
+						if j[1] in [6, 10, 11, 12]:
 							if k == prev_index:
 								weights.append(1)
 							else:
-								weights.append(10)
+								weights.append(10 * hard_card_multiplyer)
 						else:
 							if k == prev_index:
 								weights.append(1)
@@ -60,14 +62,14 @@ func start_ftg() -> void:
 					if can_place_card([k, j[1]], prev_index, [temp_cards[0][-1], temp_cards[1][-1]], prev_index, can_one_more):
 						available_set.append([j, prev_index])
 						
-						if j[1] in [6, 10, 12]:
+						if j[1] in [6, 10, 11, 12]:
 							if j[0] != temp_cards[prev_index][-1][0]:
-								weights.append(5)
+								weights.append(5 * hard_card_multiplyer)
 							else:
-								weights.append(2.5)
+								weights.append(2.5 * hard_card_multiplyer)
 						else:
 							if j[0] != temp_cards[prev_index][-1][0]:
-								weights.append(3)
+								weights.append(3 * hard_card_multiplyer)
 							else:
 								weights.append(1)
 			
@@ -76,8 +78,8 @@ func start_ftg() -> void:
 				if can_place_card(j, prev_index, [temp_cards[0][-1], temp_cards[1][-1]], prev_index, can_one_more):
 					available_set.append([j, prev_index])
 					
-					if j[1] in [6, 10, 12]:
-						weights.append(2.5)
+					if j[1] in [6, 10, 11, 12]:
+						weights.append(2.5 * hard_card_multiplyer)
 					else:
 						weights.append(1)
 		
@@ -88,7 +90,7 @@ func start_ftg() -> void:
 		temp_cards[temp_[1]].append(temp_[0])
 		
 		prev_index = temp_[1]
-		if temp_[0][1] in [10, 12]:
+		if temp_[0][1] in [10, 11, 12]:
 			can_one_more = true
 			can_shape_change = false
 		elif temp_[0][1] == 6:
@@ -103,13 +105,50 @@ func start_ftg() -> void:
 	init_UI.emit()
 	
 	const duration = 20.0
-	start_timer.emit(duration)
+	start_timer.emit(time_limit)
+
+
+func handle_difficulty(difficulty: float) -> void:
+	"""
+	time_limit : 시간 제한
+	card_amount : 나오는 카드 수, 4 ~ 8
+	hard_card_multiplyer : 특수 카드 나올 확률 배수
+	"""
+	if difficulty <= 0:
+		time_limit = 12
+		card_amount = 4
+		hard_card_multiplyer = 0.8
+	
+	elif difficulty >= 1:
+		time_limit = 20
+		card_amount = 8
+		hard_card_multiplyer = 2
+		
+	else:
+		time_limit = 12 - difficulty * 8
+		
+		if difficulty <= 0.334:
+			time_limit += 3
+			card_amount = 5
+			hard_card_multiplyer = 0.8
+			
+		elif difficulty <= 0.667:
+			time_limit += 8
+			card_amount = 6
+			hard_card_multiplyer = 1
+			
+		else:
+			time_limit += 13
+			card_amount = 7
+			hard_card_multiplyer = 1.5
+
 
 func finish_game() -> void:
 	stop_UI.emit()
 	pause_timer.emit()
 	await get_tree().create_timer(0.2).timeout
 	end_ftg.emit(true)
+
 
 func _on_game_utils_game_timer_timeout() -> void:
 	stop_UI.emit()
