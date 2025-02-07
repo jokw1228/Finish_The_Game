@@ -39,7 +39,7 @@ var is_grid_selected = false
 signal grid_selected
 signal inc_answer
 signal restart
-
+signal check_answer
 const BOARD_COLOR1 = Color(0.8, 0.8, 0.8, 0.8)
 const BOARD_COLOR2 =  Color(0.5, 0.5, 0.5, 0.8) 
 
@@ -195,7 +195,8 @@ func _on_select_grid_choose_ans(index, button, i, j):
 		else:
 			#green
 			style.bg_color = Color(0, 1, 0) 
-			button.add_theme_stylebox_override("normal", style) 
+			button.add_theme_stylebox_override("normal", style)
+	check_answer.emit() 
 	
 	#change_button_color(index, Color(0,0,0))
 	
