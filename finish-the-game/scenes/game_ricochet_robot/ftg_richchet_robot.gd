@@ -24,8 +24,8 @@ func start_ftg() -> void:
 			new_robot_location.append(Vector2(_x,_y))
 	robot_location = new_robot_location.duplicate(true)
 	reset_board(robot_location)
-	print(board)
-	print(robot_location)
+	#print(board)
+	#print(robot_location)
 	var duration = 12
 	start_timer.emit(duration)
 

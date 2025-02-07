@@ -29,7 +29,7 @@ func start_ftg():
 		turn_state = TURN_STATE.WHITE_MOVE
 		$orbito_ui.set_turn_color(OrbitoUI.TURN_COLOR.WHITE)
 		opponent_color = CELL_STATE.BLACK
-	request_disable_input.emit(false)
+	#request_disable_input.emit(false)
 		
 		
 func make_kill_angle() -> Array[Array]:
@@ -236,20 +236,16 @@ func four_in_a_row(board_to_check: Array[Array], state: CELL_STATE) -> bool:
 	return false
 	
 func check_game_cleared():
+	pause_timer.emit()
+	await get_tree().create_timer(0.4).timeout
+	var cleared: bool = false
 	if four_in_a_row(orbited_board, my_color):
 		if four_in_a_row(orbited_board, opponent_color):
-			request_disable_input.emit(true)
-			pause_timer.emit()
-			end_ftg.emit(false)
-			return
+			cleared = false
 		else:
-			request_disable_input.emit(true)
-			pause_timer.emit()
-			end_ftg.emit(true)
-			return
+			cleared = true
 	request_disable_input.emit(true)
-	pause_timer.emit()
-	end_ftg.emit(false)
+	end_ftg.emit(cleared)
 	return
 	
 func _on_game_utils_game_timer_timeout() -> void:

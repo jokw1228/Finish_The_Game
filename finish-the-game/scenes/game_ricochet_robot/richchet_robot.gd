@@ -99,7 +99,7 @@ func reset_board(new_robot_location: Array[Vector2]):
 	request_generate_robots_ui.emit(robot_location)
 
 func receive_request_cell_pressed(cell_index: Vector2) -> void:
-	print(robot_location)
+	#print(robot_location)
 	var loc: int = robot_location.find(cell_index)
 	if turn_state == TURN_STATE.MOVE:
 		if loc != -1:
@@ -115,11 +115,11 @@ func receive_request_cell_pressed(cell_index: Vector2) -> void:
 				robot_location[int(color_selected)] = to_move
 				await move_finished
 				if robot_location[int(color_selected)] == goal and color_selected == goal_color:
-					print("Congrats!")
+					#print("Congrats!")
 					game_clear.emit()
 					#initialize_board()
 					#reset_board(test_robot_location)
-					print("Board Reseted!")
+					#print("Board Reseted!")
 			else:
 				increase_turn_state()
 				color_selected = COLOR.NONE
