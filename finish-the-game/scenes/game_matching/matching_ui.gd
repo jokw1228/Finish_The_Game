@@ -25,6 +25,8 @@ var field_cards: Array[MatchingCard] = []
 var last_card_indexs: Array[int]  # [pressed_index, pressed_in_card]
 
 var stop_matching_UI: bool = false
+var is_push_cards: bool = false
+var card_amount: int
 
 const size_unit = 128
 const interval_unit = 32
@@ -37,6 +39,8 @@ func initialize_ui() -> void:
 	field_cards = []
 	last_card_indexs = []
 	stop_matching_UI = false
+	is_push_cards = false
+	card_amount = matching_main.card_amount
 	
 	var card: MatchingCard = single_card.instantiate()
 	card.matching_ui = self
@@ -52,7 +56,7 @@ func initialize_ui() -> void:
 	button.initialize_button(-1, 0)
 	add_child(button)
 	
-	for i in range(8):
+	for i in range(card_amount):
 		card = single_card.instantiate()
 		card.matching_ui = self
 		
@@ -70,10 +74,10 @@ func initialize_ui() -> void:
 
 
 func place_card(object, card_position: int, button_pos: int = -1, turn_to: int = 0,
- 				is_teleport: bool = true) -> void:
+ 				is_teleport: bool = true, is_front: bool = false) -> void:
 	var card_pixel_position: Vector2 = Vector2.ZERO
 	
-	if card_position >= 0:
+	if card_position >= 0 and not is_front :
 		card_pixel_position.x = size_unit * (card_position % 4) +\
 								interval_unit * (card_position % 4) +\
 								-(size_unit * 2 + interval_unit * 1.5)
@@ -96,12 +100,23 @@ func place_card(object, card_position: int, button_pos: int = -1, turn_to: int =
 	else:
 		var tween: Tween = get_tree().create_tween()
 		
-		tween.tween_property(object, "position", card_pixel_position, 0.15)
-		tween.tween_property(object, "rotation", deg_to_rad(90) * turn_to, 0.15)
+		tween.tween_property(object, "position", card_pixel_position, 0.1)
+		tween.tween_property(object, "rotation", deg_to_rad(90) * turn_to, 0.1)
+		if is_push_cards:
+			await tween.finished
+			push_cards()
+
+
+func push_cards() -> void:
+	is_push_cards = false
+	await get_tree().create_timer(0.1).timeout
+	for tp_card in field_cards:
+		tp_card.card_pos_index -= 1
+		place_card(tp_card, tp_card.card_pos_index, -1, tp_card.turn_to, false)
 
 
 func card_pressed(pressed_index: int, pressed_in_card: int) -> void:
-	if not stop_matching_UI:
+	if not stop_matching_UI and not is_push_cards:
 		if pressed_index >= 0 and hand_cards[pressed_index] != null:
 			last_card_indexs = [pressed_index, pressed_in_card]
 			print("request_place_card")
@@ -113,17 +128,16 @@ func card_pressed(pressed_index: int, pressed_in_card: int) -> void:
 
 
 func _allowed_place_card() -> void:
-	for tp_card in field_cards:
-		tp_card.card_pos_index -= 1
-		place_card(tp_card, tp_card.card_pos_index, -1, tp_card.turn_to, false)
+	is_push_cards = true
 	
 	var card = hand_cards[last_card_indexs[0]]
-	
-	card.card_pos_index = -1
+	card.card_pos_index = 0
 	card.turn_to = last_card_indexs[1] * 2 - 1
-	place_card(card, -1, -1, card.turn_to, false)
+	
 	field_cards.append(hand_cards[last_card_indexs[0]])
 	hand_cards[last_card_indexs[0]] = null
+	
+	place_card(card, 0, -1, card.turn_to, false, true)
 
 
 func _denied_place_card() -> void:

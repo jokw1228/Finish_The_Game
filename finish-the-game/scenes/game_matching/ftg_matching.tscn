@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://ckes28qt8ga1a"]
+[gd_scene load_steps=8 format=3 uid="uid://ckes28qt8ga1a"]
 
 [ext_resource type="PackedScene" uid="uid://c01hcja4ib5qm" path="res://scenes/game_matching/matching.tscn" id="1_i3j05"]
 [ext_resource type="Script" path="res://scenes/game_matching/ftg_matching.gd" id="2_4tkbr"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dgfam4swo5kr7" path="res://scenes/game_matching/matching_card.tscn" id="3_xdyp0"]
 [ext_resource type="PackedScene" uid="uid://bv8gg5pbvy418" path="res://scenes/game_matching/matching_card_button.tscn" id="4_jyts1"]
 [ext_resource type="PackedScene" uid="uid://b4hyqkdqaychv" path="res://scenes/game_matching/matching_card_big_button.tscn" id="5_aq0bc"]
+[ext_resource type="Texture2D" uid="uid://cnv8vxa0r2hhv" path="res://resources/images/game_matching/card_small_outline.png" id="7_m4qx2"]
 
 [node name="FTGMatching" instance=ExtResource("1_i3j05")]
 script = ExtResource("2_4tkbr")
@@ -17,6 +18,14 @@ matching_main = NodePath("..")
 single_card = ExtResource("3_xdyp0")
 card_button = ExtResource("4_jyts1")
 card_big_button = ExtResource("5_aq0bc")
+
+[node name="SmallCardOutline" type="TextureRect" parent="MatchingUi" index="0"]
+z_index = 3
+offset_left = -208.0
+offset_top = -400.0
+offset_right = -16.0
+offset_bottom = -208.0
+texture = ExtResource("7_m4qx2")
 
 [connection signal="pause_timer" from="." to="GameUtilsGameTimer" method="pause_timer"]
 [connection signal="start_timer" from="." to="GameUtilsGameTimer" method="start_timer"]
