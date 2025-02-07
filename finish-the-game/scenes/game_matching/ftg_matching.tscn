@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://c01hcja4ib5qm" path="res://scenes/game_matching/matching.tscn" id="1_i3j05"]
 [ext_resource type="Script" path="res://scenes/game_matching/ftg_matching.gd" id="2_4tkbr"]
-[ext_resource type="PackedScene" uid="uid://32twi0juyy6u" path="res://scenes/game_utils/game_utils_game_timer.tscn" id="3_bo8m0"]
+[ext_resource type="PackedScene" uid="uid://32twi0juyy6u" path="res://scenes/game_utils/game_utils_game_timer/game_utils_game_timer.tscn" id="3_bo8m0"]
 [ext_resource type="PackedScene" uid="uid://dgfam4swo5kr7" path="res://scenes/game_matching/matching_card.tscn" id="3_xdyp0"]
 [ext_resource type="PackedScene" uid="uid://bv8gg5pbvy418" path="res://scenes/game_matching/matching_card_button.tscn" id="4_jyts1"]
 [ext_resource type="PackedScene" uid="uid://b4hyqkdqaychv" path="res://scenes/game_matching/matching_card_big_button.tscn" id="5_aq0bc"]
@@ -10,14 +10,14 @@
 [node name="FTGMatching" instance=ExtResource("1_i3j05")]
 script = ExtResource("2_4tkbr")
 
-[node name="MatchingUi" parent="." index="0" node_paths=PackedStringArray("matching_main")]
+[node name="GameUtilsGameTimer" parent="." index="0" instance=ExtResource("3_bo8m0")]
+
+[node name="MatchingUi" parent="." index="1" node_paths=PackedStringArray("matching_main")]
 matching_main = NodePath("..")
 single_card = ExtResource("3_xdyp0")
 card_button = ExtResource("4_jyts1")
 card_big_button = ExtResource("5_aq0bc")
 
-[node name="GameUtilsGameTimer" parent="." index="1" instance=ExtResource("3_bo8m0")]
-texture_under = null
-texture_progress = null
-
+[connection signal="pause_timer" from="." to="GameUtilsGameTimer" method="pause_timer"]
+[connection signal="start_timer" from="." to="GameUtilsGameTimer" method="start_timer"]
 [connection signal="timeout" from="GameUtilsGameTimer" to="." method="_on_game_utils_game_timer_timeout"]

@@ -6,7 +6,6 @@ signal request_delete_cards(card_index_set: Array[int])
 @export var set_main: Set
 @export var single_card: PackedScene
 @export var card_button: PackedScene
-@export var small_card_button: PackedScene
 
 var shape_image: Array[Array] = [\
 	[\
@@ -99,14 +98,6 @@ func initialize_ui(num: int = 9, is_button_exist: bool = false) -> void:
 				place_card(button, i)
 				button.initialize_button(i)
 				add_child(button)
-			
-	if not is_button_exist:
-		var retry_button: SetRetryButton = small_card_button.instantiate()
-		print("game_set: button generated")
-		retry_button.set_ui = self
-		
-		retry_button.initialize_small_button()
-		add_child(retry_button)
 
 
 func place_card(object, card_position: int, is_teleport: bool = true, is_small_button: bool = false) -> void:

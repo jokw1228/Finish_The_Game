@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cif6yjnbrggl6"
-path="res://.godot/imported/sprite_set_small_card.png-c9dd5f657a946d2ec8a44ba74745d738.ctex"
+uid="uid://dsljjexil3phw"
+path="res://.godot/imported/sprite_memory_card_outline.png-f144f86f757cbc37691208f7c0c237fb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/images/game_set/sprite_set_small_card.png"
-dest_files=["res://.godot/imported/sprite_set_small_card.png-c9dd5f657a946d2ec8a44ba74745d738.ctex"]
+source_file="res://resources/images/game_memory/sprite_memory_card_outline.png"
+dest_files=["res://.godot/imported/sprite_memory_card_outline.png-f144f86f757cbc37691208f7c0c237fb.ctex"]
 
 [params]
 
