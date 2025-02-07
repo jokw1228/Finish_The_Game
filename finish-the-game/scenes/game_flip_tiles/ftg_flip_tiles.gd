@@ -11,14 +11,32 @@ signal disable_click()
 signal start_timer(duration: float)
 signal pause_timer()
 
-func start_ftg() -> void:
+func start_ftg(difficulty: float) -> void:
 	
 	print("apapapapapapp")
 	var ui = get_node("FlipTilesUi")
-	ui.set_board_size(5, 5)
-	ui.init_board()
 	
-	ui.randomize_board(5)
+	var flip_tile_count: int = 4
+	var board_size: int = 4
+	
+	if(difficulty <= 0.3):
+		flip_tile_count = 3
+	elif(difficulty <= 0.7):
+		flip_tile_count = 4
+	else:
+		flip_tile_count = 5
+	
+	if(difficulty <= 0.2):
+		board_size = 3
+	elif(difficulty <= 0.6):
+		board_size = 4
+	else:
+		board_size = 5
+	
+	
+	ui.set_board_size(board_size, board_size)
+	ui.init_board()
+	ui.randomize_board(flip_tile_count)
 	
 	start_timer.emit(6)
 

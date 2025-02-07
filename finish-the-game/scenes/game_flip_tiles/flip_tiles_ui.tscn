@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://dj21lwt4gbsux"]
+[gd_scene load_steps=3 format=3 uid="uid://dj21lwt4gbsux"]
 
 [ext_resource type="Script" path="res://scenes/game_flip_tiles/flip_tiles_ui.gd" id="1_7v0ss"]
 [ext_resource type="PackedScene" uid="uid://bjkk3htummbol" path="res://scenes/game_flip_tiles/flip_tiles_board.tscn" id="2_x7xvp"]
-[ext_resource type="AudioStream" uid="uid://c4kufpwok25cx" path="res://resources/images/game_flip_tiles/click_fpxjoasfjksjf.mp3" id="3_si30y"]
 
 [node name="FlipTilesUi" type="Node2D"]
 script = ExtResource("1_7v0ss")
@@ -10,5 +9,4 @@ script = ExtResource("1_7v0ss")
 [node name="Board" parent="." instance=ExtResource("2_x7xvp")]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_si30y")
 max_polyphony = 12

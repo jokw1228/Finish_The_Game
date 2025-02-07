@@ -20,6 +20,7 @@ func _ready() -> void:
 	
 	
 func _on_pressed() -> void:
+	$AudioStreamPlayer.play()
 	print("PRESSSSSSS")
 	press_tile.emit(_internal_pos)
 	pass
