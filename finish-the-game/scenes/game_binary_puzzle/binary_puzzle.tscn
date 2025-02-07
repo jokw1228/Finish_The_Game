@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://btt0o1npqr8pe"]
+
+[ext_resource type="Script" path="res://scenes/game_binary_puzzle/binary_puzzle.gd" id="1_kbdkj"]
+
+[node name="BinaryPuzzle" type="Node2D"]
+script = ExtResource("1_kbdkj")
+
+[node name="BinaryPuzzleGrid" type="GridContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 86.0
+
+[connection signal="num_changed" from="." to="." method="_on_num_changed"]
