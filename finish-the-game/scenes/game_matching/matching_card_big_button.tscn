@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4hyqkdqaychv"]
+
+[ext_resource type="Script" path="res://scenes/game_matching/matching_card_big_button.gd" id="1_wdf1e"]
+
+[node name="MatchingCardButton" type="TextureButton"]
+z_index = 5
+offset_right = 128.0
+offset_bottom = 256.0
+action_mode = 0
+script = ExtResource("1_wdf1e")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
