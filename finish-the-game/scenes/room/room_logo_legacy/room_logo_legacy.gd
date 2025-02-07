@@ -34,7 +34,12 @@ func _ready() -> void:
 	ftg_add("MEMORY", 5, load("res://scenes/game_memory/ftg_memory.tscn"))
 	ftg_add("ONECARD", 5, load("res://scenes/game_one_card/ftg_one_card.tscn"))
 	ftg_add("SET", 7, load("res://scenes/game_set/ftg_set.tscn"))
+	ftg_add("PENTAGO", 7, load("res://scenes/game_pentago/ftg_pentago.tscn"))
+	ftg_add("SLD.PZL.", 5, load("res://scenes/game_sliding_puzzle/ftg_sliding_puzzle.tscn"))
 	ftg_add("ORBITO", 11, load("res://scenes/game_orbito/ftg_orbito.tscn"))
+	ftg_add("BOMBLINK", 7, load("res://scenes/game_bomb_link/ftg_bomb_link.tscn"))
+	ftg_add("RUSHHOUR", 9, load("res://scenes/game_rush_hour/ftg_rush_hour.tscn"))
+	ftg_add("RICOCHET_ROBOT", 9, load("res://scenes/game_ricochet_robot/ftg_richchet_robot.tscn"))
 
 	#for i in pq.get_list():
 	#	print(i)
@@ -78,12 +83,6 @@ func schedule_ftg(y_offset):
 	start_ftg.emit()
 	request_set_all_label_text.emit(picked[0])
 	
-	'''
-	var pq = priority_queue.new()
-	pq.insert_array(["MEMORY","ONECARD","SET","PENTAGO","ORBITO"],[2,4,3,1,5])
-	while(pq.get_size() != 0):
-		print(pq.pop())
-	'''
 
 func ftg_add(ftg_name, duration, tscn):
 	FTG_dict[ftg_name] = [tscn, duration]

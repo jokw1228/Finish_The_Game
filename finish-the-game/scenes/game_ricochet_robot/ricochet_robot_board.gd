@@ -78,3 +78,9 @@ func receive_move_robot(robot_to_move: RicochetRobot.COLOR, location_from: Vecto
 		child.disabled = false
 	move_finished.emit()
 	return
+
+func receive_disable_input(disable: bool) -> void:
+	var cells = $GridContainer.get_children()
+	for child: RicochetRobotCell in cells:
+		child.disabled = disable
+	return

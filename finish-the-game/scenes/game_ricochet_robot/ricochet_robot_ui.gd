@@ -11,6 +11,7 @@ signal request_cell_pressed_to_game(cell_index: Vector2)
 
 signal request_move_robot_to_board(robot_to_move: RicochetRobot.COLOR, location_from: Vector2, location_to: Vector2)
 signal deliver_move_finished_to_game()
+signal deliver_disable_input(disable: bool)
 
 func receive_request_generate_wall_ui(board, board_size) -> void:
 	request_generate_wall_to_board.emit(board, board_size)
@@ -32,3 +33,6 @@ func receive_request_move_robot_ui(robot_to_move: RicochetRobot.COLOR, location_
 
 func receive_move_finished() -> void:
 	deliver_move_finished_to_game.emit()
+	
+func receive_request_disable_input(disable: bool) -> void:
+	deliver_disable_input.emit(disable)

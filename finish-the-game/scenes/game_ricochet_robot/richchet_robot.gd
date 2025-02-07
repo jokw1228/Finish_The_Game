@@ -13,6 +13,10 @@ signal request_move_robot_ui(robot_to_move: COLOR, location_from: Vector2, locat
 signal move_finished()
 signal game_clear()
 
+signal start_timer(duration: float)
+signal pause_timer()
+signal resume_timer()
+
 enum WALL
 {
 	NORTH,
@@ -46,6 +50,17 @@ var robot_location: Array[Vector2]
 
 var test_robot_location: Array[Vector2] = [Vector2(0,0), Vector2(0,1), Vector2(0,2), Vector2(0,3), Vector2(0,4)]
 	
+var board_sample = [
+	[[WALL.NORTH,WALL.WEST],[WALL.NORTH],[WALL.NORTH],[WALL.NORTH],[WALL.NORTH],[WALL.NORTH],[WALL.NORTH],[WALL.NORTH]],
+	[[WALL.WEST],[],[],[],[],[],[],[]],
+	[[WALL.WEST],[],[],[],[],[],[],[]],
+	[[WALL.WEST],[],[],[],[],[],[],[]],
+	[[WALL.WEST],[],[],[],[],[],[],[]],
+	[[WALL.WEST],[],[],[],[],[],[],[]],
+	[[WALL.WEST],[],[],[],[],[],[],[WALL.SOUTH]],
+	[[WALL.WEST],[],[],[],[],[],[WALL.EAST],[WALL.NORTH,WALL.WEST]],
+	[]
+]
 
 var board_r1 = [
 	[[WALL.NORTH,WALL.WEST],[WALL.NORTH],[WALL.NORTH],[WALL.NORTH,WALL.EAST],[WALL.NORTH,WALL.WEST],[WALL.NORTH],[WALL.NORTH],[WALL.NORTH]],
@@ -59,8 +74,33 @@ var board_r1 = [
 	[Vector2(7,5),Vector2(2,4),Vector2(5,2),Vector2(1,6)]
 ]
 
+var board_g1 = [
+	[[WALL.NORTH,WALL.WEST],[WALL.NORTH],[WALL.NORTH],[WALL.NORTH],[WALL.NORTH,WALL.EAST],[WALL.NORTH,WALL.WEST],[WALL.NORTH],[WALL.NORTH]],
+	[[WALL.WEST],[WALL.SOUTH],[],[],[],[],[WALL.SOUTH,WALL.EAST],[WALL.WEST]],
+	[[WALL.WEST,WALL.EAST],[WALL.WEST,WALL.NORTH],[],[],[],[],[WALL.NORTH],[]],
+	[[WALL.WEST],[],[],[],[],[],[],[]],
+	[[WALL.WEST],[],[],[],[],[],[WALL.SOUTH],[]],
+	[[WALL.WEST,WALL.SOUTH],[],[],[],[],[],[WALL.NORTH,WALL.EAST],[WALL.WEST]],
+	[[WALL.NORTH,WALL.WEST],[],[WALL.EAST],[WALL.WEST,WALL.SOUTH],[],[],[],[WALL.SOUTH]],
+	[[WALL.WEST],[],[],[WALL.NORTH],[],[],[WALL.EAST],[WALL.NORTH,WALL.WEST]],
+	[Vector2(3,6),Vector2(1,2),Vector2(6,5),Vector2(6,1)]
+]
+
+var board_b1 = [
+	[[WALL.NORTH,WALL.WEST],[WALL.NORTH],[WALL.NORTH],[WALL.NORTH],[WALL.NORTH],[WALL.NORTH],[WALL.NORTH],[WALL.NORTH]],
+	[[WALL.WEST],[],[],[],[],[],[],[]],
+	[[WALL.WEST],[],[],[],[],[],[],[]],
+	[[WALL.WEST],[],[],[],[],[],[],[]],
+	[[WALL.WEST],[],[],[],[],[],[],[]],
+	[[WALL.WEST],[],[],[],[],[],[],[]],
+	[[WALL.WEST],[],[],[],[],[],[],[WALL.SOUTH]],
+	[[WALL.WEST],[],[],[],[],[],[WALL.EAST],[WALL.NORTH,WALL.WEST]],
+	[]
+]
+
 var red_boards = [board_r1]
-var board_list = [red_boards]
+var green_boards = [board_g1]
+var board_list = [red_boards, green_boards]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -111,9 +151,11 @@ func receive_request_cell_pressed(cell_index: Vector2) -> void:
 		else:
 			var to_move = check_movement(color_selected, cell_index)
 			if to_move != Vector2(-1,-1):
+				pause_timer.emit()
 				request_move_robot_ui.emit(color_selected, robot_location[int(color_selected)], to_move)
 				robot_location[int(color_selected)] = to_move
 				await move_finished
+				resume_timer.emit()
 				if robot_location[int(color_selected)] == goal and color_selected == goal_color:
 					#print("Congrats!")
 					game_clear.emit()
