@@ -32,9 +32,9 @@ func _ready() -> void:
 	
 	#ftg_add("LADDER", 3, load("res://scenes/game_ladder/ftg_ladder.tscn"))
 	#ftg_add("MATCHING", 5, load("res://scenes/game_matching/ftg_matching.tscn"))
-	ftg_add("MEMORY", 5, load("res://scenes/game_memory/ftg_memory.tscn"))
+	#ftg_add("MEMORY", 5, load("res://scenes/game_memory/ftg_memory.tscn"))
 	#ftg_add("ONECARD", 5, load("res://scenes/game_one_card/ftg_one_card.tscn"))
-	#ftg_add("SET", 7, load("res://scenes/game_set/ftg_set.tscn"))
+	ftg_add("SET", 7, load("res://scenes/game_set/ftg_set.tscn"))
 	#ftg_add("PENTAGO", 7, load("res://scenes/game_pentago/ftg_pentago.tscn"))
 	#ftg_add("SLD.PZL.", 5, load("res://scenes/game_sliding_puzzle/ftg_sliding_puzzle.tscn"))
 	#ftg_add("ORBITO", 11, load("res://scenes/game_orbito/ftg_orbito.tscn"))

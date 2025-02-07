@@ -12,6 +12,7 @@ var shapes: Array
 func initialize_card(info: Array, card_position: int) -> void:
 	card_info = info
 	card_pos_index = card_position
+	$Outline.visible = false
 	
 	var temp_scale: float
 	var temp_position: Array
@@ -33,5 +34,7 @@ func initialize_card(info: Array, card_position: int) -> void:
 func move_card(is_up: bool):
 	if is_up:
 		position.y += -20
+		$Outline.visible = true
 	else:
 		position.y += 20
+		$Outline.visible = false
