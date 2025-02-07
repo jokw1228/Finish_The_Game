@@ -8,7 +8,7 @@ signal end_ftg(is_game_cleared: bool)
 var impossible_location: Array[Vector2] = [Vector2(7,7),Vector2(7,8),Vector2(8,7),Vector2(8,8)]
 var new_robot_location: Array[Vector2] = []
 
-func start_ftg() -> void:
+func start_ftg(difficulty: float) -> void:
 	impossible_location = [Vector2(7,7),Vector2(7,8),Vector2(8,7),Vector2(8,8)]
 	initialize_board()
 	impossible_location.append(goal)
@@ -23,7 +23,7 @@ func start_ftg() -> void:
 	reset_board(robot_location)
 	#print(board)
 	#print(robot_location)
-	var duration = 12
+	var duration = 24
 	start_timer.emit(duration)
 
 func game_cleared() -> void:

@@ -2,6 +2,7 @@ extends Node2D
 class_name OrbitoUI
 
 const board_size = 4
+var is_setting = false
 
 enum UI_STATE
 {
@@ -44,10 +45,13 @@ func receive_approve_and_reply_move_stone(approved_start_cell_index: Array[int],
 	set_ui_state(UI_STATE.PLACE_STONE)
 	hide_do_not_move_button()
 	hide_move_opponent_button()
+	$move_stone.play()
 	request_move_stone.emit(approved_start_cell_index, approved_end_cell_index, approved_color)
 	
 func receive_approve_and_reply_place_stone(approved_cell_index: Array[int], approved_color: Orbito.CELL_STATE):
 	set_ui_state(UI_STATE.ORBIT)
+	if is_setting == false:
+		$place_stone.play()
 	request_place_stone.emit(approved_cell_index, approved_color)
 	#show_orbit_button()
 	await get_tree().create_timer(0.1).timeout
@@ -55,6 +59,7 @@ func receive_approve_and_reply_place_stone(approved_cell_index: Array[int], appr
 
 func receive_approve_and_reply_orbit_board():
 	hide_orbit_button()
+	$move_stone.play()
 	request_orbit_ui.emit()
 	return
 	set_ui_state(UI_STATE.MOVE_STONE)
@@ -128,3 +133,6 @@ func set_ui_state(state_to_set):
 		hide_do_not_move_button()
 		hide_move_opponent_button()
 		#show_orbit_button()
+
+func button_click_sound() -> void:
+	$click_button.play()
