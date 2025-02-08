@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://doek8h0o1rjoe" path="res://scenes/game_flip_tiles/flip_tiles.tscn" id="1_p6kc0"]
 [ext_resource type="Script" path="res://scenes/game_flip_tiles/ftg_flip_tiles.gd" id="2_i7vpk"]
-[ext_resource type="PackedScene" uid="uid://32twi0juyy6u" path="res://scenes/game_utils/game_utils_game_timer.tscn" id="3_eo88v"]
+[ext_resource type="PackedScene" uid="uid://32twi0juyy6u" path="res://scenes/game_utils/game_utils_game_timer/game_utils_game_timer.tscn" id="3_eo88v"]
 
 [node name="FTGFlipTiles" instance=ExtResource("1_p6kc0")]
 script = ExtResource("2_i7vpk")
