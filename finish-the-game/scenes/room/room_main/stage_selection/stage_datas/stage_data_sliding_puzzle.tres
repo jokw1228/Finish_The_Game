@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="StageData" load_steps=3 format=3 uid="uid://cnpa8g0mcrygo"]
+[gd_resource type="Resource" script_class="StageData" load_steps=4 format=3 uid="uid://cnpa8g0mcrygo"]
 
 [ext_resource type="Script" path="res://scenes/room/room_main/stage_selection/stage_datas/stage_data.gd" id="1_fplge"]
 [ext_resource type="Texture2D" uid="uid://cdac2skyxvkan" path="res://resources/images/room_main/stage_datas/sprite_stage_sliding_puzzle.svg" id="2_4qoo0"]
+[ext_resource type="Texture2D" uid="uid://cqpg35sxu3d72" path="res://resources/images/room_main/stage_datas/sprite_stage_sliding_puzzle_info.svg" id="2_bb4lv"]
 
 [resource]
 script = ExtResource("1_fplge")
@@ -10,4 +11,4 @@ PUZZLE"
 stage_description = "1, 2, 3... in order.
 Easy, right?"
 stage_thumbnail = ExtResource("2_4qoo0")
-stage_info = ExtResource("2_4qoo0")
+stage_info = ExtResource("2_bb4lv")
