@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="StageData" load_steps=3 format=3 uid="uid://cltt78ksuhj8q"]
+[gd_resource type="Resource" script_class="StageData" load_steps=4 format=3 uid="uid://cltt78ksuhj8q"]
 
 [ext_resource type="Script" path="res://scenes/room/room_main/stage_selection/stage_datas/stage_data.gd" id="1_37bp4"]
+[ext_resource type="Texture2D" uid="uid://cggsdqgaqu3ym" path="res://resources/images/room_main/stage_datas/sprite_stage_bomb_link_info.svg" id="2_jgu5i"]
 [ext_resource type="Texture2D" uid="uid://bphkfosubsvow" path="res://resources/images/room_main/stage_datas/sprite_stage_bomb_link.svg" id="2_mp0yq"]
 
 [resource]
@@ -9,4 +10,4 @@ stage_name = "BOMB
 LINK"
 stage_description = "Connect, ignite, explode!"
 stage_thumbnail = ExtResource("2_mp0yq")
-stage_info = ExtResource("2_mp0yq")
+stage_info = ExtResource("2_jgu5i")
