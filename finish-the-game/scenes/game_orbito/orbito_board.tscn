@@ -13,12 +13,14 @@ cells_to_export = [NodePath("GridContainer/orbito_cell00"), NodePath("GridContai
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -262.0
-offset_top = -262.0
-offset_right = -122.0
-offset_bottom = -122.0
+offset_left = -256.0
+offset_top = -256.0
+offset_right = -256.0
+offset_bottom = -256.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
 columns = 4
 
 [node name="orbito_cell00" parent="GridContainer" instance=ExtResource("3_s4rxc")]
