@@ -7,14 +7,29 @@ signal end_ftg(is_game_cleared: bool)
 signal start_timer(duration: float)
 signal pause_timer()
 
-func start_ftg() -> void:
+func start_ftg(difficulty: float) -> void:
+	
+	var shuffle_min: int = 0
+	var shuffle_max: int = 2
+	if difficulty < 0.2:
+		shuffle_min = 1
+	elif difficulty < 0.4:
+		shuffle_min = 2
+	elif shuffle_min < 0.6:
+		shuffle_min = 3
+	elif shuffle_min < 0.8:
+		shuffle_min = 4
+	else:
+		shuffle_min = 5
+	shuffle_max = shuffle_min + 2
+	
 	var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 	rng.randomize()
 	
 	var last_index: Array[int] = current_empty_index.duplicate(true)
 	var _x: int
 	var _y: int
-	for shuffle_count: int in range(rng.randi_range(3, 5)):
+	for shuffle_count: int in range(rng.randi_range(shuffle_min, shuffle_max)):
 		_x = current_empty_index[0]
 		_y = current_empty_index[1]
 		var candidates: Array = []

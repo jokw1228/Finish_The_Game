@@ -1,7 +1,8 @@
-[gd_scene load_steps=49 format=3 uid="uid://dej30dvp0aefe"]
+[gd_scene load_steps=50 format=3 uid="uid://dej30dvp0aefe"]
 
 [ext_resource type="PackedScene" uid="uid://bnyfbqonp1qby" path="res://scenes/ui/background/background_scrolling_controller.tscn" id="1_dlowq"]
 [ext_resource type="Script" path="res://scenes/room/room_main/room_main.gd" id="1_n65dx"]
+[ext_resource type="AudioStream" uid="uid://dueh20qcxrfiy" path="res://resources/audio/bgm/menu.mp3" id="2_f63qd"]
 [ext_resource type="Script" path="res://scenes/room/room_main/title/title.gd" id="3_b62d5"]
 [ext_resource type="Script" path="res://scenes/room/room_main/title/tap_anywhere_to_start.gd" id="3_vweoc"]
 [ext_resource type="Texture2D" uid="uid://duv1kw67dqpoe" path="res://resources/images/room_main/sprite_scroll_right_arrow.svg" id="4_6y3y6"]
@@ -80,6 +81,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_n65dx")
 background_scrolling_controller = NodePath("BackgroundScrollingController")
+room_main_bgm = ExtResource("2_f63qd")
 metadata/_edit_lock_ = true
 
 [node name="Camera2D" type="Camera2D" parent="."]

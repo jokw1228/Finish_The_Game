@@ -3,6 +3,8 @@ class_name RoomMain
 
 @export var background_scrolling_controller: BackgroundScrollingController
 
+@export var room_main_bgm: AudioStream
+
 enum RoomMainState {
 	TITLE,
 	STAGE_SELECTION
@@ -11,6 +13,7 @@ var room_main_state: RoomMainState = RoomMainState.TITLE
 
 func _ready() -> void:
 	background_scrolling_controller.set_all_label_text("F.T.G.")
+	AudioManager.play_bgm(room_main_bgm)
 
 signal player_started_game()
 func receive_player_has_tapped_anywhere() -> void:
