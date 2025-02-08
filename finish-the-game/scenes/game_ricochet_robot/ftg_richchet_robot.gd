@@ -14,11 +14,13 @@ func start_ftg(difficulty: float) -> void:
 	impossible_location.append(goal)
 	new_robot_location = []
 	for i in range(robot_location.size()):
-		var _x = randi() % board_size
-		var _y = randi() % board_size
-		if Vector2(_x,_y) not in impossible_location:
-			impossible_location.append(Vector2(_x,_y))
-			new_robot_location.append(Vector2(_x,_y))
+		while true:
+			var _x = randi() % board_size
+			var _y = randi() % board_size
+			if Vector2(_x,_y) not in impossible_location:
+				impossible_location.append(Vector2(_x,_y))
+				new_robot_location.append(Vector2(_x,_y))
+				break
 	robot_location = new_robot_location.duplicate(true)
 	reset_board(robot_location)
 	#print(board)
