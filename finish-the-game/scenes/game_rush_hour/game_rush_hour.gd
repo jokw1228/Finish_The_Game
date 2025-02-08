@@ -46,7 +46,6 @@ signal player_piece_instantiated(player_piece)
 # Called when the node enters the scene tree for the first time.
 	
 """
-난이도 조정은 ready에서
 형식: 난이도 -> 맵을 끝낼 수 있는 최소의 수
 difficulty == 1 -> 10
 0.75 <= difficulty < 1  -> 9

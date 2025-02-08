@@ -8,20 +8,34 @@ signal end_ftg(is_game_cleared: bool)
 signal start_timer(duration: float)
 signal pause_timer()
 
+signal difficulty_set
+
 const duration = 20
 
 var timeout = false
 
+var num_blank = 0
+
 signal disable_input
 
+"""
+형식: 난이도 -> 빈칸 개수 & grid 길
+difficulty == 1 -> 5~7 & 6x6 grid
+0.75 <= difficulty < 1  -> 4 & 6x6 grid
+0.5 <= difficulty < 0.75 ->  3 & 6x6 grid
+0.25 <= difficulty < 0.5->  4 & 4x4 grid
+0 < difficulty < 0.25 -> 3 & 4x4 grid
+difficulty == 0-> 2 & 4x4 grid
+
+"""
 
 func start_ftg():
-	print("start")
-	var ans_num = randi() %5 + 7
+	set_difficulty(0)
+	difficulty_set.emit()
 	var rand_row
 	var rand_col
 	var i = 0
-	while i < ans_num :
+	while i < num_blank :
 		rand_row = randi() % GRID_SIZE
 		rand_col =  randi() % GRID_SIZE
 		if Vector2(rand_row, rand_col) not in arr:
@@ -38,17 +52,27 @@ func start_ftg():
 	#print(" ")
 	#print_board()
 	#print(arr)
-
-func check_inc_ans():
-	if num_inc >=num_mistakes:
-		if not game_ended:
-			#disable_input.emit()
-			pause_timer.emit()
-			end_ftg.emit(false)
-			#print("ended becasue of incorrect answers")
-			game_ended = true
-			num_inc = 0
 	
+func set_difficulty(difficulty):
+	if difficulty == 1:
+		GRID_SIZE = 6
+		num_blank = randi_range(5,7)
+	elif difficulty < 1 and difficulty >= 0.75:
+		GRID_SIZE = 6
+		num_blank = 4
+	elif difficulty < 0.75 and difficulty >= 0.5:
+		GRID_SIZE = 6
+		num_blank = 3
+	elif difficulty < 0.5 and difficulty >= 0.25:
+		GRID_SIZE = 4
+		num_blank = 4
+		num_blank = randi_range(6,7)
+	elif difficulty < 0.25 and difficulty > 0:
+		GRID_SIZE = 4
+		num_blank = 3
+	else:
+		GRID_SIZE = 4
+		num_blank  = 2
 			
 func check_game_cleared(row,col):
 	#print("hi")

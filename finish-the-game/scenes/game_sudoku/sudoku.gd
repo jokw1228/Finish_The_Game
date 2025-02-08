@@ -54,8 +54,8 @@ func _ready() -> void:
 	#_create_sudoku()
 	#size = 1080x1920
 	label.text = "Mistakes: 0/" + str(num_mistakes)
-	label.position = Vector2(-320+8,-526)
-	grid.position = Vector2(-428-32,-428)
+	label.position = Vector2(-320+8,-526-16)
+	grid.position = Vector2(-428-32+12,-428-8)
 	#sprite.position = Vector2(0.5,-256+32)
 	solve_sudoku()
 	ans_board = board.duplicate(true)

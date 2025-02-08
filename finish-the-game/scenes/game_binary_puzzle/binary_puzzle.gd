@@ -1,7 +1,7 @@
 extends Node2D
 class_name BinaryPuzzle
 
-const GRID_SIZE = 6
+var GRID_SIZE = 6
 
 var board = []
 
@@ -37,6 +37,7 @@ var is_grid_selected = false
 @onready var grid:GridContainer = $BinaryPuzzleGrid
 #@onready var sprite:Sprite2D = $SudokuBoard
 @onready var label:Label = $Label
+@onready var emitter = $"."
 
 signal grid_selected
 signal inc_answer
@@ -59,8 +60,10 @@ func _ready() -> void:
 	#size = 1080x1920
 	#label.text = "Mistakes: 0/" + str(num_mistakes)
 	label.position = Vector2(-348,-526)
-	grid.position = Vector2(-428+32,-428)
 	#sprite.position = Vector2(0.5,-256+32)
+	await emitter.difficulty_set
+	if GRID_SIZE == 4: grid.position = Vector2(-428+32+4,-428+32)
+	else: grid.position = Vector2(-428+32,-428+32)
 	solve_binary_puzzle()
 	ans_board = board.duplicate(true)
 	grid.columns = GRID_SIZE
@@ -73,12 +76,15 @@ func print_board():
 	for i in range(len(board)):
 		print(board[i])
 		print("")
+	print("")
 
 func add_to_grid():
 	for i in range(GRID_SIZE):
 		for j in range(GRID_SIZE):
 			var button = Button.new()
 			button.custom_minimum_size = Vector2(128,128)
+			if GRID_SIZE == 4:
+				button.custom_minimum_size = Vector2(128+64,128+64)
 			button.add_theme_color_override("font_color", Color(0, 0, 0))
 			button.connect("pressed", Callable(self, "_on_button_pressed").bind(button, i, j))
 			var style = StyleBoxFlat.new()
@@ -219,7 +225,10 @@ func solve_binary_puzzle():
 			subboard2.append(-1)
 		if not j > GRID_SIZE-2:
 			board.append(subboard)
-		game_grid.append([0,0,0,0,0,0])
+		if GRID_SIZE == 4:
+			game_grid.append([0,0,0,0])
+		else:
+			game_grid.append([0,0,0,0,0,0])
 		
 	if not gen_binary_puzzle(1,0):
 		print("not solved")

@@ -12,16 +12,31 @@ const duration = 25
 
 var timeout = false
 
+var num_blank = 0
+
 signal disable_input
 
 
+"""
+형식: 난이도 -> 빈칸 개수
+difficulty == 1 -> 10~11
+0.75 <= difficulty < 1  -> 9
+0.5 <= difficulty < 0.75 -> 8
+0.25 <= difficulty < 0.5-> 7
+0 < difficulty < 0.25 -> 4~5
+difficulty == 0-> 3
+
+"""
+	
+
+
 func start_ftg():
-	print("start")
-	var ans_num = randi() %10 + 5
+	#print("start")
+	set_difficulty(0)
 	var rand_row
 	var rand_col
 	var i = 0
-	while i < ans_num :
+	while i < num_blank :
 		rand_row = randi() % 9 
 		rand_col =  randi() % 9 
 		if Vector2(rand_row, rand_col) not in arr:
@@ -34,6 +49,21 @@ func start_ftg():
 	#print(" ")
 	#print_board()
 	#print(arr)
+	
+	
+func set_difficulty(difficulty):
+	if difficulty == 1:
+		num_blank = randi_range(10,11)
+	elif difficulty < 1 and difficulty >= 0.75:
+		num_blank = 9
+	elif difficulty < 0.75 and difficulty >= 0.5:
+		num_blank = 8
+	elif difficulty < 0.5 and difficulty >= 0.25:
+		num_blank = randi_range(6,7)
+	elif difficulty < 0.25 and difficulty > 0:
+		num_blank = randi_range(4,5)
+	else:
+		num_blank  = 3
 
 func check_inc_ans():
 	if num_inc >=num_mistakes:
