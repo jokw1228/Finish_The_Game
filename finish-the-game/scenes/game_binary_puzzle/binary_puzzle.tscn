@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://btt0o1npqr8pe"]
+[gd_scene load_steps=3 format=3 uid="uid://btt0o1npqr8pe"]
 
 [ext_resource type="Script" path="res://scenes/game_binary_puzzle/binary_puzzle.gd" id="1_kbdkj"]
+[ext_resource type="AudioStream" uid="uid://bexei7qh5wag" path="res://resources/audio/sfx/general_purpose/sfx_button_click.wav" id="2_v4326"]
 
 [node name="BinaryPuzzle" type="Node2D"]
 script = ExtResource("1_kbdkj")
@@ -8,6 +9,9 @@ script = ExtResource("1_kbdkj")
 [node name="BinaryPuzzleGrid" type="GridContainer" parent="."]
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="BinaryPuzzleGrid"]
+stream = ExtResource("2_v4326")
 
 [node name="Label" type="Label" parent="."]
 offset_right = 40.0

@@ -163,6 +163,7 @@ func change_button_color(num, color):
 			
 
 func _on_button_pressed(button, i, j):
+	$AudioStreamPlayer2D.play()
 	emit_signal("grid_selected",button, i, j)
 	is_grid_selected = true
 	if ans_selected == true:

@@ -234,6 +234,7 @@ func solve_binary_puzzle():
 		print("not solved")
 		
 func _on_button_pressed(button, i, j):
+	$BinaryPuzzleGrid/AudioStreamPlayer2D.play()
 	var style = StyleBoxFlat.new()
 	if puzzle_board[i][j] == -1:
 		if board[i][j] == -1:

@@ -29,8 +29,8 @@ difficulty == 0-> 2 & 4x4 grid
 
 """
 
-func start_ftg():
-	set_difficulty(0)
+func start_ftg(difficulty):
+	set_difficulty(difficulty)
 	difficulty_set.emit()
 	var rand_row
 	var rand_col
