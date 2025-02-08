@@ -1,0 +1,19 @@
+[gd_scene load_steps=7 format=3 uid="uid://m34w4fyvku6x"]
+
+[ext_resource type="Script" path="res://scenes/game_ricochet_robot/ricochet_robot_path.gd" id="2_rnwil"]
+[ext_resource type="Texture2D" uid="uid://c5n2e8ax11oyd" path="res://resources/images/game_ricochet_robot/red_line.svg" id="3_6axvq"]
+[ext_resource type="Texture2D" uid="uid://c50148ffdtc2o" path="res://resources/images/game_ricochet_robot/green_line.svg" id="4_s3rq6"]
+[ext_resource type="Texture2D" uid="uid://b3bd0nqupoa4r" path="res://resources/images/game_ricochet_robot/blue_line.svg" id="5_y0i6r"]
+[ext_resource type="Texture2D" uid="uid://dl6gwpmdxtiyk" path="res://resources/images/game_ricochet_robot/yellow_line.svg" id="6_i6c7d"]
+[ext_resource type="Texture2D" uid="uid://c08rsedmpb62b" path="res://resources/images/game_ricochet_robot/black_line.svg" id="7_u2lsl"]
+
+[node name="RicochetRobotPath" type="Sprite2D"]
+scale = Vector2(0.125, 0.125)
+texture = ExtResource("3_6axvq")
+centered = false
+script = ExtResource("2_rnwil")
+path_red = ExtResource("3_6axvq")
+path_green = ExtResource("4_s3rq6")
+path_blue = ExtResource("5_y0i6r")
+path_yellow = ExtResource("6_i6c7d")
+path_black = ExtResource("7_u2lsl")
