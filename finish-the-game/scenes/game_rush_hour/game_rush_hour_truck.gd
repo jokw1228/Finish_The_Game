@@ -136,6 +136,7 @@ func _physics_process(delta: float):
 				
 		#calculate collision first
 		var move_vector = new_position - position
+		grid_snapping(move_vector)
 		var collision = move_and_collide(move_vector)
 		if collision:
 			print("collision")
@@ -145,18 +146,6 @@ func _physics_process(delta: float):
 			is_selected = false
 		else:
 			position += (new_position - position) 
-			#calculate collision for grid_snapping 
-			grid_snapping(new_position)
-			move_vector = new_position - position
-			collision = move_and_collide(move_vector)
-			if collision:
-				print("collision")
-				new_position = new_position.clamp(position, collision.get_position())
-				var push_vector = collision.get_normal() * 0.5  # Small separation push
-				#position += push_vector*10
-				is_selected = false
-			else:
-				position += (new_position - position)
 			
 		
 func grid_snapping(new_position):
