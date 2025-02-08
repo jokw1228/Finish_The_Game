@@ -17,25 +17,13 @@ signal request_display_ftg_result(result: bool)
 
 func _ready() -> void:
 	center = get_viewport().get_visible_rect().size / 2
-	'''
-	FTGs.append([load("res://scenes/game_ladder/ftg_ladder.tscn"), "LADDER"])
-	FTGs.append([load("res://scenes/game_memory/ftg_memory.tscn"), "MEMORY"])
-	FTGs.append([load("res://scenes/game_one_card/ftg_one_card.tscn"), "ONECARD"])
-	FTGs.append([load("res://scenes/game_set/ftg_set.tscn"), "SET"])
-	FTGs.append([load("res://scenes/game_pentago/ftg_pentago.tscn"), "PENTAGO"])
-	FTGs.append([load("res://scenes/game_sliding_puzzle/ftg_sliding_puzzle.tscn"), "SLD.PZL."])
-	FTGs.append([load("res://scenes/game_orbito/ftg_orbito.tscn"), "ORBITO"])
-	FTGs.append([load("res://scenes/game_bomb_link/ftg_bomb_link.tscn"), "BOMBLINK"])
-	FTGs.append([load("res://scenes/game_rush_hour/game_rush_hour.tscn"), "RUSHHOUR"])
-	FTGs.append([load("res://scenes/game_ricochet_robot/ftg_richchet_robot.tscn"), "RICOCHET_ROBOT"])
-	'''
 	
 	#ftg_add("LADDER", 3, load("res://scenes/game_ladder/ftg_ladder.tscn"))
 	#ftg_add("MEMORY", 5, load("res://scenes/game_memory/ftg_memory.tscn"))
 	#ftg_add("ONECARD", 5, load("res://scenes/game_one_card/ftg_one_card.tscn"))
 	#ftg_add("SET", 7, load("res://scenes/game_set/ftg_set.tscn"))
-	#ftg_add("PENTAGO", 7, load("res://scenes/game_pentago/ftg_pentago.tscn"))
-	ftg_add("SLD.PZL.", 5, load("res://scenes/game_sliding_puzzle/ftg_sliding_puzzle.tscn"))
+	ftg_add("PENTAGO", 7, load("res://scenes/game_pentago/ftg_pentago.tscn"))
+	#ftg_add("SLD.PZL.", 5, load("res://scenes/game_sliding_puzzle/ftg_sliding_puzzle.tscn"))
 	#ftg_add("ORBITO", 11, load("res://scenes/game_orbito/ftg_orbito.tscn"))
 	#ftg_add("BOMBLINK", 7, load("res://scenes/game_bomb_link/ftg_bomb_link.tscn"))
 	#ftg_add("RUSHHOUR", 9, load("res://scenes/game_rush_hour/ftg_rush_hour.tscn"))
@@ -80,7 +68,7 @@ func schedule_ftg(y_offset):
 	#for i in pq.get_list():
 	#	print(i)
 	#print()
-	start_ftg.emit(0.7)
+	start_ftg.emit(0.8)
 	request_set_all_label_text.emit(picked[0])
 	
 

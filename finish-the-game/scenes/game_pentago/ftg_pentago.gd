@@ -11,7 +11,15 @@ signal request_set_color(color_to_place: Pentago.CELL_STATE)
 
 var player_color: CELL_STATE
 
-func start_ftg() -> void:
+func start_ftg(difficulty: float) -> void:
+	var time_limit: float
+	if difficulty < 0.6:
+		time_limit = 8
+	else:
+		time_limit = 8 - (difficulty-0.6) * 2
+	
+	var diagonal_threshold: float = 0.4
+	
 	"""
 	'거꾸로 구성' 아이디어
 	1) next_player(BLACK or WHITE) 정하기.
@@ -33,7 +41,12 @@ func start_ftg() -> void:
 	
 	# 2) next_player가 5목이 되도록 임의 배치, 그리고 해당 5목이 깨지도록 한 돌 제거.
 	const N = 6
-	var direction: int = rng.randi_range(0, 3) # Five in a row 4 cases
+	#var direction: int = rng.randi_range(0, 3) # Five in a row 4 cases
+	var direction: int
+	if difficulty < diagonal_threshold:
+		direction = rng.randi_range(0, 1)
+	else:
+		direction = rng.randi_range(0, 3)
 	var start: int = rng.randi_range(0, N-5)
 	var elimination: int = rng.randi_range(0, 4) # 플레이어가 두어야 하는 수(5목에서 제거되는 수)
 	# 0: →, 1: ↑, 2: ↖, 3: ↗
@@ -139,8 +152,7 @@ func start_ftg() -> void:
 				[int(x%subboard_width), int(y%subboard_width)]
 				request_immediately_place_stone.emit(target_subboard_index, target_cell_index, board[y][x])
 	
-	const duration = 8.0
-	start_timer.emit(duration)
+	start_timer.emit(time_limit)
 
 func check_five_in_a_row(board_to_check: Array[Array], color_to_check: CELL_STATE) -> bool:
 	const N = 6

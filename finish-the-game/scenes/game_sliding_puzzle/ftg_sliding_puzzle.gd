@@ -9,19 +9,23 @@ signal pause_timer()
 
 func start_ftg(difficulty: float) -> void:
 	
-	var shuffle_min: int = 0
-	var shuffle_max: int = 2
+	var shuffle_min: int
+	var shuffle_max: int
 	if difficulty < 0.2:
 		shuffle_min = 1
+		shuffle_max = 1
 	elif difficulty < 0.4:
 		shuffle_min = 2
+		shuffle_max = 3
 	elif shuffle_min < 0.6:
 		shuffle_min = 3
+		shuffle_max = 5
 	elif shuffle_min < 0.8:
 		shuffle_min = 4
+		shuffle_max = 6
 	else:
 		shuffle_min = 5
-	shuffle_max = shuffle_min + 2
+		shuffle_max = 7
 	
 	var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 	rng.randomize()
