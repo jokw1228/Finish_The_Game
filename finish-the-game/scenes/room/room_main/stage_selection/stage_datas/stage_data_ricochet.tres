@@ -1,8 +1,7 @@
-[gd_resource type="Resource" script_class="StageData" load_steps=4 format=3 uid="uid://b4duxm5suub27"]
+[gd_resource type="Resource" script_class="StageData" load_steps=3 format=3 uid="uid://b4duxm5suub27"]
 
 [ext_resource type="Script" path="res://scenes/room/room_main/stage_selection/stage_datas/stage_data.gd" id="1_cme1b"]
 [ext_resource type="Texture2D" uid="uid://dgfq85clgytn5" path="res://resources/images/room_main/stage_datas/sprite_stage_ricochet.png" id="2_25m85"]
-[ext_resource type="Texture2D" uid="uid://8c7lx6sy4u0j" path="res://resources/images/room_main/stage_datas/sprite_stage_ricochet_robot_info.png" id="2_gnjke"]
 
 [resource]
 script = ExtResource("1_cme1b")
@@ -10,4 +9,4 @@ stage_name = "RICOCHET"
 stage_description = "Let the sliding robot
 reach its target point"
 stage_thumbnail = ExtResource("2_25m85")
-stage_info = ExtResource("2_gnjke")
+stage_info = ExtResource("2_25m85")

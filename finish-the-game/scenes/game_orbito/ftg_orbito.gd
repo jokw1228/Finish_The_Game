@@ -6,31 +6,19 @@ signal end_ftg(is_game_cleared: bool)
 
 signal start_timer(duration: float)
 signal pause_timer()
-signal resume_timer()
-
-@export var retry_button: GameUtilsRetryButton
 
 var my_color: CELL_STATE
 var opponent_color: CELL_STATE
 
-var my_color_backup: CELL_STATE
-var opponent_color_backup: CELL_STATE
-
-var board_backup: Array[Array]
-
-func start_ftg(difficulty: float):
+func start_ftg():
 	var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 	rng.randomize()
 	
-	$orbito_ui.is_setting = true
 	# 내 색깔 정하기
 	my_color = [CELL_STATE.BLACK, CELL_STATE.WHITE].pick_random()
-	my_color_backup = my_color
 	opponent_color = CELL_STATE.WHITE if my_color == CELL_STATE.BLACK else CELL_STATE.BLACK
-	opponent_color_backup = opponent_color
 	
-	board = make_kill_angle(difficulty)
-	board_backup = board.duplicate(true)
+	board = make_kill_angle()
 	replace_all_stones()
 	
 	turn_state = TURN_STATE.BLACK_MOVE
@@ -41,12 +29,10 @@ func start_ftg(difficulty: float):
 		turn_state = TURN_STATE.WHITE_MOVE
 		$orbito_ui.set_turn_color(OrbitoUI.TURN_COLOR.WHITE)
 		opponent_color = CELL_STATE.BLACK
-	$orbito_ui.is_setting = false
-	retry_button.set_disabled(true)
 	#request_disable_input.emit(false)
 		
 		
-func make_kill_angle(difficulty: float) -> Array[Array]:
+func make_kill_angle() -> Array[Array]:
 	# 킬각만들기
 	# 순서:
 	# 1. 4목 놓기
@@ -54,6 +40,7 @@ func make_kill_angle(difficulty: float) -> Array[Array]:
 	# 3. 반대로 회전하기 (11번 똑바로 회전하면 반대로 한번 회전이랑 같음)
 	# 4. 내 돌 하나 빼기
 	# 5. 상대 돌 하나 움직이거나 안움직이기
+	
 	
 	var completed_board: Array[Array] = []
 	
@@ -66,13 +53,7 @@ func make_kill_angle(difficulty: float) -> Array[Array]:
 			completed_board.append(temp)
 			
 		# 1. 4목 놓기
-		# difficulty 가 0.5 이하일 시, n = 0, 3, 4, 7로 설정
-		# 즉, (보드 가운데 4칸을 경유 안하게 사목 생성)
-		var n: int
-		if difficulty <= 0.5:
-			n = [0,3,4,7].pick_random()
-		else:
-			n = [1,2,5,6,8,9].pick_random()
+		var n: int = randi_range(0,10)
 		if n < 4:
 			completed_board[n][0] = my_color
 			completed_board[n][1] = my_color
@@ -228,21 +209,6 @@ func make_kill_angle(difficulty: float) -> Array[Array]:
 	start_timer.emit(duration)
 	return completed_board
 		
-func reset_ftg_board() -> void:
-	$orbito_ui.is_setting = true
-	my_color = my_color_backup
-	opponent_color = opponent_color_backup
-	board = board_backup.duplicate(true)
-	replace_all_stones()
-	turn_state = TURN_STATE.BLACK_MOVE
-	$orbito_ui.set_ui_state(OrbitoUI.UI_STATE.MOVE_STONE)
-	$orbito_ui.hide_orbit_button()
-	$orbito_ui.set_turn_color(OrbitoUI.TURN_COLOR.BLACK)
-	if my_color == CELL_STATE.WHITE:
-		turn_state = TURN_STATE.WHITE_MOVE
-		$orbito_ui.set_turn_color(OrbitoUI.TURN_COLOR.WHITE)
-		opponent_color = CELL_STATE.BLACK
-	$orbito_ui.is_setting = false
 	
 func four_in_a_row(board_to_check: Array[Array], state: CELL_STATE) -> bool:
 	for y: int in range(board_size):
@@ -278,40 +244,11 @@ func check_game_cleared():
 			cleared = false
 		else:
 			cleared = true
-	if cleared == true:
-		request_disable_input.emit(true)
-		end_ftg.emit(true)
-	else:
-		resume_timer.emit()
-		open_retry_button()
+	request_disable_input.emit(true)
+	end_ftg.emit(cleared)
 	return
 	
 func _on_game_utils_game_timer_timeout() -> void:
 	request_disable_input.emit(true)
 	end_ftg.emit(false)
 	return
-	
-func open_retry_button() -> void:
-	retry_button.set_disabled(false)
-	
-	var target_position: Vector2 = retry_button.position
-	const duration = 0.2
-	
-	var tween_position: Tween = get_tree().create_tween()
-	tween_position.tween_property\
-	(retry_button, "position", Vector2(200,retry_button.position[1]), duration)\
-	.from(Vector2(800,target_position[1]))\
-	.set_trans(Tween.TRANS_CUBIC)\
-	.set_ease(Tween.EASE_OUT)
-
-func close_retry_button() -> void:
-	retry_button.set_disabled(true)
-	
-	var closed_position: Vector2 = Vector2(800, retry_button.position[1])
-	const duration = 0.2
-	
-	var tween_position: Tween = get_tree().create_tween()
-	tween_position.tween_property\
-	(retry_button, "position", closed_position, duration)\
-	.set_trans(Tween.TRANS_CUBIC)\
-	.set_ease(Tween.EASE_OUT)

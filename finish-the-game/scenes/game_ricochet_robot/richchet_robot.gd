@@ -139,7 +139,7 @@ func reset_board(new_robot_location: Array[Vector2]):
 	request_generate_robots_ui.emit(robot_location)
 
 func receive_request_cell_pressed(cell_index: Vector2) -> void:
-	print(robot_location)
+	#print(robot_location)
 	var loc: int = robot_location.find(cell_index)
 	if turn_state == TURN_STATE.MOVE:
 		if loc != -1:
@@ -147,7 +147,6 @@ func receive_request_cell_pressed(cell_index: Vector2) -> void:
 				increase_turn_state()
 				color_selected = COLOR.NONE
 			else:
-				$RicochetRobotUI.receive_select_robot()
 				color_selected = int_to_color(loc)
 		else:
 			var to_move = check_movement(color_selected, cell_index)
@@ -170,7 +169,6 @@ func receive_request_cell_pressed(cell_index: Vector2) -> void:
 		if loc == -1:
 			pass
 		else:
-			$RicochetRobotUI.receive_select_robot()
 			color_selected = int_to_color(loc)
 			increase_turn_state()
 	return

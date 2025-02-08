@@ -29,7 +29,6 @@ func receive_request_cell_pressed_to_ui(cell_index: Vector2) -> void:
 	request_cell_pressed_to_game.emit(cell_index)
 	
 func receive_request_move_robot_ui(robot_to_move: RicochetRobot.COLOR, location_from: Vector2, location_to: Vector2) -> void:
-	$move_robot.play()
 	request_move_robot_to_board.emit(robot_to_move, location_from, location_to)
 
 func receive_move_finished() -> void:
@@ -37,6 +36,3 @@ func receive_move_finished() -> void:
 	
 func receive_request_disable_input(disable: bool) -> void:
 	deliver_disable_input.emit(disable)
-
-func receive_select_robot() -> void:
-	$select_robot.play()
