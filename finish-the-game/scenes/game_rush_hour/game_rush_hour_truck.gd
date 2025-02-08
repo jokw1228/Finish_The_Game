@@ -8,7 +8,7 @@ var mouse_offset
 #var camera_offset = Vector2(500,900)
 #vAR camera_offset = Vector2(-150,0)
 var camera_offset = Vector2(0,0)
-var delay = 10
+var delay = 0
 var grid_size = 128 
 var board_size = Vector2(768, 768) 
 var additional_offset = Vector2(0, 360) 
@@ -37,6 +37,7 @@ var flag = 0
 
 func _ready():
 	#position = position.snapped(Vector2(board_size, board_size))
+	motion_mode = CharacterBody2D.MOTION_MODE_FLOATING
 	center = get_viewport().get_visible_rect().size / 2
 	target_pos = position
 	start_pos = position
@@ -94,6 +95,8 @@ func _physics_process(delta: float):
 		var collision = move_and_collide(collide * delta)
 		if collision:
 			is_selected = false
+			#print("collision")
+			position = position.clamp(position, collision.get_position())
 		#horixontal or vertical fix
 		if direction == 0:
 			position.y = clamp(position.y, start_pos.y, start_pos.y) 
@@ -131,13 +134,32 @@ func _physics_process(delta: float):
 			else:
 				new_position = new_position.clamp(Vector2(-128*2-64, -128-64), Vector2(128*3-32, 128*2+64))
 				
-		if flag != 0:
-			var collision = move_and_collide(collide * delta)
-			if collision:
-				new_position = new_position.clamp(position, collision.get_position())
-			position += (new_position - position) * delta * 3
+		#calculate collision first
+		var move_vector = new_position - position
+		grid_snapping(move_vector)
+		var collision = move_and_collide(move_vector)
+		if collision:
+			print("collision")
+			new_position = new_position.clamp(position, collision.get_position())
+			var push_vector = collision.get_normal() * 0.5  # Small separation push
+			#position += push_vector*10
+			is_selected = false
+		else:
+			position += (new_position - position) 
+			
 		
-
+func grid_snapping(new_position):
+	var snapped_x
+	var snapped_y 
+	if truck_type == 1:
+		snapped_x = round(new_position.x / grid_size) * grid_size +20
+		snapped_y = round(new_position.y / grid_size) * grid_size+28-64-16
+	else:
+		snapped_x = round(new_position.x / grid_size) * grid_size -24-8
+		snapped_y = round(new_position.y / grid_size) * grid_size 
+		
+	new_position = Vector2(snapped_x, snapped_y)
+	
 
 func _input(event):
 	if is_selected:

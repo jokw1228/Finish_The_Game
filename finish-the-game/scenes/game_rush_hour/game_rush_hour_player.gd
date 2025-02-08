@@ -31,8 +31,12 @@ var collide = Vector2(0,0)
 var prev_position = Vector2(0,0)
 var max_speed = 50
 
+var flag = 0
+
 var piece_type = ""
 var cell_loc = Vector2(0,0)
+
+signal can_move
 
 
 func _ready():
@@ -45,6 +49,7 @@ func _ready():
 
 func _process(delta: float):
 	if is_selected:
+		flag = 1
 		sprite.modulate = Color(0, 0, 0.5)
 	else:
 		sprite.modulate = Color(1, 1, 1)
@@ -56,28 +61,24 @@ func _process(delta: float):
 
 func _physics_process(delta: float):
 	#print(position)
-	collide = input_dir.round() * speed
-	if direction == 0:
-		collide.y = 0
-		position.y = clamp(position.y, start_pos.y, start_pos.y) 
-	else:
-		collide.x = 0
-		position.x = clamp(position.x, start_pos.x, start_pos.x)  # Keep x fixed
-		
-	if collide.length() > max_speed:
-		collide = collide.normalized() * max_speed
-	
-	var collision = move_and_collide(collide * delta)
-	if collision:
-		is_selected = false
-		
-	if direction == 0:
-		position.y = clamp(position.y, start_pos.y, start_pos.y) 
-	else:
-		position.x = clamp(position.x, start_pos.x, start_pos.x)
-	
-	if not is_selected and collision:
-		position = prev_position
+	collide = input_dir * speed
+	if flag != 0:
+		if direction == 0:
+			collide.y = 0
+			position.y = start_pos.y
+		else:
+			collide.x = 0
+			position.x = start_pos.x
+		var collision = move_and_collide(collide * delta)
+		if collision:
+			is_selected = false
+			#print("collision")
+			position = position.clamp(position, collision.get_position())
+		#horixontal or vertical fix
+		if direction == 0:
+			position.y = clamp(position.y, start_pos.y, start_pos.y) 
+		else:
+			position.x = clamp(position.x, start_pos.x, start_pos.x)
 		
 	if is_selected == true:
 		var current_position = position
@@ -96,14 +97,24 @@ func _physics_process(delta: float):
 			position.x,  # Keep x constant
 			get_global_mouse_position().y - mouse_offset.y-1024+64,)
 			#new_position.y = round(new_position.y / grid_size) * grid_size/2 -32
-		collision = move_and_collide(collide * delta)
 		if direction == 0:
 			new_position = new_position.clamp(Vector2(-128-96, -128*2+8), Vector2(128*3-96-8, 128*3-8))
 		else:
 			new_position = new_position.clamp(Vector2(-128*2-32, -128-64+8), Vector2(128*3-32-8, 128*3-64-8))
+		#position += (new_position - position) *delta *100
+		var move_vector = new_position - position
+		var collision = move_and_collide(move_vector)
 		if collision:
+			print("collision")
 			new_position = new_position.clamp(position, collision.get_position())
-		position += (new_position - position) * delta * 3
+			var push_vector = collision.get_normal() * 0.5  # Small separation push
+			#position += push_vector*10
+			is_selected = false
+		else:
+			position += (new_position - position)
+		#var snapped_x = round(position.x / grid_size) * grid_size
+		#var snapped_y = round(position.y / grid_size) * grid_size
+		#position = Vector2(snapped_x, snapped_y)
 		
 			
 func _input(event):

@@ -9,6 +9,7 @@ script = ExtResource("2_u0awp")
 
 [node name="GameUtilsGameTimer" parent="." index="0" instance=ExtResource("3_srq5v")]
 
+[connection signal="check_answer" from="." to="." method="check_game_cleared"]
 [connection signal="disable_input" from="." to="SelectGrid" method="_on_ftg_sudoku_disable_input"]
 [connection signal="inc_answer" from="." to="." method="check_inc_ans"]
 [connection signal="pause_timer" from="." to="GameUtilsGameTimer" method="pause_timer"]

@@ -37,30 +37,60 @@ var start_position = Vector2(-320+30,-320)
 var player_direction = 0
 var checked_pos = []
 var piece_list = []
+var num_moves = 0
 signal start(value: Vector2)
 
 signal gen_map
 signal player_piece_instantiated(player_piece)
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
-	var num = randi_range(5, 12)
-	gen_map.emit(num)
+	
+"""
+형식: 난이도 -> 맵을 끝낼 수 있는 최소의 수
+difficulty == 1 -> 10
+0.75 <= difficulty < 1  -> 9
+0.5 <= difficulty < 0.75 -> 8
+0.25 <= difficulty < 0.5-> 7
+0 < difficulty < 0.25 -> 6
+difficulty == 0-> 5번 이하, 맵 형식상 5번 이하로만 지정가능 (권장 난이도)
+
+"""
+func start_ftg():
+	set_difficulty(0)
+	gen_map.emit(num_moves)
 	generate_board()
 	#select_grid()
 	find_target_location()
 	place_pieces()
-	const duration = 10
+	const duration = 12
 	start_timer.emit(duration)
 	start.emit(target_location, player_direction)
+
+
+func _ready():
+	pass
+	#var num = randi_range(5, 12)
 	
 	#print(piece_list)
 	#print_board(board)
 	
 	
-func start_ftg():
-	print()
+func set_difficulty(difficulty):
+	if difficulty == 1:
+		num_moves = 10
+	elif difficulty < 1 and difficulty >= 0.75:
+		num_moves = 9
+	elif difficulty < 0.75 and difficulty >= 0.5:
+		num_moves = 8
+	elif difficulty < 0.5 and difficulty >= 0.25:
+		num_moves = 7
+	elif difficulty < 0.25 and difficulty > 0:
+		num_moves = 6
+	else:
+		num_moves  = 5
+		
 	
+			
 	
 func _process(delta):
 	#debugging
