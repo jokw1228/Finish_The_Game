@@ -1,0 +1,7 @@
+sfx_game_ricochet_robot_move.wav
+https://freesound.org/people/qubodup/sounds/743243/
+CC0, CC BY
+
+sfx_game_ricochet_robot_select_robot.wav
+https://freesound.org/people/OwlStorm/sounds/209011/
+CC0
