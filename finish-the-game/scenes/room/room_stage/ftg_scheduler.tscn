@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://53csj8ot6kcu"]
 
-[ext_resource type="Script" path="res://scenes/room/room_stages/ftg_scheduler.gd" id="1_nl81j"]
+[ext_resource type="Script" path="res://scenes/room/room_stage/ftg_scheduler.gd" id="1_nl81j"]
 
 [node name="FTGScheduler" type="Control"]
 layout_mode = 3

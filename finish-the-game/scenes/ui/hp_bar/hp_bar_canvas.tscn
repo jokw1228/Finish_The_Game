@@ -1,9 +1,9 @@
 [gd_scene load_steps=2 format=3 uid="uid://u72mfat08yxv"]
 
-[ext_resource type="Script" path="res://scenes/ui/hp_bar/hp_bar.gd" id="1_yr5kd"]
+[ext_resource type="Script" path="res://scenes/ui/hp_bar/hp_bar_canvas.gd" id="1_gv0pj"]
 
 [node name="HPBarCanvas" type="CanvasLayer"]
-script = ExtResource("1_yr5kd")
+script = ExtResource("1_gv0pj")
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 anchors_preset = 10

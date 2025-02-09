@@ -36,6 +36,11 @@ func schedule_ftg():
 	
 	start_ftg.emit(0.9)
 	request_set_all_label_text.emit(picked[0])
+	
+	var tween_fade_in: Tween = get_tree().create_tween()
+	tween_fade_in.tween_property\
+	(current_ftg, "position", center, 0.5).\
+	set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
 
 func end_ftg(result: bool) -> void:
 	request_display_ftg_result.emit(result)
@@ -51,13 +56,12 @@ func end_ftg(result: bool) -> void:
 	await get_tree().create_timer(0.5).timeout
 	
 	schedule_ftg()
-	
-	var tween_fade_in: Tween = get_tree().create_tween()
-	tween_fade_in.tween_property\
-	(current_ftg, "position", center, 0.5).\
-	set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
 
-func init(games) -> void:
-	for game in games:
-		pass
+func init(ftg_game_datas: Array[FTGGameData]) -> void:
+	for ftg_game_data in ftg_game_datas:
+		ftg_add(ftg_game_data.name, ftg_game_data.weight, load(ftg_game_data.scene))
 	schedule_ftg()
+
+func stop_scheduling() -> void:
+	await get_tree().create_timer(1.0).timeout
+	queue_free()
