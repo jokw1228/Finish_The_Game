@@ -22,7 +22,7 @@ func _ready() -> void:
 	
 func init() -> void:
 	var viewport_size: Vector2 = get_viewport_rect().size
-	position = Vector2(0, 0)
+	#position = Vector2(0, 0)
 	
 	LINE_SPACING = viewport_size.x / (LINE_NUM + 1)  
 	LINE_BASE = LINE_SPACING

@@ -17,7 +17,7 @@ func _ready() -> void:
 	#start_ftg() # 임시
 	pass
 
-func start_ftg() -> void:
+func start_ftg(difficulty: float) -> void:
 	# LadderUI 초기화는 외부에서 하도록 수정
 	init()
 	ui = $LadderUI
@@ -29,14 +29,17 @@ func start_ftg() -> void:
 	
 	start_idx = rng.randi_range(0, len(vertical_lines) - 1)
 	end_idx = rng.randi_range(0, len(vertical_lines) - 1)
+	
+	ui.enable_input = true
 	start_timer.emit(TIMER_DURATION)
 	await get_tree().create_timer(TIMER_DURATION).timeout
 	request_disable_input.emit(true)
+	ui.enable_input = false
 	check()
 
 func check() -> void:
 	isWin = check_win()
-	
+
 # UI의 애니메이션 관련 함수들은 UI에서 처리하도록 수정
 func on_game_result() -> void:
 	end_ftg.emit(isWin)
