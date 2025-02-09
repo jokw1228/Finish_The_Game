@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://h6roi8gwnnli"]
+[gd_scene load_steps=7 format=3 uid="uid://h6roi8gwnnli"]
 
 [ext_resource type="Script" path="res://scenes/room/room_stage/room_stage.gd" id="1_frkdo"]
 [ext_resource type="PackedScene" uid="uid://bnyfbqonp1qby" path="res://scenes/ui/background/background_scrolling_controller.tscn" id="2_na0t0"]
 [ext_resource type="Script" path="res://scenes/room/room_stage/ready_set_go.gd" id="3_vacx5"]
 [ext_resource type="PackedScene" uid="uid://b3fbsp14s0uh" path="res://scenes/ui/overlay/ftg_result_overlay_controller.tscn" id="4_nv6mc"]
-[ext_resource type="PackedScene" uid="uid://u72mfat08yxv" path="res://scenes/ui/hp_bar/hp_bar_canvas.tscn" id="5_tajkl"]
+[ext_resource type="PackedScene" uid="uid://u72mfat08yxv" path="res://scenes/ui/hp_bar_canvas/hp_bar_canvas.tscn" id="5_tajkl"]
+[ext_resource type="PackedScene" uid="uid://clqupjhglq5tp" path="res://scenes/ui/game_over/game_over.tscn" id="6_8omo7"]
 
 [node name="RoomStage" type="Control"]
 layout_mode = 3
@@ -79,6 +80,13 @@ vertical_alignment = 1
 unique_name_in_owner = true
 
 [node name="HPBarCanvas" parent="." instance=ExtResource("5_tajkl")]
+unique_name_in_owner = true
+
+[node name="GameOver" parent="." instance=ExtResource("6_8omo7")]
+unique_name_in_owner = true
+layout_mode = 1
 
 [connection signal="take_damage" from="." to="HPBarCanvas" method="take_damage"]
 [connection signal="hp_depleted" from="HPBarCanvas" to="." method="on_hp_depleted"]
+[connection signal="request_retry_stage" from="GameOver" to="." method="receive_request_retry_stage"]
+[connection signal="request_set_all_label_text" from="GameOver" to="BackgroundScrollingController" method="set_all_label_text"]

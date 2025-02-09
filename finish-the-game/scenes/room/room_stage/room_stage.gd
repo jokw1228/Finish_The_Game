@@ -3,17 +3,15 @@ class_name RoomStage
 
 @export var stage_name: String = ""
 
-@onready var background_scrolling_controller: BackgroundScrollingController = %BackgroundScrollingController
+@onready var background_scrolling_controller: BackgroundScrollingController = %BackgroundScrollingController as BackgroundScrollingController
 func _ready() -> void:
-	background_scrolling_controller.set_all_label_text(stage_name)
-	
-	await get_tree().create_timer(0.5).timeout
 	start_stage()
 
-@onready var ready_set_go: ReadySetGo = %ReadySetGo
+@onready var ready_set_go: ReadySetGo = %ReadySetGo as ReadySetGo
 var clear_count: int = 0
-@onready var hp_bar_canvas: HPBarCanvas = %HPBarCanvas
+@onready var hp_bar_canvas: HPBarCanvas = %HPBarCanvas as HPBarCanvas
 func start_stage() -> void:
+	background_scrolling_controller.set_all_label_text(stage_name)
 	await ready_set_go.ready_set_go()
 	
 	create_ftg_scheduler()
@@ -22,7 +20,7 @@ func start_stage() -> void:
 	hp_bar_canvas.visible = true
 	
 @export var ftg_game_datas: Array[FTGGameData] = []
-@onready var ftg_result_overlay_controller: FTGResultOverlayController = %FTGResultOverlayController
+@onready var ftg_result_overlay_controller: FTGResultOverlayController = %FTGResultOverlayController as FTGResultOverlayController
 var ftg: FTGScheduler
 func create_ftg_scheduler() -> void:
 	ftg = FTGScheduler.new()
@@ -39,5 +37,11 @@ func is_cleared(result: bool) -> void:
 	elif result == false:
 		take_damage.emit(25.0)
 
+@onready var game_over: GameOver = %GameOver as GameOver
 func on_hp_depleted() -> void:
-	ftg.stop_scheduling()
+	await ftg.stop_scheduling()
+	game_over.show_game_over(clear_count, 99)
+
+func receive_request_retry_stage() -> void:
+	game_over._initialize()
+	start_stage()

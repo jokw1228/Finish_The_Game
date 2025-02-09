@@ -23,7 +23,7 @@ func ftg_add(ftg_name: String, duration: float, tscn: PackedScene):
 	FTGs.append(ftg_name)
 	pq.insert(ftg_name,duration + randf_range(0,0.1))
 
-func schedule_ftg():
+func schedule_ftg() -> void:
 	var picked = pq.pop()
 	var picked_ftg = FTG_dict[picked[0]][0]
 	var picked_recent_time = picked[1]

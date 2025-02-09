@@ -2,6 +2,8 @@ extends Control
 class_name ReadySetGo
 
 func ready_set_go() -> void:
+	await get_tree().create_timer(0.5).timeout
+	
 	visible = true
 	
 	%ReadySet.text = "Ready"
