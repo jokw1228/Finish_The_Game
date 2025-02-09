@@ -10,6 +10,8 @@ var stage_selection_state: StageSelectionState = StageSelectionState.NO
 
 var current_stage_index: int = 0
 @export var stage_datas: Array[StageData] = []
+@export var stage_mix_datas: Array[StageData] = []
+@export var stage_solo_datas: Array[StageData] = []
 
 @onready var stage_name: Label = %StageName
 @onready var stage_description: Label = %StageDescription
