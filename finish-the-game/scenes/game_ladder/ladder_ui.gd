@@ -32,9 +32,12 @@ var end_circle_progress: float = 0.0
 var is_start_animating: bool = false
 var is_end_animating: bool = false
 
+var enable_input: bool = true
+
 func init(ladder_node: Ladder) -> void:
 	ladder = ladder_node
 	CLICK_MAGNET_LIMIT = ladder.LINE_SPACING * 0.3
+	position = -get_viewport().get_visible_rect().size / 2
 	
 	# 시그널 연결
 	ladder.simulation_started.connect(_on_simulation_started)
@@ -127,7 +130,7 @@ func _draw() -> void:
 		draw_circle(first_click_pos, CIRCLE_SIZE, CHECK_COLOR)
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+	if enable_input and event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		if !nearest_vertical_pos:
 			first_click_pos = Vector2.ZERO
 		elif nearest_vertical_pos.y < ladder.TOP_MARGIN:

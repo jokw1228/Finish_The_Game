@@ -1,6 +1,7 @@
 extends Node2D
 
 const y_offset = 1080*2
+const FAIL_DAMAGE = 40
 var center: Vector2 = Vector2.ZERO
 
 var FTGs: Array = []
@@ -11,6 +12,7 @@ const priority_queue = preload("res://scenes/room/priority_queue.gd")
 var pq = priority_queue.new()
 
 signal start_ftg(difficulty: float)
+signal take_damage(amount: float)
 
 signal request_set_all_label_text(label_text_to_set)
 signal request_display_ftg_result(result: bool)
@@ -18,14 +20,14 @@ signal request_display_ftg_result(result: bool)
 func _ready() -> void:
 	center = get_viewport().get_visible_rect().size / 2
 	
-	#ftg_add("LADDER", 3, load("res://scenes/game_ladder/ftg_ladder.tscn"))
+	#ftg_add("BOMBLINK", 1, load("res://scenes/game_bomb_link/ftg_bomb_link.tscn"))
+	ftg_add("LADDER", 1, load("res://scenes/game_ladder/ftg_ladder.tscn"))
 	#ftg_add("MEMORY", 5, load("res://scenes/game_memory/ftg_memory.tscn"))
 	#ftg_add("ONECARD", 5, load("res://scenes/game_one_card/ftg_one_card.tscn"))
 	#ftg_add("SET", 7, load("res://scenes/game_set/ftg_set.tscn"))
 	#ftg_add("PENTAGO", 7, load("res://scenes/game_pentago/ftg_pentago.tscn"))
 	#ftg_add("SLD.PZL.", 5, load("res://scenes/game_sliding_puzzle/ftg_sliding_puzzle.tscn"))
 	#ftg_add("ORBITO", 11, load("res://scenes/game_orbito/ftg_orbito.tscn"))
-	ftg_add("BOMBLINK", 7, load("res://scenes/game_bomb_link/ftg_bomb_link.tscn"))
 	#ftg_add("RUSHHOUR", 9, load("res://scenes/game_rush_hour/ftg_rush_hour.tscn"))
 	#ftg_add("RICOCHET_ROBOT", 9, load("res://scenes/game_ricochet_robot/ftg_richchet_robot.tscn"))
 
@@ -37,6 +39,7 @@ func _ready() -> void:
 
 func end_ftg(result: bool) -> void:
 	request_display_ftg_result.emit(result)
+	if !result: take_damage.emit(FAIL_DAMAGE)
 	
 	await get_tree().create_timer(0.5).timeout
 	
@@ -76,4 +79,6 @@ func ftg_add(ftg_name, duration, tscn):
 	FTG_dict[ftg_name] = [tscn, duration]
 	FTGs.append(ftg_name)
 	pq.insert(ftg_name,duration + randf_range(0,0.1))
-	
+
+func on_game_end() -> void:
+	pass
