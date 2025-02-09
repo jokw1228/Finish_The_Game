@@ -8,16 +8,18 @@ enum StageSelectionState {
 }
 var stage_selection_state: StageSelectionState = StageSelectionState.NO
 
-var current_stage_index: int = 0
-@export var stage_datas: Array[StageData] = []
 @export var stage_mix_datas: Array[StageData] = []
 @export var stage_solo_datas: Array[StageData] = []
+var stage_datas: Array[StageData]
+var current_stage_index: int = 0
 
 @onready var stage_name: Label = %StageName
 @onready var stage_description: Label = %StageDescription
 
 signal request_set_stage_datas(stage_datas_to_set: Array[StageData])
 func _ready() -> void:
+	stage_datas = stage_mix_datas.duplicate(true)
+	
 	update_stage_name()
 	request_set_stage_datas.emit(stage_datas)
 

@@ -9,12 +9,14 @@ var stage_width: float = 768
 func receive_request_set_stage_datas(stage_datas_to_set: Array[StageData]) -> void:
 	initialize(stage_datas_to_set)
 
-func initialize(stage_datas: Array[StageData]) -> void:
-	stage_count = stage_datas.size()
+func initialize(stage_datas_to_set: Array[StageData]) -> void:
+	scroll_horizontal = 0
+	
+	stage_count = stage_datas_to_set.size()
 	if stage_count <= 0:
 		stage_width = 0
 	
-	for stage_data: StageData in stage_datas:
+	for stage_data: StageData in stage_datas_to_set:
 		var image: TextureRect = TextureRect.new()
 		image.texture = stage_data.stage_thumbnail
 		image.set_mouse_filter(Control.MOUSE_FILTER_IGNORE)

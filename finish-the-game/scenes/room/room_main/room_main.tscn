@@ -165,7 +165,6 @@ offset_bottom = 1920.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("5_84lgk")
-stage_datas = Array[ExtResource("6_14e36")]([ExtResource("7_7mhve"), ExtResource("8_qagxc"), ExtResource("9_02bnb"), ExtResource("10_4yd4e"), ExtResource("11_bi2ln"), ExtResource("12_pogo4"), ExtResource("13_n13lu"), ExtResource("14_1tg5b"), ExtResource("15_wygt2"), ExtResource("16_4fge0"), ExtResource("17_ai62p"), ExtResource("18_fspxu"), ExtResource("19_sp3sy"), ExtResource("20_obiaw")])
 stage_mix_datas = Array[ExtResource("6_14e36")]([ExtResource("22_w10df")])
 stage_solo_datas = Array[ExtResource("6_14e36")]([ExtResource("8_qagxc"), ExtResource("15_wygt2"), ExtResource("11_bi2ln"), ExtResource("10_4yd4e"), ExtResource("19_sp3sy"), ExtResource("16_4fge0"), ExtResource("18_fspxu"), ExtResource("12_pogo4"), ExtResource("13_n13lu"), ExtResource("9_02bnb"), ExtResource("7_7mhve"), ExtResource("17_ai62p"), ExtResource("14_1tg5b"), ExtResource("20_obiaw")])
 metadata/_edit_lock_ = true
