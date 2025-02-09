@@ -71,7 +71,6 @@ func start_ftg(difficulty):
 	str_board = []
 	board = []
 	set_difficulty(difficulty)
-	var num_moves = randi_range(3,11)
 	gen_map.emit(num_moves)
 	generate_board()
 	#select_grid()
