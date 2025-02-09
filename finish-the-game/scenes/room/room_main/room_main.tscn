@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://dej30dvp0aefe"]
+[gd_scene load_steps=52 format=3 uid="uid://dej30dvp0aefe"]
 
 [ext_resource type="PackedScene" uid="uid://bnyfbqonp1qby" path="res://scenes/ui/background/background_scrolling_controller.tscn" id="1_dlowq"]
 [ext_resource type="Script" path="res://scenes/room/room_main/room_main.gd" id="1_n65dx"]
@@ -38,6 +38,7 @@
 [ext_resource type="AudioStream" uid="uid://bexei7qh5wag" path="res://resources/audio/sfx/general_purpose/sfx_button_click.wav" id="25_of2xw"]
 [ext_resource type="AudioStream" uid="uid://cy22b31erctiw" path="res://resources/audio/sfx/room_main/sfx_stage_selection_scroll_snap.wav" id="31_7egul"]
 [ext_resource type="AudioStream" uid="uid://weo6ylx5t0x5" path="res://resources/audio/sfx/general_purpose/sfx_button_click_heavy.wav" id="32_7an72"]
+[ext_resource type="Script" path="res://scenes/room/room_main/stage_toggle.gd" id="38_lrchq"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ou4vn"]
 
@@ -376,9 +377,26 @@ offset_right = 384.0
 offset_bottom = 768.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("38_lrchq")
 metadata/_edit_lock_ = true
 
+[node name="MixButton" type="Button" parent="StageSelection/StageToggle"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -356.0
+offset_top = -56.0
+offset_right = -36.0
+offset_bottom = 72.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="Mix" type="Label" parent="StageSelection/StageToggle"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -396,7 +414,23 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_lock_ = true
 
+[node name="SoloButton" type="Button" parent="StageSelection/StageToggle"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 28.0
+offset_top = -56.0
+offset_right = 348.0
+offset_bottom = 72.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="Solo" type="Label" parent="StageSelection/StageToggle"]
+unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0.25098)
 layout_mode = 1
 anchors_preset = 8
@@ -473,3 +507,7 @@ metadata/_edit_lock_ = true
 [connection signal="stage_selection_button_pressed" from="StageSelection/StageScrollContainer" to="StageSelection" method="receive_stage_selection_button_pressed"]
 [connection signal="pressed" from="StageSelection/StageSelectionButton" to="StageSelection/StageScrollContainer" method="_on_stage_selection_button_pressed"]
 [connection signal="pressed" from="StageSelection/StageSelectionButton" to="StageSelection/StageSelectionButton/SFXButtonClickHeavy" method="play"]
+[connection signal="request_display_mix_stages" from="StageSelection/StageToggle" to="StageSelection" method="receive_request_display_mix_stages"]
+[connection signal="request_display_solo_stages" from="StageSelection/StageToggle" to="StageSelection" method="receive_request_display_solo_stages"]
+[connection signal="pressed" from="StageSelection/StageToggle/MixButton" to="StageSelection/StageToggle" method="_on_mix_button_pressed"]
+[connection signal="pressed" from="StageSelection/StageToggle/SoloButton" to="StageSelection/StageToggle" method="_on_solo_button_pressed"]

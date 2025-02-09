@@ -23,6 +23,7 @@ func initialize(stage_datas: Array[StageData]) -> void:
 	if stage_datas != null:
 		stage_info_texture.texture = stage_datas[0].stage_info
 	
+	stage_infos = []
 	for stage_data: StageData in stage_datas:
 		stage_infos.append(stage_data.stage_info)
 

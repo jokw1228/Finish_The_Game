@@ -19,6 +19,7 @@ func start_stage() -> void:
 	clear_count = 0
 	hp_bar_canvas.visible = true
 	hp_bar_canvas.current_hp = 100.0
+	hp_bar_canvas.progress_bar.value = 100.0
 	
 	AudioManager.play_bgm(bgm_ingame)
 	
@@ -47,7 +48,7 @@ func is_cleared(result: bool) -> void:
 func on_hp_depleted() -> void:
 	await ftg.stop_scheduling()
 	game_over.show_game_over(clear_count, 99)
-	AudioManager.stop_bgm()
+	AudioManager.stop_bgm(1.0)
 
 func receive_request_retry_stage() -> void:
 	game_over._initialize()

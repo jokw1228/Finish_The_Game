@@ -12,6 +12,9 @@ func receive_request_set_stage_datas(stage_datas_to_set: Array[StageData]) -> vo
 func initialize(stage_datas_to_set: Array[StageData]) -> void:
 	scroll_horizontal = 0
 	
+	for inst in %StageThumbnailContainer.get_children():
+		inst.queue_free()
+	
 	stage_count = stage_datas_to_set.size()
 	if stage_count <= 0:
 		stage_width = 0

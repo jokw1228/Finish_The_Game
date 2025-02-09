@@ -60,11 +60,13 @@ func receive_stage_selection_button_pressed() -> void:
 		AudioManager.stop_bgm(1.0)
 
 func receive_request_display_mix_stages() -> void:
+	current_stage_index = 0
 	stage_datas = stage_mix_datas.duplicate(true)
 	update_stage_name()
 	request_set_stage_datas.emit(stage_datas)
 
 func receive_request_display_solo_stages() -> void:
+	current_stage_index = 0
 	stage_datas = stage_solo_datas.duplicate(true)
 	update_stage_name()
 	request_set_stage_datas.emit(stage_datas)
