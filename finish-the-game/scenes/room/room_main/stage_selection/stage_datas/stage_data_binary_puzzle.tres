@@ -12,3 +12,4 @@ no more than two in a row,
 equal amounts per line!"
 stage_thumbnail = ExtResource("2_iiwoo")
 stage_info = ExtResource("2_iiwoo")
+stage_room = "res://scenes/room/room_stages/room_stage_binary_puzzle/room_stage_binary_puzzle.tscn"

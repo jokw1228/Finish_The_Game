@@ -1,0 +1,93 @@
+[gd_scene load_steps=7 format=3 uid="uid://h6roi8gwnnli"]
+
+[ext_resource type="Script" path="res://scenes/room/room_stage/room_stage.gd" id="1_frkdo"]
+[ext_resource type="PackedScene" uid="uid://bnyfbqonp1qby" path="res://scenes/ui/background/background_scrolling_controller.tscn" id="2_na0t0"]
+[ext_resource type="Script" path="res://scenes/room/room_stage/ready_set_go.gd" id="3_vacx5"]
+[ext_resource type="PackedScene" uid="uid://b3fbsp14s0uh" path="res://scenes/ui/overlay/ftg_result_overlay_controller.tscn" id="4_nv6mc"]
+[ext_resource type="PackedScene" uid="uid://u72mfat08yxv" path="res://scenes/ui/hp_bar_canvas/hp_bar_canvas.tscn" id="5_tajkl"]
+[ext_resource type="PackedScene" uid="uid://clqupjhglq5tp" path="res://scenes/ui/game_over/game_over.tscn" id="6_8omo7"]
+
+[node name="RoomStage" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_frkdo")
+metadata/_edit_lock_ = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+metadata/_edit_lock_ = true
+
+[node name="BackgroundScrollingController" parent="." instance=ExtResource("2_na0t0")]
+unique_name_in_owner = true
+
+[node name="ReadySetGo" type="Control" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_vacx5")
+metadata/_edit_lock_ = true
+
+[node name="ReadySet" type="Label" parent="ReadySetGo"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -124.0
+offset_top = -144.0
+offset_right = 128.0
+offset_bottom = 114.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/line_spacing = -16
+text = "READY"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Go" type="Label" parent="ReadySetGo"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -0.5
+offset_top = -43.0
+offset_right = 0.5
+offset_bottom = 43.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 256
+text = "GO!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FTGResultOverlayController" parent="." instance=ExtResource("4_nv6mc")]
+unique_name_in_owner = true
+
+[node name="HPBarCanvas" parent="." instance=ExtResource("5_tajkl")]
+unique_name_in_owner = true
+visible = false
+
+[node name="GameOver" parent="." instance=ExtResource("6_8omo7")]
+unique_name_in_owner = true
+layout_mode = 1
+
+[connection signal="take_damage" from="." to="HPBarCanvas" method="take_damage"]
+[connection signal="hp_depleted" from="HPBarCanvas" to="." method="on_hp_depleted"]
+[connection signal="request_retry_stage" from="GameOver" to="." method="receive_request_retry_stage"]
+[connection signal="request_set_all_label_text" from="GameOver" to="BackgroundScrollingController" method="set_all_label_text"]

@@ -11,3 +11,4 @@ stage_description = "Keep putting out cards of
 the same pattern or number!"
 stage_thumbnail = ExtResource("2_j71vf")
 stage_info = ExtResource("2_j71vf")
+stage_room = "res://scenes/room/room_stages/room_stage_one_card/room_stage_one_card.tscn"

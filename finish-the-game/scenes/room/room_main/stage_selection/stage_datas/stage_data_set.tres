@@ -10,3 +10,4 @@ stage_description = "Choose three cards with
 the same or different pattern!"
 stage_thumbnail = ExtResource("2_1m2cf")
 stage_info = ExtResource("2_1m2cf")
+stage_room = "res://scenes/room/room_stages/room_stage_set/room_stage_set.tscn"

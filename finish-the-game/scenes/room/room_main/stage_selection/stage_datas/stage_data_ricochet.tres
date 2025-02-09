@@ -6,8 +6,10 @@
 
 [resource]
 script = ExtResource("1_cme1b")
-stage_name = "RICOCHET"
+stage_name = "RICOCHET
+ROBOT"
 stage_description = "Let the sliding robot
 reach its target point"
 stage_thumbnail = ExtResource("2_25m85")
 stage_info = ExtResource("2_gnjke")
+stage_room = "res://scenes/room/room_stages/room_stage_ricochet_robot/room_stage_ricochet_robot.tscn"

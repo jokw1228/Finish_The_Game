@@ -11,3 +11,4 @@ LINK"
 stage_description = "Connect, ignite, explode!"
 stage_thumbnail = ExtResource("2_mp0yq")
 stage_info = ExtResource("2_jgu5i")
+stage_room = "res://scenes/room/room_stages/room_stage_bomb_link/room_stage_bomb_link.tscn"

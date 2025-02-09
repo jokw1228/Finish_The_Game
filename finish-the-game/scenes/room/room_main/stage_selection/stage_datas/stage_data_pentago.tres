@@ -11,3 +11,4 @@ stage_description = "A more advanced
 version of Gomoku."
 stage_thumbnail = ExtResource("2_yr1k3")
 stage_info = ExtResource("2_hr0v0")
+stage_room = "res://scenes/room/room_stages/room_stage_pentago/room_stage_pentago.tscn"

@@ -10,3 +10,4 @@ stage_description = " Continue to match
 Domino's eyes!"
 stage_thumbnail = ExtResource("2_73flu")
 stage_info = ExtResource("2_73flu")
+stage_room = "res://scenes/room/room_stages/room_stage_matching/room_stage_matching.tscn"

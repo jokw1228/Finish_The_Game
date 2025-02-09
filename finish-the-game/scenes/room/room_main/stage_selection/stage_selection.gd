@@ -54,6 +54,6 @@ func receive_stage_info_exit_button_pressed() -> void:
 
 func receive_stage_selection_button_pressed() -> void:
 	if stage_selection_state == StageSelectionState.STAGE_SCROLLING:
-		#RoomManager.transition_to_room( blahblah current_stage_index )
+		RoomManager.transition_to_room(stage_datas[current_stage_index].stage_room)
 		set_state(StageSelectionState.NO)
 		AudioManager.stop_bgm(1.0)

@@ -10,3 +10,4 @@ stage_description = "Connect the start
 and finish with the ladder!"
 stage_thumbnail = ExtResource("2_dyude")
 stage_info = ExtResource("2_dyude")
+stage_room = "res://scenes/room/room_stages/room_stage_ladder/room_stage_ladder.tscn"

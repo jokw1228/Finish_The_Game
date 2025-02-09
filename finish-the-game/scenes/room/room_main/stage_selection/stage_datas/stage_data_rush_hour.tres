@@ -11,3 +11,4 @@ stage_description = "Move the obstacles
 & Get the red car to the exit!"
 stage_thumbnail = ExtResource("2_hquuo")
 stage_info = ExtResource("2_hquuo")
+stage_room = "res://scenes/room/room_stages/room_stage_rush_hour/room_stage_rush_hour.tscn"

@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://cexrc1sftsq0p"]
+
+[ext_resource type="PackedScene" uid="uid://h6roi8gwnnli" path="res://scenes/room/room_stage/room_stage.tscn" id="1_yu0u8"]
+[ext_resource type="Script" path="res://scenes/room/room_stage/ftg_game_data.gd" id="2_218cx"]
+
+[sub_resource type="Resource" id="Resource_hek4s"]
+script = ExtResource("2_218cx")
+name = "SET"
+weight = 1.0
+scene = "res://scenes/game_set/ftg_set.tscn"
+
+[node name="RoomStageSet" instance=ExtResource("1_yu0u8")]
+stage_name = "SET"
+ftg_game_datas = Array[ExtResource("2_218cx")]([SubResource("Resource_hek4s")])

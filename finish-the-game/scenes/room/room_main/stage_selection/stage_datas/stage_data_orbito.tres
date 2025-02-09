@@ -11,3 +11,4 @@ stage_description = "Finish four-in-a-row!
 (WARNING: stones orbit!)"
 stage_thumbnail = ExtResource("2_vofvx")
 stage_info = ExtResource("2_ry8ly")
+stage_room = "res://scenes/room/room_stages/room_stage_orbito/room_stage_orbito.tscn"

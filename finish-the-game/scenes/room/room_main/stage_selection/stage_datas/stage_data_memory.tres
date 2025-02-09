@@ -10,3 +10,4 @@ stage_description = "Flip the same
 two cards!"
 stage_thumbnail = ExtResource("2_5e2t8")
 stage_info = ExtResource("2_5e2t8")
+stage_room = "res://scenes/room/room_stages/room_stage_memory/room_stage_memory.tscn"

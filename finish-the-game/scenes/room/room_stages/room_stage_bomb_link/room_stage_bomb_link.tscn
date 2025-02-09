@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://dxdlv0dxrja0o"]
+
+[ext_resource type="PackedScene" uid="uid://h6roi8gwnnli" path="res://scenes/room/room_stage/room_stage.tscn" id="1_qxdlp"]
+[ext_resource type="Script" path="res://scenes/room/room_stage/ftg_game_data.gd" id="2_whxs7"]
+
+[sub_resource type="Resource" id="Resource_klaj0"]
+script = ExtResource("2_whxs7")
+name = "BOMBLINK"
+weight = 1.0
+scene = "res://scenes/game_bomb_link/ftg_bomb_link.tscn"
+
+[node name="RoomStageBombLink" instance=ExtResource("1_qxdlp")]
+stage_name = "BOMBLINK"
+ftg_game_datas = Array[ExtResource("2_whxs7")]([SubResource("Resource_klaj0")])

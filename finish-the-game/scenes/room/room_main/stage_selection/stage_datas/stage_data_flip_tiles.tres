@@ -12,3 +12,4 @@ stage_description = "A simple game
 about flipping tiles."
 stage_thumbnail = ExtResource("2_ik2t5")
 stage_info = ExtResource("2_hhbln")
+stage_room = "res://scenes/room/room_stages/room_stage_flip_tiles/room_stage_flip_tiles.tscn"
