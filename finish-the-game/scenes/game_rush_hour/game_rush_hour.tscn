@@ -37,6 +37,7 @@ player_scene = ExtResource("2_hyu2u")
 truck_scene = ExtResource("3_jxlkg")
 
 [node name="GameUtilsGameTimer" parent="." instance=ExtResource("5_lyg4o")]
+visible = false
 script = SubResource("GDScript_bxxpx")
 
 [node name="game_rush_hour_board" parent="." instance=ExtResource("4_ii0i4")]
