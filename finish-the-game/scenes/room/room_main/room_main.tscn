@@ -154,7 +154,7 @@ vertical_alignment = 1
 script = ExtResource("3_vweoc")
 metadata/_edit_lock_ = true
 
-[node name="StageSelection" type="Control" parent="." node_paths=PackedStringArray("stage_name", "stage_description")]
+[node name="StageSelection" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -165,8 +165,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("5_84lgk")
 stage_datas = Array[ExtResource("6_14e36")]([ExtResource("7_7mhve"), ExtResource("8_qagxc"), ExtResource("9_02bnb"), ExtResource("10_4yd4e"), ExtResource("11_bi2ln"), ExtResource("12_pogo4"), ExtResource("13_n13lu"), ExtResource("14_1tg5b"), ExtResource("15_wygt2"), ExtResource("16_4fge0"), ExtResource("17_ai62p"), ExtResource("18_fspxu"), ExtResource("19_sp3sy"), ExtResource("20_obiaw")])
-stage_name = NodePath("StageName")
-stage_description = NodePath("StageDescription")
 metadata/_edit_lock_ = true
 
 [node name="SFXActivated" type="AudioStreamPlayer" parent="StageSelection"]
@@ -253,6 +251,7 @@ stream = ExtResource("25_of2xw")
 bus = &"SFX"
 
 [node name="StageName" type="Label" parent="StageSelection"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -276,6 +275,7 @@ vertical_alignment = 2
 metadata/_edit_lock_ = true
 
 [node name="StageDescription" type="Label" parent="StageSelection"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -361,7 +361,7 @@ metadata/_edit_lock_ = true
 stream = ExtResource("32_7an72")
 bus = &"SFX"
 
-[node name="StageDescription2" type="Label" parent="StageSelection"]
+[node name="SlideInfo" type="Label" parent="StageSelection/StageSelectionButton"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -369,9 +369,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -540.0
-offset_top = 576.0
+offset_top = 96.0
 offset_right = 540.0
-offset_bottom = 708.0
+offset_bottom = 228.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.501961, 0.501961, 0.501961, 1)
@@ -380,6 +380,58 @@ theme_override_font_sizes/font_size = 64
 text = "SLIDE TO
 SELECT STAGE"
 horizontal_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="StageToggle" type="Control" parent="StageSelection"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -384.0
+offset_top = 640.0
+offset_right = 384.0
+offset_bottom = 896.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="Mix" type="Label" parent="StageSelection/StageToggle"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -271.0
+offset_top = -43.0
+offset_right = -113.0
+offset_bottom = 43.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "MIX"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Solo" type="Label" parent="StageSelection/StageToggle"]
+modulate = Color(1, 1, 1, 0.25098)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 91.0
+offset_top = -43.0
+offset_right = 293.0
+offset_bottom = 43.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "SOLO"
+horizontal_alignment = 1
+vertical_alignment = 1
 metadata/_edit_lock_ = true
 
 [node name="Arrows" type="Control" parent="StageSelection"]
