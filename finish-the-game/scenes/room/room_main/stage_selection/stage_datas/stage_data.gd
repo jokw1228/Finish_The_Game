@@ -6,3 +6,5 @@ class_name StageData
 
 @export var stage_thumbnail: Texture2D
 @export var stage_info: Texture2D
+
+@export var stage_room: String

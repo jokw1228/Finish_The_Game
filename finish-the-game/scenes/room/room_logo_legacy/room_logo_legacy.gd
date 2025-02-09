@@ -1,4 +1,5 @@
 extends Node2D
+class_name FTGScheduler_legacy
 
 const y_offset: float = 1080*2
 const FAIL_DAMAGE: float = 40
@@ -8,8 +9,7 @@ var FTGs: Array = []
 var FTG_dict = {}
 var current_ftg: Node
 
-const priority_queue = preload("res://scenes/room/priority_queue.gd")
-var pq = priority_queue.new()
+var pq = PriorityQueue.new()
 
 signal start_ftg(difficulty: float)
 signal take_damage(amount: float)
