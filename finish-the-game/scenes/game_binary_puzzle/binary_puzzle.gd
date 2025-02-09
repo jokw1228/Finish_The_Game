@@ -1,7 +1,7 @@
 extends Node2D
 class_name BinaryPuzzle
 
-var GRID_SIZE = 6
+var GRID_SIZE = 4
 
 var board = []
 
@@ -64,7 +64,9 @@ func _ready() -> void:
 	#_create_sudoku()
 	#size = 1080x1920
 	#label.text = "Mistakes: 0/" + str(num_mistakes)
-	label.position = Vector2(-348-38-4,-512-64-16)
+	label.position = Vector2(-348-32,-512-64-16-32)
+	label.set_size(Vector2(768,128*2))
+	label.set_anchors_preset(Control.PRESET_CENTER)
 	#sprite.position = Vector2(0.5,-256+32)
 	await emitter.difficulty_set
 	if GRID_SIZE == 4: grid.position = Vector2(-428+32+4,-428+32)
@@ -74,7 +76,6 @@ func _ready() -> void:
 	grid.columns = GRID_SIZE
 	print_board()
 	add_to_grid()
-	#print(game_grid)
 
 
 func print_board():
@@ -281,7 +282,7 @@ func check_row_dup(row):
 		if not i == row:
 			if board[i] == board[row]:
 				is_dup_row = true
-				label.text = "Same row\nexists!"
+				label.text = "Same row exists!"
 				change_row_color(i, 0, GRID_SIZE-1, red)
 				change_row_color(row, 0, GRID_SIZE-1, red)
 	
@@ -296,7 +297,7 @@ func check_col_dup(col):
 				is_dup = false
 				break
 		if is_dup:
-			label.text = "Same column\nexists!"
+			label.text = "Same column \nexists!"
 			change_col_color(i, 0, GRID_SIZE-1, red)
 			change_col_color(col, 0, GRID_SIZE-1, red)
 			
@@ -352,23 +353,23 @@ func check_equal():
 				col_one+=1
 		if row_zero+row_one == GRID_SIZE:
 			if row_zero > row_one:
-				label.text = "More zeros than\n ones!"
+				label.text = "More zeros than\nones!"
 				for k in range(GRID_SIZE):
 					if board[i][k] == 0:
 						change_row_color(i,k, k, red)
 			elif row_one > row_zero:
-				label.text = "More ones than\n zeros!"
+				label.text = "More ones than\nzeros!"
 				for k in range(GRID_SIZE):
 					if board[i][k] == 1:
 						change_row_color(i,k, k, red)
 		if col_one+col_zero == GRID_SIZE:
 			if col_zero > col_one:
-				label.text = "More zeros than\n ones!"
+				label.text = "More zeros than\nones!"
 				for k in range(GRID_SIZE):
 					if board[k][i] == 0:
 						change_col_color(i,k, k, red)
 			elif col_one > col_zero:
-				label.text = "More ones than\n zeros!"
+				label.text = "More ones than\nzeros!"
 				for k in range(GRID_SIZE):
 					if board[k][i] == 1:
 						change_col_color(i,k, k, red)
@@ -399,7 +400,7 @@ func _on_num_changed(row,col):
 	not_equal = false
 	label.text = ""
 	reset_board_color()
-	#check_three()
+	check_three()
 	if not more_than_two:
 		check_row_dup(row)
 		check_col_dup(col)
