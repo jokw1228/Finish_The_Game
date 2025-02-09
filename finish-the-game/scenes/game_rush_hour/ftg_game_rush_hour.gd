@@ -55,8 +55,8 @@ difficulty == 1 -> 10
 difficulty == 0-> 5번 이하, 맵 형식상 5번 이하로만 지정가능 (권장 난이도)
 
 """
-func start_ftg():
-	set_difficulty(0)
+func start_ftg(difficulty):
+	set_difficulty(difficulty)
 	gen_map.emit(num_moves)
 	generate_board()
 	#select_grid()

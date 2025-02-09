@@ -175,6 +175,7 @@ func _input(event):
 			local_mouse_pos = sprite.to_local(event.position)
 			
 			if sprite.get_rect().has_point(local_mouse_pos):
+				$AudioStreamPlayer2D.play()
 				#print('clicked on sprite')
 				is_selected = true
 				#mouse_offset = global_position+Vector2(-200,-100)
