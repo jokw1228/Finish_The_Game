@@ -11,6 +11,7 @@ var current_ftg: Node
 var pq = PriorityQueue.new()
 
 signal start_ftg(difficulty: float)
+var ftg_difficulty: float = 0
 
 signal request_set_all_label_text(label_text_to_set: String)
 signal request_display_ftg_result(result: bool)
@@ -34,7 +35,7 @@ func schedule_ftg() -> void:
 	add_child(current_ftg)
 	pq.insert(picked[0],picked_recent_time+FTG_dict[picked[0]][1]+randf_range(0,0.1))
 	
-	start_ftg.emit(0.9)
+	start_ftg.emit(ftg_difficulty)
 	request_set_all_label_text.emit(picked[0])
 	
 	var tween_fade_in: Tween = get_tree().create_tween()

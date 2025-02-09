@@ -34,6 +34,9 @@ signal take_damage(amount: float)
 func is_cleared(result: bool) -> void:
 	if result == true:
 		clear_count += 1
+		ftg.ftg_difficulty += 0.05
+		if ftg.ftg_difficulty > 1.0:
+			ftg.ftg_difficulty = 1.0
 	elif result == false:
 		take_damage.emit(25.0)
 
