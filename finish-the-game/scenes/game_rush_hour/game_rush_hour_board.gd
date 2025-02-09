@@ -1,7 +1,7 @@
 extends Node2D
 class_name RushHourBoard
 
-@export var tile_texture = preload("res://resources/images/game_rush_hour/sprite_rush_hour_tile.png")
+@export var tile_texture = preload("res://resources/images/game_rush_hour/rh_tile_new.png")
 @export var target_texture = preload("res://resources/images/game_rush_hour/sprite_rush_hour_target.png")
 var tile_size = 128  
 var grid_size = 6       # 6x6 grid

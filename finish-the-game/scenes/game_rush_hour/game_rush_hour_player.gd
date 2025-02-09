@@ -105,7 +105,7 @@ func _physics_process(delta: float):
 		var move_vector = new_position - position
 		var collision = move_and_collide(move_vector)
 		if collision:
-			print("collision")
+			#print("collision")
 			new_position = new_position.clamp(position, collision.get_position())
 			var push_vector = collision.get_normal() * 0.5  # Small separation push
 			#position += push_vector*10

@@ -43,8 +43,8 @@ func _ready():
 	start_pos = position
 	prev_position = position
 	board_rect = Rect2(Vector2(-64, -64), Vector2(768-32, 768-32))
-	var truck1 = preload("res://resources/images/game_rush_hour/sprite_rush_hour_truck_type1.png")
-	var truck2 = preload("res://resources/images/game_rush_hour/sprite_rush_hour_truck_type2.png")
+	var truck1 = preload("res://resources/images/game_rush_hour/sprite_new_rush_hour_truck1.png")
+	var truck2 = preload("res://resources/images/game_rush_hour/sprite_new_rush_hour_truck2.png")
 	if truck_type == 1:
 		sprite.texture = truck1
 		collision_shape.shape = RectangleShape2D.new()
@@ -139,7 +139,7 @@ func _physics_process(delta: float):
 		grid_snapping(move_vector)
 		var collision = move_and_collide(move_vector)
 		if collision:
-			print("collision")
+			#print("collision")
 			new_position = new_position.clamp(position, collision.get_position())
 			var push_vector = collision.get_normal() * 0.5  # Small separation push
 			#position += push_vector*10
