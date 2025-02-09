@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://b77vebehrybdl"]
+[gd_scene load_steps=3 format=3 uid="uid://b77vebehrybdl"]
 
 [ext_resource type="Script" path="res://scenes/ui/overlay/ftg_result_overlay_x.gd" id="1_q0haq"]
+[ext_resource type="AudioStream" uid="uid://b0wfp4t8r0edw" path="res://resources/audio/sfx/room_stage/sfx_fail.mp3" id="2_c4tgd"]
 
 [node name="FTGResultOverlayX" type="Control"]
 modulate = Color(1, 1, 1, 0.752941)
@@ -11,3 +12,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_q0haq")
+
+[node name="SFXFail" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_c4tgd")
+autoplay = true
