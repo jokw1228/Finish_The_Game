@@ -18,10 +18,7 @@ var current_stage_index: int = 0
 
 signal request_set_stage_datas(stage_datas_to_set: Array[StageData])
 func _ready() -> void:
-	stage_datas = stage_mix_datas.duplicate(true)
-	
-	update_stage_name()
-	request_set_stage_datas.emit(stage_datas)
+	receive_request_display_mix_stages()
 
 signal stage_selection_state_has_been_changed(changed_state: StageSelectionState)
 func set_state(state_to_set: StageSelectionState) -> void:
@@ -61,3 +58,13 @@ func receive_stage_selection_button_pressed() -> void:
 		RoomManager.transition_to_room(stage_datas[current_stage_index].stage_room)
 		set_state(StageSelectionState.NO)
 		AudioManager.stop_bgm(1.0)
+
+func receive_request_display_mix_stages() -> void:
+	stage_datas = stage_mix_datas.duplicate(true)
+	update_stage_name()
+	request_set_stage_datas.emit(stage_datas)
+
+func receive_request_display_solo_stages() -> void:
+	stage_datas = stage_solo_datas.duplicate(true)
+	update_stage_name()
+	request_set_stage_datas.emit(stage_datas)

@@ -363,27 +363,6 @@ metadata/_edit_lock_ = true
 stream = ExtResource("32_7an72")
 bus = &"SFX"
 
-[node name="SlideInfo" type="Label" parent="StageSelection/StageSelectionButton"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -540.0
-offset_top = 96.0
-offset_right = 540.0
-offset_bottom = 228.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0.501961, 0.501961, 0.501961, 1)
-theme_override_constants/line_spacing = -16
-theme_override_font_sizes/font_size = 64
-text = "SLIDE TO
-SELECT STAGE"
-horizontal_alignment = 1
-metadata/_edit_lock_ = true
-
 [node name="StageToggle" type="Control" parent="StageSelection"]
 layout_mode = 1
 anchors_preset = 8
@@ -392,9 +371,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -384.0
-offset_top = 640.0
+offset_top = 512.0
 offset_right = 384.0
-offset_bottom = 896.0
+offset_bottom = 768.0
 grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_lock_ = true

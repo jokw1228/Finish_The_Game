@@ -9,6 +9,8 @@ func play_bgm(bgm_to_play: AudioStream, fade_in_duration: float = 0.0) -> void:
 	
 	if fade_in_duration > 0.0:
 		create_tween().tween_property(bgm_player, "volume_db", 0, fade_in_duration)
+	else:
+		bgm_player.volume_db = 0
 
 func stop_bgm(fade_out_duration: float = 0.0) -> void:
 	if fade_out_duration > 0.0:
