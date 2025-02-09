@@ -5,7 +5,7 @@ signal end_ftg(is_game_cleared: bool)
 signal start_timer(duration: float)
 signal pause_timer()
 
-func start_ftg() -> void:
+func start_ftg(difficulty: float) -> void:
 	initialize_card()
 	
 	var card_set: Array = []

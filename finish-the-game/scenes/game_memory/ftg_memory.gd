@@ -11,7 +11,7 @@ func set_delete(set: Array, element) -> void:
 		set.remove_at(set.find(element))
 
 
-func start_ftg() -> void:
+func start_ftg(difficulty: float) -> void:
 	initialize_game_memory()
 	
 	var card_set: Array = []

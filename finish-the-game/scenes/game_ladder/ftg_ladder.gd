@@ -33,7 +33,7 @@ func start_ftg(difficulty: float) -> void:
 	ui.enable_input = true
 	start_timer.emit(TIMER_DURATION)
 	await get_tree().create_timer(TIMER_DURATION).timeout
-	request_disable_input.emit(true)
+	#request_disable_input.emit(false)
 	ui.enable_input = false
 	check()
 

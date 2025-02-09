@@ -22,7 +22,7 @@ func generate_cards(cards: Array, ranges: Array, object: Array) -> void:
 			generate_cards(cards, temp_ranges, object + [i])
 
 
-func start_ftg() -> void:
+func start_ftg(difficulty: float) -> void:
 	initialize_game_set()
 	
 	card_num = 9  ##
