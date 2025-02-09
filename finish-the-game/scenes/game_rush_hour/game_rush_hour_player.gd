@@ -35,6 +35,7 @@ var flag = 0
 
 var piece_type = ""
 var cell_loc = Vector2(0,0)
+var x_offset = -30
 
 signal can_move
 
@@ -54,9 +55,9 @@ func _process(delta: float):
 	else:
 		sprite.modulate = Color(1, 1, 1)
 	if direction == 0:
-		position = position.clamp(Vector2(-128-96, -128*2+8), Vector2(128*3-96-8, 128*3-8))
+		position = position.clamp(Vector2(-128-96+x_offset, -128*2+8), Vector2(128*3-96-8+x_offset, 128*3-8))
 	else:
-		position = position.clamp(Vector2(-128*2-32, -128-64+8), Vector2(128*3-32-8, 128*3-64-8))
+		position = position.clamp(Vector2(-128*2-32+x_offset, -128-64+8), Vector2(128*3-32-8+x_offset, 128*3-64-8))
 	
 
 func _physics_process(delta: float):
@@ -98,9 +99,9 @@ func _physics_process(delta: float):
 			get_global_mouse_position().y - mouse_offset.y-1024+64,)
 			#new_position.y = round(new_position.y / grid_size) * grid_size/2 -32
 		if direction == 0:
-			new_position = new_position.clamp(Vector2(-128-96, -128*2+8), Vector2(128*3-96-8, 128*3-8))
+			new_position = new_position.clamp(Vector2(-128-96+x_offset, -128*2+8), Vector2(128*3-96-8+x_offset, 128*3-8))
 		else:
-			new_position = new_position.clamp(Vector2(-128*2-32, -128-64+8), Vector2(128*3-32-8, 128*3-64-8))
+			new_position = new_position.clamp(Vector2(-128*2-32+x_offset, -128-64+8), Vector2(128*3-32-8+x_offset, 128*3-64-8))
 		#position += (new_position - position) *delta *100
 		var move_vector = new_position - position
 		var collision = move_and_collide(move_vector)

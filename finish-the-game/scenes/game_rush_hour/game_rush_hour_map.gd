@@ -20,4 +20,4 @@ func _on_rush_hour_gen_map(num) -> void:
 	var chosen_map = map_arr[index]
 	map_chosen.emit(chosen_map.substr(3,36))
 	#print(chosen_map)
-	print(chosen_map.substr(3,36))
+	#print(chosen_map.substr(3,36))

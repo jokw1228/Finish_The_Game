@@ -7,6 +7,7 @@ var tile_size = 128
 var grid_size = 6       # 6x6 grid
 var exit_pos = Vector2(0,0)
 var target_pos_offset = 64+32
+var x_offset = -30
 
 
 # Called when the node enters the scene tree for the first time.
@@ -18,7 +19,8 @@ func _on_rush_hour_start(target_position: Vector2, player_direction: int):
 	#	(viewport_size.x - grid_width/2) / 2,
 	#	(viewport_size.y - grid_height-grid_height/2) / 2
 	#)
-	var start_position =  Vector2(-320+30,-320+64)
+	#var start_position =  Vector2(-320+30,-320+64)
+	var start_position =  Vector2(-320+30+x_offset,-320+64)
 	for row in range(grid_size):
 		for col in range(grid_size):
 			var tile = Sprite2D.new()

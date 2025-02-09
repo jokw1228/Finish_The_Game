@@ -33,11 +33,13 @@ var viewport_size = get_viewport_rect().size
 #var start_position = Vector2(
 #(viewport_size.x - grid_width/4-256) / 2,
 #(viewport_size.y - grid_height/4-320) / 2)
-var start_position = Vector2(-320+30,-320)
+var start_position = Vector2(-320,-320)
+#var start_position = Vector2(-320+30,-320)
 var player_direction = 0
 var checked_pos = []
 var piece_list = []
 var num_moves = 0
+var x_offset = -30
 signal start(value: Vector2)
 
 signal gen_map
@@ -65,6 +67,7 @@ func start_ftg(difficulty):
 	const duration = 12
 	start_timer.emit(duration)
 	start.emit(target_location, player_direction)
+	#print_board(board)
 
 
 func _ready():
@@ -88,10 +91,7 @@ func set_difficulty(difficulty):
 		num_moves = 6
 	else:
 		num_moves  = 5
-		
-	
-			
-	
+
 func _process(delta):
 	#debugging
 	#var pos = get_viewport().get_mouse_position()
@@ -99,10 +99,10 @@ func _process(delta):
 	if flag == 0 and player_piece and player_piece.cell_loc == target_location:
 		pause_timer.emit()
 		end_ftg.emit(true)
+		#print_board(board)
 		flag = 1
 	
 	_update_board(board)
-	#print_board(board)
 
 		#print("ftg")
 func _update_board(board):
@@ -114,7 +114,7 @@ func _update_board(board):
 	var temp 
 	for piece in piece_list:
 		#print(piece)
-		var board_start = Vector2(-226-128, -256-64)
+		var board_start = Vector2(-226-128+x_offset, -256-64)
 		#var board_finish = Vector2(286+128, 384+64)
 		if piece.piece_type == "truck2":
 			offset.x = 128*3/2
