@@ -9,6 +9,11 @@ script = ExtResource("2_q4kdo")
 
 [node name="GameUtilsGameTimer" parent="." index="1" instance=ExtResource("3_8scs2")]
 
+[node name="Label" parent="." index="2"]
+offset_right = 768.0
+offset_bottom = 192.0
+autowrap_mode = 2
+
 [connection signal="num_changed" from="." to="." method="check_game_cleared"]
 [connection signal="pause_timer" from="." to="GameUtilsGameTimer" method="pause_timer"]
 [connection signal="start_timer" from="." to="GameUtilsGameTimer" method="start_timer"]
