@@ -3,21 +3,26 @@ class_name FTGLadder
 
 signal request_disable_input(disable)
 signal end_ftg(is_game_cleared: bool)
-
 signal start_timer(duration: float)
 signal pause_timer()
 
 const HORIZONTAL_COUNT: int = 5
-const TIMER_DURATION: float = 10
+const TIMER_DURATION: float = 5
 
 var isWin: bool = false
+var ui: LadderUI = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	start_ftg() # 임시
+	#start_ftg() # 임시
+	pass
 
 func start_ftg() -> void:
+	# LadderUI 초기화는 외부에서 하도록 수정
 	init()
+	ui = $LadderUI
+	ui.init(self)
+	
 	var rng = RandomNumberGenerator.new()
 	for i in range(HORIZONTAL_COUNT):
 		add_random_line()
@@ -32,14 +37,6 @@ func start_ftg() -> void:
 func check() -> void:
 	isWin = check_win()
 	
-func on_middle_anime() -> void:
-	if isWin:
-		# 끝 원 애니메이션 시작
-		is_end_animating = true
-		end_circle_progress = 0.0
-	else:
-		on_end_anime()
-
-func on_end_anime() -> void:
-	print(isWin)
+# UI의 애니메이션 관련 함수들은 UI에서 처리하도록 수정
+func on_game_result() -> void:
 	end_ftg.emit(isWin)
