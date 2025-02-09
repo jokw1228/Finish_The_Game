@@ -27,7 +27,7 @@ const FULL_GAME_LISTS = {
 	"ORBITO": [1, "res://scenes/game_orbito/ftg_orbito.tscn"],
 	"PENTAGO": [1, "res://scenes/game_pentago/ftg_pentago.tscn"],
 	"RICOCHET_ROBOT": [1, "res://scenes/game_ricochet_robot/ftg_richchet_robot.tscn"],
-	"RUSH_HOUR": [1, "res://scenes/game_rush_hour/ftg_rush_hour.tscn"],
+	"RUSH_HOUR": [1, "res://scenes/game_rush_hour/game_rush_hour.tscn"],
 	"SET": [1, "res://scenes/game_set/ftg_set.tscn"],
 	"SLIDING_PUZZLE": [1, "res://scenes/game_sliding_puzzle/ftg_sliding_puzzle.tscn"],
 	"SUDOKU": [1, "res://scenes/game_sudoku/ftg_sudoku.tscn"],
@@ -42,7 +42,7 @@ func _ready() -> void:
 	center = get_viewport().get_visible_rect().size / 2
 	
 	# 예시
-	init(["MEMORY", "LADDER", "SET", "BOMB_LINK"], 0)
+	init(["BINARY_PUZZLE","SUDOKU","RUSH_HOUR","MEMORY", "LADDER", "SET", "BOMB_LINK"], 0)
 
 func end_ftg(result: bool) -> void:
 	request_display_ftg_result.emit(result)
