@@ -1,6 +1,7 @@
 extends Node2D
 
 const y_offset = 1080*2
+const FAIL_DAMAGE = 40
 var center: Vector2 = Vector2.ZERO
 
 var FTGs: Array = []
@@ -11,6 +12,7 @@ const priority_queue = preload("res://scenes/room/priority_queue.gd")
 var pq = priority_queue.new()
 
 signal start_ftg(difficulty: float)
+signal take_damage(amount: float)
 
 signal request_set_all_label_text(label_text_to_set)
 signal request_display_ftg_result(result: bool)
@@ -37,6 +39,7 @@ func _ready() -> void:
 
 func end_ftg(result: bool) -> void:
 	request_display_ftg_result.emit(result)
+	if !result: take_damage.emit(FAIL_DAMAGE)
 	
 	await get_tree().create_timer(0.5).timeout
 	
@@ -76,4 +79,6 @@ func ftg_add(ftg_name, duration, tscn):
 	FTG_dict[ftg_name] = [tscn, duration]
 	FTGs.append(ftg_name)
 	pq.insert(ftg_name,duration + randf_range(0,0.1))
-	
+
+func on_game_end() -> void:
+	pass
