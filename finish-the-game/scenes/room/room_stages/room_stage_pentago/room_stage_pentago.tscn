@@ -1,9 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://djhh0mstoleya"]
+[gd_scene load_steps=4 format=3 uid="uid://cmij7243o2a15"]
 
 [ext_resource type="PackedScene" uid="uid://h6roi8gwnnli" path="res://scenes/room/room_stage/room_stage.tscn" id="1_j442s"]
 [ext_resource type="Script" path="res://scenes/room/room_stage/ftg_game_data.gd" id="2_a7wf3"]
 
-[sub_resource type="Resource" id="Resource_fwedr"]
+[sub_resource type="Resource" id="Resource_p42gi"]
 script = ExtResource("2_a7wf3")
 name = "PENTAGO"
 weight = 1.0
@@ -11,9 +11,4 @@ scene = "res://scenes/game_pentago/ftg_pentago.tscn"
 
 [node name="RoomStagePentago" instance=ExtResource("1_j442s")]
 stage_name = "PENTAGO"
-ftg_game_datas = Array[ExtResource("2_a7wf3")]([SubResource("Resource_fwedr")])
-
-[node name="HPBarCanvas" parent="." index="4"]
-visible = false
-
-[connection signal="take_damage" from="." to="HPBarCanvas" method="take_damage"]
+ftg_game_datas = Array[ExtResource("2_a7wf3")]([SubResource("Resource_p42gi")])

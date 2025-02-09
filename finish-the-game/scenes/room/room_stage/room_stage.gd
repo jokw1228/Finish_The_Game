@@ -18,6 +18,7 @@ func start_stage() -> void:
 	
 	clear_count = 0
 	hp_bar_canvas.visible = true
+	hp_bar_canvas.current_hp = 100.0
 	
 @export var ftg_game_datas: Array[FTGGameData] = []
 @onready var ftg_result_overlay_controller: FTGResultOverlayController = %FTGResultOverlayController as FTGResultOverlayController
@@ -34,7 +35,7 @@ signal take_damage(amount: float)
 func is_cleared(result: bool) -> void:
 	if result == true:
 		clear_count += 1
-		ftg.ftg_difficulty += 0.05
+		ftg.ftg_difficulty += 0.025
 		if ftg.ftg_difficulty > 1.0:
 			ftg.ftg_difficulty = 1.0
 	elif result == false:

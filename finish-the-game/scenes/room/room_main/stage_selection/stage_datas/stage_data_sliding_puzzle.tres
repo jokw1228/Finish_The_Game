@@ -12,3 +12,4 @@ stage_description = "1, 2, 3... in order.
 Easy, right?"
 stage_thumbnail = ExtResource("2_4qoo0")
 stage_info = ExtResource("2_bb4lv")
+stage_room = "res://scenes/room/room_stages/room_stage_sliding_puzzle/room_stage_sliding_puzzle.tscn"

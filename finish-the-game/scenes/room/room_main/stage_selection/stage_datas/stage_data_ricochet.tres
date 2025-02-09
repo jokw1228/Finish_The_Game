@@ -12,4 +12,4 @@ stage_description = "Let the sliding robot
 reach its target point"
 stage_thumbnail = ExtResource("2_25m85")
 stage_info = ExtResource("2_gnjke")
-stage_room = ""
+stage_room = "res://scenes/room/room_stages/room_stage_ricochet_robot/room_stage_ricochet_robot.tscn"
