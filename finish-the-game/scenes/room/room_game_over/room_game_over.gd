@@ -13,6 +13,8 @@ func _initialize() -> void:
 	$Control/NewBestText.visible = false
 	$Control/ReturnButton.visible = false
 	$Control/ReturnButton.disabled = true
+	$Control/RetryButton.visible = false
+	$Control/RetryButton.disabled = true
 	_new_best_blink()
 	background_scrolling_controller.set_all_label_text("GG WP")
 	
@@ -37,7 +39,8 @@ func show_room(score: int, current_high_score: int) -> void:
 	$Control/ClearedStageTextSFX.play()
 	$Control/ReturnButton.visible = true
 	$Control/ReturnButton.disabled = false
-	
+	$Control/RetryButton.visible = true
+	$Control/RetryButton.disabled = false
 	pass
 
 func _new_best_blink() -> void:
@@ -51,20 +54,39 @@ func _new_best_blink() -> void:
 
 
 func _ready() -> void:
+	
+	#show_room(23, 40)
+	"""
+	@GPZOFFICIAL: Use show_room(score, highscore) to show score and other UIs
+	
+	"""
+	
+	pass
+
+func show_game_over(score: int, highscore: int) -> void:
 	_initialize()
+	show_room(score, highscore)
 	
-	show_room(23, 40)
-	
-	pass # Replace with function body.
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 
 
 func _on_return_button_pressed() -> void:
 	$Control/ReturnButton.disabled = true
+	$Control/RetryButton.disabled = true
 	$Control/ClickSFX.play()
 	RoomManager.transition_to_room(room_main)
+	pass 
+
+
+func _on_retry_button_pressed() -> void:
+	$Control/ReturnButton.disabled = true
+	$Control/RetryButton.disabled = true
+	$Control/ClickSFX.play()
+	
+	"""
+	@GPZOFFICIAL: Here goes the code to restart the stage
+	
+	"""
 	pass # Replace with function body.
