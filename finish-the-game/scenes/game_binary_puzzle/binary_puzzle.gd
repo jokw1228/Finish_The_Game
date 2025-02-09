@@ -33,6 +33,11 @@ var ans_index = 0
 
 var num_mistakes = 10
 
+var more_than_two = false
+var is_dup_row = false
+var is_dup_col = false
+var not_equal = false
+
 var is_grid_selected = false
 @onready var grid:GridContainer = $BinaryPuzzleGrid
 #@onready var sprite:Sprite2D = $SudokuBoard
@@ -59,7 +64,7 @@ func _ready() -> void:
 	#_create_sudoku()
 	#size = 1080x1920
 	#label.text = "Mistakes: 0/" + str(num_mistakes)
-	label.position = Vector2(-348,-526)
+	label.position = Vector2(-348-38-4,-512-64-16)
 	#sprite.position = Vector2(0.5,-256+32)
 	await emitter.difficulty_set
 	if GRID_SIZE == 4: grid.position = Vector2(-428+32+4,-428+32)
@@ -234,22 +239,26 @@ func solve_binary_puzzle():
 		print("not solved")
 		
 func _on_button_pressed(button, i, j):
-	var style = StyleBoxFlat.new()
-	if puzzle_board[i][j] == -1:
-		if board[i][j] == -1:
-			button.text = "0"
-			style.bg_color =  BOARD_COLOR0
-			board[i][j] = 0
-		elif board[i][j] == 0:
-			button.text = "1"
-			style.bg_color =  BOARD_COLOR1
-			board[i][j] = 1
-		else:
-			button.text = ""
-			style.bg_color =  BOARD_COLOR
-			board[i][j] = -1
-		button.add_theme_stylebox_override("normal", style)
-		num_changed.emit(i,j)
+	if not game_ended:
+		$BinaryPuzzleGrid/AudioStreamPlayer2D.play()
+		var style = StyleBoxFlat.new()
+		if puzzle_board[i][j] == -1:
+			if board[i][j] == -1:
+				button.text = "0"
+				style.bg_color =  BOARD_COLOR0
+				board[i][j] = 0
+			elif board[i][j] == 0:
+				button.text = "1"
+				style.bg_color =  BOARD_COLOR1
+				board[i][j] = 1
+			else:
+				button.text = ""
+				style.bg_color =  BOARD_COLOR
+				board[i][j] = -1
+			button.add_theme_stylebox_override("normal", style)
+			num_changed.emit(i,j)
+	else:
+		button.disabled = true
 
 	
 func check_three():
@@ -258,8 +267,10 @@ func check_three():
 		for j in range(GRID_SIZE-2):
 			if board[i][j] == board[i][j+1] and board[i][j+2] == board[i][j+1] and board[i][j] != -1:
 				label.text = "More than two!"
+				more_than_two  = true
 				change_row_color(i, j, j+2, red)
 			if board[j][i] == board[j+1][i] and board[j+2][i] == board[j+1][i] and board[j][i] != -1:
+				more_than_two = true
 				label.text = "More than two!"
 				change_col_color(i, j, j+2, red)
 			
@@ -269,7 +280,8 @@ func check_row_dup(row):
 	for i in range(GRID_SIZE):
 		if not i == row:
 			if board[i] == board[row]:
-				label.text = "Same row exists!"
+				is_dup_row = true
+				label.text = "Same row\nexists!"
 				change_row_color(i, 0, GRID_SIZE-1, red)
 				change_row_color(row, 0, GRID_SIZE-1, red)
 	
@@ -280,10 +292,11 @@ func check_col_dup(col):
 		for j in range(GRID_SIZE):
 			is_dup = true
 			if board[j][i] != board[j][col] or board[j][i] == -1 or i==col:
+				is_dup_col = true
 				is_dup = false
 				break
 		if is_dup:
-			label.text = "Same column exists!"
+			label.text = "Same column\nexists!"
 			change_col_color(i, 0, GRID_SIZE-1, red)
 			change_col_color(col, 0, GRID_SIZE-1, red)
 			
@@ -316,6 +329,49 @@ func change_row_color(row,start, finish, color):
 					style.bg_color =  BOARD_COLOR1
 			
 		game_grid[row][i].add_theme_stylebox_override("normal", style)
+		
+func check_equal():
+	var red = Color("#FFFFE0",0.8)
+	var col_zero 
+	var col_one 
+	var row_zero 
+	var row_one 
+	for i in range(GRID_SIZE):
+		col_zero = 0
+		col_one = 0
+		row_zero = 0
+		row_one = 0
+		for j in range(GRID_SIZE):
+			if board[i][j] == 0:
+				row_zero+=1
+			elif board[i][j] == 1:
+				row_one+=1
+			if board[j][i] == 0:
+				col_zero+=1
+			elif board[j][i] == 1:
+				col_one+=1
+		if row_zero+row_one == GRID_SIZE:
+			if row_zero > row_one:
+				label.text = "More zeros than\n ones!"
+				for k in range(GRID_SIZE):
+					if board[i][k] == 0:
+						change_row_color(i,k, k, red)
+			elif row_one > row_zero:
+				label.text = "More ones than\n zeros!"
+				for k in range(GRID_SIZE):
+					if board[i][k] == 1:
+						change_row_color(i,k, k, red)
+		if col_one+col_zero == GRID_SIZE:
+			if col_zero > col_one:
+				label.text = "More zeros than\n ones!"
+				for k in range(GRID_SIZE):
+					if board[k][i] == 0:
+						change_col_color(i,k, k, red)
+			elif col_one > col_zero:
+				label.text = "More ones than\n zeros!"
+				for k in range(GRID_SIZE):
+					if board[k][i] == 1:
+						change_col_color(i,k, k, red)
 
 func reset_board_color():
 	for i in range(GRID_SIZE):
@@ -337,11 +393,18 @@ func _on_num_changed(row,col):
 	var count = 0
 	var prev_val = -1
 	#reset_board_color()
+	more_than_two = false
+	is_dup_row = false
+	is_dup_col = false
+	not_equal = false
 	label.text = ""
 	reset_board_color()
-	check_three()
-	check_row_dup(row)
-	check_col_dup(col)
+	#check_three()
+	if not more_than_two:
+		check_row_dup(row)
+		check_col_dup(col)
+		check_equal()
+		
 	
 	
 	

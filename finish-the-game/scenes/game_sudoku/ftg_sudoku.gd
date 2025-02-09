@@ -30,9 +30,9 @@ difficulty == 0-> 3
 	
 
 
-func start_ftg():
+func start_ftg(difficulty):
 	#print("start")
-	set_difficulty(0)
+	set_difficulty(difficulty)
 	var rand_row
 	var rand_col
 	var i = 0

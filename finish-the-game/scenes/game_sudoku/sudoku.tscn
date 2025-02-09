@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://2iqkt2dicrub"]
+[gd_scene load_steps=5 format=3 uid="uid://2iqkt2dicrub"]
 
 [ext_resource type="Script" path="res://scenes/game_sudoku/sudoku.gd" id="1_s0c0p"]
 [ext_resource type="Script" path="res://scenes/game_sudoku/select_grid.gd" id="2_tno3c"]
+[ext_resource type="AudioStream" uid="uid://bexei7qh5wag" path="res://resources/audio/sfx/general_purpose/sfx_button_click.wav" id="3_3w2n2"]
+[ext_resource type="AudioStream" uid="uid://weo6ylx5t0x5" path="res://resources/audio/sfx/general_purpose/sfx_button_click_heavy.wav" id="3_ogul6"]
 
 [node name="Sudoku" type="Node2D"]
 script = ExtResource("1_s0c0p")
@@ -17,9 +19,15 @@ offset_bottom = 40.0
 columns = 9
 script = ExtResource("2_tno3c")
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="SelectGrid"]
+stream = ExtResource("3_ogul6")
+
 [node name="Label" type="Label" parent="."]
 offset_right = 40.0
 offset_bottom = 86.0
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_3w2n2")
 
 [connection signal="grid_selected" from="." to="SelectGrid" method="_on_sudoku_grid_selected"]
 [connection signal="inc_answer" from="." to="." method="_on_inc_answer"]

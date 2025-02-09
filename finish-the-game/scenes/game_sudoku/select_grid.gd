@@ -29,6 +29,7 @@ func create_grid():
 		add_child(button)
 
 func _on_button_pressed(index):
+	$AudioStreamPlayer2D.play()
 	if is_selectable:
 		if curr_index != index:
 			ans_unselected.emit(curr_index)

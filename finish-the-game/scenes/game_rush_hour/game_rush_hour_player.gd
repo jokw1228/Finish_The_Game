@@ -35,6 +35,7 @@ var flag = 0
 
 var piece_type = ""
 var cell_loc = Vector2(0,0)
+var x_offset = -30
 
 signal can_move
 
@@ -54,9 +55,9 @@ func _process(delta: float):
 	else:
 		sprite.modulate = Color(1, 1, 1)
 	if direction == 0:
-		position = position.clamp(Vector2(-128-96, -128*2+8), Vector2(128*3-96-8, 128*3-8))
+		position = position.clamp(Vector2(-128-96+x_offset, -128*2+8), Vector2(128*3-96-8+x_offset, 128*3-8))
 	else:
-		position = position.clamp(Vector2(-128*2-32, -128-64+8), Vector2(128*3-32-8, 128*3-64-8))
+		position = position.clamp(Vector2(-128*2-32+x_offset, -128-64+8), Vector2(128*3-32-8+x_offset, 128*3-64-8))
 	
 
 func _physics_process(delta: float):
@@ -98,14 +99,14 @@ func _physics_process(delta: float):
 			get_global_mouse_position().y - mouse_offset.y-1024+64,)
 			#new_position.y = round(new_position.y / grid_size) * grid_size/2 -32
 		if direction == 0:
-			new_position = new_position.clamp(Vector2(-128-96, -128*2+8), Vector2(128*3-96-8, 128*3-8))
+			new_position = new_position.clamp(Vector2(-128-96+x_offset, -128*2+8), Vector2(128*3-96-8+x_offset, 128*3-8))
 		else:
-			new_position = new_position.clamp(Vector2(-128*2-32, -128-64+8), Vector2(128*3-32-8, 128*3-64-8))
+			new_position = new_position.clamp(Vector2(-128*2-32+x_offset, -128-64+8), Vector2(128*3-32-8+x_offset, 128*3-64-8))
 		#position += (new_position - position) *delta *100
 		var move_vector = new_position - position
 		var collision = move_and_collide(move_vector)
 		if collision:
-			print("collision")
+			#print("collision")
 			new_position = new_position.clamp(position, collision.get_position())
 			var push_vector = collision.get_normal() * 0.5  # Small separation push
 			#position += push_vector*10
@@ -133,6 +134,7 @@ func _input(event):
 			local_mouse_pos = sprite.to_local(event.position)
 			if sprite.get_rect().has_point(local_mouse_pos):
 				is_selected = true
+				$AudioStreamPlayer2D.play()
 				#mouse_offset = global_position+Vector2(-200,-100)
 				mouse_offset = get_global_mouse_position()-global_position
 		

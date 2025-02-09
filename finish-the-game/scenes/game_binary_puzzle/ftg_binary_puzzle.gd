@@ -10,7 +10,7 @@ signal pause_timer()
 
 signal difficulty_set
 
-const duration = 20
+const duration = 15
 
 var timeout = false
 
@@ -20,17 +20,17 @@ signal disable_input
 
 """
 형식: 난이도 -> 빈칸 개수 & grid 길
-difficulty == 1 -> 5~7 & 6x6 grid
-0.75 <= difficulty < 1  -> 4 & 6x6 grid
-0.5 <= difficulty < 0.75 ->  3 & 6x6 grid
+difficulty == 1 -> 7 & 6x6 grid
+0.75 <= difficulty < 1  -> 5~6 & 6x6 grid
+0.5 <= difficulty < 0.75 ->  4~3 & 6x6 grid
 0.25 <= difficulty < 0.5->  4 & 4x4 grid
 0 < difficulty < 0.25 -> 3 & 4x4 grid
 difficulty == 0-> 2 & 4x4 grid
 
 """
 
-func start_ftg():
-	set_difficulty(0)
+func start_ftg(difficulty):
+	set_difficulty(difficulty)
 	difficulty_set.emit()
 	var rand_row
 	var rand_col
@@ -43,7 +43,9 @@ func start_ftg():
 			game_grid[rand_row][rand_col].text = ""
 			var style = StyleBoxFlat.new()
 			style.bg_color =  BOARD_COLOR
-			game_grid[rand_row][rand_col].add_theme_color_override("font_color", Color(1, 1, 1))
+			#game_grid[rand_row][rand_col].add_theme_color_override("font_color", Color(1, 1, 1))
+			#00FF00
+			game_grid[rand_row][rand_col].add_theme_color_override("font_color", Color("#99ff99"))
 			game_grid[rand_row][rand_col].add_theme_stylebox_override("normal", style)
 			arr.append(Vector2(rand_row, rand_col))
 			i+=1
@@ -56,13 +58,13 @@ func start_ftg():
 func set_difficulty(difficulty):
 	if difficulty == 1:
 		GRID_SIZE = 6
-		num_blank = randi_range(5,7)
+		num_blank = 7
 	elif difficulty < 1 and difficulty >= 0.75:
 		GRID_SIZE = 6
-		num_blank = 4
+		num_blank = randi_range(5,6)
 	elif difficulty < 0.75 and difficulty >= 0.5:
 		GRID_SIZE = 6
-		num_blank = 3
+		num_blank = 4
 	elif difficulty < 0.5 and difficulty >= 0.25:
 		GRID_SIZE = 4
 		num_blank = 4
