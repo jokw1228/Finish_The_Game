@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://0dfrc5q0v0u5"
-path="res://.godot/imported/sprite_stage_logic_grid_mix.svg-f5ac2e33c19aa18aa67a05bbe8e7a747.ctex"
+uid="uid://cd31p2rme6t2s"
+path="res://.godot/imported/sprite_stage_connection_mix.svg-17101558a578d045a087e2dcaa9a2722.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/images/room_main/stage_datas/sprite_stage_logic_grid_mix.svg"
-dest_files=["res://.godot/imported/sprite_stage_logic_grid_mix.svg-f5ac2e33c19aa18aa67a05bbe8e7a747.ctex"]
+source_file="res://resources/images/room_main/stage_datas/sprite_stage_connection_mix.svg"
+dest_files=["res://.godot/imported/sprite_stage_connection_mix.svg-17101558a578d045a087e2dcaa9a2722.ctex"]
 
 [params]
 

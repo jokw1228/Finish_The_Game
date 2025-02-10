@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/_legacy/room_game_over/room_game_over.gd" id="1_02duf"]
 [ext_resource type="PackedScene" uid="uid://bnyfbqonp1qby" path="res://scenes/ui/background/background_scrolling_controller.tscn" id="2_bgclu"]
-[ext_resource type="Texture2D" uid="uid://cueh1i640ik5r" path="res://resources/images/room_game_over/sprite_return_button.png" id="3_ip833"]
+[ext_resource type="Texture2D" uid="uid://cueh1i640ik5r" path="res://resources/images/room_stage/sprite_return_button.png" id="3_ip833"]
 [ext_resource type="AudioStream" uid="uid://weo6ylx5t0x5" path="res://resources/audio/sfx/general_purpose/sfx_button_click_heavy.wav" id="4_rsbd8"]
 [ext_resource type="AudioStream" uid="uid://cqy3kf0oxav8t" path="res://resources/audio/sfx/general_purpose/sfx_common_indicate.wav" id="5_7r8vc"]
 [ext_resource type="AudioStream" uid="uid://bexei7qh5wag" path="res://resources/audio/sfx/general_purpose/sfx_button_click.wav" id="5_g30di"]

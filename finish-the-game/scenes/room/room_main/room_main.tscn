@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=3 uid="uid://dej30dvp0aefe"]
+[gd_scene load_steps=72 format=3 uid="uid://dej30dvp0aefe"]
 
 [ext_resource type="PackedScene" uid="uid://bnyfbqonp1qby" path="res://scenes/ui/background/background_scrolling_controller.tscn" id="1_dlowq"]
 [ext_resource type="Script" path="res://scenes/room/room_main/room_main.gd" id="1_n65dx"]
@@ -17,18 +17,20 @@
 [ext_resource type="Resource" uid="uid://bk4agphc5p208" path="res://scenes/room/room_main/stage_selection/stage_datas/stage_mix_datas/stage_data_match_mix.tres" id="9_mc4co"]
 [ext_resource type="Resource" uid="uid://bhdddu4ehlhy0" path="res://scenes/room/room_main/stage_selection/stage_datas/stage_solo_datas/stage_data_flip_tiles.tres" id="10_4yd4e"]
 [ext_resource type="Texture2D" uid="uid://b740514y845t1" path="res://resources/images/room_main/sprite_stage_select_button_hover.svg" id="10_fcyev"]
-[ext_resource type="Resource" uid="uid://0i3fse6gkey1" path="res://scenes/room/room_main/stage_selection/stage_datas/stage_mix_datas/stage_data_logic_grid_mix.tres" id="10_xw7sx"]
+[ext_resource type="Resource" uid="uid://0i3fse6gkey1" path="res://scenes/room/room_main/stage_selection/stage_datas/stage_mix_datas/stage_data_logic_mix.tres" id="10_xw7sx"]
 [ext_resource type="Resource" uid="uid://bi6k7kpcpn3x0" path="res://scenes/room/room_main/stage_selection/stage_datas/stage_mix_datas/stage_data_sliding_mix.tres" id="11_0qkmt"]
 [ext_resource type="Texture2D" uid="uid://7ubl3whm1t5l" path="res://resources/images/room_main/sprite_stage_info_button.svg" id="11_0wuu7"]
 [ext_resource type="Texture2D" uid="uid://b32myqx2oy2xj" path="res://resources/images/room_main/sprite_stage_info_exit_button.svg" id="11_1hixd"]
 [ext_resource type="Resource" uid="uid://cj5kfblax8572" path="res://scenes/room/room_main/stage_selection/stage_datas/stage_solo_datas/stage_data_memory.tres" id="11_bi2ln"]
 [ext_resource type="Script" path="res://scenes/room/room_main/stage_selection/stage_info_popup.gd" id="11_gf4ly"]
+[ext_resource type="Texture2D" uid="uid://cemhpmy0npg7w" path="res://resources/images/room_main/stage_datas/sprite_stage_connection_mix_info.svg" id="12_a2han"]
 [ext_resource type="Texture2D" uid="uid://dhluva8gvwwnm" path="res://resources/images/room_main/sprite_stage_info_button_pressed.svg" id="12_m8uk3"]
 [ext_resource type="Texture2D" uid="uid://c8if0bimm45hi" path="res://resources/images/room_main/sprite_stage_info_exit_button_pressed.svg" id="12_no27d"]
 [ext_resource type="Resource" uid="uid://cj4djpoawjidx" path="res://scenes/room/room_main/stage_selection/stage_datas/stage_solo_datas/stage_data_one_card.tres" id="12_pogo4"]
 [ext_resource type="Texture2D" uid="uid://cwf26empdh58y" path="res://resources/images/room_main/sprite_stage_info_exit_button_hover.svg" id="13_ajdkn"]
 [ext_resource type="Resource" uid="uid://jxny0p6cjsmc" path="res://scenes/room/room_main/stage_selection/stage_datas/stage_solo_datas/stage_data_set.tres" id="13_n13lu"]
 [ext_resource type="Texture2D" uid="uid://slxrhykhrq3o" path="res://resources/images/room_main/sprite_stage_info_button_pressed_hover.svg" id="13_ofovp"]
+[ext_resource type="Texture2D" uid="uid://cd31p2rme6t2s" path="res://resources/images/room_main/stage_datas/sprite_stage_connection_mix.svg" id="13_q6gx2"]
 [ext_resource type="Resource" uid="uid://dfic1humgx3jf" path="res://scenes/room/room_main/stage_selection/stage_datas/stage_solo_datas/stage_data_binary_puzzle.tres" id="14_1tg5b"]
 [ext_resource type="Resource" uid="uid://cvwvhwgwob5bw" path="res://scenes/room/room_main/stage_selection/stage_datas/stage_solo_datas/stage_data_rush_hour.tres" id="15_wygt2"]
 [ext_resource type="Resource" uid="uid://3wo4es0x0c6y" path="res://scenes/room/room_main/stage_selection/stage_datas/stage_solo_datas/stage_data_sudoku.tres" id="16_4fge0"]
@@ -53,6 +55,16 @@
 [ext_resource type="Texture2D" uid="uid://c8nijlygh37m8" path="res://resources/images/room_main/sprite_options_exit_pressed.svg" id="45_8qsjy"]
 [ext_resource type="Texture2D" uid="uid://ccphs3kvi0c2l" path="res://resources/images/room_main/sprite_options_exit_hover.svg" id="46_yss6b"]
 [ext_resource type="Texture2D" uid="uid://cjgndouiutojf" path="res://icon.svg" id="47_coo26"]
+
+[sub_resource type="Resource" id="Resource_p7kg6"]
+script = ExtResource("6_14e36")
+stage_name = "CONNECTION
+MIX"
+stage_description = "Success seems to be
+connected with action."
+stage_thumbnail = ExtResource("13_q6gx2")
+stage_info = ExtResource("12_a2han")
+stage_room = "res://scenes/room/room_stages/room_stage_connection_mix/room_stage_connection_mix.tscn"
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ou4vn"]
 
@@ -198,7 +210,7 @@ offset_bottom = 1920.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("5_84lgk")
-stage_mix_datas = Array[ExtResource("6_14e36")]([ExtResource("22_w10df"), ExtResource("9_mc4co"), ExtResource("10_xw7sx"), ExtResource("11_0qkmt")])
+stage_mix_datas = Array[ExtResource("6_14e36")]([ExtResource("22_w10df"), ExtResource("9_mc4co"), ExtResource("10_xw7sx"), ExtResource("11_0qkmt"), SubResource("Resource_p7kg6")])
 stage_solo_datas = Array[ExtResource("6_14e36")]([ExtResource("8_qagxc"), ExtResource("15_wygt2"), ExtResource("11_bi2ln"), ExtResource("10_4yd4e"), ExtResource("20_obiaw"), ExtResource("12_pogo4"), ExtResource("13_n13lu"), ExtResource("14_1tg5b"), ExtResource("16_4fge0"), ExtResource("9_02bnb"), ExtResource("7_7mhve"), ExtResource("17_ai62p"), ExtResource("19_sp3sy"), ExtResource("18_fspxu")])
 
 [node name="SFXActivated" type="AudioStreamPlayer" parent="StageSelection"]
@@ -727,6 +739,10 @@ texture_hover = ExtResource("46_yss6b")
 texture_disabled = ExtResource("44_3kydu")
 metadata/_edit_lock_ = true
 
+[node name="SFXButtonClick" type="AudioStreamPlayer" parent="StageSelection/OptionsPopup/ExitOptionsButton"]
+stream = ExtResource("25_of2xw")
+bus = &"SFX"
+
 [node name="OptionsButton" type="TextureButton" parent="StageSelection"]
 layout_mode = 1
 anchors_preset = -1
@@ -740,6 +756,10 @@ offset_right = 476.0
 offset_bottom = -768.0
 texture_normal = ExtResource("47_coo26")
 metadata/_edit_lock_ = true
+
+[node name="SFXButtonClick" type="AudioStreamPlayer" parent="StageSelection/OptionsButton"]
+stream = ExtResource("25_of2xw")
+bus = &"SFX"
 
 [connection signal="player_started_game" from="." to="Title" method="receive_player_started_game"]
 [connection signal="player_started_game" from="." to="StageSelection" method="receive_player_started_game"]
@@ -768,5 +788,7 @@ metadata/_edit_lock_ = true
 [connection signal="pressed" from="StageSelection/StageToggle/SoloButton" to="StageSelection/StageToggle" method="_on_solo_button_pressed"]
 [connection signal="pressed" from="StageSelection/OptionsPopup/ExitOptionsButton" to="StageSelection" method="receive_exit_options_button_pressed"]
 [connection signal="pressed" from="StageSelection/OptionsPopup/ExitOptionsButton" to="StageSelection/OptionsPopup" method="_on_exit_options_button_pressed"]
+[connection signal="pressed" from="StageSelection/OptionsPopup/ExitOptionsButton" to="StageSelection/OptionsPopup/ExitOptionsButton/SFXButtonClick" method="play"]
 [connection signal="pressed" from="StageSelection/OptionsButton" to="StageSelection" method="receive_options_button_pressed"]
 [connection signal="pressed" from="StageSelection/OptionsButton" to="StageSelection/OptionsPopup" method="_on_options_button_pressed"]
+[connection signal="pressed" from="StageSelection/OptionsButton" to="StageSelection/OptionsButton/SFXButtonClick" method="play"]

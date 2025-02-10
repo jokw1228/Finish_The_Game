@@ -15,6 +15,6 @@ name = "SUDOKU"
 weight = 10.0
 scene = "res://scenes/game_sudoku/ftg_sudoku.tscn"
 
-[node name="RoomStageLogicGridMix" instance=ExtResource("1_fs8ej")]
-stage_name = "LOGICGRID"
+[node name="RoomStageLogicMix" instance=ExtResource("1_fs8ej")]
+stage_name = "LOGIC"
 ftg_game_datas = Array[ExtResource("2_r0gqk")]([SubResource("Resource_jcotm"), SubResource("Resource_pqdbj")])
