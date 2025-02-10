@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://dej30dvp0aefe"]
+[gd_scene load_steps=66 format=3 uid="uid://dej30dvp0aefe"]
 
 [ext_resource type="PackedScene" uid="uid://bnyfbqonp1qby" path="res://scenes/ui/background/background_scrolling_controller.tscn" id="1_dlowq"]
 [ext_resource type="Script" path="res://scenes/room/room_main/room_main.gd" id="1_n65dx"]
@@ -23,7 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://dhluva8gvwwnm" path="res://resources/images/room_main/sprite_stage_info_button_pressed.svg" id="12_m8uk3"]
 [ext_resource type="Texture2D" uid="uid://c8if0bimm45hi" path="res://resources/images/room_main/sprite_stage_info_exit_button_pressed.svg" id="12_no27d"]
 [ext_resource type="Resource" uid="uid://cj4djpoawjidx" path="res://scenes/room/room_main/stage_selection/stage_datas/stage_solo_datas/stage_data_one_card.tres" id="12_pogo4"]
-[ext_resource type="Texture2D" uid="uid://cwf26empdh58y" path="res://resources/images/room_main/sprite_stage_info_exit_button_pressed_hover.svg" id="13_ajdkn"]
+[ext_resource type="Texture2D" uid="uid://cwf26empdh58y" path="res://resources/images/room_main/sprite_stage_info_exit_button_hover.svg" id="13_ajdkn"]
 [ext_resource type="Resource" uid="uid://jxny0p6cjsmc" path="res://scenes/room/room_main/stage_selection/stage_datas/stage_solo_datas/stage_data_set.tres" id="13_n13lu"]
 [ext_resource type="Texture2D" uid="uid://slxrhykhrq3o" path="res://resources/images/room_main/sprite_stage_info_button_pressed_hover.svg" id="13_ofovp"]
 [ext_resource type="Resource" uid="uid://dfic1humgx3jf" path="res://scenes/room/room_main/stage_selection/stage_datas/stage_solo_datas/stage_data_binary_puzzle.tres" id="14_1tg5b"]
@@ -42,7 +42,9 @@
 [ext_resource type="Texture2D" uid="uid://ci6067v5mkhox" path="res://resources/images/room_main/sprite_stage_toggle_shadow.svg" id="39_jly4t"]
 [ext_resource type="AudioStream" uid="uid://dqe4cbvtlhotp" path="res://resources/audio/sfx/room_main/sfx_stage_toggle.mp3" id="40_yhfdg"]
 [ext_resource type="Script" path="res://scenes/room/room_main/options/options_popup.gd" id="42_8iru6"]
+[ext_resource type="Texture2D" uid="uid://b1jc16n8fafkg" path="res://resources/images/room_main/sprite_scroll_right_arrow_pressed.svg" id="42_buqm5"]
 [ext_resource type="Texture2D" uid="uid://c7hp3gxia8j8t" path="res://resources/images/room_main/sprite_option_volume_grabber.svg" id="42_ckpq3"]
+[ext_resource type="Texture2D" uid="uid://dhawas0mblmqc" path="res://resources/images/room_main/sprite_scroll_right_arrow_hover.svg" id="43_8i63h"]
 [ext_resource type="Script" path="res://scenes/room/room_main/options/volume_slider.gd" id="43_ssmr2"]
 [ext_resource type="Texture2D" uid="uid://d053tig3be307" path="res://resources/images/room_main/sprite_options_exit_button.svg" id="44_3kydu"]
 [ext_resource type="Texture2D" uid="uid://c8nijlygh37m8" path="res://resources/images/room_main/sprite_options_exit_pressed.svg" id="45_8qsjy"]
@@ -352,6 +354,54 @@ unique_name_in_owner = true
 stream = ExtResource("31_7egul")
 bus = &"SFX"
 
+[node name="Arrows" type="Control" parent="StageSelection"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="RightArrow" type="TextureButton" parent="StageSelection/Arrows"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -64.0
+offset_right = -64.0
+offset_bottom = 64.0
+grow_horizontal = 0
+grow_vertical = 2
+texture_normal = ExtResource("4_6y3y6")
+texture_pressed = ExtResource("42_buqm5")
+texture_hover = ExtResource("43_8i63h")
+texture_disabled = ExtResource("4_6y3y6")
+metadata/_edit_lock_ = true
+
+[node name="LeftArrow" type="TextureButton" parent="StageSelection/Arrows"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 64.0
+offset_top = -64.0
+offset_right = 128.0
+offset_bottom = 64.0
+grow_vertical = 2
+texture_normal = ExtResource("4_6y3y6")
+texture_pressed = ExtResource("42_buqm5")
+texture_hover = ExtResource("43_8i63h")
+texture_disabled = ExtResource("4_6y3y6")
+flip_h = true
+metadata/_edit_lock_ = true
+
 [node name="StageSelectionButton" type="TextureButton" parent="StageSelection"]
 unique_name_in_owner = true
 layout_mode = 1
@@ -424,6 +474,7 @@ texture = ExtResource("39_jly4t")
 metadata/_edit_lock_ = true
 
 [node name="MixButton" type="Button" parent="StageSelection/StageToggle"]
+unique_name_in_owner = true
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 8
@@ -459,6 +510,7 @@ vertical_alignment = 1
 metadata/_edit_lock_ = true
 
 [node name="SoloButton" type="Button" parent="StageSelection/StageToggle"]
+unique_name_in_owner = true
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 8
@@ -522,47 +574,8 @@ unique_name_in_owner = true
 stream = ExtResource("40_yhfdg")
 bus = &"SFX"
 
-[node name="Arrows" type="Control" parent="StageSelection"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-metadata/_edit_lock_ = true
-
-[node name="RightArrow" type="TextureRect" parent="StageSelection/Arrows"]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -128.0
-offset_top = -64.0
-offset_right = -64.0
-offset_bottom = 64.0
-grow_horizontal = 0
-grow_vertical = 2
-texture = ExtResource("4_6y3y6")
-metadata/_edit_lock_ = true
-
-[node name="LeftArrow" type="TextureRect" parent="StageSelection/Arrows"]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 64.0
-offset_top = -64.0
-offset_right = 128.0
-offset_bottom = 64.0
-grow_vertical = 2
-texture = ExtResource("4_6y3y6")
-flip_h = true
-metadata/_edit_lock_ = true
-
 [node name="OptionsPopup" type="ColorRect" parent="StageSelection"]
+layout_mode = 0
 offset_right = 1080.0
 offset_bottom = 1920.0
 color = Color(0, 0, 0, 0.752941)
@@ -738,6 +751,8 @@ metadata/_edit_lock_ = true
 [connection signal="pressed" from="StageSelection/StageInfoButton" to="StageSelection/StageInfoButton/SFXButtonClick" method="play"]
 [connection signal="current_stage_has_been_changed" from="StageSelection/StageScrollContainer" to="StageSelection" method="receive_current_stage_has_been_changed"]
 [connection signal="stage_selection_button_pressed" from="StageSelection/StageScrollContainer" to="StageSelection" method="receive_stage_selection_button_pressed"]
+[connection signal="pressed" from="StageSelection/Arrows/RightArrow" to="StageSelection/StageScrollContainer" method="_on_right_arrow_pressed"]
+[connection signal="pressed" from="StageSelection/Arrows/LeftArrow" to="StageSelection/StageScrollContainer" method="_on_left_arrow_pressed"]
 [connection signal="pressed" from="StageSelection/StageSelectionButton" to="StageSelection/StageScrollContainer" method="_on_stage_selection_button_pressed"]
 [connection signal="pressed" from="StageSelection/StageSelectionButton" to="StageSelection/StageSelectionButton/SFXButtonClickHeavy" method="play"]
 [connection signal="request_display_mix_stages" from="StageSelection/StageToggle" to="StageSelection" method="receive_request_display_mix_stages"]
