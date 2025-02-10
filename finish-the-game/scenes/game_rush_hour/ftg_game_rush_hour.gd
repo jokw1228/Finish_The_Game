@@ -103,19 +103,19 @@ func set_difficulty(difficulty):
 	
 	elif difficulty < 0.4:
 		num_moves = 6
-		time_limit = 12
+		time_limit = 11
 	
 	elif difficulty < 0.6:
 		num_moves = 8
-		time_limit = 12
+		time_limit = 10
 	
 	elif difficulty < 0.8:
 		num_moves = 10
-		time_limit = 12
+		time_limit = 9
 	
 	elif difficulty >= 0.8:
 		num_moves = 10
-		time_limit = 12 - (difficulty - 0.8) * 2
+		time_limit = 9 - (difficulty - 0.8) * 10
 	
 
 func _process(delta):

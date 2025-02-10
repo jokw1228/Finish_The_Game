@@ -5,7 +5,7 @@ class_name StageInfoPopup
 var stage_infos: Array[Texture2D] = []
 
 var is_popped_up: bool = false
-
+	
 signal stage_info_button_pressed()
 func _on_stage_info_button_pressed() -> void:
 	if is_popped_up == false:

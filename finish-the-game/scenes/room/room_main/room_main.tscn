@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://dej30dvp0aefe"]
+[gd_scene load_steps=64 format=3 uid="uid://dej30dvp0aefe"]
 
 [ext_resource type="PackedScene" uid="uid://bnyfbqonp1qby" path="res://scenes/ui/background/background_scrolling_controller.tscn" id="1_dlowq"]
 [ext_resource type="Script" path="res://scenes/room/room_main/room_main.gd" id="1_n65dx"]
@@ -41,6 +41,13 @@
 [ext_resource type="Script" path="res://scenes/room/room_main/stage_toggle.gd" id="38_lrchq"]
 [ext_resource type="Texture2D" uid="uid://ci6067v5mkhox" path="res://resources/images/room_main/sprite_stage_toggle_shadow.svg" id="39_jly4t"]
 [ext_resource type="AudioStream" uid="uid://dqe4cbvtlhotp" path="res://resources/audio/sfx/room_main/sfx_stage_toggle.mp3" id="40_yhfdg"]
+[ext_resource type="Script" path="res://scenes/room/room_main/options/options_popup.gd" id="42_8iru6"]
+[ext_resource type="Texture2D" uid="uid://c7hp3gxia8j8t" path="res://resources/images/room_main/sprite_option_volume_grabber.svg" id="42_ckpq3"]
+[ext_resource type="Script" path="res://scenes/room/room_main/options/volume_slider.gd" id="43_ssmr2"]
+[ext_resource type="Texture2D" uid="uid://d053tig3be307" path="res://resources/images/room_main/sprite_options_exit_button.svg" id="44_3kydu"]
+[ext_resource type="Texture2D" uid="uid://c8nijlygh37m8" path="res://resources/images/room_main/sprite_options_exit_pressed.svg" id="45_8qsjy"]
+[ext_resource type="Texture2D" uid="uid://ccphs3kvi0c2l" path="res://resources/images/room_main/sprite_options_exit_hover.svg" id="46_yss6b"]
+[ext_resource type="Texture2D" uid="uid://cjgndouiutojf" path="res://icon.svg" id="47_coo26"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ou4vn"]
 
@@ -75,6 +82,24 @@ HScrollBar/styles/grabber_highlight = SubResource("StyleBoxEmpty_ga27h")
 HScrollBar/styles/grabber_pressed = SubResource("StyleBoxEmpty_fi16y")
 HScrollBar/styles/scroll = SubResource("StyleBoxEmpty_2hyhu")
 HScrollBar/styles/scroll_focus = SubResource("StyleBoxEmpty_dttff")
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_mttmn"]
+color = Color(1, 1, 1, 1)
+grow_begin = 0.0
+grow_end = 0.0
+thickness = 16
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_rpaar"]
+color = Color(1, 1, 1, 1)
+grow_begin = 0.0
+grow_end = 0.0
+thickness = 16
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_kv6q1"]
+color = Color(1, 1, 1, 1)
+grow_begin = 0.0
+grow_end = 0.0
+thickness = 16
 
 [node name="RoomMain" type="Control" node_paths=PackedStringArray("background_scrolling_controller")]
 layout_mode = 3
@@ -170,7 +195,6 @@ grow_vertical = 2
 script = ExtResource("5_84lgk")
 stage_mix_datas = Array[ExtResource("6_14e36")]([ExtResource("22_w10df")])
 stage_solo_datas = Array[ExtResource("6_14e36")]([ExtResource("8_qagxc"), ExtResource("15_wygt2"), ExtResource("11_bi2ln"), ExtResource("10_4yd4e"), ExtResource("19_sp3sy"), ExtResource("16_4fge0"), ExtResource("18_fspxu"), ExtResource("12_pogo4"), ExtResource("13_n13lu"), ExtResource("9_02bnb"), ExtResource("7_7mhve"), ExtResource("17_ai62p"), ExtResource("14_1tg5b"), ExtResource("20_obiaw")])
-metadata/_edit_lock_ = true
 
 [node name="SFXActivated" type="AudioStreamPlayer" parent="StageSelection"]
 unique_name_in_owner = true
@@ -538,6 +562,166 @@ texture = ExtResource("4_6y3y6")
 flip_h = true
 metadata/_edit_lock_ = true
 
+[node name="OptionsPopup" type="ColorRect" parent="StageSelection"]
+offset_right = 1080.0
+offset_bottom = 1920.0
+color = Color(0, 0, 0, 0.752941)
+script = ExtResource("42_8iru6")
+metadata/_edit_lock_ = true
+
+[node name="OPTIONS" type="Label" parent="StageSelection/OptionsPopup"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -281.0
+offset_top = -784.0
+offset_right = 281.0
+offset_bottom = -609.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 128
+text = "OPTIONS"
+metadata/_edit_lock_ = true
+
+[node name="SOUND" type="Label" parent="StageSelection/OptionsPopup"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -172.5
+offset_top = -560.0
+offset_right = 172.5
+offset_bottom = -428.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 96
+text = "SOUND"
+metadata/_edit_lock_ = true
+
+[node name="BGM" type="Label" parent="StageSelection/OptionsPopup"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -444.0
+offset_top = -368.0
+offset_right = -296.0
+offset_bottom = -280.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 64
+text = "BGM"
+metadata/_edit_lock_ = true
+
+[node name="BGMSlider" type="HSlider" parent="StageSelection/OptionsPopup"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -368.0
+offset_right = 384.0
+offset_bottom = -272.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(256, 48)
+theme_override_icons/grabber = ExtResource("42_ckpq3")
+theme_override_icons/grabber_highlight = ExtResource("42_ckpq3")
+theme_override_icons/grabber_disabled = ExtResource("42_ckpq3")
+theme_override_styles/slider = SubResource("StyleBoxLine_mttmn")
+theme_override_styles/grabber_area = SubResource("StyleBoxLine_rpaar")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_kv6q1")
+max_value = 1.0
+step = 0.001
+value = 1.0
+script = ExtResource("43_ssmr2")
+bus_name = "BGM"
+metadata/_edit_lock_ = true
+
+[node name="SFX" type="Label" parent="StageSelection/OptionsPopup"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -444.0
+offset_top = -176.0
+offset_right = -335.0
+offset_bottom = -88.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 64
+text = "SFX
+"
+metadata/_edit_lock_ = true
+
+[node name="SFXSlider" type="HSlider" parent="StageSelection/OptionsPopup"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -176.0
+offset_right = 384.0
+offset_bottom = -80.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(256, 48)
+theme_override_icons/grabber = ExtResource("42_ckpq3")
+theme_override_icons/grabber_highlight = ExtResource("42_ckpq3")
+theme_override_icons/grabber_disabled = ExtResource("42_ckpq3")
+theme_override_styles/slider = SubResource("StyleBoxLine_mttmn")
+theme_override_styles/grabber_area = SubResource("StyleBoxLine_rpaar")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_kv6q1")
+max_value = 1.0
+step = 0.001
+value = 1.0
+script = ExtResource("43_ssmr2")
+bus_name = "SFX"
+metadata/_edit_lock_ = true
+
+[node name="ExitOptionsButton" type="TextureButton" parent="StageSelection/OptionsPopup"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -192.0
+offset_top = 64.0
+offset_right = -64.0
+offset_bottom = 192.0
+grow_horizontal = 0
+pivot_offset = Vector2(64, 64)
+texture_normal = ExtResource("44_3kydu")
+texture_pressed = ExtResource("45_8qsjy")
+texture_hover = ExtResource("46_yss6b")
+texture_disabled = ExtResource("44_3kydu")
+
+[node name="OptionsButton" type="TextureButton" parent="StageSelection"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 348.0
+offset_top = -896.0
+offset_right = 476.0
+offset_bottom = -768.0
+texture_normal = ExtResource("47_coo26")
+metadata/_edit_lock_ = true
+
 [connection signal="player_started_game" from="." to="Title" method="receive_player_started_game"]
 [connection signal="player_started_game" from="." to="StageSelection" method="receive_player_started_game"]
 [connection signal="player_has_tapped_anywhere" from="Title" to="." method="receive_player_has_tapped_anywhere"]
@@ -560,3 +744,7 @@ metadata/_edit_lock_ = true
 [connection signal="request_display_solo_stages" from="StageSelection/StageToggle" to="StageSelection" method="receive_request_display_solo_stages"]
 [connection signal="pressed" from="StageSelection/StageToggle/MixButton" to="StageSelection/StageToggle" method="_on_mix_button_pressed"]
 [connection signal="pressed" from="StageSelection/StageToggle/SoloButton" to="StageSelection/StageToggle" method="_on_solo_button_pressed"]
+[connection signal="pressed" from="StageSelection/OptionsPopup/ExitOptionsButton" to="StageSelection" method="receive_exit_options_button_pressed"]
+[connection signal="pressed" from="StageSelection/OptionsPopup/ExitOptionsButton" to="StageSelection/OptionsPopup" method="_on_exit_options_button_pressed"]
+[connection signal="pressed" from="StageSelection/OptionsButton" to="StageSelection" method="receive_options_button_pressed"]
+[connection signal="pressed" from="StageSelection/OptionsButton" to="StageSelection/OptionsPopup" method="_on_options_button_pressed"]

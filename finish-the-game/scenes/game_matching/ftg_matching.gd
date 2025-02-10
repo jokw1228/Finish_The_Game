@@ -68,35 +68,30 @@ func handle_difficulty(difficulty: float) -> void:
 						 일 경우에 다시 눈을 결정할 확률, 0 ~ 100 (%)
 						 이 보정이 생각보다 매움
 	"""
-	
-	
-	if difficulty <= 0:
+	if difficulty < 0.2:
 		time_limit = 12
 		card_amount = 4
 		easy_reroll_chance = 20
 	
-	elif difficulty >= 1:
-		time_limit = 16
+	elif difficulty < 0.4:
+		time_limit = 12
+		card_amount = 5
+		easy_reroll_chance = 30
+	
+	elif difficulty < 0.6:
+		time_limit = 12
+		card_amount = 6
+		easy_reroll_chance = 40
+	
+	elif difficulty < 0.8:
+		time_limit = 12
+		card_amount = 7
+		easy_reroll_chance = 50
+	
+	elif difficulty >= 0.8:
+		time_limit = 12 - (difficulty - 0.8) * 2
 		card_amount = 8
 		easy_reroll_chance = 50
-		
-	else:
-		time_limit = 12 - difficulty * 4
-		
-		if difficulty <= 0.334:
-			time_limit += 2
-			card_amount = 5
-			easy_reroll_chance = 20
-			
-		elif difficulty <= 0.667:
-			time_limit += 4
-			card_amount = 6
-			easy_reroll_chance = 30
-			
-		else:
-			time_limit += 6
-			card_amount = 7
-			easy_reroll_chance = 40
 
 
 func finish_game() -> void:

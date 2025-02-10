@@ -24,7 +24,7 @@ func generate_cards(cards: Array, ranges: Array, object: Array) -> void:
 
 func start_ftg(difficulty: float) -> void:
 	initialize_game_set()
-	handle_difficulty(0.668)
+	handle_difficulty(0.5)
 	
 	var card_set: Array = []
 	var solution_set: Array = []
@@ -78,27 +78,30 @@ func handle_difficulty(difficulty: float) -> void:
 	card_amount : 나오는 카드 수, 항상 3의 배수, 6 or 9
 	attribute_amount : 나오는 속성의 수, 2 or 3
 	"""
-	if difficulty <= 0:
-		time_limit = 12
+	if difficulty < 0.2:
+		time_limit = 15
 		card_amount = 6
 		attribute_amount = 2
 	
-	elif difficulty >= 1:
-		time_limit = 16
+	elif difficulty < 0.4:
+		time_limit = 18
+		card_amount = 6
+		attribute_amount = 3
+	
+	elif difficulty < 0.6:
+		time_limit = 21
+		card_amount = 9
+		attribute_amount = 2
+	
+	elif difficulty < 0.8:
+		time_limit = 24
 		card_amount = 9
 		attribute_amount = 3
-		
-	else:
-		time_limit = 15 - difficulty * 9
-		
-		if difficulty <= 0.667:
-			card_amount = 6
-			attribute_amount = 2
-			
-		else:
-			time_limit += 10
-			card_amount = 9
-			attribute_amount = 3
+	
+	elif difficulty >= 0.8:
+		time_limit = 24 - (difficulty - 0.8) * 8
+		card_amount = 9
+		attribute_amount = 3
 
 
 func finish_game() -> void:
