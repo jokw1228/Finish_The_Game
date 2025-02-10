@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="StageData" load_steps=3 format=3 uid="uid://b5ec328bn5x1r"]
+[gd_resource type="Resource" script_class="StageData" load_steps=4 format=3 uid="uid://b5ec328bn5x1r"]
 
 [ext_resource type="Script" path="res://scenes/room/room_main/stage_selection/stage_datas/stage_data.gd" id="1_imedl"]
+[ext_resource type="Texture2D" uid="uid://nkagvuhkxhft" path="res://resources/images/room_main/stage_datas/sprite_stage_classic_mix_info.png" id="2_oxkcp"]
 [ext_resource type="Texture2D" uid="uid://nvphutnsri0w" path="res://resources/images/room_main/stage_datas/sprite_stage_classic_mix.png" id="2_u55rn"]
 
 [resource]
@@ -9,5 +10,5 @@ stage_name = "CLASSIC
 MIX"
 stage_description = "Easy to play!"
 stage_thumbnail = ExtResource("2_u55rn")
-stage_info = ExtResource("2_u55rn")
+stage_info = ExtResource("2_oxkcp")
 stage_room = "res://scenes/room/room_stages/room_stage_classic_mix/room_stage_classic_mix.tscn"
