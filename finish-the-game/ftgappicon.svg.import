@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ebooa5or04jb"
-path="res://.godot/imported/ftgappicon.svg-2e98ae3cc00cd1757333afcc28a3218d.ctex"
+path="res://.godot/imported/ftgappicon.svg-70436d6b6abb86d6c118a59f35556f4d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/images/room_logo/ftgappicon.svg"
-dest_files=["res://.godot/imported/ftgappicon.svg-2e98ae3cc00cd1757333afcc28a3218d.ctex"]
+source_file="res://ftgappicon.svg"
+dest_files=["res://.godot/imported/ftgappicon.svg-70436d6b6abb86d6c118a59f35556f4d.ctex"]
 
 [params]
 
