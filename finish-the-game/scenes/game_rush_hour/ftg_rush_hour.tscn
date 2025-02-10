@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://d181x8ac0l7q6"]
+[gd_scene load_steps=2 format=3 uid="uid://bcr1qxtb1t1ov"]
 
 [ext_resource type="PackedScene" uid="uid://ba5ots6xrtlsc" path="res://scenes/game_rush_hour/game_rush_hour.tscn" id="1_utnt5"]
 

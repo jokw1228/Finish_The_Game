@@ -62,6 +62,7 @@ difficulty == 1 -> 10
 difficulty == 0-> 5번 이하, 맵 형식상 5번 이하로만 지정가능 (권장 난이도)
 
 """
+
 func start_ftg(difficulty):
 	const duration = 12
 	map = []
@@ -274,6 +275,7 @@ func generate_board():
 	#map = "HBBoxKHDDoJKHAAoJKooIEEoooIoooFFFoxo"
 	#map = "ooxooooCCCoIooGAAIooGDDIooGHoooxoHFF"
 	#map = "BBCCoJoGHooJoGHAAJoooIDDoooIooooxxoo"
+	#map = "oBCCDEoBoFDEoAAFooooGHHHooGoooIIIooo"
 	print(map)
 	var value = 0
 	str_board = []
