@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://tqdpfhowsqsh"]
+[gd_scene load_steps=17 format=3 uid="uid://tqdpfhowsqsh"]
 
 [ext_resource type="PackedScene" uid="uid://h6roi8gwnnli" path="res://scenes/room/room_stage/room_stage.tscn" id="1_ft4m3"]
 [ext_resource type="Script" path="res://scenes/room/room_stage/ftg_game_data.gd" id="2_67ee3"]
@@ -9,6 +9,84 @@ name = "SLD.PZL."
 weight = 1.0
 scene = "res://scenes/game_sliding_puzzle/ftg_sliding_puzzle.tscn"
 
+[sub_resource type="Resource" id="Resource_hurpt"]
+script = ExtResource("2_67ee3")
+name = "RUSHHOUR"
+weight = 1.0
+scene = "res://scenes/game_rush_hour/game_rush_hour.tscn"
+
+[sub_resource type="Resource" id="Resource_c4nkf"]
+script = ExtResource("2_67ee3")
+name = "MEMORY"
+weight = 1.0
+scene = "res://scenes/game_memory/ftg_memory.tscn"
+
+[sub_resource type="Resource" id="Resource_k8f2i"]
+script = ExtResource("2_67ee3")
+name = "FLP.TLS."
+weight = 1.5
+scene = "res://scenes/game_flip_tiles/ftg_flip_tiles.tscn"
+
+[sub_resource type="Resource" id="Resource_awlrt"]
+script = ExtResource("2_67ee3")
+name = "MATCHING"
+weight = 1.0
+scene = "res://scenes/game_matching/ftg_matching.tscn"
+
+[sub_resource type="Resource" id="Resource_p35ph"]
+script = ExtResource("2_67ee3")
+name = "ONECARD"
+weight = 1.5
+scene = "res://scenes/game_one_card/ftg_one_card.tscn"
+
+[sub_resource type="Resource" id="Resource_snhgl"]
+script = ExtResource("2_67ee3")
+name = "SET"
+weight = 1.5
+scene = "res://scenes/game_set/ftg_set.tscn"
+
+[sub_resource type="Resource" id="Resource_ihl8o"]
+script = ExtResource("2_67ee3")
+name = "BIN.PZL."
+weight = 1.5
+scene = "res://scenes/game_binary_puzzle/ftg_binary_puzzle.tscn"
+
+[sub_resource type="Resource" id="Resource_e73vi"]
+script = ExtResource("2_67ee3")
+name = "SUDOKU"
+weight = 2.5
+scene = "res://scenes/game_sudoku/ftg_sudoku.tscn"
+
+[sub_resource type="Resource" id="Resource_slmjc"]
+script = ExtResource("2_67ee3")
+name = "BOMBLINK"
+weight = 2.5
+scene = "res://scenes/game_bomb_link/ftg_bomb_link.tscn"
+
+[sub_resource type="Resource" id="Resource_mpm4m"]
+script = ExtResource("2_67ee3")
+name = "PENTAGO"
+weight = 2.0
+scene = "res://scenes/game_pentago/ftg_pentago.tscn"
+
+[sub_resource type="Resource" id="Resource_e8oy0"]
+script = ExtResource("2_67ee3")
+name = "ORBITO"
+weight = 2.0
+scene = "res://scenes/game_orbito/ftg_orbito.tscn"
+
+[sub_resource type="Resource" id="Resource_4k70v"]
+script = ExtResource("2_67ee3")
+name = "LADDER"
+weight = 1.0
+scene = "res://scenes/game_ladder/ftg_ladder.tscn"
+
+[sub_resource type="Resource" id="Resource_nr6cp"]
+script = ExtResource("2_67ee3")
+name = "RICOCHET"
+weight = 2.5
+scene = "res://scenes/game_ricochet_robot/ftg_ricochet_robot.tscn"
+
 [node name="RoomStageAllInOneMix" instance=ExtResource("1_ft4m3")]
 stage_name = "ALLIN1"
-ftg_game_datas = Array[ExtResource("2_67ee3")]([SubResource("Resource_r5xuh")])
+ftg_game_datas = Array[ExtResource("2_67ee3")]([SubResource("Resource_r5xuh"), SubResource("Resource_hurpt"), SubResource("Resource_c4nkf"), SubResource("Resource_k8f2i"), SubResource("Resource_awlrt"), SubResource("Resource_p35ph"), SubResource("Resource_snhgl"), SubResource("Resource_ihl8o"), SubResource("Resource_e73vi"), SubResource("Resource_slmjc"), SubResource("Resource_mpm4m"), SubResource("Resource_e8oy0"), SubResource("Resource_4k70v"), SubResource("Resource_nr6cp")])
