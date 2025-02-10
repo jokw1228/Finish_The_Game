@@ -1,13 +1,81 @@
-[gd_scene load_steps=4 format=3 uid="uid://brmqeailit5kb"]
+[gd_scene load_steps=8 format=3 uid="uid://brmqeailit5kb"]
 
 [ext_resource type="PackedScene" uid="uid://c8whyrgf2mmqi" path="res://scenes/game_one_card/one_card.tscn" id="1_8lopt"]
 [ext_resource type="Script" path="res://scenes/game_one_card/ftg_one_card.gd" id="2_323vh"]
 [ext_resource type="PackedScene" uid="uid://32twi0juyy6u" path="res://scenes/game_utils/game_utils_game_timer/game_utils_game_timer.tscn" id="3_ef7ex"]
+[ext_resource type="Texture2D" uid="uid://c5jjqab8crpmk" path="res://resources/images/game_one_card/sprite_one_card_outline.png" id="4_6xmrn"]
+[ext_resource type="Texture2D" uid="uid://dopum6yyjdti4" path="res://resources/images/game_one_card/sprite_one_card_small_outline.png" id="5_jayoq"]
+[ext_resource type="Texture2D" uid="uid://xqwyuooipngc" path="res://resources/images/game_one_card/sprite_one_card_small_card.png" id="6_k836l"]
+[ext_resource type="Texture2D" uid="uid://dkwwpnsjed7n2" path="res://resources/images/game_one_card/sprite_one_card_spade.png" id="7_daokj"]
 
 [node name="FTGOneCard" instance=ExtResource("1_8lopt")]
 script = ExtResource("2_323vh")
 
 [node name="GameUtilsGameTimer" parent="." index="0" instance=ExtResource("3_ef7ex")]
+
+[node name="Outline1" type="TextureRect" parent="OneCardUi" index="0"]
+offset_left = -176.0
+offset_top = -512.0
+offset_right = 16.0
+offset_bottom = -192.0
+texture = ExtResource("4_6xmrn")
+metadata/_edit_use_anchors_ = true
+
+[node name="Outline2" type="TextureRect" parent="OneCardUi" index="1"]
+offset_left = -16.0
+offset_top = -512.0
+offset_right = 176.0
+offset_bottom = -192.0
+texture = ExtResource("4_6xmrn")
+metadata/_edit_use_anchors_ = true
+
+[node name="GuideShape1" type="TextureRect" parent="OneCardUi" index="2"]
+offset_left = -336.0
+offset_top = -512.0
+offset_right = -144.0
+offset_bottom = -320.0
+texture = ExtResource("5_jayoq")
+metadata/_edit_use_anchors_ = true
+
+[node name="SmallCard" type="TextureRect" parent="OneCardUi/GuideShape1" index="0"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 160.0
+offset_bottom = 160.0
+texture = ExtResource("6_k836l")
+metadata/_edit_use_anchors_ = true
+
+[node name="shape" type="TextureRect" parent="OneCardUi/GuideShape1/SmallCard" index="0"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("7_daokj")
+metadata/_edit_use_anchors_ = true
+
+[node name="GuideShape2" type="TextureRect" parent="OneCardUi" index="3"]
+offset_left = 144.0
+offset_top = -512.0
+offset_right = 336.0
+offset_bottom = -320.0
+texture = ExtResource("5_jayoq")
+metadata/_edit_use_anchors_ = true
+
+[node name="SmallCard" type="TextureRect" parent="OneCardUi/GuideShape2" index="0"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 160.0
+offset_bottom = 160.0
+texture = ExtResource("6_k836l")
+metadata/_edit_use_anchors_ = true
+
+[node name="shape" type="TextureRect" parent="OneCardUi/GuideShape2/SmallCard" index="0"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("7_daokj")
+metadata/_edit_use_anchors_ = true
 
 [connection signal="pause_timer" from="." to="GameUtilsGameTimer" method="pause_timer"]
 [connection signal="start_timer" from="." to="GameUtilsGameTimer" method="start_timer"]

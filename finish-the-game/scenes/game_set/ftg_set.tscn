@@ -1,14 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://dilnayh6o0kn"]
+[gd_scene load_steps=5 format=3 uid="uid://dilnayh6o0kn"]
 
 [ext_resource type="PackedScene" uid="uid://dm7k1x0i48ey4" path="res://scenes/game_set/set.tscn" id="1_oer4n"]
 [ext_resource type="Script" path="res://scenes/game_set/ftg_set.gd" id="2_o4qy1"]
 [ext_resource type="PackedScene" uid="uid://32twi0juyy6u" path="res://scenes/game_utils/game_utils_game_timer/game_utils_game_timer.tscn" id="3_gkc8q"]
+[ext_resource type="PackedScene" uid="uid://txf8ygkaavx0" path="res://scenes/game_utils/game_utils_retry_button/game_utils_retry_button.tscn" id="4_pegxs"]
 
 [node name="FTGSet" instance=ExtResource("1_oer4n")]
 script = ExtResource("2_o4qy1")
 
 [node name="GameUtilsGameTimer" parent="." index="0" instance=ExtResource("3_gkc8q")]
 
+[node name="GameUtilsRetryButton" parent="." index="2" instance=ExtResource("4_pegxs")]
+offset_left = 256.0
+offset_top = 512.0
+offset_right = 512.0
+offset_bottom = 768.0
+
 [connection signal="pause_timer" from="." to="GameUtilsGameTimer" method="pause_timer"]
 [connection signal="start_timer" from="." to="GameUtilsGameTimer" method="start_timer"]
 [connection signal="timeout" from="GameUtilsGameTimer" to="." method="_on_game_utils_game_timer_timeout"]
+[connection signal="request_retry" from="GameUtilsRetryButton" to="SetUi" method="ui_retry"]

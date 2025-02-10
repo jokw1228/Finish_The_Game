@@ -7,7 +7,7 @@
 script = ExtResource("2_n3226")
 name = "MATCHING"
 weight = 1.0
-scene = "채워주세요"
+scene = "res://scenes/game_matching/ftg_matching.tscn"
 
 [node name="RoomStageMatching" instance=ExtResource("1_qrrpy")]
 stage_name = "MATCHING"

@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://bv8gg5pbvy418"]
+
+[ext_resource type="Script" path="res://scenes/game_matching/matching_card_button.gd" id="1_bcvwf"]
+
+[node name="MatchingCardButton" type="TextureButton"]
+z_index = 5
+offset_right = 128.0
+offset_bottom = 128.0
+action_mode = 0
+script = ExtResource("1_bcvwf")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
