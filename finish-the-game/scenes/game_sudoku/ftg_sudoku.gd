@@ -19,10 +19,10 @@ signal disable_input
 
 """
 형식: 난이도 -> 빈칸 개수
-difficulty == 1 -> 10~11
-0.75 <= difficulty < 1  -> 9
-0.5 <= difficulty < 0.75 -> 8
-0.25 <= difficulty < 0.5-> 7
+difficulty == 1 -> 9~10
+0.75 <= difficulty < 1  -> 8
+0.5 <= difficulty < 0.75 -> 7
+0.25 <= difficulty < 0.5-> 6
 0 < difficulty < 0.25 -> 4~5
 difficulty == 0-> 3
 
@@ -33,6 +33,7 @@ difficulty == 0-> 3
 func start_ftg(difficulty):
 	#print("start")
 	set_difficulty(difficulty)
+	num_blank = 3
 	var rand_row
 	var rand_col
 	var i = 0
@@ -53,13 +54,13 @@ func start_ftg(difficulty):
 	
 func set_difficulty(difficulty):
 	if difficulty == 1:
-		num_blank = randi_range(10,11)
+		num_blank = randi_range(9,10)
 	elif difficulty < 1 and difficulty >= 0.75:
-		num_blank = 9
-	elif difficulty < 0.75 and difficulty >= 0.5:
 		num_blank = 8
+	elif difficulty < 0.75 and difficulty >= 0.5:
+		num_blank = 7
 	elif difficulty < 0.5 and difficulty >= 0.25:
-		num_blank = randi_range(6,7)
+		num_blank = 6
 	elif difficulty < 0.25 and difficulty > 0:
 		num_blank = randi_range(4,5)
 	else:
