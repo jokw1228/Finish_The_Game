@@ -6,7 +6,7 @@ const ANIME_LINE_THICKNESS: float = LINE_THICKNESS * 1.5
 const CIRCLE_SIZE: float = 15
 const POS_CIRCLE_SIZE: float = 20
 
-const ANIMATION_DURATION: float = 2.0
+const ANIMATION_DURATION: float = 1.0
 const CIRCLE_ANIMATION_DURATION: float = 0.2
 
 # 색깔들

@@ -4,7 +4,7 @@ class_name Ladder
 signal line_added(start_pos: Vector2, end_pos: Vector2)
 signal simulation_started(path: Array)
 
-const LINE_NUM: int = 5
+var LINE_NUM: int = 5  # 기본값은 5로 설정
 const TOP_MARGIN: int = 300    # 상단 여백
 const BOTTOM_MARGIN: int = 300 # 하단 여백
 
@@ -48,6 +48,9 @@ func find_nearest_vertical(x: float, limit_dist: float = INF) -> float:
 			nearest = line_x
 	return nearest
 
+func ccw(p1x: float, p1y: float, p2x: float, p2y: float, p3x: float, p3y: float) -> float:
+	return (p2x - p1x) * (p3y - p1y) - (p3x - p1x) * (p2y - p1y)
+	
 func check_cross(line: Array) -> bool:
 	var x1: float = line[0]
 	var y1: float = line[1]
@@ -60,14 +63,15 @@ func check_cross(line: Array) -> bool:
 		var x4: float = existing_line[2]
 		var y4: float = existing_line[3]
 		
-		if (abs(x1 - x3) < 0.1 and abs(x2 - x4) < 0.1) or \
-		   (abs(x1 - x4) < 0.1 and abs(x2 - x3) < 0.1):
-			var min_y_new = min(y1, y2)
-			var max_y_new = max(y1, y2)
-			var min_y_existing = min(y3, y4)
-			var max_y_existing = max(y3, y4)
+		# 같은 세로선 쌍 사이의 선인지 먼저 확인
+		if abs(min(x1, x2) - min(x3, x4)) < 0.1 and abs(max(x1, x2) - max(x3, x4)) < 0.1:
+			var ab_c = ccw(x1, y1, x2, y2, x3, y3)
+			var ab_d = ccw(x1, y1, x2, y2, x4, y4)
+			var cd_a = ccw(x3, y3, x4, y4, x1, y1)
+			var cd_b = ccw(x3, y3, x4, y4, x2, y2)
 			
-			if max_y_new > min_y_existing and min_y_new < max_y_existing:
+			# 두 선분이 교차하는지 확인
+			if ab_c * ab_d <= 0 and cd_a * cd_b <= 0:
 				return true
 	
 	return false
@@ -110,32 +114,52 @@ func simulate_path(start_x: float) -> Array:
 		current_y += 1
 	path.append([current_x, current_y])
 	return path
+	
+func get_valid_y() -> float:
+	var rng = RandomNumberGenerator.new()
+	const EXTRA_MARGIN: float = 100.0
+	var y = (TOP_MARGIN + EXTRA_MARGIN) + rng.randf() * (get_viewport_rect().size.y - TOP_MARGIN - BOTTOM_MARGIN - EXTRA_MARGIN * 2)
+	return y
 
 func add_random_line() -> void:
 	var rng = RandomNumberGenerator.new()
 	var vertical_idx: int = rng.randi_range(0, len(vertical_lines) - 2)
 	var x1 = vertical_lines[vertical_idx]
-	var y1 = TOP_MARGIN + rng.randf() * (get_viewport_rect().size.y - TOP_MARGIN - BOTTOM_MARGIN)
 	var x2 = vertical_lines[vertical_idx + 1]
-	var y2 = TOP_MARGIN + rng.randf() * (get_viewport_rect().size.y - TOP_MARGIN - BOTTOM_MARGIN)
 	
 	# 끝점 근처 체크를 위한 최소 거리
-	const MIN_ENDPOINT_DISTANCE: float = 50.0
+	const MIN_ENDPOINT_DISTANCE: float = 100.0
+
+	# y1과 y2를 각각 유효한 값이 나올 때까지 재시도
+	var y1 = get_valid_y()
+	var y2 = get_valid_y()
+	var retry_count = 0
+	const MAX_RETRIES = 10  # 무한 루프 방지
 	
-	# 기존 선들의 끝점과의 거리 체크
-	for line in horizontal_lines:
-		# 왼쪽 끝점과의 거리 체크
-		if abs(x1 - line[0]) < 0.1 && abs(y1 - line[1]) < MIN_ENDPOINT_DISTANCE:
-			add_random_line()
-			return
+	while retry_count < MAX_RETRIES:
+		var need_retry = false
+		
+		# y1 검증
+		for line in horizontal_lines:
+			if abs(x1 - line[0]) < 0.1 && abs(y1 - line[1]) < MIN_ENDPOINT_DISTANCE:
+				y1 = get_valid_y()
+				need_retry = true
+				break
+		
+		# y2 검증
+		for line in horizontal_lines:
+			if abs(x2 - line[2]) < 0.1 && abs(y2 - line[3]) < MIN_ENDPOINT_DISTANCE:
+				y2 = get_valid_y()
+				need_retry = true
+				break
+		
+		if !need_retry:
+			break
 			
-		# 오른쪽 끝점과의 거리 체크
-		if abs(x2 - line[2]) < 0.1 && abs(y2 - line[3]) < MIN_ENDPOINT_DISTANCE:
-			add_random_line()
-			return
+		retry_count += 1
 	
 	# 기존 교차 체크
 	if check_cross([x1, y1, x2, y2]):
 		add_random_line()
 	else:
-		add_horizontal_line(Vector2(x1, y1), Vector2(x2, y2))
+		add_horizontal_line(Vector2(x1, y1), Vector2(x2, y2))  
