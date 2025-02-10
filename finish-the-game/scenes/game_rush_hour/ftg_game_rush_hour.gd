@@ -50,6 +50,8 @@ var player_count = 0
 signal gen_map
 signal player_piece_instantiated(player_piece)
 
+var time_limit: float = 12
+
 # Called when the node enters the scene tree for the first time.
 	
 """
@@ -64,7 +66,6 @@ difficulty == 0-> 5번 이하, 맵 형식상 5번 이하로만 지정가능 (권
 """
 
 func start_ftg(difficulty):
-	const duration = 12
 	map = []
 	checked_pos = []
 	checked_pos_board_row = []
@@ -85,7 +86,7 @@ func start_ftg(difficulty):
 	#print_board(board)
 	find_target_location()
 	place_pieces()
-	start_timer.emit(duration)
+	start_timer.emit(time_limit)
 	#pause_timer.emit()
 	start.emit(target_location, player_direction)
 
@@ -96,18 +97,26 @@ func _ready():
 	
 	
 func set_difficulty(difficulty):
-	if difficulty == 1:
-		num_moves = 10
-	elif difficulty < 1 and difficulty >= 0.75:
-		num_moves = 9
-	elif difficulty < 0.75 and difficulty >= 0.5:
-		num_moves = 8
-	elif difficulty < 0.5 and difficulty >= 0.25:
-		num_moves = 7
-	elif difficulty < 0.25 and difficulty > 0:
+	if difficulty < 0.2:
+		num_moves = 4
+		time_limit = 12
+	
+	elif difficulty < 0.4:
 		num_moves = 6
-	else:
-		num_moves  = 5
+		time_limit = 12
+	
+	elif difficulty < 0.6:
+		num_moves = 8
+		time_limit = 12
+	
+	elif difficulty < 0.8:
+		num_moves = 10
+		time_limit = 12
+	
+	elif difficulty >= 0.8:
+		num_moves = 10
+		time_limit = 12 - (difficulty - 0.8) * 2
+	
 
 func _process(delta):
 	#debugging

@@ -45,20 +45,25 @@ func handle_difficulty(difficulty: float) -> void:
 	available_shape_pool : 나올 수 있는 모양 개수의 범위, 1 ~ 12
 							(난이도에 미치는 영향이 적음)
 	"""
-	if difficulty <= 0.2:
+	if difficulty < 0.2:
 		time_limit = 7
 		card_amount = 4
 		available_shape_pool = 2
 	
-	elif difficulty <= 0.4:
+	elif difficulty < 0.4:
 		time_limit = 7
 		card_amount = 6
 		available_shape_pool = 3
 	
-	elif difficulty <= 0.6:
+	elif difficulty < 0.6:
 		time_limit = 7
 		card_amount = 6
 		available_shape_pool = 9
+	
+	elif difficulty < 0.8:
+		time_limit = 7
+		card_amount = 8
+		available_shape_pool = 12
 	
 	elif difficulty >= 0.8:
 		time_limit = 7 - (difficulty - 0.8) * 2
