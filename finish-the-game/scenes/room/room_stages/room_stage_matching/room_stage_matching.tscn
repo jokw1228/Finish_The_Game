@@ -12,5 +12,3 @@ scene = "res://scenes/game_matching/ftg_matching.tscn"
 [node name="RoomStageMatching" instance=ExtResource("1_qrrpy")]
 stage_name = "MATCHING"
 ftg_game_datas = Array[ExtResource("2_n3226")]([SubResource("Resource_kcwgw")])
-
-[connection signal="take_damage" from="." to="HPBarCanvas" method="take_damage"]
