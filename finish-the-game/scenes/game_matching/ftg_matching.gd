@@ -13,7 +13,7 @@ func set_delete(set: Array, element) -> void:
 
 func start_ftg(difficulty: float) -> void:
 	initialize_game_matching()
-	handle_difficulty(1)
+	handle_difficulty(difficulty)
 
 	var rng = RandomNumberGenerator.new()
 	rng.randomize()
@@ -68,6 +68,8 @@ func handle_difficulty(difficulty: float) -> void:
 						 일 경우에 다시 눈을 결정할 확률, 0 ~ 100 (%)
 						 이 보정이 생각보다 매움
 	"""
+	
+	
 	if difficulty <= 0:
 		time_limit = 12
 		card_amount = 4
