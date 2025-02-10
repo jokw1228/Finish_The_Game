@@ -104,23 +104,23 @@ func _ready():
 func set_difficulty(difficulty):
 	if difficulty < 0.2:
 		num_moves = randi_range(3, 5)
-		time_limit = 10
+		time_limit = 11
 	
 	elif difficulty < 0.4:
 		num_moves = randi_range(5, 7)
-		time_limit = 9
+		time_limit = 10
 	
 	elif difficulty < 0.6:
 		num_moves = randi_range(7, 9)
-		time_limit = 8
+		time_limit = 9
 	
 	elif difficulty < 0.8:
 		num_moves = randi_range(9, 11)
-		time_limit = 7
+		time_limit = 8
 	
 	elif difficulty >= 0.8:
 		num_moves = randi_range(9, 11)
-		time_limit = 7 - (difficulty - 0.8) * 5
+		time_limit = 8 - (difficulty - 0.8) * 5
 	
 
 func _process(delta):
