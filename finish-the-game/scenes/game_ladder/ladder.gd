@@ -8,6 +8,8 @@ var LINE_NUM: int = 5  # 기본값은 5로 설정
 const TOP_MARGIN: int = 300    # 상단 여백
 const BOTTOM_MARGIN: int = 300 # 하단 여백
 
+const MIN_ENDPOINT_DISTANCE: float = 50.0
+
 var LINE_BASE: float
 var LINE_SPACING: float # 세로선 간격
 
@@ -114,52 +116,107 @@ func simulate_path(start_x: float) -> Array:
 		current_y += 1
 	path.append([current_x, current_y])
 	return path
-	
-func get_valid_y() -> float:
-	var rng = RandomNumberGenerator.new()
+
+func get_valid_ranges(x1: float, x2: float) -> Array:
+	# 1. 유효한 y좌표의 전체 범위 설정
 	const EXTRA_MARGIN: float = 100.0
-	var y = (TOP_MARGIN + EXTRA_MARGIN) + rng.randf() * (get_viewport_rect().size.y - TOP_MARGIN - BOTTOM_MARGIN - EXTRA_MARGIN * 2)
-	return y
+	var min_y = TOP_MARGIN + EXTRA_MARGIN
+	var max_y = get_viewport_rect().size.y - BOTTOM_MARGIN - EXTRA_MARGIN
+	
+	# 2. 현재 세로선에 연결된 모든 가로선의 y좌표 수집
+	var forbidden_ranges = []
+	for line in horizontal_lines:
+		# x1 위치의 endpoint 체크 (양쪽 끝점 모두)
+		if abs(line[0] - x1) < 0.1 or abs(line[2] - x1) < 0.1:
+			# 왼쪽 끝점이 x1에 있는 경우
+			if abs(line[0] - x1) < 0.1:
+				forbidden_ranges.append([
+					line[1] - MIN_ENDPOINT_DISTANCE,
+					line[1] + MIN_ENDPOINT_DISTANCE
+				])
+			# 오른쪽 끝점이 x1에 있는 경우
+			if abs(line[2] - x1) < 0.1:
+				forbidden_ranges.append([
+					line[3] - MIN_ENDPOINT_DISTANCE,
+					line[3] + MIN_ENDPOINT_DISTANCE
+				])
+				
+		# x2 위치의 endpoint 체크 (양쪽 끝점 모두)
+		if abs(line[0] - x2) < 0.1 or abs(line[2] - x2) < 0.1:
+			# 왼쪽 끝점이 x2에 있는 경우
+			if abs(line[0] - x2) < 0.1:
+				forbidden_ranges.append([
+					line[1] - MIN_ENDPOINT_DISTANCE,
+					line[1] + MIN_ENDPOINT_DISTANCE
+				])
+			# 오른쪽 끝점이 x2에 있는 경우
+			if abs(line[2] - x2) < 0.1:
+				forbidden_ranges.append([
+					line[3] - MIN_ENDPOINT_DISTANCE,
+					line[3] + MIN_ENDPOINT_DISTANCE
+				])
+	
+	# 3. 금지 구간을 y좌표 순으로 정렬
+	forbidden_ranges.sort_custom(func(a, b): return a[0] < b[0])
+	
+	# 4. 유효한 구간들 수집
+	var valid_ranges = []
+	var current_min = min_y
+	
+	for range in forbidden_ranges:
+		if range[0] > current_min:
+			valid_ranges.append([current_min, range[0]])
+		current_min = max(current_min, range[1])
+	
+	if current_min < max_y:
+		valid_ranges.append([current_min, max_y])
+	
+	return valid_ranges
+	
+func get_valid_y_from_ranges(valid_ranges: Array) -> float:
+	var rng = RandomNumberGenerator.new()
+	
+	# 전체 유효 길이 계산
+	var total_valid_length = 0.0
+	for range in valid_ranges:
+		total_valid_length += range[1] - range[0]
+	
+	# 랜덤 위치 선택
+	var random_point = rng.randf() * total_valid_length
+	
+	# 실제 y좌표로 변환
+	var accumulated_length = 0.0
+	for range in valid_ranges:
+		var range_length = range[1] - range[0]
+		if accumulated_length + range_length > random_point:
+			return range[0] + (random_point - accumulated_length)
+		accumulated_length += range_length
+	
+	return valid_ranges[-1][1]
 
 func add_random_line() -> void:
 	var rng = RandomNumberGenerator.new()
-	var vertical_idx: int = rng.randi_range(0, len(vertical_lines) - 2)
-	var x1 = vertical_lines[vertical_idx]
-	var x2 = vertical_lines[vertical_idx + 1]
+	var indices = range(len(vertical_lines) - 1)
+	# 인덱스들을 랜덤하게 섞음
+	indices.shuffle()
 	
-	# 끝점 근처 체크를 위한 최소 거리
-	const MIN_ENDPOINT_DISTANCE: float = 100.0
-
-	# y1과 y2를 각각 유효한 값이 나올 때까지 재시도
-	var y1 = get_valid_y()
-	var y2 = get_valid_y()
-	var retry_count = 0
-	const MAX_RETRIES = 10  # 무한 루프 방지
-	
-	while retry_count < MAX_RETRIES:
-		var need_retry = false
+	# 모든 가능한 세로선 쌍에 대해 시도
+	for i in indices:
+		var x1 = vertical_lines[i]
+		var x2 = vertical_lines[i + 1]
 		
-		# y1 검증
-		for line in horizontal_lines:
-			if abs(x1 - line[0]) < 0.1 && abs(y1 - line[1]) < MIN_ENDPOINT_DISTANCE:
-				y1 = get_valid_y()
-				need_retry = true
-				break
+		# 각 세로선에 대한 유효 범위 계산
+		var valid_ranges = get_valid_ranges(x1, x2)
 		
-		# y2 검증
-		for line in horizontal_lines:
-			if abs(x2 - line[2]) < 0.1 && abs(y2 - line[3]) < MIN_ENDPOINT_DISTANCE:
-				y2 = get_valid_y()
-				need_retry = true
-				break
-		
-		if !need_retry:
-			break
+		# 유효 범위가 있는 경우에만 진행
+		if not valid_ranges.is_empty():
+			var y1 = get_valid_y_from_ranges(valid_ranges)
+			var y2 = get_valid_y_from_ranges(valid_ranges)
 			
-		retry_count += 1
+			# 교차 검사
+			if not check_cross([x1, y1, x2, y2]):
+				add_horizontal_line(Vector2(x1, y1), Vector2(x2, y2))
+				return
 	
-	# 기존 교차 체크
-	if check_cross([x1, y1, x2, y2]):
-		add_random_line()
-	else:
-		add_horizontal_line(Vector2(x1, y1), Vector2(x2, y2))  
+	# 만약 모든 세로선 쌍에 대해 실패하면
+	print("No valid position found for new horizontal line")
