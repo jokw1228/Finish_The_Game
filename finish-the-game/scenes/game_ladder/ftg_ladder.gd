@@ -6,7 +6,7 @@ signal end_ftg(is_game_cleared: bool)
 signal start_timer(duration: float)
 signal pause_timer()
 
-const TIMER_DURATION: float = 5.0
+const TIMER_DURATION: float = 7.0
 
 # 난이도에 따른 최소/최대값 상수 정의
 const MIN_HORIZONTAL_COUNT: int = 4
