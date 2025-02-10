@@ -6,9 +6,9 @@ signal start_timer(duration: float)
 signal pause_timer()
 
 
-func start_ftg() -> void:
+func start_ftg(difficulty: float) -> void:
 	initialize_card()
-	handle_difficulty(1)
+	handle_difficulty(difficulty)
 	
 	var card_set: Array = []
 	for i in range(4):
@@ -114,34 +114,30 @@ func handle_difficulty(difficulty: float) -> void:
 	card_amount : 나오는 카드 수, 4 ~ 8
 	hard_card_multiplyer : 특수 카드 나올 확률 배수
 	"""
-	if difficulty <= 0:
-		time_limit = 12
+	if difficulty <= 0.2:
+		time_limit = 10
 		card_amount = 4
 		hard_card_multiplyer = 0.8
 	
-	elif difficulty >= 1:
+	elif difficulty <= 0.4:
+		time_limit = 12
+		card_amount = 6
+		hard_card_multiplyer = 0.8
+	
+	elif difficulty <= 0.6:
+		time_limit = 16
+		card_amount = 6
+		hard_card_multiplyer = 1
+	
+	elif difficulty <= 0.8:
 		time_limit = 20
 		card_amount = 8
-		hard_card_multiplyer = 2
-		
-	else:
-		time_limit = 12 - difficulty * 8
-		
-		if difficulty <= 0.334:
-			time_limit += 3
-			card_amount = 5
-			hard_card_multiplyer = 0.8
-			
-		elif difficulty <= 0.667:
-			time_limit += 8
-			card_amount = 6
-			hard_card_multiplyer = 1
-			
-		else:
-			time_limit += 13
-			card_amount = 7
-			hard_card_multiplyer = 1.5
-
+		hard_card_multiplyer = 1.5
+	
+	elif difficulty >= 0.8:
+		time_limit = 20 - (difficulty - 0.8) * 2
+		card_amount = 8
+		hard_card_multiplyer = 1.5
 
 func finish_game() -> void:
 	stop_UI.emit()
