@@ -67,6 +67,11 @@ func enable_input() -> void:
 	
 	%StageSelectionButton.disabled = false
 	%StageSelectionButton.set_mouse_filter(Control.MOUSE_FILTER_PASS)
+	
+	%RightArrow.disabled = false
+	%RightArrow.set_mouse_filter(Control.MOUSE_FILTER_PASS)
+	%LeftArrow.disabled = false
+	%LeftArrow.set_mouse_filter(Control.MOUSE_FILTER_PASS)
 
 func disable_input() -> void:
 	set_mouse_filter(Control.MOUSE_FILTER_IGNORE)
@@ -77,7 +82,27 @@ func disable_input() -> void:
 	
 	%StageSelectionButton.disabled = true
 	%StageSelectionButton.set_mouse_filter(Control.MOUSE_FILTER_IGNORE)
+	
+	%RightArrow.disabled = true
+	%RightArrow.set_mouse_filter(Control.MOUSE_FILTER_IGNORE)
+	%LeftArrow.disabled = true
+	%LeftArrow.set_mouse_filter(Control.MOUSE_FILTER_IGNORE)
 
 signal stage_selection_button_pressed()
 func _on_stage_selection_button_pressed() -> void:
 	stage_selection_button_pressed.emit()
+
+
+func _on_right_arrow_pressed() -> void:
+	var target_stage: int = int(round(scroll_horizontal / stage_width)) + 1
+	target_stage = clamp(target_stage, 0, stage_count - 1)
+	set_current_stage(target_stage)
+	var target_scroll: float = target_stage * stage_width
+	scroll_horizontal = target_scroll
+
+func _on_left_arrow_pressed() -> void:
+	var target_stage: int = int(round(scroll_horizontal / stage_width)) - 1
+	target_stage = clamp(target_stage, 0, stage_count - 1)
+	set_current_stage(target_stage)
+	var target_scroll: float = target_stage * stage_width
+	scroll_horizontal = target_scroll
