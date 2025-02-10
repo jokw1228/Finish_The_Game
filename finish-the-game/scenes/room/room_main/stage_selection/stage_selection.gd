@@ -14,8 +14,8 @@ var stage_selection_state: StageSelectionState = StageSelectionState.NO
 var stage_datas: Array[StageData]
 var current_stage_index: int = 0
 
-@onready var stage_name: Label = %StageName
-@onready var stage_description: Label = %StageDescription
+@onready var stage_name: Label = %StageName as Label
+@onready var stage_description: Label = %StageDescription as Label
 
 signal request_set_stage_datas(stage_datas_to_set: Array[StageData])
 func _ready() -> void:
