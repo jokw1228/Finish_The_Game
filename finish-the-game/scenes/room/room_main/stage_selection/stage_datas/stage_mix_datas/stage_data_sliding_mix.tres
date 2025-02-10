@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="StageData" load_steps=4 format=3 uid="uid://bi6k7kpcpn3x0"]
+
+[ext_resource type="Script" path="res://scenes/room/room_main/stage_selection/stage_datas/stage_data.gd" id="1_ei28a"]
+[ext_resource type="Texture2D" uid="uid://dl446ye8y376w" path="res://resources/images/room_main/stage_datas/sprite_stage_sliding_mix_info.svg" id="2_rd3ry"]
+[ext_resource type="Texture2D" uid="uid://co5scte5nm3hs" path="res://resources/images/room_main/stage_datas/sprite_stage_sliding_mix.svg" id="3_wybic"]
+
+[resource]
+script = ExtResource("1_ei28a")
+stage_name = "SLIDING
+MIX"
+stage_description = "Slide, shift,
+and solve!"
+stage_thumbnail = ExtResource("3_wybic")
+stage_info = ExtResource("2_rd3ry")
+stage_room = "res://scenes/room/room_stages/room_stage_sliding_mix/room_stage_sliding_mix.tscn"

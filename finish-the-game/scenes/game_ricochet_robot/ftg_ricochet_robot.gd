@@ -25,7 +25,7 @@ func start_ftg(difficulty: float) -> void:
 	reset_board(robot_location)
 	#print(board)
 	#print(robot_location)
-	var duration = 24
+	var duration = 15
 	start_timer.emit(duration)
 
 func game_cleared() -> void:

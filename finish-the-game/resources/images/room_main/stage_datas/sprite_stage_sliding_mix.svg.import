@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://isccfiws7cbi"
-path="res://.godot/imported/sprite_stage_rush_hour_new.svg-faa50a1ab4f71ddbe8bc53d27c0a915d.ctex"
+uid="uid://co5scte5nm3hs"
+path="res://.godot/imported/sprite_stage_sliding_mix.svg-37ab3440804cc34839943f6e77c0ca4a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/images/room_main/stage_datas/sprite_stage_rush_hour_new.svg"
-dest_files=["res://.godot/imported/sprite_stage_rush_hour_new.svg-faa50a1ab4f71ddbe8bc53d27c0a915d.ctex"]
+source_file="res://resources/images/room_main/stage_datas/sprite_stage_sliding_mix.svg"
+dest_files=["res://.godot/imported/sprite_stage_sliding_mix.svg-37ab3440804cc34839943f6e77c0ca4a.ctex"]
 
 [params]
 

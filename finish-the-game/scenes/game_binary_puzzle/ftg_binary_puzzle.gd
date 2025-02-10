@@ -74,12 +74,12 @@ func set_difficulty(difficulty):
 	elif difficulty < 0.8:
 		GRID_SIZE = 6
 		num_blank = 6
-		time_limit = 14
+		time_limit = 12
 	
 	elif difficulty >= 0.8:
 		GRID_SIZE = 6
 		num_blank = 6
-		time_limit = 14 - (difficulty - 0.8) * 10
+		time_limit = 12 - (difficulty - 0.8) * 10
 			
 func check_game_cleared(row,col):
 	#print("hi")
