@@ -20,8 +20,10 @@ func start_ftg(difficulty: float) -> void:
 	var board_size: int = 4
 	
 	if(difficulty <= 0.3):
+		flip_tile_count = 2
+	elif(difficulty <= 0.6):
 		flip_tile_count = 3
-	elif(difficulty <= 0.7):
+	elif(difficulty <= 0.8):
 		flip_tile_count = 4
 	else:
 		flip_tile_count = 5
