@@ -24,7 +24,7 @@ func generate_cards(cards: Array, ranges: Array, object: Array) -> void:
 
 func start_ftg(difficulty: float) -> void:
 	initialize_game_set()
-	handle_difficulty(0.5)
+	handle_difficulty(difficulty)
 	
 	var card_set: Array = []
 	var solution_set: Array = []
@@ -84,22 +84,22 @@ func handle_difficulty(difficulty: float) -> void:
 		attribute_amount = 2
 	
 	elif difficulty < 0.4:
-		time_limit = 18
+		time_limit = 15
 		card_amount = 6
 		attribute_amount = 3
 	
 	elif difficulty < 0.6:
-		time_limit = 21
+		time_limit = 15
 		card_amount = 9
-		attribute_amount = 2
+		attribute_amount = 3
 	
 	elif difficulty < 0.8:
-		time_limit = 24
+		time_limit = 13
 		card_amount = 9
 		attribute_amount = 3
 	
 	elif difficulty >= 0.8:
-		time_limit = 24 - (difficulty - 0.8) * 8
+		time_limit = 13 - (difficulty - 0.8) * 6
 		card_amount = 9
 		attribute_amount = 3
 

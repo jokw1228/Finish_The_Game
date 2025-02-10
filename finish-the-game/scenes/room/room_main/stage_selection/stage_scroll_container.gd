@@ -99,6 +99,8 @@ func _on_right_arrow_pressed() -> void:
 	set_current_stage(target_stage)
 	var target_scroll: float = target_stage * stage_width
 	scroll_horizontal = target_scroll
+	
+	%SFXScrollSnap.play()
 
 func _on_left_arrow_pressed() -> void:
 	var target_stage: int = int(round(scroll_horizontal / stage_width)) - 1
@@ -106,3 +108,5 @@ func _on_left_arrow_pressed() -> void:
 	set_current_stage(target_stage)
 	var target_scroll: float = target_stage * stage_width
 	scroll_horizontal = target_scroll
+	
+	%SFXScrollSnap.play()

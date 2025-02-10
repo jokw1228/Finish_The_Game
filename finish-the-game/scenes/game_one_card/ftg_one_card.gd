@@ -115,17 +115,17 @@ func handle_difficulty(difficulty: float) -> void:
 	hard_card_multiplyer : 특수 카드 나올 확률 배수
 	"""
 	if difficulty < 0.2:
-		time_limit = 10
+		time_limit = 12
 		card_amount = 4
 		hard_card_multiplyer = 0.8
 	
 	elif difficulty < 0.4:
-		time_limit = 12
+		time_limit = 16
 		card_amount = 6
 		hard_card_multiplyer = 0.8
 	
 	elif difficulty < 0.6:
-		time_limit = 16
+		time_limit = 18
 		card_amount = 6
 		hard_card_multiplyer = 1
 	
@@ -135,7 +135,7 @@ func handle_difficulty(difficulty: float) -> void:
 		hard_card_multiplyer = 1.5
 	
 	elif difficulty >= 0.8:
-		time_limit = 20 - (difficulty - 0.8) * 2
+		time_limit = 20 - (difficulty - 0.8) * 10
 		card_amount = 8
 		hard_card_multiplyer = 1.5
 

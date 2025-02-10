@@ -10,7 +10,7 @@ signal pause_timer()
 
 signal difficulty_set
 
-const duration = 15
+var time_limit: float = 15
 
 var timeout = false
 
@@ -49,32 +49,37 @@ func start_ftg(difficulty):
 			game_grid[rand_row][rand_col].add_theme_stylebox_override("normal", style)
 			arr.append(Vector2(rand_row, rand_col))
 			i+=1
-	start_timer.emit(duration)
+	start_timer.emit(time_limit)
 	puzzle_board = board.duplicate(true)
 	#print(" ")
 	#print_board()
 	#print(arr)
 	
 func set_difficulty(difficulty):
-	if difficulty == 1:
-		GRID_SIZE = 6
-		num_blank = 7
-	elif difficulty < 1 and difficulty >= 0.75:
-		GRID_SIZE = 6
-		num_blank = randi_range(5,6)
-	elif difficulty < 0.75 and difficulty >= 0.5:
-		GRID_SIZE = 6
-		num_blank = 4
-	elif difficulty < 0.5 and difficulty >= 0.25:
+	if difficulty < 0.2:
 		GRID_SIZE = 4
-		num_blank = 4
-		num_blank = randi_range(6,7)
-	elif difficulty < 0.25 and difficulty > 0:
+		num_blank = 2
+		time_limit = 10
+	
+	elif difficulty < 0.4:
 		GRID_SIZE = 4
 		num_blank = 3
-	else:
+		time_limit = 10
+	
+	elif difficulty < 0.6:
 		GRID_SIZE = 4
-		num_blank  = 2
+		num_blank = 4
+		time_limit = 10
+	
+	elif difficulty < 0.8:
+		GRID_SIZE = 6
+		num_blank = 6
+		time_limit = 12
+	
+	elif difficulty >= 0.8:
+		GRID_SIZE = 6
+		num_blank = 6
+		time_limit = 12 - (difficulty - 0.8) * 10
 			
 func check_game_cleared(row,col):
 	#print("hi")
