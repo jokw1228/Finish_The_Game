@@ -9,7 +9,7 @@ script = ExtResource("1_rmvbw")
 stage_name = "MATCH
 MIX"
 stage_description = "Birds of a feather
-flock together"
+flock together."
 stage_thumbnail = ExtResource("3_3tovk")
 stage_info = ExtResource("2_soimq")
 stage_room = "res://scenes/room/room_stages/room_stage_match_mix/room_stage_match_mix.tscn"

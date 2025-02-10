@@ -10,7 +10,7 @@ signal pause_timer()
 
 signal difficulty_set
 
-const duration = 15
+var time_limit: float = 15
 
 var timeout = false
 
@@ -49,7 +49,7 @@ func start_ftg(difficulty):
 			game_grid[rand_row][rand_col].add_theme_stylebox_override("normal", style)
 			arr.append(Vector2(rand_row, rand_col))
 			i+=1
-	start_timer.emit(duration)
+	start_timer.emit(time_limit)
 	puzzle_board = board.duplicate(true)
 	#print(" ")
 	#print_board()
