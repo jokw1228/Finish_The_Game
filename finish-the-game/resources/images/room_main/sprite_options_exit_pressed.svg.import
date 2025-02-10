@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://csnab3em3552r"
-path="res://.godot/imported/sprite_scroll_right_arrow_pressed.svg-3405746d1c079fc9bfa8ee03771c1835.ctex"
+uid="uid://c8nijlygh37m8"
+path="res://.godot/imported/sprite_options_exit_pressed.svg-3df9b429b7a167fe556219090d8ffef3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/images/room_main/sprite_scroll_right_arrow_pressed.svg"
-dest_files=["res://.godot/imported/sprite_scroll_right_arrow_pressed.svg-3405746d1c079fc9bfa8ee03771c1835.ctex"]
+source_file="res://resources/images/room_main/sprite_options_exit_pressed.svg"
+dest_files=["res://.godot/imported/sprite_options_exit_pressed.svg-3df9b429b7a167fe556219090d8ffef3.ctex"]
 
 [params]
 

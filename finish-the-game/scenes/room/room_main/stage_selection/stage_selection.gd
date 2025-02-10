@@ -4,7 +4,8 @@ class_name StageSelection
 enum StageSelectionState {
 	NO,
 	STAGE_SCROLLING,
-	STAGE_INFO_POPPED_UP
+	STAGE_INFO_POPPED_UP,
+	OPTIONS_POPPED_UP
 }
 var stage_selection_state: StageSelectionState = StageSelectionState.NO
 
@@ -23,6 +24,7 @@ func _ready() -> void:
 signal stage_selection_state_has_been_changed(changed_state: StageSelectionState)
 func set_state(state_to_set: StageSelectionState) -> void:
 	stage_selection_state = state_to_set
+	control_buttons_disabled(state_to_set)
 	stage_selection_state_has_been_changed.emit(stage_selection_state)
 
 func receive_player_started_game() -> void:
@@ -52,6 +54,14 @@ func receive_stage_info_button_pressed() -> void:
 func receive_stage_info_exit_button_pressed() -> void:
 	if stage_selection_state == StageSelectionState.STAGE_INFO_POPPED_UP:
 		set_state(StageSelectionState.STAGE_SCROLLING)
+		
+func receive_options_button_pressed() -> void:
+	if stage_selection_state == StageSelectionState.STAGE_SCROLLING:
+		set_state(StageSelectionState.OPTIONS_POPPED_UP)
+		
+func receive_exit_options_button_pressed() -> void:
+	if stage_selection_state == StageSelectionState.OPTIONS_POPPED_UP:
+		set_state(StageSelectionState.STAGE_SCROLLING)
 
 func receive_stage_selection_button_pressed() -> void:
 	if stage_selection_state == StageSelectionState.STAGE_SCROLLING:
@@ -70,3 +80,29 @@ func receive_request_display_solo_stages() -> void:
 	stage_datas = stage_solo_datas.duplicate(true)
 	update_stage_name()
 	request_set_stage_datas.emit(stage_datas)
+	
+func control_buttons_disabled(state_to_set: StageSelectionState) -> void:
+	#return
+	if state_to_set == StageSelectionState.STAGE_SCROLLING:
+		set_disabled_with_filter($StageInfoButton, false)
+		set_disabled_with_filter($StageInfoPopup/StageInfoExitButton, true)
+		set_disabled_with_filter($OptionsButton, false)
+		set_disabled_with_filter($OptionsPopup/ExitOptionsButton, true)
+	elif state_to_set == StageSelectionState.STAGE_INFO_POPPED_UP:
+		set_disabled_with_filter($StageInfoButton, true)
+		set_disabled_with_filter($StageInfoPopup/StageInfoExitButton, false)
+		set_disabled_with_filter($OptionsButton, true)
+		set_disabled_with_filter($OptionsPopup/ExitOptionsButton, true)
+	elif state_to_set == StageSelectionState.OPTIONS_POPPED_UP:
+		set_disabled_with_filter($StageInfoButton, true)
+		set_disabled_with_filter($StageInfoPopup/StageInfoExitButton, true)
+		set_disabled_with_filter($OptionsButton, true)
+		set_disabled_with_filter($OptionsPopup/ExitOptionsButton, false)
+	
+func set_disabled_with_filter(button: TextureButton, disabled: bool) -> void:
+	button.disabled = disabled
+	if disabled == true:
+		button.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	elif disabled == false:
+		button.mouse_filter = Control.MOUSE_FILTER_STOP
+	return
