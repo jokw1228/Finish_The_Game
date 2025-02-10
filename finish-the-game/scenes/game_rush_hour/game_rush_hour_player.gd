@@ -36,6 +36,7 @@ var flag = 0
 var piece_type = ""
 var cell_loc = Vector2(0,0)
 var x_offset = -30
+var collision_offset = 12
 
 signal can_move
 
@@ -47,6 +48,8 @@ func _ready():
 	if direction == 1:
 		sprite.rotation_degrees = 90
 		collision_shape.rotation_degrees = 90
+	collision_shape.shape = RectangleShape2D.new()
+	collision_shape.shape.extents = Vector2(128-collision_offset, 64-collision_offset)
 		
 
 func _process(delta: float):
