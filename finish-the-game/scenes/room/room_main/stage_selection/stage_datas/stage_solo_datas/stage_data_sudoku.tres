@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="StageData" load_steps=3 format=3 uid="uid://3wo4es0x0c6y"]
+[gd_resource type="Resource" script_class="StageData" load_steps=4 format=3 uid="uid://3wo4es0x0c6y"]
 
 [ext_resource type="Script" path="res://scenes/room/room_main/stage_selection/stage_datas/stage_data.gd" id="1_dext4"]
+[ext_resource type="Texture2D" uid="uid://cmdh7sm1fs05c" path="res://resources/images/room_main/stage_datas/sprite_stage_sudoku_info.svg" id="2_7qita"]
 [ext_resource type="Texture2D" uid="uid://bm7xwn4aqc3e5" path="res://resources/images/room_main/stage_datas/sprite_stage_sudoku.png" id="2_k6uj6"]
 
 [resource]
@@ -9,5 +10,5 @@ stage_name = "SUDOKU"
 stage_description = "Fill the grid so every row,
 column, and box has 1 to 9!"
 stage_thumbnail = ExtResource("2_k6uj6")
-stage_info = ExtResource("2_k6uj6")
+stage_info = ExtResource("2_7qita")
 stage_room = "res://scenes/room/room_stages/room_stage_sudoku/room_stage_sudoku.tscn"

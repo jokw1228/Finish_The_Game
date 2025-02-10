@@ -51,9 +51,9 @@ func _ready():
 func _process(delta: float):
 	if is_selected:
 		flag = 1
-		sprite.modulate = Color(0, 0, 0.5)
+		sprite.modulate = Color(10000, 10000, 10000)
 	else:
-		sprite.modulate = Color(1, 1, 1)
+		sprite.modulate = Color.WHITE
 	if direction == 0:
 		position = position.clamp(Vector2(-128-96+x_offset, -128*2+8), Vector2(128*3-96-8+x_offset, 128*3-8))
 	else:
@@ -126,11 +126,9 @@ func _input(event):
 		previous_mouse_position = current_mouse_position
 	else:
 		input_dir = Vector2.ZERO 
-	
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
 			#var global_mouse_pos = get_global_mouse_position()
-
 			local_mouse_pos = sprite.to_local(event.position)
 			if sprite.get_rect().has_point(local_mouse_pos):
 				is_selected = true
