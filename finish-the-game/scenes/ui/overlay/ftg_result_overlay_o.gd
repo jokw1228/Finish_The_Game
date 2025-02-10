@@ -5,7 +5,7 @@ const increase_duration = 0.4
 const decrease_duration = increase_duration
 
 const radius = 512.0 - 64.0
-const start_angle_offset = PI / 2
+const start_angle_offset = -PI / 2
 const point_count = 64
 const width = 128
 
