@@ -34,6 +34,7 @@ var piece_type = ""
 var cell_loc = Vector2(0,0)
 var flag = 0
 var x_offset = -30
+var collision_offset = 12
 #var camera_position = get_viewport().get_camera().global_position
 
 func _ready():
@@ -50,13 +51,13 @@ func _ready():
 	if truck_type == 1:
 		sprite.texture = truck1
 		collision_shape.shape = RectangleShape2D.new()
-		collision_shape.shape.extents = Vector2(128-8, 64-8)
+		collision_shape.shape.extents = Vector2(128-collision_offset, 64-collision_offset)
 		#collision_shape.shape.extents = Vector2(64, )
 			
 	else:
 		sprite.texture = truck2
 		collision_shape.shape = RectangleShape2D.new()
-		collision_shape.shape.extents = Vector2(192-8, 64-8)
+		collision_shape.shape.extents = Vector2(192-collision_offset, 64-collision_offset)
 	if direction == 1:
 		sprite.rotation_degrees = 90
 		collision_shape.rotation_degrees = 90
