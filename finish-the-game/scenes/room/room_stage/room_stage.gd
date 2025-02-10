@@ -12,7 +12,7 @@ var clear_count: int = 0
 @onready var hp_bar_canvas: HPBarCanvas = %HPBarCanvas as HPBarCanvas
 func start_stage() -> void:
 	background_scrolling_controller.set_all_label_text(stage_name)
-	$Score.visible = false
+	%Score.visible = false
 	await ready_set_go.ready_set_go()
 	
 	
@@ -22,7 +22,7 @@ func start_stage() -> void:
 	hp_bar_canvas.visible = true
 	hp_bar_canvas.current_hp = 100.0
 	hp_bar_canvas.progress_bar.value = 100.0
-	$Score.visible = true
+	%Score.visible = true
 	
 	AudioManager.play_bgm(bgm_ingame)
 	
@@ -47,12 +47,12 @@ func is_cleared(result: bool) -> void:
 	elif result == false:
 		take_damage.emit(25.0)
 		
-	$Score.text = str(clear_count)
+	%Score.text = str(clear_count)
 
 @onready var game_over: GameOver = %GameOver as GameOver
 func on_hp_depleted() -> void:
 	await ftg.stop_scheduling()
-	$Score.visible = false
+	%Score.visible = false
 	game_over.show_game_over(clear_count, 99)
 	AudioManager.stop_bgm(1.0)
 
