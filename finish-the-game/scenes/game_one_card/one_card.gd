@@ -55,7 +55,7 @@ func can_place_card(card: Array, stack_index: int, stack_fronts: Array,\
 			return true
 			
 	elif previous_card_index == stack_index:
-		if card[0] == base_card[0]:
+		if card[0] == base_card[0] or card[1] == base_card[1]:
 			return true
 			
 	return false
@@ -77,16 +77,13 @@ func _requested_place_card(card_index: int, stack_index: int) -> void:
 		card_memory.append(stack_index)
 		moves += 1
 		
-		allow_place_card.emit()
-		
-		if hand_card_set[card_index][1] == 10 or \
-		   hand_card_set[card_index][1] == 11 or \
-		   hand_card_set[card_index][1] == 12:
-			
+		if hand_card_set[card_index][1] in [10, 11, 12]:
 			can_one_more = true
 			
 		else:
 			can_one_more = false
+		
+		allow_place_card.emit()
 		
 		if moves == card_amount:
 			finish_game()
@@ -129,6 +126,14 @@ func _requested_displace_card(stack_index: int) -> void:
 			shape_change.remove_at(len(shape_change) - 1)
 		
 		moves -= 1
+		
+		if moves == 0:
+			can_one_more = true
+		elif stack_index == 0 and field_stack_1[-1][1] in [10, 11, 12]:
+			can_one_more = true
+		elif stack_index == 1 and field_stack_2[-1][1] in [10, 11, 12]:
+			can_one_more = true
+		
 		allow_displace_card.emit(temp_index)
 		
 	else:
