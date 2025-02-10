@@ -89,6 +89,16 @@ visible = false
 unique_name_in_owner = true
 layout_mode = 1
 
+[node name="Score" type="Label" parent="."]
+layout_mode = 0
+offset_left = 627.0
+offset_top = 93.0
+offset_right = 1045.0
+offset_bottom = 248.0
+theme_override_font_sizes/font_size = 150
+text = "0"
+horizontal_alignment = 2
+
 [connection signal="take_damage" from="." to="HPBarCanvas" method="take_damage"]
 [connection signal="hp_depleted" from="HPBarCanvas" to="." method="on_hp_depleted"]
 [connection signal="request_retry_stage" from="GameOver" to="." method="receive_request_retry_stage"]
