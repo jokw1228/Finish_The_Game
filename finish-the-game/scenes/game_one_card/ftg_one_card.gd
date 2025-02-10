@@ -6,9 +6,9 @@ signal start_timer(duration: float)
 signal pause_timer()
 
 
-func start_ftg() -> void:
+func start_ftg(difficulty: float) -> void:
 	initialize_card()
-	handle_difficulty(1)
+	handle_difficulty(difficulty)
 	
 	var card_set: Array = []
 	for i in range(4):
@@ -39,49 +39,52 @@ func start_ftg() -> void:
 		weights = []
 		temp_ = []
 			
+		# 두 곳 모두에 놓을 수 있을 때
 		if can_one_more:
 			for j in card_set:
 				for k in range(2):
 					if can_place_card(j, k, [temp_cards[0][-1], temp_cards[1][-1]], prev_index, can_one_more):
 						available_set.append([j, k])
 						
-						if j[1] in [6, 10, 11, 12]:
+						if not (j[1] in [6, 10, 11, 12]):
 							if k == prev_index:
 								weights.append(1)
 							else:
-								weights.append(10 * hard_card_multiplyer)
+								weights.append(3)
 						else:
 							if k == prev_index:
-								weights.append(1)
+								weights.append(1 * hard_card_multiplyer)
 							else:
-								weights.append(7)
-			
+								weights.append(3 * hard_card_multiplyer)
+		
+		# 모양을 바꿀 수 있을 때
 		elif can_shape_change:
 			for j in card_set:
 				for k in range(4):
 					if can_place_card([k, j[1]], prev_index, [temp_cards[0][-1], temp_cards[1][-1]], prev_index, can_one_more):
 						available_set.append([j, prev_index])
 						
-						if j[1] in [6, 10, 11, 12]:
-							if j[0] != temp_cards[prev_index][-1][0]:
-								weights.append(5 * hard_card_multiplyer)
-							else:
-								weights.append(2.5 * hard_card_multiplyer)
-						else:
-							if j[0] != temp_cards[prev_index][-1][0]:
-								weights.append(3 * hard_card_multiplyer)
-							else:
+						if not (j[1] in [6, 10, 11, 12]):
+							if j[0] == temp_cards[prev_index][-1][0]:
 								weights.append(1)
-			
+							else:
+								weights.append(3)
+						else:
+							if j[0] == temp_cards[prev_index][-1][0]:
+								weights.append(1 * hard_card_multiplyer)
+							else:
+								weights.append(3 * hard_card_multiplyer)
+		
+		# 아무것도 아닌 상황
 		else:
 			for j in card_set:
 				if can_place_card(j, prev_index, [temp_cards[0][-1], temp_cards[1][-1]], prev_index, can_one_more):
 					available_set.append([j, prev_index])
 					
-					if j[1] in [6, 10, 11, 12]:
-						weights.append(2.5 * hard_card_multiplyer)
-					else:
+					if not (j[1] in [6, 10, 11, 12]):
 						weights.append(1)
+					else:
+						weights.append(1 * hard_card_multiplyer)
 		
 		temp_ = available_set[rng.rand_weighted(weights)]
 		
@@ -117,30 +120,36 @@ func handle_difficulty(difficulty: float) -> void:
 	if difficulty <= 0:
 		time_limit = 12
 		card_amount = 4
-		hard_card_multiplyer = 0.8
+		hard_card_multiplyer = 0.2
 	
 	elif difficulty >= 1:
-		time_limit = 20
+		time_limit = 15
 		card_amount = 8
-		hard_card_multiplyer = 2
+		hard_card_multiplyer = 1.5
 		
 	else:
 		time_limit = 12 - difficulty * 8
+		hard_card_multiplyer = 0.2 + difficulty * 1
 		
-		if difficulty <= 0.334:
+		if difficulty <= 0.2:
 			time_limit += 3
 			card_amount = 5
-			hard_card_multiplyer = 0.8
 			
-		elif difficulty <= 0.667:
-			time_limit += 8
+		elif difficulty <= 0.4:
+			time_limit += 5
+			card_amount = 5
+			
+		elif difficulty <= 0.6:
+			time_limit += 7
 			card_amount = 6
-			hard_card_multiplyer = 1
+			
+		elif difficulty <= 0.8:
+			time_limit += 9
+			card_amount = 7
 			
 		else:
-			time_limit += 13
+			time_limit += 11
 			card_amount = 7
-			hard_card_multiplyer = 1.5
 
 
 func finish_game() -> void:

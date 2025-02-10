@@ -163,8 +163,13 @@ func card_pressed(is_on_field: bool, card_index: int) -> void:
 
 
 func _allowed_displace_card(to_index: int) -> void:
-	
 	print("_allowed_displace_card")
+	
+	if requested_index[1] == 0:
+		$GuideShape1.visible = false
+	elif requested_index[1] == 1:
+		$GuideShape2.visible = false
+	
 	hand_cards[to_index] = field_cards[requested_index[1]][-1]
 	place_card(field_cards[requested_index[1]][-1], false, to_index, false)
 	field_cards[requested_index[1]][-1].is_field = false
@@ -173,10 +178,29 @@ func _allowed_displace_card(to_index: int) -> void:
 	field_cards[requested_index[1]].remove_at(len(field_cards[requested_index[1]]) - 1)
 	
 	is_any_choosed = false
+	
+	if one_card_main.shape_change != [] and \
+	   one_card_main.shape_change[-1][0] == one_card_main.moves:
+		
+		if requested_index[1] == 0:
+			$GuideShape1.visible = true
+			$GuideShape1/SmallCard/shape.texture = shape_image[one_card_main.shape_change[-1][1]]
+		elif requested_index[1] == 1:
+			$GuideShape2.visible = true
+			$GuideShape2/SmallCard/shape.texture = shape_image[one_card_main.shape_change[-1][1]]
+		
+	if one_card_main.can_one_more:
+		$Outline1.visible = true
+		$Outline2.visible = true
+	elif requested_index[1] == 0:
+		$Outline1.visible = true
+		$Outline2.visible = false
+	elif requested_index[1] == 1:
+		$Outline1.visible = false
+		$Outline2.visible = true
 
 
 func _allowed_place_card() -> void:
-	
 	print("_allowed_place_card")
 	
 	field_cards[to_index].append(hand_cards[requested_index[1]])
@@ -186,10 +210,24 @@ func _allowed_place_card() -> void:
 	
 	hand_cards[requested_index[1]].is_field = true
 	hand_cards[requested_index[1]].card_pos_index = to_index
-	
 	hand_cards[requested_index[1]] = null
 	
 	is_any_choosed = false
+	
+	if to_index == 0:
+		$GuideShape1.visible = false
+	elif to_index == 1:
+		$GuideShape2.visible = false
+		
+	if one_card_main.can_one_more:
+		$Outline1.visible = true
+		$Outline2.visible = true
+	elif to_index == 0:
+		$Outline1.visible = true
+		$Outline2.visible = false
+	elif to_index == 1:
+		$Outline1.visible = false
+		$Outline2.visible = true
 
 
 func _denied_place_card() -> void:
@@ -222,6 +260,13 @@ func shape_choosed(shape: int) -> void:
 	small_buttons = []
 	
 	stop_one_card_UI = false
+	
+	if to_index == 0:
+		$GuideShape1.visible = true
+		$GuideShape1/SmallCard/shape.texture = shape_image[shape]
+	elif to_index == 1:
+		$GuideShape2.visible = true
+		$GuideShape2/SmallCard/shape.texture = shape_image[shape]
 
 
 func _init_ui() -> void:
