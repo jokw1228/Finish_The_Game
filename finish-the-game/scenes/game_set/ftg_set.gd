@@ -24,19 +24,17 @@ func generate_cards(cards: Array, ranges: Array, object: Array) -> void:
 
 func start_ftg(difficulty: float) -> void:
 	initialize_game_set()
-	
-	card_num = 9  ##
-	attribute_num = 3  ##
+	handle_difficulty(0.668)
 	
 	var card_set: Array = []
 	var solution_set: Array = []
 	var temp_ranges = []
-	for i in range(attribute_num):
+	for i in range(attribute_amount):
 		temp_ranges.append(3)
 	
 	generate_cards(card_set, temp_ranges, [true])
 	
-	for i in range(int(attribute_num / 3)):
+	for i in range(int(attribute_amount / 3)):
 		temp_ranges.append([])
 	
 	var rng = RandomNumberGenerator.new()
@@ -44,7 +42,7 @@ func start_ftg(difficulty: float) -> void:
 	
 	var temp_card: Array
 	var no_solution: bool = false
-	for i in range(int(card_num / 3)):
+	for i in range(int(card_amount / 3)):
 		no_solution = true
 		
 		while no_solution:
@@ -68,10 +66,39 @@ func start_ftg(difficulty: float) -> void:
 	
 	field_card_set.shuffle()
 	
-	init_UI.emit(card_num)
+	init_UI.emit()
 	
 	const duration = 15.0
-	start_timer.emit(duration)
+	start_timer.emit(time_limit)
+
+
+func handle_difficulty(difficulty: float) -> void:
+	"""
+	time_limit : 시간 제한
+	card_amount : 나오는 카드 수, 항상 3의 배수, 6 or 9
+	attribute_amount : 나오는 속성의 수, 2 or 3
+	"""
+	if difficulty <= 0:
+		time_limit = 12
+		card_amount = 6
+		attribute_amount = 2
+	
+	elif difficulty >= 1:
+		time_limit = 16
+		card_amount = 9
+		attribute_amount = 3
+		
+	else:
+		time_limit = 15 - difficulty * 9
+		
+		if difficulty <= 0.667:
+			card_amount = 6
+			attribute_amount = 2
+			
+		else:
+			time_limit += 10
+			card_amount = 9
+			attribute_amount = 3
 
 
 func finish_game() -> void:

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dkdbhqhisxa3l"
-path="res://.godot/imported/sprite_set_button_retry.png-1396916cfe079892b72f467d5aa7b3f3.ctex"
+uid="uid://ds56xnygj8h8k"
+path="res://.godot/imported/sprite_matching_empty_card.png-470715ae51f9f09c939673af6979d96d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/images/game_set/sprite_set_button_retry.png"
-dest_files=["res://.godot/imported/sprite_set_button_retry.png-1396916cfe079892b72f467d5aa7b3f3.ctex"]
+source_file="res://resources/images/game_matching/sprite_matching_empty_card.png"
+dest_files=["res://.godot/imported/sprite_matching_empty_card.png-470715ae51f9f09c939673af6979d96d.ctex"]
 
 [params]
 

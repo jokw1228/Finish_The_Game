@@ -10,6 +10,10 @@ signal stop_UI
 var field_card_set: Array  # isAvailable, shape
 var deleted_card_num: int = 0
 
+# About Difficulty
+var time_limit: float
+var card_amount: int
+var available_shape_pool: int
 
 func initialize_game_memory() -> void:
 	field_card_set = []
@@ -35,7 +39,7 @@ func _requested_delete_cards(card_index_set: Array[int]) -> void:
 		allow_delete_cards.emit()
 		deleted_card_num += 2
 		
-		if deleted_card_num == 8:
+		if deleted_card_num == card_amount:
 			finish_game()
 		
 	else:

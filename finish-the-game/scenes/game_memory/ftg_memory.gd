@@ -13,6 +13,7 @@ func set_delete(set: Array, element) -> void:
 
 func start_ftg(difficulty: float) -> void:
 	initialize_game_memory()
+	handle_difficulty(0)
 	
 	var card_set: Array = []
 
@@ -21,10 +22,10 @@ func start_ftg(difficulty: float) -> void:
 	
 	var temp_card: int
 	
-	for i in range(4):
-		temp_card = randi_range(0, 7)
+	for i in range(card_amount / 2):
+		temp_card = randi_range(0, available_shape_pool - 1)
 		while temp_card in card_set:
-			temp_card = randi_range(0, 7)
+			temp_card = randi_range(0, available_shape_pool - 1)
 		card_set.append(temp_card)
 		field_card_set.append([true, temp_card])
 		field_card_set.append([true, temp_card])
@@ -33,8 +34,41 @@ func start_ftg(difficulty: float) -> void:
 	
 	init_UI.emit()
 	
-	const duration = 8.0
-	start_timer.emit(duration)
+	start_timer.emit(time_limit)
+	
+
+func handle_difficulty(difficulty: float) -> void:
+	"""
+	time_limit : 시간 제한
+	card_amount : 나오는 카드 수, 항상 짝수, available_shape_pool * 2 이상이여야 함
+					4 or 6 or 8
+	available_shape_pool : 나올 수 있는 모양 개수의 범위, 1 ~ 12
+							(난이도에 미치는 영향이 적음)
+	"""
+	if difficulty <= 0:
+		time_limit = 7
+		card_amount = 4
+		available_shape_pool = 2
+	
+	elif difficulty >= 1:
+		time_limit = 16
+		card_amount = 8
+		available_shape_pool = 12
+		
+	else:
+		time_limit = 12 - difficulty * 4
+		
+		if difficulty <= 0.334:
+			card_amount = 6
+			available_shape_pool = 3
+			
+		elif difficulty <= 0.667:
+			card_amount = 6
+			available_shape_pool = 9
+			
+		else:
+			card_amount = 6
+			available_shape_pool = 12
 
 
 func finish_game() -> void:

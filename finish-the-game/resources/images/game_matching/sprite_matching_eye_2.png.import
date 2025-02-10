@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cif6yjnbrggl6"
-path="res://.godot/imported/sprite_set_small_card.png-c9dd5f657a946d2ec8a44ba74745d738.ctex"
+uid="uid://cimd21j7s3k8i"
+path="res://.godot/imported/sprite_matching_eye_2.png-e055192bf6b5e907b4cdaa99ee7bbdb1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/images/game_set/sprite_set_small_card.png"
-dest_files=["res://.godot/imported/sprite_set_small_card.png-c9dd5f657a946d2ec8a44ba74745d738.ctex"]
+source_file="res://resources/images/game_matching/sprite_matching_eye_2.png"
+dest_files=["res://.godot/imported/sprite_matching_eye_2.png-e055192bf6b5e907b4cdaa99ee7bbdb1.ctex"]
 
 [params]
 
