@@ -7,6 +7,7 @@ func _ready() -> void:
 	room_logo_animation()
 
 func room_logo_animation() -> void:
+	SaveManager.load_file()
 	%SFXLogoFadeIn.play()
 	
 	var tween_1: Tween = get_tree().create_tween()

@@ -9,6 +9,7 @@ func _ready() -> void:
 
 @onready var ready_set_go: ReadySetGo = %ReadySetGo as ReadySetGo
 var clear_count: int = 0
+var original_high_score: int
 @onready var hp_bar_canvas: HPBarCanvas = %HPBarCanvas as HPBarCanvas
 func start_stage() -> void:
 	background_scrolling_controller.set_all_label_text(stage_name)
@@ -53,7 +54,11 @@ func is_cleared(result: bool) -> void:
 func on_hp_depleted() -> void:
 	await ftg.stop_scheduling()
 	%Score.visible = false
-	game_over.show_game_over(clear_count, 99)
+	game_over.show_game_over(clear_count, original_high_score)
+	if original_high_score < clear_count:
+		SaveManager.set_score(stage_name, clear_count)
+		
+	SaveManager.save_file()
 	AudioManager.stop_bgm(1.0)
 
 func receive_request_retry_stage() -> void:

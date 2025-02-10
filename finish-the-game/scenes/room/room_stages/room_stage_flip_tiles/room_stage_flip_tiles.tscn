@@ -12,5 +12,3 @@ scene = "res://scenes/game_flip_tiles/ftg_flip_tiles.tscn"
 [node name="RoomStageFlipTiles" instance=ExtResource("1_ec3k4")]
 stage_name = "FLP.TLS."
 ftg_game_datas = Array[ExtResource("2_x7ig1")]([SubResource("Resource_yfage")])
-
-[connection signal="take_damage" from="." to="HPBarCanvas" method="take_damage"]
