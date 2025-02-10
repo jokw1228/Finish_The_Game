@@ -18,29 +18,39 @@ func start_ftg(difficulty: float) -> void:
 	
 	var flip_tile_count: int = 4
 	var board_size: int = 4
+	var time_limit: float = 6.0
 	
-	if(difficulty <= 0.3):
+	if difficulty < 0.2:
 		flip_tile_count = 2
-	elif(difficulty <= 0.6):
-		flip_tile_count = 3
-	elif(difficulty <= 0.8):
-		flip_tile_count = 4
-	else:
-		flip_tile_count = 5
-	
-	if(difficulty <= 0.2):
 		board_size = 3
-	elif(difficulty <= 0.6):
+		time_limit = 12.0
+	
+	elif difficulty < 0.4:
+		flip_tile_count = 2
 		board_size = 4
-	else:
+		time_limit = 14.0
+	
+	elif difficulty < 0.6:
+		flip_tile_count = 3
+		board_size = 4
+		time_limit = 14.0
+	
+	elif difficulty < 0.8:
+		flip_tile_count = 3
 		board_size = 5
+		time_limit = 16.0
+	
+	elif difficulty >= 0.8:
+		flip_tile_count = 3
+		board_size = 5
+		time_limit = 16.0 - (difficulty - 0.8) * 2
 	
 	
 	ui.set_board_size(board_size, board_size)
 	ui.init_board()
 	ui.randomize_board(flip_tile_count)
 	
-	start_timer.emit(6)
+	start_timer.emit(time_limit)
 
 	
 

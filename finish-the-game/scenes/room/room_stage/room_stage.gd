@@ -23,6 +23,7 @@ func start_stage() -> void:
 	hp_bar_canvas.visible = true
 	hp_bar_canvas.current_hp = 100.0
 	hp_bar_canvas.progress_bar.value = 100.0
+	%Score.text = "0"
 	%Score.visible = true
 	
 	AudioManager.play_bgm(bgm_ingame)
