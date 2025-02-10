@@ -59,6 +59,7 @@ theme_override_constants/line_spacing = -16
 text = "READY"
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_lock_ = true
 
 [node name="Go" type="Label" parent="ReadySetGo"]
 unique_name_in_owner = true
@@ -79,6 +80,7 @@ theme_override_font_sizes/font_size = 256
 text = "GO!"
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_lock_ = true
 
 [node name="SFXReadySet" type="AudioStreamPlayer" parent="ReadySetGo"]
 unique_name_in_owner = true
@@ -100,6 +102,7 @@ visible = false
 [node name="GameOver" parent="." instance=ExtResource("6_8omo7")]
 unique_name_in_owner = true
 layout_mode = 1
+metadata/_edit_lock_ = true
 
 [node name="Score" type="Label" parent="."]
 unique_name_in_owner = true
@@ -111,6 +114,7 @@ offset_bottom = 248.0
 theme_override_font_sizes/font_size = 150
 text = "0"
 horizontal_alignment = 2
+metadata/_edit_lock_ = true
 
 [connection signal="take_damage" from="." to="HPBarCanvas" method="take_damage"]
 [connection signal="hp_depleted" from="HPBarCanvas" to="." method="on_hp_depleted"]
