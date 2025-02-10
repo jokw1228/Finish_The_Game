@@ -46,27 +46,27 @@ func handle_difficulty(difficulty: float) -> void:
 							(난이도에 미치는 영향이 적음)
 	"""
 	if difficulty < 0.2:
-		time_limit = 7
+		time_limit = 8
 		card_amount = 4
 		available_shape_pool = 2
 	
 	elif difficulty < 0.4:
-		time_limit = 7
+		time_limit = 8
 		card_amount = 6
 		available_shape_pool = 3
 	
 	elif difficulty < 0.6:
-		time_limit = 7
+		time_limit = 8
 		card_amount = 6
 		available_shape_pool = 9
 	
 	elif difficulty < 0.8:
-		time_limit = 7
+		time_limit = 8
 		card_amount = 8
 		available_shape_pool = 12
 	
 	elif difficulty >= 0.8:
-		time_limit = 7 - (difficulty - 0.8) * 2
+		time_limit = 8 - (difficulty - 0.8) * 2
 		card_amount = 8
 		available_shape_pool = 12
 
