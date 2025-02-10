@@ -18,7 +18,7 @@ var flag = 0
 # 2 = truck2
 # 3 = truck3
 var player_piece = null
-var map = []
+var map
 var board  = []
 var str_board = []
 var state : bool #selecting  confirming the move
@@ -66,7 +66,7 @@ difficulty == 0-> 5번 이하, 맵 형식상 5번 이하로만 지정가능 (권
 """
 
 func start_ftg(difficulty):
-	map = []
+
 	checked_pos = []
 	checked_pos_board_row = []
 	checked_pos_board_col = []
@@ -81,14 +81,19 @@ func start_ftg(difficulty):
 	#			 [1, 1, 2, 0, 3, 3],
 	#			 [0, 0, 0, 0, 3, 0],
 	#			 [0, 0, 0, 0, 2, 2],
-	#			 [0, 2, 2, 0, 0, "I"]]
+	#			 [0, 2, 2, 0, 0, 0]]
 	check_board_integrity()
 	#print_board(board)
 	find_target_location()
-	place_pieces()
 	start_timer.emit(time_limit)
 	#pause_timer.emit()
 	start.emit(target_location, player_direction)
+	place_pieces()
+	#var piece = player_scene.instantiate()
+	#var piece2 = truck_scene.instantiate()
+	#add_child(piece)
+	#add_child(piece2)
+	
 
 
 func _ready():
