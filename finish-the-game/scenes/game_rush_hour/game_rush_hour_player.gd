@@ -41,6 +41,7 @@ signal can_move
 
 
 func _ready():
+	$Sprite2D.material = $Sprite2D.material.duplicate() 
 	start_pos = position
 	prev_position = position
 	if direction == 1:
@@ -51,9 +52,12 @@ func _ready():
 func _process(delta: float):
 	if is_selected:
 		flag = 1
-		sprite.modulate = Color(10000, 10000, 10000)
+		#$Sprite2D.material.set_shader_parameter("brightness", 2.5) 
+		$Sprite2D.material.set_shader_parameter("is_selected", true)  
+		#sprite.modulate = Color(10000, 10000, 10000)
 	else:
-		sprite.modulate = Color.WHITE
+		#$Sprite2D.material.set_shader_parameter("brightness", 1.0) 
+		$Sprite2D.material.set_shader_parameter("is_selected", false) 
 	if direction == 0:
 		position = position.clamp(Vector2(-128-96+x_offset, -128*2+8), Vector2(128*3-96-8+x_offset, 128*3-8))
 	else:

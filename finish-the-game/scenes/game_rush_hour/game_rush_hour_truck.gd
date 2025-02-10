@@ -38,6 +38,7 @@ var x_offset = -30
 
 func _ready():
 	#position = position.snapped(Vector2(board_size, board_size))
+	$Sprite2D.material = $Sprite2D.material.duplicate() 
 	motion_mode = CharacterBody2D.MOTION_MODE_FLOATING
 	center = get_viewport().get_visible_rect().size / 2
 	target_pos = position
@@ -63,9 +64,13 @@ func _ready():
 func _process(delta: float) -> void:
 	if is_selected:
 		flag = 1
-		sprite.modulate = Color(0, 0, 0.2)
+		sprite.modulate = Color(0.5, 0.5, 0.5, 1) 
+		#$Sprite2D.material.set_shader_parameter("brightness", 2.5)
+		$Sprite2D.material.set_shader_parameter("is_selected", true)  
 	else:
 		sprite.modulate = Color(1, 1, 1)
+		#$Sprite2D.material.set_shader_parameter("brightness", 1.0) 
+		$Sprite2D.material.set_shader_parameter("is_selected", false) 
 	
 	if direction == 0:
 		position.y = start_pos.y

@@ -1,8 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://bc4s1x08b3x32"]
+[gd_scene load_steps=7 format=3 uid="uid://bc4s1x08b3x32"]
 
 [ext_resource type="Script" path="res://scenes/game_rush_hour/game_rush_hour_player.gd" id="1_k55j4"]
 [ext_resource type="Texture2D" uid="uid://cnseibj0t1yuj" path="res://resources/images/game_rush_hour/sprite_new_rush_hour_player.png" id="2_rk328"]
+[ext_resource type="Shader" path="res://scenes/game_rush_hour/game_rush_hour_player.gdshader" id="2_tgpvx"]
 [ext_resource type="AudioStream" uid="uid://stfuxnd587ii" path="res://resources/audio/sfx/game_rush_hour/sfx_game_rush_hour_player.wav" id="3_u1xv3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_amm2v"]
+shader = ExtResource("2_tgpvx")
+shader_parameter/brightness = 1.0
+shader_parameter/is_selected = false
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7eh2i"]
 size = Vector2(248, 116)
@@ -13,6 +19,7 @@ metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_as_relative = false
+material = SubResource("ShaderMaterial_amm2v")
 texture = ExtResource("2_rk328")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
