@@ -56,25 +56,30 @@ func start_ftg(difficulty):
 	#print(arr)
 	
 func set_difficulty(difficulty):
-	if difficulty == 1:
-		GRID_SIZE = 6
-		num_blank = 7
-	elif difficulty < 1 and difficulty >= 0.75:
-		GRID_SIZE = 6
-		num_blank = randi_range(5,6)
-	elif difficulty < 0.75 and difficulty >= 0.5:
-		GRID_SIZE = 6
-		num_blank = 4
-	elif difficulty < 0.5 and difficulty >= 0.25:
+	if difficulty < 0.2:
 		GRID_SIZE = 4
-		num_blank = 4
-		num_blank = randi_range(6,7)
-	elif difficulty < 0.25 and difficulty > 0:
+		num_blank = 2
+		time_limit = 10
+	
+	elif difficulty < 0.4:
 		GRID_SIZE = 4
 		num_blank = 3
-	else:
+		time_limit = 10
+	
+	elif difficulty < 0.6:
 		GRID_SIZE = 4
-		num_blank  = 2
+		num_blank = 4
+		time_limit = 10
+	
+	elif difficulty < 0.8:
+		GRID_SIZE = 6
+		num_blank = 6
+		time_limit = 14
+	
+	elif difficulty >= 0.8:
+		GRID_SIZE = 6
+		num_blank = 6
+		time_limit = 14 - (difficulty - 0.8) * 10
 			
 func check_game_cleared(row,col):
 	#print("hi")
