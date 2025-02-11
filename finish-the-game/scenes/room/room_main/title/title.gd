@@ -7,7 +7,7 @@ var is_ready_to_get_input: bool = true
 
 func _input(event: InputEvent) -> void:
 	if is_ready_to_get_input == true:
-		if (event is InputEventScreenTouch and event.pressed):
+		if (event is InputEventMouseButton and event.pressed):
 			player_has_tapped_anywhere.emit()
 
 func receive_player_started_game() -> void:
