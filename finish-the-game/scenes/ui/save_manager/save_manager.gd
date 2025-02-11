@@ -1,6 +1,6 @@
 extends Node
 
-const save_path: String = "user://save.save"
+const save_path: String = "res://save.save"
 var save_data: Dictionary
 var empty_save: Dictionary = {}
 # Called when the node enters the scene tree for the first time.

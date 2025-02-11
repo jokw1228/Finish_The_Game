@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dpfwu7663a2h6"
-path="res://.godot/imported/sprite_stage_sliding_mix_info_new.png-7687da413d8f23bd002e9b88ff125f89.ctex"
+uid="uid://bqiu2sp8ltsad"
+path="res://.godot/imported/sprite_stage_match_mix_info.png-fe8427969038d19e4ba49c78533d9fce.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/images/room_main/stage_datas/sprite_stage_sliding_mix_info_new.png"
-dest_files=["res://.godot/imported/sprite_stage_sliding_mix_info_new.png-7687da413d8f23bd002e9b88ff125f89.ctex"]
+source_file="res://resources/images/room_main/stage_datas/sprite_stage_match_mix_info.png"
+dest_files=["res://.godot/imported/sprite_stage_match_mix_info.png-fe8427969038d19e4ba49c78533d9fce.ctex"]
 
 [params]
 

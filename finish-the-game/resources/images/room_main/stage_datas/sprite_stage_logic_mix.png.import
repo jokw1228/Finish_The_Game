@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://rb7uppmk1vuc"
-path="res://.godot/imported/sprite_stage_logic_mix_new.png-5496878062a1ecbc1918219839a9d7cb.ctex"
+path="res://.godot/imported/sprite_stage_logic_mix.png-5b3ab37126419501cbbe517a0b887d39.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/images/room_main/stage_datas/sprite_stage_logic_mix_new.png"
-dest_files=["res://.godot/imported/sprite_stage_logic_mix_new.png-5496878062a1ecbc1918219839a9d7cb.ctex"]
+source_file="res://resources/images/room_main/stage_datas/sprite_stage_logic_mix.png"
+dest_files=["res://.godot/imported/sprite_stage_logic_mix.png-5b3ab37126419501cbbe517a0b887d39.ctex"]
 
 [params]
 
