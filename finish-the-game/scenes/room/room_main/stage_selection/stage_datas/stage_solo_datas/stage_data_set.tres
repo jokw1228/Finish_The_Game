@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="StageData" load_steps=3 format=3 uid="uid://jxny0p6cjsmc"]
+[gd_resource type="Resource" script_class="StageData" load_steps=4 format=3 uid="uid://jxny0p6cjsmc"]
 
 [ext_resource type="Script" path="res://scenes/room/room_main/stage_selection/stage_datas/stage_data.gd" id="1_u00af"]
 [ext_resource type="Texture2D" uid="uid://cma3hp3kdlpsm" path="res://resources/images/room_main/stage_datas/sprite_stage_set.png" id="2_1m2cf"]
+[ext_resource type="Texture2D" uid="uid://rfs6h748ycjo" path="res://resources/images/room_main/stage_datas/sprite_stage_set_info.png" id="2_14oqk"]
 
 [resource]
 script = ExtResource("1_u00af")
@@ -9,5 +10,5 @@ stage_name = "SET"
 stage_description = "Choose three cards with
 the same or different pattern!"
 stage_thumbnail = ExtResource("2_1m2cf")
-stage_info = ExtResource("2_1m2cf")
+stage_info = ExtResource("2_14oqk")
 stage_room = "res://scenes/room/room_stages/room_stage_set/room_stage_set.tscn"

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cpbrvkrawm0fh"
-path="res://.godot/imported/sprite_stage_onecard.png-06dc9a1e85b14b1d265d7f92014efe2d.ctex"
+path="res://.godot/imported/sprite_stage_one_card.png-906339f835afa7b012cac035d47ffc63.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/images/room_main/stage_datas/sprite_stage_onecard.png"
-dest_files=["res://.godot/imported/sprite_stage_onecard.png-06dc9a1e85b14b1d265d7f92014efe2d.ctex"]
+source_file="res://resources/images/room_main/stage_datas/sprite_stage_one_card.png"
+dest_files=["res://.godot/imported/sprite_stage_one_card.png-906339f835afa7b012cac035d47ffc63.ctex"]
 
 [params]
 

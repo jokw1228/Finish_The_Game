@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="StageData" load_steps=3 format=3 uid="uid://ctmsgd7eo8k65"]
+[gd_resource type="Resource" script_class="StageData" load_steps=4 format=3 uid="uid://ctmsgd7eo8k65"]
 
 [ext_resource type="Script" path="res://scenes/room/room_main/stage_selection/stage_datas/stage_data.gd" id="1_0g2wn"]
+[ext_resource type="Texture2D" uid="uid://c3ndqv0pbv2p1" path="res://resources/images/room_main/stage_datas/sprite_stage_matching_info.png" id="2_0asdv"]
 [ext_resource type="Texture2D" uid="uid://05npd47muhr3" path="res://resources/images/room_main/stage_datas/sprite_stage_matching.png" id="2_73flu"]
 
 [resource]
@@ -9,5 +10,5 @@ stage_name = "MATCHING"
 stage_description = " Continue to match
 Domino's eyes!"
 stage_thumbnail = ExtResource("2_73flu")
-stage_info = ExtResource("2_73flu")
+stage_info = ExtResource("2_0asdv")
 stage_room = "res://scenes/room/room_stages/room_stage_matching/room_stage_matching.tscn"
