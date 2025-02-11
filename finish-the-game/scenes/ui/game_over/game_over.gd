@@ -7,6 +7,8 @@ var room_main: String = "res://scenes/room/room_main/room_main.tscn"
 signal request_set_all_label_text(label_text_to_set: String)
 func _initialize() -> void:
 	$Control/ClearedStageText.visible = false
+	$Control/BestScoreText.visible = false
+	$Control/BestScore.visible = false
 	$Control/GameOverText.visible = false
 	$Control/Score.visible = false
 	$Control/NewBestText.visible = false
@@ -31,6 +33,12 @@ func show_room(score: int, current_high_score: int) -> void:
 	if current_high_score < score:
 		$Control/HighScoreSFX.play()
 		$Control/NewBestText.visible = true
+	else:
+		await get_tree().create_timer(0.4).timeout
+		$Control/ClearedStageTextSFX.play()
+		$Control/BestScore.text = str(current_high_score)
+		$Control/BestScoreText.visible = true
+		$Control/BestScore.visible = true
 	
 	await get_tree().create_timer(0.7).timeout
 	$Control/ClearedStageTextSFX.play()

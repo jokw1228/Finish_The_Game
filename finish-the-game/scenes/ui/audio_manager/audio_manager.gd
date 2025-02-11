@@ -3,7 +3,7 @@ extends Node
 
 @onready var bgm_player: AudioStreamPlayer = %BGMPlayer
 
-func play_bgm(bgm_to_play: AudioStream, fade_in_duration: float = 0.0) -> void:
+func play_bgm(bgm_to_play, fade_in_duration: float = 0.0) -> void:
 	bgm_player.stream = bgm_to_play
 	bgm_player.play()
 	

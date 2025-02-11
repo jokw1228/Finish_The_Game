@@ -45,7 +45,6 @@
 [ext_resource type="AudioStream" uid="uid://weo6ylx5t0x5" path="res://resources/audio/sfx/general_purpose/sfx_button_click_heavy.wav" id="32_7an72"]
 [ext_resource type="Script" path="res://scenes/room/room_main/stage_toggle.gd" id="38_lrchq"]
 [ext_resource type="Texture2D" uid="uid://ci6067v5mkhox" path="res://resources/images/room_main/sprite_stage_toggle_shadow.svg" id="39_jly4t"]
-[ext_resource type="AudioStream" uid="uid://dqe4cbvtlhotp" path="res://resources/audio/sfx/room_main/sfx_stage_toggle.mp3" id="40_yhfdg"]
 [ext_resource type="Script" path="res://scenes/room/room_main/options/options_popup.gd" id="42_8iru6"]
 [ext_resource type="Texture2D" uid="uid://b1jc16n8fafkg" path="res://resources/images/room_main/sprite_scroll_right_arrow_pressed.svg" id="42_buqm5"]
 [ext_resource type="Texture2D" uid="uid://c7hp3gxia8j8t" path="res://resources/images/room_main/sprite_option_volume_grabber.svg" id="42_ckpq3"]
@@ -54,6 +53,7 @@
 [ext_resource type="Texture2D" uid="uid://d053tig3be307" path="res://resources/images/room_main/sprite_options_exit_button.svg" id="44_3kydu"]
 [ext_resource type="Texture2D" uid="uid://c8nijlygh37m8" path="res://resources/images/room_main/sprite_options_exit_pressed.svg" id="45_8qsjy"]
 [ext_resource type="Texture2D" uid="uid://ccphs3kvi0c2l" path="res://resources/images/room_main/sprite_options_exit_hover.svg" id="46_yss6b"]
+[ext_resource type="AudioStream" uid="uid://cjmph7oqmcuvc" path="res://resources/audio/sfx/room_main/sfx_switch_stages.wav" id="48_22e8v"]
 [ext_resource type="Texture2D" uid="uid://bouo0imvk73y0" path="res://resources/images/room_main/sprite_options.png" id="55_wtam8"]
 [ext_resource type="Texture2D" uid="uid://dgxvubk50nqll" path="res://resources/images/room_main/sprite_options_hover.png" id="56_g3lwv"]
 
@@ -579,7 +579,7 @@ metadata/_edit_lock_ = true
 
 [node name="SFXStageToggle" type="AudioStreamPlayer" parent="StageSelection/StageToggle"]
 unique_name_in_owner = true
-stream = ExtResource("40_yhfdg")
+stream = ExtResource("48_22e8v")
 bus = &"SFX"
 
 [node name="OptionsPopup" type="ColorRect" parent="StageSelection"]

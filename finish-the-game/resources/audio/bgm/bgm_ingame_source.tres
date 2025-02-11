@@ -1,0 +1,22 @@
+[gd_resource type="AudioStreamInteractive" load_steps=3 format=3 uid="uid://co8cegt1i5j2"]
+
+[ext_resource type="AudioStream" uid="uid://bw3kyrctf8820" path="res://resources/audio/bgm/bgm_ingame_init_lr.wav" id="1_e2ki1"]
+[ext_resource type="AudioStream" uid="uid://yjuiiy418igt" path="res://resources/audio/bgm/bgm_ingame_loop_lr.wav" id="2_f281r"]
+
+[resource]
+clip_count = 2
+clip_0/name = &"Bgm Ingame Init Lr"
+clip_0/stream = ExtResource("1_e2ki1")
+clip_0/auto_advance = 1
+clip_0/next_clip = 1
+clip_1/name = &"Bgm Ingame Loop Lr"
+clip_1/stream = ExtResource("2_f281r")
+clip_1/auto_advance = 0
+_transitions = {
+Vector2i(0, 1): {
+"fade_beats": 0,
+"fade_mode": 4,
+"from_time": 3,
+"to_time": 1
+}
+}

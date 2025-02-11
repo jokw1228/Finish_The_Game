@@ -18,5 +18,3 @@ scene = "res://scenes/game_sudoku/ftg_sudoku.tscn"
 [node name="RoomStageLogicMix" instance=ExtResource("1_fs8ej")]
 stage_name = "LOGIC"
 ftg_game_datas = Array[ExtResource("2_r0gqk")]([SubResource("Resource_jcotm"), SubResource("Resource_pqdbj")])
-
-[connection signal="take_damage" from="." to="HPBarCanvas" method="take_damage"]

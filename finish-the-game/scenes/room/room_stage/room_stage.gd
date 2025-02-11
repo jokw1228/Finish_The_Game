@@ -67,4 +67,4 @@ func receive_request_retry_stage() -> void:
 	start_stage()
 
 
-@export var bgm_ingame: AudioStream
+@export var bgm_ingame: AudioStreamInteractive
