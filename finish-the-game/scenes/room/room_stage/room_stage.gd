@@ -12,6 +12,7 @@ var clear_count: int = 0
 var original_high_score: int
 @onready var hp_bar_canvas: HPBarCanvas = %HPBarCanvas as HPBarCanvas
 func start_stage() -> void:
+	print("HIGH SCORE BEF. THIS SESSION = ", SaveManager.get_score(stage_name))
 	background_scrolling_controller.set_all_label_text(stage_name)
 	%Score.visible = false
 	await ready_set_go.ready_set_go()
@@ -20,6 +21,7 @@ func start_stage() -> void:
 	create_ftg_scheduler()
 	
 	clear_count = 0
+	original_high_score = SaveManager.get_score(stage_name)
 	hp_bar_canvas.visible = true
 	hp_bar_canvas.current_hp = 100.0
 	hp_bar_canvas.progress_bar.value = 100.0
@@ -57,6 +59,7 @@ func on_hp_depleted() -> void:
 	%Score.visible = false
 	game_over.show_game_over(clear_count, original_high_score)
 	if original_high_score < clear_count:
+		print("New High Score of", clear_count, " instead of", original_high_score)
 		SaveManager.set_score(stage_name, clear_count)
 		
 	SaveManager.save_file()

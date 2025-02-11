@@ -47,6 +47,7 @@ func load_file() -> void:
 
 func get_score(stage_name) -> int:
 	if not stage_name in save_data:
+		print("NO SAVE AVAILABLE FOR", stage_name)
 		return 0
 	return save_data[stage_name]
 	pass
