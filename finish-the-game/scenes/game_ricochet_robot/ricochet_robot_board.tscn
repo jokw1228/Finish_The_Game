@@ -1,11 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://dyxfh7q1k5qa2"]
 
 [ext_resource type="Script" path="res://scenes/game_ricochet_robot/ricochet_robot_board.gd" id="1_1htmq"]
-[ext_resource type="Texture2D" uid="uid://c84glnhxwjlmc" path="res://resources/images/game_ricochet_robot/board.svg" id="1_pwm37"]
+[ext_resource type="Texture2D" uid="uid://bv35ixvmg0dxf" path="res://resources/images/game_ricochet_robot/new_sprites/board.png" id="1_6mwxa"]
 
 [node name="RicochetRobotBoard" type="Sprite2D"]
 scale = Vector2(1.3, 1.3)
-texture = ExtResource("1_pwm37")
+texture = ExtResource("1_6mwxa")
 script = ExtResource("1_1htmq")
 
 [node name="GridContainer" type="GridContainer" parent="."]

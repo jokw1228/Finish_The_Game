@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://corv7n6fbmkxd"]
 
-[ext_resource type="Texture2D" uid="uid://c476ub0prelm" path="res://resources/images/game_ricochet_robot/wall.svg" id="1_gnq0a"]
+[ext_resource type="Texture2D" uid="uid://bpyr6ctlxb6m6" path="res://resources/images/game_ricochet_robot/new_sprites/wall_fit_2.png" id="1_u08vw"]
 [ext_resource type="Script" path="res://scenes/game_ricochet_robot/ricochet_robot_wall.gd" id="2_2uwly"]
 
 [node name="RicochetRobotWall" type="Sprite2D"]
 z_index = 1
 scale = Vector2(0.9, 0.9)
-texture = ExtResource("1_gnq0a")
+texture = ExtResource("1_u08vw")
 script = ExtResource("2_2uwly")

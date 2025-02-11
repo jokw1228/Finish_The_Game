@@ -1,14 +1,14 @@
 [gd_resource type="Resource" script_class="StageData" load_steps=4 format=3 uid="uid://dnx2kr0e2mjft"]
 
 [ext_resource type="Script" path="res://scenes/room/room_main/stage_selection/stage_datas/stage_data.gd" id="1_m08fs"]
-[ext_resource type="Texture2D" uid="uid://drkpn531rv15v" path="res://resources/images/room_main/stage_datas/sprite_stage_all_in_one_mix_info.svg" id="2_p8873"]
-[ext_resource type="Texture2D" uid="uid://dwp74ng1k3jc3" path="res://resources/images/room_main/stage_datas/sprite_stage_all_in_one_mix.svg" id="3_ubajl"]
+[ext_resource type="Texture2D" uid="uid://dwlgtwtrtu62a" path="res://resources/images/room_main/stage_datas/sprite_stage_all_in_one_mix_info_new.png" id="2_c71ri"]
+[ext_resource type="Texture2D" uid="uid://grd67ydlp5uk" path="res://resources/images/room_main/stage_datas/sprite_stage_all_in_one_mix_new.png" id="3_ubnmx"]
 
 [resource]
 script = ExtResource("1_m08fs")
 stage_name = "ALL IN ONE
 MIX"
 stage_description = "Literally all-in-one."
-stage_thumbnail = ExtResource("3_ubajl")
-stage_info = ExtResource("2_p8873")
+stage_thumbnail = ExtResource("3_ubnmx")
+stage_info = ExtResource("2_c71ri")
 stage_room = "res://scenes/room/room_stages/room_stage_all_in_one_mix/room_stage_all_in_one_mix.tscn"
