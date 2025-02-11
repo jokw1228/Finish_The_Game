@@ -10,9 +10,9 @@ signal pause_timer()
 
 var time_limit: float
 
-var timeout = false
+var timeout: bool = false
 
-var num_blank = 0
+var num_blank: int = 0
 
 signal disable_input
 
@@ -33,10 +33,9 @@ difficulty == 0-> 3
 func start_ftg(difficulty):
 	#print("start")
 	set_difficulty(difficulty)
-	num_blank = 3
 	var rand_row
 	var rand_col
-	var i = 0
+	var i: int = 0
 	while i < num_blank :
 		rand_row = randi() % 9 
 		rand_col =  randi() % 9 
@@ -44,7 +43,7 @@ func start_ftg(difficulty):
 			board[rand_row][rand_col] = 0
 			game_grid[rand_row][rand_col].text = ""
 			arr.append(Vector2(rand_row, rand_col))
-			i+=1
+			i += 1
 	start_timer.emit(time_limit)
 	puzzle_board = board.duplicate(true)
 	#print(" ")
@@ -58,20 +57,20 @@ func set_difficulty(difficulty):
 		time_limit = 15
 	
 	elif difficulty < 0.4:
-		num_blank = randi_range(4, 5)
-		time_limit = 17
+		num_blank = 4
+		time_limit = 20
 	
 	elif difficulty < 0.6:
-		num_blank = randi_range(6, 7)
-		time_limit = 19
+		num_blank = 5
+		time_limit = 25
 	
 	elif difficulty < 0.8:
-		num_blank = randi_range(8, 9)
-		time_limit = 21
+		num_blank = 6
+		time_limit = 30
 	
 	elif difficulty >= 0.8:
-		num_blank = randi_range(8, 9)
-		time_limit = 21 - (difficulty - 0.8) * 10
+		num_blank = 7
+		time_limit = 30 - (difficulty - 0.8) * 10
 
 func check_inc_ans():
 	if num_inc >=num_mistakes:
