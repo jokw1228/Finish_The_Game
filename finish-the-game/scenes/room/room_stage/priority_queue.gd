@@ -12,10 +12,7 @@ func insert_array(items: Array, keys: Array) -> void:
 		self.insert(items[i],keys[i])
 
 func insert(item, key) -> void:
-	print("insert: ", item, key)
 	_pq.append([item,key])
-	for i in _pq:
-		print(i)
 	_top += 1
 	if _top == 0:
 		return
@@ -32,14 +29,8 @@ func insert(item, key) -> void:
 				break
 		else:
 			break
-	print("insertion complete")
-	for i in _pq:
-		print(i)
 
 func pop():
-	print("pop start")
-	for i in _pq:
-		print(i)
 	if _top == -1:
 		print('Queue is empty.')
 		return
@@ -55,7 +46,6 @@ func pop():
 	#var _right_child
 	var mn
 	while true:
-		print(_current)
 		if _current * 2 + 2 <= _top:
 			#_right_child = _pq[_current*2+2]
 			#_left_child = _pq[_current*2+1]
@@ -65,7 +55,6 @@ func pop():
 					_pq[_current] = _pq[_current*2+2]
 					_pq[_current*2+2] = _temp
 					_current = _current * 2 + 2
-					print()
 					#print("right_smallest",_pq)
 				else:
 					break
@@ -92,9 +81,6 @@ func pop():
 				break
 		else:
 			break
-	print("pop end")
-	for i in _pq:
-		print(i)
 	return _item
 
 func get_size() -> int:

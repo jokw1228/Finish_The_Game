@@ -116,8 +116,8 @@ func initialize_board():
 		var board_list_random_selected = board_list[0]
 		board_list_random_selected.shuffle()
 		board = board_list_random_selected[0]
-		for y in range(8):
-			for x in range(8):
+		for y in range(board_size):
+			for x in range(board_size):
 				if y == 7:
 					board[y][x].append(WALL.SOUTH)
 				if x == 7:
@@ -139,24 +139,26 @@ func reset_board(new_robot_location: Array[Vector2]):
 	request_generate_robots_ui.emit(robot_location)
 
 func receive_request_cell_pressed(cell_index: Vector2) -> void:
-	print(robot_location)
+	#print(robot_location)
 	var loc: int = robot_location.find(cell_index)
 	if turn_state == TURN_STATE.MOVE:
 		if loc != -1:
 			if int_to_color(loc) == color_selected:
-				increase_turn_state()
-				color_selected = COLOR.NONE
+				$RicochetRobotUI.receive_select_robot()
+				pass
+				#increase_turn_state()
+				#color_selected = COLOR.NONE
 			else:
 				$RicochetRobotUI.receive_select_robot()
 				color_selected = int_to_color(loc)
 		else:
 			var to_move = check_movement(color_selected, cell_index)
 			if to_move != Vector2(-1,-1):
-				pause_timer.emit()
+				#pause_timer.emit()
 				request_move_robot_ui.emit(color_selected, robot_location[int(color_selected)], to_move)
 				robot_location[int(color_selected)] = to_move
 				await move_finished
-				resume_timer.emit()
+				#resume_timer.emit()
 				if robot_location[int(color_selected)] == goal and color_selected == goal_color:
 					#print("Congrats!")
 					game_clear.emit()
@@ -164,8 +166,9 @@ func receive_request_cell_pressed(cell_index: Vector2) -> void:
 					#reset_board(test_robot_location)
 					#print("Board Reseted!")
 			else:
-				increase_turn_state()
-				color_selected = COLOR.NONE
+				pass
+				#increase_turn_state()
+				#color_selected = COLOR.NONE
 	elif turn_state == TURN_STATE.SELECT:
 		if loc == -1:
 			pass
@@ -189,33 +192,49 @@ func check_movement(color: COLOR, cell_index) -> Vector2:
 	if robot_loc[0] != cell_index[0] and robot_loc[1] != cell_index[1]:
 		return false_movement
 	else:
+		#move right
 		if robot_loc[0] < cell_index[0]:
 			if WALL.EAST not in board[robot_loc[1]][robot_loc[0]]:
-				robot_loc[0] += 1
+				if not robot_collision(robot_loc + Vector2(1, 0)):
+					robot_loc[0] += 1
+				else:
+					return false_movement
 				while WALL.EAST not in board[robot_loc[1]][robot_loc[0]] and not robot_collision(robot_loc + Vector2(1, 0)):
 					robot_loc[0] += 1
 				return robot_loc
 			else:
 				return false_movement
+		#move left
 		elif robot_loc[0] > cell_index[0]:
 			if WALL.WEST not in board[robot_loc[1]][robot_loc[0]]:
-				robot_loc[0] -= 1
+				if not robot_collision(robot_loc + Vector2(-1, 0)):
+					robot_loc[0] -= 1
+				else:
+					return false_movement
 				while WALL.WEST not in board[robot_loc[1]][robot_loc[0]] and not robot_collision(robot_loc + Vector2(-1, 0)):
 					robot_loc[0] -= 1
 				return robot_loc
 			else:
 				return false_movement
+		#move down
 		elif robot_loc[1] < cell_index[1]:
 			if WALL.SOUTH not in board[robot_loc[1]][robot_loc[0]]:
-				robot_loc[1] += 1
+				if not robot_collision(robot_loc + Vector2(0, 1)):
+					robot_loc[1] += 1
+				else:
+					return false_movement
 				while WALL.SOUTH not in board[robot_loc[1]][robot_loc[0]] and not robot_collision(robot_loc + Vector2(0, 1)):
 					robot_loc[1] += 1
 				return robot_loc
 			else:
 				return false_movement
+		#move up
 		elif robot_loc[1] > cell_index[1]:
 			if WALL.NORTH not in board[robot_loc[1]][robot_loc[0]]:
-				robot_loc[1] -= 1
+				if not robot_collision(robot_loc + Vector2(0, -1)):
+					robot_loc[1] -= 1
+				else:
+					return false_movement
 				while WALL.NORTH not in board[robot_loc[1]][robot_loc[0]] and not robot_collision(robot_loc + Vector2(0, -1)):
 					robot_loc[1] -= 1
 				return robot_loc
