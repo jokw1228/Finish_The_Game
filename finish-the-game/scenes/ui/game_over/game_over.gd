@@ -34,7 +34,7 @@ func show_room(score: int, current_high_score: int) -> void:
 		$Control/HighScoreSFX.play()
 		$Control/NewBestText.visible = true
 	else:
-		await get_tree().create_timer(0.4).timeout
+		await get_tree().create_timer(0.7).timeout
 		$Control/ClearedStageTextSFX.play()
 		$Control/BestScore.text = str(current_high_score)
 		$Control/BestScoreText.visible = true
