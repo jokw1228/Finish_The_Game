@@ -55,6 +55,7 @@ func is_cleared(result: bool) -> void:
 
 @onready var game_over: GameOver = %GameOver as GameOver
 func on_hp_depleted() -> void:
+	ftg.disconnect("request_set_all_label_text", Callable(background_scrolling_controller, "set_all_label_text"))
 	await ftg.stop_scheduling()
 	%Score.visible = false
 	game_over.show_game_over(clear_count, original_high_score)
