@@ -14,9 +14,9 @@ var player_color: CELL_STATE
 func start_ftg(difficulty: float) -> void:
 	var time_limit: float
 	if difficulty < 0.6:
-		time_limit = 8
+		time_limit = 15
 	else:
-		time_limit = 8 - (difficulty-0.6) * 2
+		time_limit = 15 - (difficulty-0.6) * 5
 	
 	var diagonal_threshold: float = 0.4
 	
