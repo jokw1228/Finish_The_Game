@@ -112,15 +112,18 @@ func start_ftg(difficulty: float) -> void:
 	
 	while true:
 		#var test_board: Array[Array] = board.duplicate(true)
-		var test_zero_indexes: Array[Array] = zero_indexes.duplicate(true)
+		#var test_zero_indexes: Array[Array] = zero_indexes.duplicate(true)
 		# Warning! Godot can NOT deep copy subresources!
-		
 		var test_board: Array[Array] = []
 		for y: int in range(board_width):
 			var temp: Array[CELL_STATE] = []
 			for x: int in range(board_width):
 				temp.append(board[y][x])
 			test_board.append(temp)
+		
+		var test_zero_indexes: Array[Array] = []
+		for zero_index: Array[int] in zero_indexes:
+			test_zero_indexes.append([zero_index[0], zero_index[1]])
 		
 		const MIN_PLACEMENT = 1
 		const MAX_PLACEMENT = 8
