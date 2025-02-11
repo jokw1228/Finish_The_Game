@@ -48,10 +48,10 @@ vertical_alignment = 1
 
 [node name="ClearedStageText" type="Label" parent="Control"]
 layout_mode = 0
-offset_left = -424.0
-offset_top = 10.0
-offset_right = 422.0
-offset_bottom = 180.0
+offset_left = -397.0
+offset_top = 9.0
+offset_right = 449.0
+offset_bottom = 179.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/line_spacing = -80
 theme_override_constants/shadow_offset_x = 5
@@ -62,10 +62,10 @@ vertical_alignment = 1
 
 [node name="Score" type="Label" parent="Control"]
 layout_mode = 0
-offset_left = -424.0
-offset_top = 10.0
-offset_right = 422.0
-offset_bottom = 172.0
+offset_left = -397.0
+offset_top = 9.0
+offset_right = 449.0
+offset_bottom = 171.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/line_spacing = -80
 theme_override_constants/shadow_offset_x = 5
@@ -77,10 +77,10 @@ vertical_alignment = 1
 
 [node name="NewBestText" type="Label" parent="Control"]
 layout_mode = 0
-offset_left = -424.0
-offset_top = 58.0
-offset_right = 422.0
-offset_bottom = 228.0
+offset_left = -397.0
+offset_top = 57.0
+offset_right = 449.0
+offset_bottom = 227.0
 theme_override_colors/font_color = Color(1, 0.677333, 0.12, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/line_spacing = -80

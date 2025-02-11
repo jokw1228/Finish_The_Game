@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=3 uid="uid://dej30dvp0aefe"]
+[gd_scene load_steps=72 format=3 uid="uid://dej30dvp0aefe"]
 
 [ext_resource type="PackedScene" uid="uid://bnyfbqonp1qby" path="res://scenes/ui/background/background_scrolling_controller.tscn" id="1_dlowq"]
 [ext_resource type="Script" path="res://scenes/room/room_main/room_main.gd" id="1_n65dx"]
@@ -54,7 +54,8 @@
 [ext_resource type="Texture2D" uid="uid://d053tig3be307" path="res://resources/images/room_main/sprite_options_exit_button.svg" id="44_3kydu"]
 [ext_resource type="Texture2D" uid="uid://c8nijlygh37m8" path="res://resources/images/room_main/sprite_options_exit_pressed.svg" id="45_8qsjy"]
 [ext_resource type="Texture2D" uid="uid://ccphs3kvi0c2l" path="res://resources/images/room_main/sprite_options_exit_hover.svg" id="46_yss6b"]
-[ext_resource type="Texture2D" uid="uid://cjgndouiutojf" path="res://icon.svg" id="47_coo26"]
+[ext_resource type="Texture2D" uid="uid://bouo0imvk73y0" path="res://resources/images/room_main/sprite_options.png" id="55_wtam8"]
+[ext_resource type="Texture2D" uid="uid://dgxvubk50nqll" path="res://resources/images/room_main/sprite_options_hover.png" id="56_g3lwv"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ou4vn"]
 
@@ -744,7 +745,8 @@ offset_left = 348.0
 offset_top = -896.0
 offset_right = 476.0
 offset_bottom = -768.0
-texture_normal = ExtResource("47_coo26")
+texture_normal = ExtResource("55_wtam8")
+texture_hover = ExtResource("56_g3lwv")
 metadata/_edit_lock_ = true
 
 [node name="SFXButtonClick" type="AudioStreamPlayer" parent="StageSelection/OptionsButton"]

@@ -58,10 +58,12 @@ func receive_stage_info_exit_button_pressed() -> void:
 func receive_options_button_pressed() -> void:
 	if stage_selection_state == StageSelectionState.STAGE_SCROLLING:
 		set_state(StageSelectionState.OPTIONS_POPPED_UP)
+		$OptionsButton.visible = false
 		
 func receive_exit_options_button_pressed() -> void:
 	if stage_selection_state == StageSelectionState.OPTIONS_POPPED_UP:
 		set_state(StageSelectionState.STAGE_SCROLLING)
+		$OptionsButton.visible = true
 
 func receive_stage_selection_button_pressed() -> void:
 	if stage_selection_state == StageSelectionState.STAGE_SCROLLING:
