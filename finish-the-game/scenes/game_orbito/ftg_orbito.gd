@@ -97,7 +97,10 @@ func make_kill_angle(difficulty: float) -> Array[Array]:
 		
 		# 2. 다른 돌 추가하기
 		var temp_board: Array[Array] = []
-		temp_board = completed_board.duplicate(true)
+		var temp_subboard: Array = []
+		for i in completed_board:
+			temp_subboard = i.duplicate(true)
+			temp_board.append(temp_subboard)
 		while true:
 			var empty_location = []
 			for y: int in range(board_size):
@@ -130,7 +133,10 @@ func make_kill_angle(difficulty: float) -> Array[Array]:
 				break
 			else:
 				temp_board.clear()
-				temp_board = completed_board.duplicate(true)
+				temp_subboard.clear()
+				for i in completed_board:
+					temp_subboard = i.duplicate(true)
+					temp_board.append(temp_subboard)
 		
 		# 3. 반대로 회전하기 (11번 정회전)
 		for i: int in range(11):

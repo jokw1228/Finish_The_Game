@@ -116,8 +116,8 @@ func initialize_board():
 		var board_list_random_selected = board_list[0]
 		board_list_random_selected.shuffle()
 		board = board_list_random_selected[0]
-		for y in range(8):
-			for x in range(8):
+		for y in range(board_size):
+			for x in range(board_size):
 				if y == 7:
 					board[y][x].append(WALL.SOUTH)
 				if x == 7:
@@ -139,7 +139,7 @@ func reset_board(new_robot_location: Array[Vector2]):
 	request_generate_robots_ui.emit(robot_location)
 
 func receive_request_cell_pressed(cell_index: Vector2) -> void:
-	print(robot_location)
+	#print(robot_location)
 	var loc: int = robot_location.find(cell_index)
 	if turn_state == TURN_STATE.MOVE:
 		if loc != -1:
