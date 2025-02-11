@@ -70,6 +70,8 @@ func on_hp_depleted() -> void:
 	else:
 		return
 	ftg.disconnect("request_set_all_label_text", Callable(background_scrolling_controller, "set_all_label_text"))
+	$GiveupButton.visible = false
+	$GiveupButton.disabled = true
 	await ftg.stop_scheduling()
 	%Score.visible = false
 	game_over.show_game_over(clear_count, original_high_score)
