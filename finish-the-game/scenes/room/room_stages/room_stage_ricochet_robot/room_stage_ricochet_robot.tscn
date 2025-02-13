@@ -12,3 +12,5 @@ scene = "res://scenes/game_ricochet_robot/ftg_ricochet_robot.tscn"
 [node name="RoomStageRicochetRobot" instance=ExtResource("1_38m3a")]
 stage_name = "RICOCHET"
 ftg_game_datas = Array[ExtResource("2_6vvwc")]([SubResource("Resource_7hgmc")])
+
+[connection signal="take_damage" from="." to="HPBarCanvas" method="take_damage"]

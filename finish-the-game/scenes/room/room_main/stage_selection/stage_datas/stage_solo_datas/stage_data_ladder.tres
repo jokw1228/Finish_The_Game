@@ -9,6 +9,7 @@ script = ExtResource("1_mb1ry")
 stage_name = "LADDER"
 stage_description = "Connect the start
 and finish with the ladder!"
+stage_code = "LADDER"
 stage_thumbnail = ExtResource("2_dyude")
 stage_info = ExtResource("2_icf6x")
 stage_room = "res://scenes/room/room_stages/room_stage_ladder/room_stage_ladder.tscn"

@@ -9,6 +9,7 @@ script = ExtResource("1_m08fs")
 stage_name = "ALL IN ONE
 MIX"
 stage_description = "Literally all-in-one."
+stage_code = "ALLIN1"
 stage_thumbnail = ExtResource("3_ubnmx")
 stage_info = ExtResource("2_c71ri")
 stage_room = "res://scenes/room/room_stages/room_stage_all_in_one_mix/room_stage_all_in_one_mix.tscn"

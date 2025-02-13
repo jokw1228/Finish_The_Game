@@ -10,6 +10,7 @@ stage_name = "BINARY
 PUZZLE"
 stage_description = "Put 0s and 1s, equal per line,
 two in a row!"
+stage_code = "BIN.PZL."
 stage_thumbnail = ExtResource("2_iiwoo")
 stage_info = ExtResource("2_fffve")
 stage_room = "res://scenes/room/room_stages/room_stage_binary_puzzle/room_stage_binary_puzzle.tscn"

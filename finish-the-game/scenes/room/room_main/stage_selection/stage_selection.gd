@@ -11,11 +11,14 @@ var stage_selection_state: StageSelectionState = StageSelectionState.NO
 
 @export var stage_mix_datas: Array[StageData] = []
 @export var stage_solo_datas: Array[StageData] = []
+
+
 var stage_datas: Array[StageData]
 var current_stage_index: int = 0
 
 @onready var stage_name: Label = %StageName as Label
 @onready var stage_description: Label = %StageDescription as Label
+@onready var stage_best_score: Label = %BestScoreData as Label
 
 signal request_set_stage_datas(stage_datas_to_set: Array[StageData])
 func _ready() -> void:
@@ -44,6 +47,7 @@ func receive_current_stage_has_been_changed(changed_current_stage: int) -> void:
 	current_stage_has_been_changed.emit(changed_current_stage)
 
 func update_stage_name() -> void:
+	stage_best_score.text = str(SaveManager.get_score(stage_datas[current_stage_index].stage_code))
 	stage_name.text = stage_datas[current_stage_index].stage_name
 	stage_description.text = stage_datas[current_stage_index].stage_description
 

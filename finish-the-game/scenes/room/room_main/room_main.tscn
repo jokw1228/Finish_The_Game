@@ -311,6 +311,54 @@ horizontal_alignment = 1
 vertical_alignment = 2
 metadata/_edit_lock_ = true
 
+[node name="BestScore" type="Label" parent="StageSelection"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -930.0
+offset_top = 390.0
+offset_right = -248.0
+offset_bottom = 632.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.254902)
+theme_override_constants/line_spacing = -24
+theme_override_constants/shadow_offset_x = 16
+theme_override_constants/shadow_offset_y = 16
+theme_override_font_sizes/font_size = 64
+text = "Best
+Score"
+horizontal_alignment = 2
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="BestScoreData" type="Label" parent="StageSelection"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 260.0
+offset_top = 387.15
+offset_right = 942.0
+offset_bottom = 629.15
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.254902)
+theme_override_constants/line_spacing = -24
+theme_override_constants/shadow_offset_x = 16
+theme_override_constants/shadow_offset_y = 16
+theme_override_font_sizes/font_size = 128
+text = "0"
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
 [node name="StageDescription" type="Label" parent="StageSelection"]
 unique_name_in_owner = true
 layout_mode = 1
@@ -416,12 +464,13 @@ anchor_left = 0.504
 anchor_top = 0.5
 anchor_right = 0.504
 anchor_bottom = 0.5
-offset_left = -260.32
-offset_top = 384.0
-offset_right = 251.68
-offset_bottom = 576.0
+offset_left = -230.69
+offset_top = 428.96
+offset_right = 281.31
+offset_bottom = 620.96
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.9, 0.9)
 texture_normal = ExtResource("8_7buss")
 texture_pressed = ExtResource("9_iix68")
 texture_hover = ExtResource("10_fcyev")
@@ -436,8 +485,8 @@ anchor_bottom = 1.0
 offset_top = -8.0
 offset_bottom = -8.0
 theme_override_constants/line_spacing = -32
-text = "STAGE
-SELECT"
+theme_override_font_sizes/font_size = 120
+text = "PLAY"
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_lock_ = true
@@ -454,9 +503,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -384.0
-offset_top = 512.0
+offset_top = 552.0
 offset_right = 384.0
-offset_bottom = 768.0
+offset_bottom = 808.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("38_lrchq")
@@ -464,6 +513,7 @@ metadata/_edit_lock_ = true
 
 [node name="StageToggleShadow" type="TextureRect" parent="StageSelection/StageToggle"]
 unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0.321569)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -583,6 +633,7 @@ stream = ExtResource("48_22e8v")
 bus = &"SFX"
 
 [node name="OptionsPopup" type="ColorRect" parent="StageSelection"]
+visible = false
 layout_mode = 0
 offset_right = 1080.0
 offset_bottom = 1920.0

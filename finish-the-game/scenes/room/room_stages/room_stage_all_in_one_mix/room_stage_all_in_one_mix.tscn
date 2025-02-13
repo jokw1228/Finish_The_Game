@@ -90,3 +90,5 @@ scene = "res://scenes/game_ricochet_robot/ftg_ricochet_robot.tscn"
 [node name="RoomStageAllInOneMix" instance=ExtResource("1_ft4m3")]
 stage_name = "ALLIN1"
 ftg_game_datas = Array[ExtResource("2_67ee3")]([SubResource("Resource_r5xuh"), SubResource("Resource_hurpt"), SubResource("Resource_c4nkf"), SubResource("Resource_k8f2i"), SubResource("Resource_awlrt"), SubResource("Resource_p35ph"), SubResource("Resource_snhgl"), SubResource("Resource_ihl8o"), SubResource("Resource_e73vi"), SubResource("Resource_slmjc"), SubResource("Resource_mpm4m"), SubResource("Resource_e8oy0"), SubResource("Resource_4k70v"), SubResource("Resource_nr6cp")])
+
+[connection signal="take_damage" from="." to="HPBarCanvas" method="take_damage"]

@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="StageData" load_steps=3 format=3 uid="uid://cj5kfblax8572"]
+[gd_resource type="Resource" script_class="StageData" load_steps=4 format=3 uid="uid://cj5kfblax8572"]
 
 [ext_resource type="Script" path="res://scenes/room/room_main/stage_selection/stage_datas/stage_data.gd" id="1_b8ccy"]
+[ext_resource type="Texture2D" uid="uid://bqy5txp286gul" path="res://resources/images/room_main/stage_datas/sprite_stage_memory_info.png" id="2_0mwid"]
 [ext_resource type="Texture2D" uid="uid://cj1ph5v0aukgs" path="res://resources/images/room_main/stage_datas/sprite_stage_memory.png" id="2_5e2t8"]
 
 [resource]
@@ -8,6 +9,7 @@ script = ExtResource("1_b8ccy")
 stage_name = "MEMORY"
 stage_description = "Flip the same
 two cards!"
+stage_code = "MEMORY"
 stage_thumbnail = ExtResource("2_5e2t8")
-stage_info = ExtResource("2_5e2t8")
+stage_info = ExtResource("2_0mwid")
 stage_room = "res://scenes/room/room_stages/room_stage_memory/room_stage_memory.tscn"

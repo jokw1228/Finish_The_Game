@@ -10,6 +10,7 @@ stage_name = "MATCH
 MIX"
 stage_description = "Birds of a feather
 flock together."
+stage_code = "MATCH"
 stage_thumbnail = ExtResource("3_cc5sw")
 stage_info = ExtResource("2_ccmyu")
 stage_room = "res://scenes/room/room_stages/room_stage_match_mix/room_stage_match_mix.tscn"
