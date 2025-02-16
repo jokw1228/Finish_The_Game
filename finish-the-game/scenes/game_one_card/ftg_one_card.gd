@@ -101,6 +101,7 @@ func start_ftg(difficulty: float) -> void:
 			can_shape_change = false
 	
 	can_one_more = true
+	hand_card_set.shuffle()
 	
 	init_UI.emit()
 	
