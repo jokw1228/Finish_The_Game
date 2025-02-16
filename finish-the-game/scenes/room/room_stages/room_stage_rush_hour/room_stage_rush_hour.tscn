@@ -12,5 +12,3 @@ scene = "res://scenes/game_rush_hour/game_rush_hour.tscn"
 [node name="RoomStageRushHour" instance=ExtResource("1_f5vcy")]
 stage_name = "RUSHHOUR"
 ftg_game_datas = Array[ExtResource("2_klte6")]([SubResource("Resource_vwkey")])
-
-[connection signal="take_damage" from="." to="HPBarCanvas" method="take_damage"]

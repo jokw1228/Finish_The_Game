@@ -12,5 +12,3 @@ scene = "res://scenes/game_sliding_puzzle/ftg_sliding_puzzle.tscn"
 [node name="RoomStageSlidingPuzzle" instance=ExtResource("1_lsql6")]
 stage_name = "SLD.PZL."
 ftg_game_datas = Array[ExtResource("2_l2pou")]([SubResource("Resource_ebviy")])
-
-[connection signal="take_damage" from="." to="HPBarCanvas" method="take_damage"]

@@ -12,5 +12,3 @@ scene = "res://scenes/game_memory/ftg_memory.tscn"
 [node name="RoomStageMemory" instance=ExtResource("1_1ke6v")]
 stage_name = "MEMORY"
 ftg_game_datas = Array[ExtResource("2_bv5km")]([SubResource("Resource_78bwp")])
-
-[connection signal="take_damage" from="." to="HPBarCanvas" method="take_damage"]

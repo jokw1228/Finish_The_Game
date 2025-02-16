@@ -12,5 +12,3 @@ scene = "res://scenes/game_ladder/ftg_ladder.tscn"
 [node name="RoomStageLadder" instance=ExtResource("1_ggxpw")]
 stage_name = "LADDER"
 ftg_game_datas = Array[ExtResource("2_6mqpn")]([SubResource("Resource_1fide")])
-
-[connection signal="take_damage" from="." to="HPBarCanvas" method="take_damage"]

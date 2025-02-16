@@ -12,5 +12,3 @@ scene = "res://scenes/game_binary_puzzle/ftg_binary_puzzle.tscn"
 [node name="RoomStageBinaryPuzzle" instance=ExtResource("1_amgtw")]
 stage_name = "BIN.PZL."
 ftg_game_datas = Array[ExtResource("2_ewoq0")]([SubResource("Resource_tyxb6")])
-
-[connection signal="take_damage" from="." to="HPBarCanvas" method="take_damage"]
