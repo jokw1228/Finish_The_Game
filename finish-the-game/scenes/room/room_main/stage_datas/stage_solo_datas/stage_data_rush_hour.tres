@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="StageData" load_steps=4 format=3 uid="uid://cvwvhwgwob5bw"]
+
+[ext_resource type="Script" path="res://scenes/room/room_main/stage_datas/stage_data.gd" id="1_c3oy2"]
+[ext_resource type="Texture2D" uid="uid://b6ke5t7pdhlhq" path="res://resources/images/room_main/stage_datas/sprite_stage_rush_hour_info.svg" id="2_nd0ss"]
+[ext_resource type="Texture2D" uid="uid://isccfiws7cbi" path="res://resources/images/room_main/stage_datas/sprite_stage_rush_hour.svg" id="3_yjegv"]
+
+[resource]
+script = ExtResource("1_c3oy2")
+stage_name = "RUSH
+HOUR"
+stage_description = "Move the obstacles
+& Get the red car to the exit!"
+stage_code = "RUSHHOUR"
+stage_thumbnail = ExtResource("3_yjegv")
+stage_info = ExtResource("2_nd0ss")
+stage_room = "res://scenes/room/room_stages/room_stage_rush_hour/room_stage_rush_hour.tscn"
