@@ -24,6 +24,12 @@ func initialize(stage_datas_to_set: Array[StageData]) -> void:
 		image.texture = stage_data.stage_thumbnail
 		image.set_mouse_filter(Control.MOUSE_FILTER_IGNORE)
 		stage_thumbnail_container.add_child(image)
+		
+	
+
+func set_stage_index(stage_index: int) -> void:
+	set_deferred("scroll_horizontal", RoomManager.get_scene_index() * stage_width)
+	print(stage_index)
 
 func _gui_input(event: InputEvent) -> void:
 	if (event is InputEventScreenTouch and not event.is_pressed())\
@@ -54,6 +60,7 @@ signal current_stage_has_been_changed(changed_current_stage: int)
 func set_current_stage(current_stage_to_set: int) -> void:
 	if current_stage != current_stage_to_set:
 		current_stage = current_stage_to_set
+		RoomManager.set_scene_state(RoomManager.get_scene_type(), current_stage)
 		current_stage_has_been_changed.emit(current_stage)
 
 func receive_stage_selection_state_has_been_changed(changed_state: StageSelection.StageSelectionState) -> void:

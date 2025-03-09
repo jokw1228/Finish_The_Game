@@ -10,6 +10,7 @@ stage_name = "CONNECTION
 MIX"
 stage_description = "Success seems to be
 connected with action."
+stage_code = "CONNECTION"
 stage_thumbnail = ExtResource("3_535hm")
 stage_info = ExtResource("2_b8yt6")
 stage_room = "res://scenes/room/room_stages/room_stage_connection_mix/room_stage_connection_mix.tscn"

@@ -9,6 +9,7 @@ script = ExtResource("1_x2hkb")
 stage_name = "LOGIC
 MIX"
 stage_description = "Are you good at math?"
+stage_code = "LOGIC"
 stage_thumbnail = ExtResource("3_3sbg3")
 stage_info = ExtResource("2_ctg0a")
 stage_room = "res://scenes/room/room_stages/room_stage_logic_mix/room_stage_logic_mix.tscn"

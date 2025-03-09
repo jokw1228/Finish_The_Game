@@ -13,6 +13,11 @@ func _input(event: InputEvent) -> void:
 func receive_player_started_game() -> void:
 	is_ready_to_get_input = false
 	slide_out()
+	
+func title_away() -> void:
+	var viewport_height = get_viewport_rect().size.y
+	var target_position = Vector2(position.x, -viewport_height)
+	position = target_position
 
 func slide_out() -> void:
 	var viewport_height = get_viewport_rect().size.y

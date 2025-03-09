@@ -9,6 +9,7 @@ script = ExtResource("1_dext4")
 stage_name = "SUDOKU"
 stage_description = "Fill the grid so every row,
 column, and box has 1 to 9!"
+stage_code = "SUDOKU"
 stage_thumbnail = ExtResource("2_k6uj6")
 stage_info = ExtResource("2_7qita")
 stage_room = "res://scenes/room/room_stages/room_stage_sudoku/room_stage_sudoku.tscn"

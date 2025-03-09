@@ -10,6 +10,7 @@ stage_name = "SLIDING
 MIX"
 stage_description = "Slide, shift,
 and solve!"
+stage_code = "SLIDING"
 stage_thumbnail = ExtResource("3_t5rjd")
 stage_info = ExtResource("2_oi5w2")
 stage_room = "res://scenes/room/room_stages/room_stage_sliding_mix/room_stage_sliding_mix.tscn"
