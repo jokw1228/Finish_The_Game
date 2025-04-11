@@ -1,9 +1,9 @@
 [gd_scene load_steps=11 format=3 uid="uid://h6roi8gwnnli"]
 
-[ext_resource type="Script" path="res://scenes/room/room_stage/room_stage.gd" id="1_frkdo"]
-[ext_resource type="AudioStream" path="res://resources/audio/bgm/bgm_ingame_source.tres" id="2_jrd6r"]
+[ext_resource type="Script" uid="uid://cnhh5qnk703j7" path="res://scenes/room/room_stage/room_stage.gd" id="1_frkdo"]
+[ext_resource type="AudioStream" uid="uid://co8cegt1i5j2" path="res://resources/audio/bgm/bgm_ingame_source.tres" id="2_jrd6r"]
 [ext_resource type="PackedScene" uid="uid://bnyfbqonp1qby" path="res://scenes/ui/background/background_scrolling_controller.tscn" id="2_na0t0"]
-[ext_resource type="Script" path="res://scenes/room/room_stage/ready_set_go.gd" id="3_vacx5"]
+[ext_resource type="Script" uid="uid://dtao0b2xuwa04" path="res://scenes/room/room_stage/ready_set_go.gd" id="3_vacx5"]
 [ext_resource type="PackedScene" uid="uid://b3fbsp14s0uh" path="res://scenes/ui/overlay/ftg_result_overlay_controller.tscn" id="4_nv6mc"]
 [ext_resource type="AudioStream" uid="uid://bhv4rve0ta1vb" path="res://resources/audio/sfx/room_stage/sfx_readyset.wav" id="5_srsuo"]
 [ext_resource type="PackedScene" uid="uid://u72mfat08yxv" path="res://scenes/ui/hp_bar_canvas/hp_bar_canvas.tscn" id="5_tajkl"]

@@ -1,9 +1,9 @@
 [gd_scene load_steps=9 format=3 uid="uid://csm2phyw568ys"]
 
-[ext_resource type="Script" path="res://scenes/game_pentago/pentago_ui.gd" id="1_5nll1"]
+[ext_resource type="Script" uid="uid://dsr05ldnpdk1a" path="res://scenes/game_pentago/pentago_ui.gd" id="1_5nll1"]
 [ext_resource type="PackedScene" uid="uid://bvaikyypjwmaq" path="res://scenes/game_pentago/pentago_subboard.tscn" id="2_agnim"]
 [ext_resource type="Texture2D" uid="uid://cnx1rpyegf8ni" path="res://resources/images/game_pentago/sprite_pentago_rotate_ccw.svg" id="3_0ljni"]
-[ext_resource type="Script" path="res://scenes/game_pentago/pentago_rotation_buttons.gd" id="3_pi8c5"]
+[ext_resource type="Script" uid="uid://ck64sfxfqqal1" path="res://scenes/game_pentago/pentago_rotation_buttons.gd" id="3_pi8c5"]
 [ext_resource type="Texture2D" uid="uid://bhfte5rcglv3u" path="res://resources/images/game_pentago/sprite_pentago_rotate_cw.svg" id="4_h0bko"]
 [ext_resource type="AudioStream" uid="uid://bexei7qh5wag" path="res://resources/audio/sfx/general_purpose/sfx_button_click.wav" id="6_ty5bu"]
 [ext_resource type="AudioStream" uid="uid://bd8twx25b3mqk" path="res://resources/audio/sfx/game_pentago/sfx_game_pentago_place_stone.wav" id="6_v867a"]

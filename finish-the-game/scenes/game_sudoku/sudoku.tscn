@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://2iqkt2dicrub"]
 
-[ext_resource type="Script" path="res://scenes/game_sudoku/sudoku.gd" id="1_s0c0p"]
-[ext_resource type="Script" path="res://scenes/game_sudoku/select_grid.gd" id="2_tno3c"]
+[ext_resource type="Script" uid="uid://bknuqm18c84vl" path="res://scenes/game_sudoku/sudoku.gd" id="1_s0c0p"]
+[ext_resource type="Script" uid="uid://bllhwsljor2fu" path="res://scenes/game_sudoku/select_grid.gd" id="2_tno3c"]
 [ext_resource type="AudioStream" uid="uid://bexei7qh5wag" path="res://resources/audio/sfx/general_purpose/sfx_button_click.wav" id="3_3w2n2"]
 [ext_resource type="AudioStream" uid="uid://weo6ylx5t0x5" path="res://resources/audio/sfx/general_purpose/sfx_button_click_heavy.wav" id="3_ogul6"]
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://uiwqmyxyu4tj"]
 
-[ext_resource type="Script" path="res://scenes/game_rush_hour/game_rush_hour_board.gd" id="1_8l7gv"]
+[ext_resource type="Script" uid="uid://b2ec1h3cmphdm" path="res://scenes/game_rush_hour/game_rush_hour_board.gd" id="1_8l7gv"]
 [ext_resource type="Texture2D" uid="uid://dplhyxee2yhbc" path="res://resources/images/game_rush_hour/rh_tile_new.png" id="2_1fhup"]
 
 [node name="game_rush_hour_board" type="Node2D"]

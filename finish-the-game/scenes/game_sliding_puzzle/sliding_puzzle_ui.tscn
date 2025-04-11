@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bicct86wv601l"]
 
-[ext_resource type="Script" path="res://scenes/game_sliding_puzzle/sliding_puzzle_ui.gd" id="1_ha03d"]
+[ext_resource type="Script" uid="uid://j6ctw2xj2j3o" path="res://scenes/game_sliding_puzzle/sliding_puzzle_ui.gd" id="1_ha03d"]
 [ext_resource type="AudioStream" uid="uid://b5j1mib5i4fus" path="res://resources/audio/sfx/game_sliding_puzzle/sfx_game_sliding_puzzle_slide.wav" id="2_gqlh4"]
 
 [node name="SlidingPuzzleUI" type="Node2D"]

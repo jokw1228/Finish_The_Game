@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://kenny1vodevb"]
 
-[ext_resource type="Script" path="res://scenes/ui/overlay/ftg_result_overlay_o.gd" id="1_dqk78"]
+[ext_resource type="Script" uid="uid://cv4ce13vblxda" path="res://scenes/ui/overlay/ftg_result_overlay_o.gd" id="1_dqk78"]
 [ext_resource type="AudioStream" uid="uid://d4viuhytomgt" path="res://resources/audio/sfx/room_stage/sfx_success.mp3" id="2_bq0fs"]
 
 [node name="FTGResultOverlayO" type="Control"]

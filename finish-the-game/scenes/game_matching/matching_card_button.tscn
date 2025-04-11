@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bv8gg5pbvy418"]
 
-[ext_resource type="Script" path="res://scenes/game_matching/matching_card_button.gd" id="1_bcvwf"]
+[ext_resource type="Script" uid="uid://rskaua4i2jlu" path="res://scenes/game_matching/matching_card_button.gd" id="1_bcvwf"]
 
 [node name="MatchingCardButton" type="TextureButton"]
 z_index = 5

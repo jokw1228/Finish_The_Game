@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://brkcwaluqarr1"]
 
-[ext_resource type="Script" path="res://scenes/game_pentago/pentago_stone.gd" id="1_qjgpi"]
+[ext_resource type="Script" uid="uid://8c5xm58uaftp" path="res://scenes/game_pentago/pentago_stone.gd" id="1_qjgpi"]
 [ext_resource type="Texture2D" uid="uid://dt70e76wj8uqa" path="res://resources/images/game_pentago/sprite_pentago_stone_black.svg" id="1_t0vkc"]
 [ext_resource type="Texture2D" uid="uid://bkkb7k4xa2u4x" path="res://resources/images/game_pentago/sprite_pentago_stone_white.svg" id="3_4770x"]
 

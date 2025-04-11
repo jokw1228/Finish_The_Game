@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bo4gvwvim4g5s"]
 
-[ext_resource type="Script" path="res://scenes/game_orbito/orbito.gd" id="1_vywsl"]
+[ext_resource type="Script" uid="uid://t2p00mn5xlh6" path="res://scenes/game_orbito/orbito.gd" id="1_vywsl"]
 [ext_resource type="PackedScene" uid="uid://dp6hm2w4mkvli" path="res://scenes/game_orbito/orbito_ui.tscn" id="2_gqxxv"]
 
 [node name="orbito" type="Node2D"]

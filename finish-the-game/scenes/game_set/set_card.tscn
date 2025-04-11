@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bccdhxq4t05y3"]
 
 [ext_resource type="Texture2D" uid="uid://cage7n274kw2v" path="res://resources/images/game_set/sprite_set_empty_card.png" id="1_1pafx"]
-[ext_resource type="Script" path="res://scenes/game_set/set_card.gd" id="1_obovc"]
+[ext_resource type="Script" uid="uid://k6yanl5kuj8t" path="res://scenes/game_set/set_card.gd" id="1_obovc"]
 [ext_resource type="PackedScene" uid="uid://d0i2ysobu81b0" path="res://scenes/game_set/set_card_shape.tscn" id="2_kmvr7"]
 [ext_resource type="Texture2D" uid="uid://b788o05d3ips8" path="res://resources/images/game_set/sprite_memory_outline.png" id="4_6olxv"]
 

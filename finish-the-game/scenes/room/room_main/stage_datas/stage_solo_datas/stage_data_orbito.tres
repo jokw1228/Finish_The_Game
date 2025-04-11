@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="StageData" load_steps=4 format=3 uid="uid://cl0kijgf13wy0"]
 
-[ext_resource type="Script" path="res://scenes/room/room_main/stage_datas/stage_data.gd" id="1_f34t3"]
+[ext_resource type="Script" uid="uid://du6mfur7q7ghc" path="res://scenes/room/room_main/stage_datas/stage_data.gd" id="1_f34t3"]
 [ext_resource type="Texture2D" uid="uid://bt4p8udt4veex" path="res://resources/images/room_main/stage_datas/sprite_stage_orbito_info.png" id="2_ry8ly"]
 [ext_resource type="Texture2D" uid="uid://cqj7u4wgrmifx" path="res://resources/images/room_main/stage_datas/sprite_stage_orbito.png" id="2_vofvx"]
 

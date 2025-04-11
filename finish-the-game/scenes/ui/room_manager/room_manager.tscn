@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://cl5t3aqp7lxbh"]
 
-[ext_resource type="Script" path="res://scenes/ui/room_manager/room_manager.gd" id="1_5x1jh"]
-[ext_resource type="Shader" path="res://scenes/ui/room_manager/transition_overlay_circle.gdshader" id="2_anmln"]
-[ext_resource type="Script" path="res://scenes/ui/room_manager/transition_overlay.gd" id="3_t13uo"]
+[ext_resource type="Script" uid="uid://cojrg7wckxlkw" path="res://scenes/ui/room_manager/room_manager.gd" id="1_5x1jh"]
+[ext_resource type="Shader" uid="uid://bvrdx4hf4k1n" path="res://scenes/ui/room_manager/transition_overlay_circle.gdshader" id="2_anmln"]
+[ext_resource type="Script" uid="uid://30my0cyxfooj" path="res://scenes/ui/room_manager/transition_overlay.gd" id="3_t13uo"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_v0lkp"]
 shader = ExtResource("2_anmln")
@@ -56,9 +56,9 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6sq1a"]
 _data = {
-"RESET": SubResource("Animation_t5vd7"),
-"fade_in": SubResource("Animation_0486t"),
-"fade_out": SubResource("Animation_aaxq0")
+&"RESET": SubResource("Animation_t5vd7"),
+&"fade_in": SubResource("Animation_0486t"),
+&"fade_out": SubResource("Animation_aaxq0")
 }
 
 [node name="RoomManager" type="Node" node_paths=PackedStringArray("transition_overlay")]

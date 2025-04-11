@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cga3u78gu2cdd"]
 
-[ext_resource type="Script" path="res://scenes/game_ladder/ladder.gd" id="1_yqosx"]
-[ext_resource type="Script" path="res://scenes/game_ladder/ladder_ui.gd" id="2_l1ynb"]
+[ext_resource type="Script" uid="uid://d1tqdsbw5p50e" path="res://scenes/game_ladder/ladder.gd" id="1_yqosx"]
+[ext_resource type="Script" uid="uid://dcexltx5tbfv1" path="res://scenes/game_ladder/ladder_ui.gd" id="2_l1ynb"]
 
 [node name="Ladder" type="Node2D"]
 script = ExtResource("1_yqosx")

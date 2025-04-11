@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dvtl0hx6y2tsw"]
 
 [ext_resource type="PackedScene" uid="uid://h6roi8gwnnli" path="res://scenes/room/room_stage/room_stage.tscn" id="1_lsql6"]
-[ext_resource type="Script" path="res://scenes/room/room_stage/ftg_game_data.gd" id="2_l2pou"]
+[ext_resource type="Script" uid="uid://c877fdjt7map8" path="res://scenes/room/room_stage/ftg_game_data.gd" id="2_l2pou"]
 
 [sub_resource type="Resource" id="Resource_ebviy"]
 script = ExtResource("2_l2pou")

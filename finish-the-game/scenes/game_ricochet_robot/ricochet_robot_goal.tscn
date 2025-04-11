@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://ctdarii2rjum8"]
 
 [ext_resource type="Texture2D" uid="uid://dkciomtienriv" path="res://resources/images/game_ricochet_robot/new_sprites/red_goal.png" id="1_8dp71"]
-[ext_resource type="Script" path="res://scenes/game_ricochet_robot/ricochet_robot_goal.gd" id="1_s71c3"]
+[ext_resource type="Script" uid="uid://cy4wu6br5ygjo" path="res://scenes/game_ricochet_robot/ricochet_robot_goal.gd" id="1_s71c3"]
 [ext_resource type="Texture2D" uid="uid://cxvx8mlt14ls4" path="res://resources/images/game_ricochet_robot/new_sprites/green_goal.png" id="3_fqujg"]
 [ext_resource type="Texture2D" uid="uid://d1vjylbfqdp4a" path="res://resources/images/game_ricochet_robot/new_sprites/blue_goal.png" id="4_1b8m7"]
 [ext_resource type="Texture2D" uid="uid://cdnrgrcvcnv0x" path="res://resources/images/game_ricochet_robot/new_sprites/yellow_goal.png" id="5_equ81"]

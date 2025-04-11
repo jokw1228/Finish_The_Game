@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cb2eaetqx7xwj"]
 
-[ext_resource type="Script" path="res://scenes/game_matching/matching_ui.gd" id="1_71vgu"]
+[ext_resource type="Script" uid="uid://bcd8oiknu64op" path="res://scenes/game_matching/matching_ui.gd" id="1_71vgu"]
 
 [node name="MatchingUi" type="Node2D"]
 script = ExtResource("1_71vgu")

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://d0i2ysobu81b0"]
 
 [ext_resource type="Texture2D" uid="uid://d3a2g84fg6jxp" path="res://resources/images/game_set/sprite_set_spade_black_full.png" id="1_knx6s"]
-[ext_resource type="Script" path="res://scenes/game_set/set_card_shape.gd" id="2_5nwoq"]
+[ext_resource type="Script" uid="uid://ctw0ptgb6mva0" path="res://scenes/game_set/set_card_shape.gd" id="2_5nwoq"]
 
 [node name="SetCardShape" type="TextureRect"]
 texture = ExtResource("1_knx6s")

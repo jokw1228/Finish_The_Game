@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://2wggrsm86m31"]
 
-[ext_resource type="Script" path="res://scenes/game_one_card/one_card_card.gd" id="1_6o7j5"]
+[ext_resource type="Script" uid="uid://j5crvmxevhun" path="res://scenes/game_one_card/one_card_card.gd" id="1_6o7j5"]
 [ext_resource type="Texture2D" uid="uid://c8nxe11agya86" path="res://resources/images/game_one_card/sprite_one_card_empty_card.png" id="1_o1mc7"]
 [ext_resource type="Texture2D" uid="uid://dkwwpnsjed7n2" path="res://resources/images/game_one_card/sprite_one_card_spade.png" id="2_vnr14"]
 [ext_resource type="Texture2D" uid="uid://bc1einn7ayeih" path="res://resources/images/game_one_card/sprite_one_card_outline2.png" id="4_qmbs4"]

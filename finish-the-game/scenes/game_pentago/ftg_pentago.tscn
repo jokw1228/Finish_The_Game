@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://b4tkaxjfy1dnm"]
 
 [ext_resource type="PackedScene" uid="uid://dvbndx48qh0vl" path="res://scenes/game_pentago/pentago.tscn" id="1_104gr"]
-[ext_resource type="Script" path="res://scenes/game_pentago/ftg_pentago.gd" id="2_vmtps"]
-[ext_resource type="Script" path="res://scenes/game_pentago/ftg_pentago_ui.gd" id="3_7f6o7"]
+[ext_resource type="Script" uid="uid://2mrih4067pk3" path="res://scenes/game_pentago/ftg_pentago.gd" id="2_vmtps"]
+[ext_resource type="Script" uid="uid://my84dno7wj5i" path="res://scenes/game_pentago/ftg_pentago_ui.gd" id="3_7f6o7"]
 [ext_resource type="PackedScene" uid="uid://32twi0juyy6u" path="res://scenes/game_utils/game_utils_game_timer/game_utils_game_timer.tscn" id="3_72dqf"]
 [ext_resource type="Texture2D" uid="uid://bkkb7k4xa2u4x" path="res://resources/images/game_pentago/sprite_pentago_stone_white.svg" id="4_mekar"]
 [ext_resource type="Texture2D" uid="uid://dt70e76wj8uqa" path="res://resources/images/game_pentago/sprite_pentago_stone_black.svg" id="4_yggx2"]

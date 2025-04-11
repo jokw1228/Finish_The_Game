@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://u72mfat08yxv"]
 
-[ext_resource type="Script" path="res://scenes/ui/hp_bar_canvas/hp_bar_canvas.gd" id="1_gv0pj"]
+[ext_resource type="Script" uid="uid://dwbjh11jy0x0m" path="res://scenes/ui/hp_bar_canvas/hp_bar_canvas.gd" id="1_gv0pj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ggo5d"]
 bg_color = Color(0, 0, 0, 0.113725)

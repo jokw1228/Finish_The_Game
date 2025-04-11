@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://ctfbxf7wpw8ey"]
 
 [ext_resource type="PackedScene" uid="uid://bo4gvwvim4g5s" path="res://scenes/game_orbito/orbito.tscn" id="1_osd4v"]
-[ext_resource type="Script" path="res://scenes/game_orbito/ftg_orbito.gd" id="2_g4fvi"]
+[ext_resource type="Script" uid="uid://drjag3v533rnx" path="res://scenes/game_orbito/ftg_orbito.gd" id="2_g4fvi"]
 [ext_resource type="PackedScene" uid="uid://32twi0juyy6u" path="res://scenes/game_utils/game_utils_game_timer/game_utils_game_timer.tscn" id="3_fsgyb"]
 [ext_resource type="PackedScene" uid="uid://txf8ygkaavx0" path="res://scenes/game_utils/game_utils_retry_button/game_utils_retry_button.tscn" id="4_owk1m"]
 

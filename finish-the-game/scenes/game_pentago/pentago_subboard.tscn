@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://tdbane5j33pa" path="res://resources/images/game_pentago/sprite_pentago_subboard_transparent.svg" id="1_0ib5u"]
 [ext_resource type="Texture2D" uid="uid://c8k67dj3hhao3" path="res://resources/images/game_pentago/sprite_pentago_subboard.svg" id="1_4fr2y"]
-[ext_resource type="Script" path="res://scenes/game_pentago/pentago_subboard.gd" id="1_aekc6"]
+[ext_resource type="Script" uid="uid://ke4kmvetfhse" path="res://scenes/game_pentago/pentago_subboard.gd" id="1_aekc6"]
 [ext_resource type="Texture2D" uid="uid://xavaervnbloo" path="res://resources/images/game_pentago/sprite_pentago_subboard_translucent.svg" id="2_uitqs"]
 [ext_resource type="PackedScene" uid="uid://bqfer57y0a5od" path="res://scenes/game_pentago/pentago_cell.tscn" id="3_4yvij"]
 

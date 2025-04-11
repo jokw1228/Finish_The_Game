@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://jgg8ht6nx6so"]
 
-[ext_resource type="Script" path="res://scenes/game_ricochet_robot/ricochet_robot_cell.gd" id="1_mit8s"]
+[ext_resource type="Script" uid="uid://3gipqm5hivhv" path="res://scenes/game_ricochet_robot/ricochet_robot_cell.gd" id="1_mit8s"]
 [ext_resource type="Texture2D" uid="uid://dfw4ypdnwtsl5" path="res://resources/images/game_ricochet_robot/cell_transparent.svg" id="1_s4m4n"]
 [ext_resource type="Texture2D" uid="uid://5yctysak4ile" path="res://resources/images/game_ricochet_robot/cell_translucent.svg" id="2_w0cpy"]
 

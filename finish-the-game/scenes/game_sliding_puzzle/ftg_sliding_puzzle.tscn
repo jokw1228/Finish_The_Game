@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://df8lgaxcq5uj7"]
 
 [ext_resource type="PackedScene" uid="uid://cy0xw6owknf55" path="res://scenes/game_sliding_puzzle/sliding_puzzle.tscn" id="1_2qjcy"]
-[ext_resource type="Script" path="res://scenes/game_sliding_puzzle/ftg_sliding_puzzle.gd" id="1_qrknv"]
+[ext_resource type="Script" uid="uid://e6qug0ee8b7d" path="res://scenes/game_sliding_puzzle/ftg_sliding_puzzle.gd" id="1_qrknv"]
 [ext_resource type="PackedScene" uid="uid://32twi0juyy6u" path="res://scenes/game_utils/game_utils_game_timer/game_utils_game_timer.tscn" id="3_w0jtw"]
 
 [node name="FTGSlidingPuzzle" instance=ExtResource("1_2qjcy")]

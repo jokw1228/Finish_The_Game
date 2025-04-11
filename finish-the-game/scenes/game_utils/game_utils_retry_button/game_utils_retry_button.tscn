@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://txf8ygkaavx0"]
 
 [ext_resource type="Texture2D" uid="uid://b3eju70n1vntq" path="res://resources/images/game_utils/game_utils_retry_button/sprite_retry_button.svg" id="1_d12cu"]
-[ext_resource type="Script" path="res://scenes/game_utils/game_utils_retry_button/game_utils_retry_button.gd" id="1_jhvfm"]
+[ext_resource type="Script" uid="uid://d2853mdn5tch2" path="res://scenes/game_utils/game_utils_retry_button/game_utils_retry_button.gd" id="1_jhvfm"]
 [ext_resource type="Texture2D" uid="uid://djkl0b2ckjd6v" path="res://resources/images/game_utils/game_utils_retry_button/sprite_retry_overlay.svg" id="3_ve0pf"]
 [ext_resource type="AudioStream" uid="uid://bexei7qh5wag" path="res://resources/audio/sfx/general_purpose/sfx_button_click.wav" id="4_21v4e"]
 [ext_resource type="AudioStream" uid="uid://2plqf6bx1m7x" path="res://resources/audio/sfx/game_utils/game_utils_retry_button/sfx_retry.wav" id="5_tki2s"]

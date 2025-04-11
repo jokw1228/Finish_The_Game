@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://corv7n6fbmkxd"]
 
 [ext_resource type="Texture2D" uid="uid://bpyr6ctlxb6m6" path="res://resources/images/game_ricochet_robot/new_sprites/wall_fit_2.png" id="1_u08vw"]
-[ext_resource type="Script" path="res://scenes/game_ricochet_robot/ricochet_robot_wall.gd" id="2_2uwly"]
+[ext_resource type="Script" uid="uid://crpfu6s5vkrcw" path="res://scenes/game_ricochet_robot/ricochet_robot_wall.gd" id="2_2uwly"]
 
 [node name="RicochetRobotWall" type="Sprite2D"]
 z_index = 1

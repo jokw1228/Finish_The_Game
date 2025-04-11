@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dehqiuoqmmh3m"]
 
-[ext_resource type="Script" path="res://scenes/game_ricochet_robot/ricochet_robot_ui.gd" id="1_vn41w"]
+[ext_resource type="Script" uid="uid://c0buxx76v4ii1" path="res://scenes/game_ricochet_robot/ricochet_robot_ui.gd" id="1_vn41w"]
 [ext_resource type="PackedScene" uid="uid://dyxfh7q1k5qa2" path="res://scenes/game_ricochet_robot/ricochet_robot_board.tscn" id="2_iixg3"]
 [ext_resource type="AudioStream" uid="uid://b13ega2kvv5j7" path="res://resources/audio/sfx/game_ricochet_robot/sfx_game_ricochet_robot_select_robot.wav" id="3_ww0ip"]
 [ext_resource type="AudioStream" uid="uid://bosucsx0pg84e" path="res://resources/audio/sfx/game_ricochet_robot/sfx_game_ricochet_robot_move.wav" id="4_dorgm"]

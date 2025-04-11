@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bjkk3htummbol"]
 
-[ext_resource type="Script" path="res://scenes/game_flip_tiles/flip_tiles_board.gd" id="1_12xam"]
+[ext_resource type="Script" uid="uid://20wyqsog14qv" path="res://scenes/game_flip_tiles/flip_tiles_board.gd" id="1_12xam"]
 [ext_resource type="Texture2D" uid="uid://bpn8r451cxcpy" path="res://resources/images/game_flip_tiles/board.png" id="1_abqti"]
 
 [node name="FlipTilesBoard" type="Sprite2D"]

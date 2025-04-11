@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://d3ye6ly5p3fic" path="res://resources/images/game_pentago/sprite_pentago_cell_transparent.svg" id="1_7w1am"]
 [ext_resource type="Texture2D" uid="uid://ivm217x7rgy3" path="res://resources/images/game_pentago/sprite_pentago_cell_translucent.svg" id="2_jy7jy"]
-[ext_resource type="Script" path="res://scenes/game_pentago/pentago_cell.gd" id="3_5urij"]
+[ext_resource type="Script" uid="uid://cqr5afmnfhqol" path="res://scenes/game_pentago/pentago_cell.gd" id="3_5urij"]
 
 [node name="PentagoCell" type="TextureButton"]
 offset_left = -64.0

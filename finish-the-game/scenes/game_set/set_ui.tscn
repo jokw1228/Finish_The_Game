@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://ueqerdgbd8k5"]
 
-[ext_resource type="Script" path="res://scenes/game_set/set_ui.gd" id="1_yxj8t"]
+[ext_resource type="Script" uid="uid://8ref7enuc50y" path="res://scenes/game_set/set_ui.gd" id="1_yxj8t"]
 [ext_resource type="PackedScene" uid="uid://bccdhxq4t05y3" path="res://scenes/game_set/set_card.tscn" id="2_ck1l0"]
 [ext_resource type="PackedScene" uid="uid://bhahj2meygah1" path="res://scenes/game_set/set_card_button.tscn" id="3_3tgoq"]
 

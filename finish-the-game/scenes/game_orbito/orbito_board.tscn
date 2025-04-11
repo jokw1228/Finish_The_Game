@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dj0pb3rpmucem"]
 
 [ext_resource type="Texture2D" uid="uid://bg5s4ey8ym8yd" path="res://resources/images/game_orbito/sprite_orbito_board.svg" id="1_mynl4"]
-[ext_resource type="Script" path="res://scenes/game_orbito/orbito_board.gd" id="2_ef8nq"]
+[ext_resource type="Script" uid="uid://dv2bhs2l4al7t" path="res://scenes/game_orbito/orbito_board.gd" id="2_ef8nq"]
 [ext_resource type="PackedScene" uid="uid://bq2esjc1gfe81" path="res://scenes/game_orbito/orbito_cell.tscn" id="3_s4rxc"]
 
 [node name="orbito_board" type="Sprite2D" node_paths=PackedStringArray("cells_to_export")]

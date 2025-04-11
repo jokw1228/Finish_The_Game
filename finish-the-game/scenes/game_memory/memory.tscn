@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://blc1e6inun3jp"]
 
-[ext_resource type="Script" path="res://scenes/game_memory/memory.gd" id="1_0xrms"]
+[ext_resource type="Script" uid="uid://b66yd5sgxuhax" path="res://scenes/game_memory/memory.gd" id="1_0xrms"]
 [ext_resource type="PackedScene" uid="uid://ixyt0pj0bjtk" path="res://scenes/game_memory/menory_ui.tscn" id="1_loipg"]
 [ext_resource type="PackedScene" uid="uid://cx7ip7pk108p3" path="res://scenes/game_memory/memory_card.tscn" id="3_fw1p0"]
 [ext_resource type="PackedScene" uid="uid://cmuh1gia1wly0" path="res://scenes/game_memory/memory_card_button.tscn" id="4_c06k4"]

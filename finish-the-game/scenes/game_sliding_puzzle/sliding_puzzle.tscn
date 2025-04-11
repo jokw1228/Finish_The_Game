@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cy0xw6owknf55"]
 
-[ext_resource type="Script" path="res://scenes/game_sliding_puzzle/sliding_puzzle.gd" id="1_i42ma"]
+[ext_resource type="Script" uid="uid://2x5u5ykuqj07" path="res://scenes/game_sliding_puzzle/sliding_puzzle.gd" id="1_i42ma"]
 [ext_resource type="PackedScene" uid="uid://bicct86wv601l" path="res://scenes/game_sliding_puzzle/sliding_puzzle_ui.tscn" id="2_8c687"]
 
 [node name="SlidingPuzzle" type="Node2D"]

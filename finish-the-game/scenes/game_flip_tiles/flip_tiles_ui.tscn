@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dj21lwt4gbsux"]
 
-[ext_resource type="Script" path="res://scenes/game_flip_tiles/flip_tiles_ui.gd" id="1_7v0ss"]
+[ext_resource type="Script" uid="uid://c8kp42hrsfd6u" path="res://scenes/game_flip_tiles/flip_tiles_ui.gd" id="1_7v0ss"]
 [ext_resource type="PackedScene" uid="uid://bjkk3htummbol" path="res://scenes/game_flip_tiles/flip_tiles_board.tscn" id="2_x7xvp"]
 
 [node name="FlipTilesUi" type="Node2D"]

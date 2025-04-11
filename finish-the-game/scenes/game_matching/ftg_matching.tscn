@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://ckes28qt8ga1a"]
 
 [ext_resource type="PackedScene" uid="uid://c01hcja4ib5qm" path="res://scenes/game_matching/matching.tscn" id="1_i3j05"]
-[ext_resource type="Script" path="res://scenes/game_matching/ftg_matching.gd" id="2_4tkbr"]
+[ext_resource type="Script" uid="uid://cwvkx1u5tsdq" path="res://scenes/game_matching/ftg_matching.gd" id="2_4tkbr"]
 [ext_resource type="PackedScene" uid="uid://32twi0juyy6u" path="res://scenes/game_utils/game_utils_game_timer/game_utils_game_timer.tscn" id="3_bo8m0"]
 [ext_resource type="PackedScene" uid="uid://dgfam4swo5kr7" path="res://scenes/game_matching/matching_card.tscn" id="3_xdyp0"]
 [ext_resource type="PackedScene" uid="uid://bv8gg5pbvy418" path="res://scenes/game_matching/matching_card_button.tscn" id="4_jyts1"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dhturp3wt4sgo"]
 
-[ext_resource type="Script" path="res://scenes/game_ricochet_robot/richchet_robot.gd" id="1_wqumb"]
+[ext_resource type="Script" uid="uid://be1sa1bnyjbyu" path="res://scenes/game_ricochet_robot/richchet_robot.gd" id="1_wqumb"]
 [ext_resource type="PackedScene" uid="uid://dehqiuoqmmh3m" path="res://scenes/game_ricochet_robot/ricochet_robot_ui.tscn" id="2_pdsq7"]
 
 [node name="RichchetRobot" type="Node2D"]

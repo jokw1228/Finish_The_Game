@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://c2vta8f2njppa"]
 
-[ext_resource type="Script" path="res://scenes/game_ladder/ftg_ladder.gd" id="1_wysop"]
+[ext_resource type="Script" uid="uid://de5yb07xhc6ep" path="res://scenes/game_ladder/ftg_ladder.gd" id="1_wysop"]
 [ext_resource type="PackedScene" uid="uid://32twi0juyy6u" path="res://scenes/game_utils/game_utils_game_timer/game_utils_game_timer.tscn" id="2_msq25"]
-[ext_resource type="Script" path="res://scenes/game_ladder/ladder_ui.gd" id="3_4jn6n"]
+[ext_resource type="Script" uid="uid://dcexltx5tbfv1" path="res://scenes/game_ladder/ladder_ui.gd" id="3_4jn6n"]
 
 [node name="FtgLadder" type="Node2D"]
 script = ExtResource("1_wysop")

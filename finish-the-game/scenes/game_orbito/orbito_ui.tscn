@@ -1,10 +1,10 @@
 [gd_scene load_steps=10 format=3 uid="uid://dp6hm2w4mkvli"]
 
-[ext_resource type="Script" path="res://scenes/game_orbito/orbito_ui.gd" id="1_qgrcw"]
+[ext_resource type="Script" uid="uid://gq54yadh0bhl" path="res://scenes/game_orbito/orbito_ui.gd" id="1_qgrcw"]
 [ext_resource type="FontFile" uid="uid://c5igkpjkatnoi" path="res://resources/fonts/acknowtt.ttf" id="2_05lnp"]
 [ext_resource type="PackedScene" uid="uid://dj0pb3rpmucem" path="res://scenes/game_orbito/orbito_board.tscn" id="3_oto0j"]
 [ext_resource type="Texture2D" uid="uid://cbbxgmbhthjew" path="res://resources/images/game_orbito/sprite_orbito_stone_black.svg" id="4_okl51"]
-[ext_resource type="Script" path="res://scenes/game_orbito/orbito_turn_order.gd" id="5_ffn4r"]
+[ext_resource type="Script" uid="uid://budlj5ntwwjbq" path="res://scenes/game_orbito/orbito_turn_order.gd" id="5_ffn4r"]
 [ext_resource type="Texture2D" uid="uid://4hs2sut4tcmd" path="res://resources/images/game_orbito/sprite_orbito_stone_white.svg" id="6_t3hbx"]
 [ext_resource type="AudioStream" uid="uid://igvhk51bdjfh" path="res://resources/audio/sfx/game_orbito/sfx_game_orbito_place_stone.wav" id="7_p5nx3"]
 [ext_resource type="AudioStream" uid="uid://cwdstfcftqayf" path="res://resources/audio/sfx/game_orbito/sfx_game_orbito_move_stone.wav" id="8_m26uu"]

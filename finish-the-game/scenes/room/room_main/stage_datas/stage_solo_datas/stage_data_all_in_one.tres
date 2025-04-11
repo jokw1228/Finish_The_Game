@@ -1,11 +1,18 @@
-[gd_resource type="Resource" script_class="StageData" load_steps=3 format=3 uid="uid://d4fxlf4eajlno"]
+[gd_resource type="Resource" script_class="StageData" load_steps=4 format=3 uid="uid://d4fxlf4eajlno"]
 
-[ext_resource type="Script" path="res://scenes/room/room_main/stage_datas/stage_data.gd" id="1_88gpf"]
-[ext_resource type="Texture2D" path="res://resources/images/room_main/stage_datas/sprite_stage_all_in_one_mix.svg" id="2_m6hw3"]
+[ext_resource type="Script" uid="uid://du6mfur7q7ghc" path="res://scenes/room/room_main/stage_datas/stage_data.gd" id="1_88gpf"]
+
+[sub_resource type="Resource" id="Resource_8h3tw"]
+metadata/__load_path__ = "res://resources/images/room_main/stage_datas/sprite_stage_all_in_one_mix.svg"
+
+[sub_resource type="Resource" id="Resource_xcql8"]
+metadata/__load_path__ = "res://resources/images/room_main/stage_datas/sprite_stage_all_in_one_mix.svg"
 
 [resource]
 script = ExtResource("1_88gpf")
 stage_name = "ALL-IN-ONE"
 stage_description = "Literally all-in-one."
-stage_thumbnail = ExtResource("2_m6hw3")
-stage_info = ExtResource("2_m6hw3")
+stage_code = ""
+stage_thumbnail = SubResource("Resource_xcql8")
+stage_info = SubResource("Resource_8h3tw")
+stage_room = ""

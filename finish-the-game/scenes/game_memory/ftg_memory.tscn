@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://de6qpnr3duits"]
 
 [ext_resource type="PackedScene" uid="uid://blc1e6inun3jp" path="res://scenes/game_memory/memory.tscn" id="1_icwk1"]
-[ext_resource type="Script" path="res://scenes/game_memory/ftg_memory.gd" id="2_7nti4"]
+[ext_resource type="Script" uid="uid://dkvl3fbqs7siv" path="res://scenes/game_memory/ftg_memory.gd" id="2_7nti4"]
 [ext_resource type="PackedScene" uid="uid://32twi0juyy6u" path="res://scenes/game_utils/game_utils_game_timer/game_utils_game_timer.tscn" id="3_jcwst"]
 
 [node name="FTGMemory" instance=ExtResource("1_icwk1")]

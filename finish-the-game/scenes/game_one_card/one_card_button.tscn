@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dyrx72gotfeqt"]
 
 [ext_resource type="Texture2D" uid="uid://c8nxe11agya86" path="res://resources/images/game_one_card/sprite_one_card_empty_card.png" id="1_fnvku"]
-[ext_resource type="Script" path="res://scenes/game_one_card/one_card_button.gd" id="1_r04ge"]
+[ext_resource type="Script" uid="uid://djlyoequfylwy" path="res://scenes/game_one_card/one_card_button.gd" id="1_r04ge"]
 
 [node name="OneCardButton" type="TextureButton"]
 action_mode = 0

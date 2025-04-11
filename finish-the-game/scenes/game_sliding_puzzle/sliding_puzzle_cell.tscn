@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dgr6rixiisqv0"]
 
 [ext_resource type="Texture2D" uid="uid://04m0351f6415" path="res://resources/images/game_sliding_puzzle/sprite_sliding_puzzle_cell.svg" id="1_gsld7"]
-[ext_resource type="Script" path="res://scenes/game_sliding_puzzle/sliding_puzzle_cell.gd" id="2_8we1a"]
+[ext_resource type="Script" uid="uid://b8csviih3806e" path="res://scenes/game_sliding_puzzle/sliding_puzzle_cell.gd" id="2_8we1a"]
 
 [node name="SlidingPuzzleCell" type="TextureButton" node_paths=PackedStringArray("Number_node")]
 offset_left = -64.0

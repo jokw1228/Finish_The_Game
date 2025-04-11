@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://cbl0xs0coasm3"]
 
-[ext_resource type="Script" path="res://scenes/game_rush_hour/game_rush_hour_truck.gd" id="1_6tjk8"]
-[ext_resource type="Shader" path="res://scenes/game_rush_hour/game_rush_hour_truck.gdshader" id="2_5bkja"]
+[ext_resource type="Script" uid="uid://gqv6o5dnoocd" path="res://scenes/game_rush_hour/game_rush_hour_truck.gd" id="1_6tjk8"]
+[ext_resource type="Shader" uid="uid://cupvjwvom6215" path="res://scenes/game_rush_hour/game_rush_hour_truck.gdshader" id="2_5bkja"]
 [ext_resource type="Texture2D" uid="uid://d3j5l0kjoepbe" path="res://resources/images/game_rush_hour/sprite_new_rush_hour_truck1.png" id="2_papk6"]
 [ext_resource type="AudioStream" uid="uid://m3l1aos21bjn" path="res://resources/audio/sfx/game_rush_hour/sfx_game_rush_hour_vehicle.wav" id="3_4fnm2"]
 

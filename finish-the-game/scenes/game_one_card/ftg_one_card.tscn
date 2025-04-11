@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://brmqeailit5kb"]
 
 [ext_resource type="PackedScene" uid="uid://c8whyrgf2mmqi" path="res://scenes/game_one_card/one_card.tscn" id="1_8lopt"]
-[ext_resource type="Script" path="res://scenes/game_one_card/ftg_one_card.gd" id="2_323vh"]
+[ext_resource type="Script" uid="uid://bvqq4xldffk74" path="res://scenes/game_one_card/ftg_one_card.gd" id="2_323vh"]
 [ext_resource type="PackedScene" uid="uid://32twi0juyy6u" path="res://scenes/game_utils/game_utils_game_timer/game_utils_game_timer.tscn" id="3_ef7ex"]
 [ext_resource type="Texture2D" uid="uid://c5jjqab8crpmk" path="res://resources/images/game_one_card/sprite_one_card_outline.png" id="4_6xmrn"]
 [ext_resource type="Texture2D" uid="uid://dopum6yyjdti4" path="res://resources/images/game_one_card/sprite_one_card_small_outline.png" id="5_jayoq"]

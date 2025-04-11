@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bprm6g4u1iw5c"]
 
 [ext_resource type="Texture2D" uid="uid://cbbxgmbhthjew" path="res://resources/images/game_orbito/sprite_orbito_stone_black.svg" id="1_brjoa"]
-[ext_resource type="Script" path="res://scenes/game_orbito/orbito_stone.gd" id="2_uub24"]
+[ext_resource type="Script" uid="uid://duipyjrn67bh0" path="res://scenes/game_orbito/orbito_stone.gd" id="2_uub24"]
 [ext_resource type="Texture2D" uid="uid://4hs2sut4tcmd" path="res://resources/images/game_orbito/sprite_orbito_stone_white.svg" id="3_v8q65"]
 
 [node name="orbito_stone" type="Sprite2D"]

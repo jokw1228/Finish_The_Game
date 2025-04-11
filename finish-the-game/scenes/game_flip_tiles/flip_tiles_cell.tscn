@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cji48rvl7rp0t"]
 
 [ext_resource type="Texture2D" uid="uid://gs7omprbw3kd" path="res://resources/images/game_flip_tiles/tile_on_s.png" id="1_0l6vc"]
-[ext_resource type="Script" path="res://scenes/game_flip_tiles/flip_tiles_cell.gd" id="1_d5kn1"]
+[ext_resource type="Script" uid="uid://ckowkomfimfqx" path="res://scenes/game_flip_tiles/flip_tiles_cell.gd" id="1_d5kn1"]
 [ext_resource type="Texture2D" uid="uid://riy8dmxjsr0s" path="res://resources/images/game_flip_tiles/tile_off_s.png" id="3_mqdb6"]
 [ext_resource type="AudioStream" uid="uid://c1oe0ce5546cu" path="res://resources/audio/sfx/game_flip_tiles/sfx_game_flip_tiles_click.mp3" id="4_ka7g8"]
 

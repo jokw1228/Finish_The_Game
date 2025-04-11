@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dvbndx48qh0vl"]
 
-[ext_resource type="Script" path="res://scenes/game_pentago/pentago.gd" id="1_dn42u"]
+[ext_resource type="Script" uid="uid://83286mkmgxoc" path="res://scenes/game_pentago/pentago.gd" id="1_dn42u"]
 [ext_resource type="PackedScene" uid="uid://csm2phyw568ys" path="res://scenes/game_pentago/pentago_ui.tscn" id="2_6wpec"]
 
 [node name="Pentago" type="Node2D"]

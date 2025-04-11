@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://c01hcja4ib5qm"]
 
-[ext_resource type="Script" path="res://scenes/game_matching/matching.gd" id="1_icfkf"]
+[ext_resource type="Script" uid="uid://tw33lsc13hmg" path="res://scenes/game_matching/matching.gd" id="1_icfkf"]
 [ext_resource type="PackedScene" uid="uid://cb2eaetqx7xwj" path="res://scenes/game_matching/matching_ui.tscn" id="2_hvcus"]
 
 [node name="Matching" type="Node2D"]

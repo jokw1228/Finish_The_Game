@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cx7ip7pk108p3"]
 
-[ext_resource type="Script" path="res://scenes/game_memory/memory_card.gd" id="1_7usp8"]
+[ext_resource type="Script" uid="uid://1y3maoygxmqn" path="res://scenes/game_memory/memory_card.gd" id="1_7usp8"]
 [ext_resource type="Texture2D" uid="uid://byh14nhlnlbm" path="res://resources/images/game_memory/sprite_memory_unknown_card.png" id="2_snnaa"]
 [ext_resource type="Texture2D" uid="uid://dsbip3oy3230y" path="res://resources/images/game_memory/sprite_memory_diamond_black.png" id="3_nt8l3"]
 [ext_resource type="Texture2D" uid="uid://dsljjexil3phw" path="res://resources/images/game_memory/sprite_memory_card_outline.png" id="4_cbams"]

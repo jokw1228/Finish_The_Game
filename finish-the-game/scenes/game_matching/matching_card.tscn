@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dgfam4swo5kr7"]
 
-[ext_resource type="Script" path="res://scenes/game_matching/matching_card.gd" id="1_05pd5"]
+[ext_resource type="Script" uid="uid://bru06qw6ogpqh" path="res://scenes/game_matching/matching_card.gd" id="1_05pd5"]
 [ext_resource type="Texture2D" uid="uid://ds56xnygj8h8k" path="res://resources/images/game_matching/sprite_matching_empty_card.png" id="2_5exu2"]
 [ext_resource type="Texture2D" uid="uid://cvjd0f8axaon7" path="res://resources/images/game_matching/sprite_matching_eye_1.png" id="3_5y5go"]
 [ext_resource type="Texture2D" uid="uid://cimd21j7s3k8i" path="res://resources/images/game_matching/sprite_matching_eye_2.png" id="4_olsd0"]
